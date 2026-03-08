@@ -103,44 +103,49 @@ export default function Home() {
           </div>
         </section>
 
-        {/* What I Build */}
-        <section className="py-24 md:py-32 px-6 lg:px-8 bg-background border-b border-border">
-          <div className="max-w-5xl mx-auto">
+        {/* What I Build — FocusRail */}
+        <section className="border-b border-border">
+          <div className="py-16 md:py-20 px-6 lg:px-8 max-w-5xl mx-auto text-center">
             <ScrollReveal>
-              <p className="text-lg text-muted-foreground mb-12 max-w-2xl">
+              <p className="text-lg text-muted-foreground mb-4 max-w-2xl mx-auto">
                 Je construis des systèmes simples à utiliser, pensés pour les entreprises de services.
               </p>
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
                 Ce que je construis
               </h2>
             </ScrollReveal>
-
-            <div className="grid md:grid-cols-2 gap-8">
-              {/* Card 1: Automatisations IA */}
-              <ScrollReveal delay={0.1}>
-                <div className="bg-card border border-border rounded-xl p-8 hover:shadow-lg transition-all hover:border-primary/20">
-                  <h3 className="text-2xl font-semibold text-foreground mb-4">
-                    Automatisations IA
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    J'identifie vos tâches répétitives et je crée des workflows automatisés pour vous faire gagner du temps chaque semaine.
-                  </p>
-                </div>
-              </ScrollReveal>
-
-              {/* Card 2: Micro-outils & micro-SaaS */}
-              <ScrollReveal delay={0.2}>
-                <div className="bg-card border border-border rounded-xl p-8 hover:shadow-lg transition-all hover:border-primary/20">
-                  <h3 className="text-2xl font-semibold text-foreground mb-4">
-                    Micro-outils & micro-SaaS
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    Je conçois de petits outils sur mesure (tableaux de bord, mini-apps) pour fiabiliser vos processus et centraliser l'information.
-                  </p>
-                </div>
-              </ScrollReveal>
-            </div>
           </div>
+
+          <FocusRail
+            items={[
+              {
+                id: 'auto-ia',
+                title: 'Automatisations IA',
+                description: "J'identifie vos tâches répétitives et je crée des workflows automatisés pour vous faire gagner du temps chaque semaine.",
+                meta: 'Workflows • n8n • Claude',
+                imageSrc: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1000&auto=format&fit=crop',
+                href: '/contact',
+              },
+              {
+                id: 'micro-saas',
+                title: 'Micro-outils & micro-SaaS',
+                description: 'Je conçois de petits outils sur mesure (tableaux de bord, mini-apps) pour fiabiliser vos processus et centraliser l\'information.',
+                meta: 'Outils • Dashboards',
+                imageSrc: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000&auto=format&fit=crop',
+                href: '/contact',
+              },
+              ...businessInfo.projects.slice(0, 3).map((project) => ({
+                id: project.id,
+                title: project.title,
+                description: `${project.context}. ${project.result}`,
+                meta: project.tags.join(' • '),
+                imageSrc: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop',
+                href: `/portfolio/${project.id}`,
+              })),
+            ]}
+            autoPlay
+            loop
+          />
         </section>
 
         {/* Featured Projects Teasers */}
