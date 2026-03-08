@@ -3,12 +3,13 @@ import { useRef, useState, useEffect } from 'react';
 import { businessInfo } from '@/data/business';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { SEOHead } from '@/components/seo/SEOHead';
-import { ArrowRight, Mail, Calendar } from 'lucide-react';
+import { ArrowRight, Mail, Calendar, Receipt, Users, FileText, BarChart3 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';
 import { FocusRail, type FocusRailItem } from '@/components/ui/focus-rail';
 import { VerticalCutReveal, type VerticalCutRevealRef } from '@/components/ui/vertical-cut-reveal';
+import FeatureSection from '@/components/ui/feature-section';
 import heroPortrait from '@/assets/hero-portrait.jpg';
 
 export default function Home() {
