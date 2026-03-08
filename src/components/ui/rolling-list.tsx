@@ -14,7 +14,7 @@ interface RollingTextItemProps {
 }
 
 const colorClassMap: Record<NonNullable<ListItem["color"]>, string> = {
-  blue: "text-primary",
+  blue: "text-blue-500",
 };
 
 function RollingTextItem({ item }: RollingTextItemProps) {
