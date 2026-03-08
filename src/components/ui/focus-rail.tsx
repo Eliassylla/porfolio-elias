@@ -217,18 +217,13 @@ export function FocusRail({
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 exit={{ opacity: 0, y: -10, filter: "blur(4px)" }}
                 transition={{ duration: 0.3 }}
-                className="space-y-1"
+                className="space-y-1.5"
               >
-                {activeItem.meta && (
-                  <span className="text-[10px] font-medium uppercase tracking-wider text-emerald-400">
-                    {activeItem.meta}
-                  </span>
-                )}
-                <h2 className="text-xl font-bold tracking-tight md:text-2xl text-white">
+                <h2 className="text-2xl font-bold tracking-tight md:text-3xl text-white">
                   {activeItem.title}
                 </h2>
                 {activeItem.description && (
-                  <p className="max-w-sm text-xs text-neutral-400 line-clamp-2">
+                  <p className="max-w-sm text-sm text-neutral-400 line-clamp-2">
                     {activeItem.description}
                   </p>
                 )}
