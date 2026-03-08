@@ -102,18 +102,42 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Social Proof / Stats */}
-        <section className="py-16 px-6 lg:px-8 bg-background border-b border-border">
+        {/* What I Build */}
+        <section className="py-24 md:py-32 px-6 lg:px-8 bg-background border-b border-border">
           <div className="max-w-5xl mx-auto">
-            <div className="grid grid-cols-3 gap-8">
-              {businessInfo.stats.map((stat, index) => (
-                <ScrollReveal key={index} delay={index * 0.1}>
-                  <div className="text-center">
-                    <p className="text-3xl md:text-4xl font-bold text-foreground">{stat.value}</p>
-                    <p className="mt-2 text-sm text-muted-foreground">{stat.label}</p>
-                  </div>
-                </ScrollReveal>
-              ))}
+            <ScrollReveal>
+              <p className="text-lg text-muted-foreground mb-12 max-w-2xl">
+                Je construis des systèmes simples à utiliser, pensés pour les entreprises de services.
+              </p>
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-12">
+                Ce que je construis
+              </h2>
+            </ScrollReveal>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* Card 1: Automatisations IA */}
+              <ScrollReveal delay={0.1}>
+                <div className="bg-card border border-border rounded-xl p-8 hover:shadow-lg transition-all hover:border-primary/20">
+                  <h3 className="text-2xl font-semibold text-foreground mb-4">
+                    Automatisations IA
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    J'identifie vos tâches répétitives et je crée des workflows automatisés pour vous faire gagner du temps chaque semaine.
+                  </p>
+                </div>
+              </ScrollReveal>
+
+              {/* Card 2: Micro-outils & micro-SaaS */}
+              <ScrollReveal delay={0.2}>
+                <div className="bg-card border border-border rounded-xl p-8 hover:shadow-lg transition-all hover:border-primary/20">
+                  <h3 className="text-2xl font-semibold text-foreground mb-4">
+                    Micro-outils & micro-SaaS
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Je conçois de petits outils sur mesure (tableaux de bord, mini-apps) pour fiabiliser vos processus et centraliser l'information.
+                  </p>
+                </div>
+              </ScrollReveal>
             </div>
           </div>
         </section>
