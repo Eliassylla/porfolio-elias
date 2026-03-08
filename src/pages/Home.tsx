@@ -18,60 +18,87 @@ export default function Home() {
 
       <div className="min-h-screen">
         {/* Hero Section */}
-        <section className="relative min-h-screen flex items-center bg-primary text-primary-foreground overflow-hidden">
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-20 left-10 w-72 h-72 bg-accent rounded-full blur-3xl" />
-            <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent rounded-full blur-3xl" />
-          </div>
+        <section className="relative min-h-screen flex items-center bg-background overflow-hidden">
+          <div className="relative max-w-6xl mx-auto px-6 lg:px-8 py-32 w-full">
+            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+              {/* Left — Text */}
+              <div>
+                <motion.div
+                  className="flex items-center gap-2 mb-8"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
+                >
+                  <span className="size-2 rounded-full bg-emerald-500 animate-pulse" />
+                  <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                    Disponible pour nouveaux projets
+                  </span>
+                </motion.div>
 
-          <div className="relative max-w-5xl mx-auto px-6 lg:px-8 py-32">
-            <div className="max-w-3xl">
+                <motion.h1
+                  className="text-4xl md:text-5xl lg:text-[3.5rem] font-bold tracking-tight leading-[1.1] text-foreground"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.1 }}
+                >
+                  Je construis des automatisations avec{' '}
+                  <em className="not-italic text-primary/70 font-bold italic">Claude Code</em>{' '}
+                  pour les entreprises de services.
+                </motion.h1>
+
+                <motion.p
+                  className="mt-6 text-base md:text-lg text-muted-foreground leading-relaxed max-w-lg"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                >
+                  Pas de théorie. Des systèmes concrets, robustes et documentés pour libérer votre temps et sécuriser votre croissance.
+                </motion.p>
+
+                <motion.div
+                  className="mt-10 flex flex-col sm:flex-row gap-4"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.5 }}
+                >
+                  <Link to="/contact">
+                    <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-white text-base px-7 py-6 font-semibold rounded-lg gap-2">
+                      <Calendar className="size-4" />
+                      Réserver un audit (30min)
+                    </Button>
+                  </Link>
+                  <Link to="/portfolio">
+                    <Button size="lg" variant="outline" className="text-base px-7 py-6 font-semibold rounded-lg border-border text-foreground hover:bg-secondary">
+                      Voir mes réalisations
+                    </Button>
+                  </Link>
+                </motion.div>
+              </div>
+
+              {/* Right — Portrait + Quote */}
               <motion.div
-                className="flex gap-2 mb-6"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-              >
-                <Badge variant="secondary" className="text-xs px-3 py-1">n8n</Badge>
-                <Badge variant="secondary" className="text-xs px-3 py-1">Claude Code</Badge>
-                <Badge variant="secondary" className="text-xs px-3 py-1">Automatisation</Badge>
-              </motion.div>
-
-              <motion.h1
-                className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.1 }}
-              >
-                {businessInfo.tagline}
-              </motion.h1>
-
-              <motion.p
-                className="mt-8 text-lg md:text-xl leading-relaxed opacity-90"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                className="relative flex justify-center lg:justify-end"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
               >
-                Voici des exemples concrets.
-              </motion.p>
+                {/* Main portrait */}
+                <div className="relative">
+                  <div className="w-72 md:w-80 aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl border-4 border-background ring-1 ring-border rotate-2">
+                    <img
+                      src={heroPortrait}
+                      alt="Elias — Expert automatisation"
+                      className="w-full h-full object-cover grayscale"
+                    />
+                  </div>
 
-              <motion.div
-                className="mt-10 flex flex-col sm:flex-row gap-4"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
-              >
-                <Link to="/contact">
-                  <Button size="lg" variant="secondary" className="text-lg px-8 py-6 font-semibold">
-                    {businessInfo.heroCta}
-                    <ArrowRight className="ml-2 size-5" />
-                  </Button>
-                </Link>
-                <Link to="/portfolio">
-                  <Button size="lg" variant="outline" className="text-lg px-8 py-6 font-semibold border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10">
-                    Voir mes projets
-                  </Button>
-                </Link>
+                  {/* Quote card */}
+                  <div className="absolute -bottom-6 -left-8 md:-left-16 bg-card border border-border rounded-xl p-4 shadow-lg max-w-[200px] -rotate-2">
+                    <p className="text-xs text-muted-foreground italic leading-relaxed">
+                      "L'automatisation n'est pas un luxe, c'est l'infrastructure de votre liberté."
+                    </p>
+                  </div>
+                </div>
               </motion.div>
             </div>
           </div>
