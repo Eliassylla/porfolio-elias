@@ -14,35 +14,40 @@ interface RollingTextItemProps {
 
 function RollingTextItem({ item }: RollingTextItemProps) {
   return (
-    <div className="group/item relative flex items-center justify-between border-b border-border py-6 md:py-10 transition-colors duration-300 hover:border-primary/40 cursor-pointer">
-      {/* Rolling text — rolls up on hover to reveal italic + primary version */}
-      <div className="relative overflow-hidden">
-        <div className="transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/item:-translate-y-full">
+    <div className="group/item relative flex items-center justify-between border-b border-border py-6 md:py-8 transition-colors duration-300 cursor-pointer">
+      {/* Rolling text */}
+      <div className="relative h-[1.2em] overflow-hidden text-4xl md:text-6xl lg:text-8xl font-extrabold tracking-tighter uppercase">
+        <div className="transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/item:-translate-y-1/2">
           {/* State 1: Normal */}
-          <span className="block text-4xl md:text-6xl lg:text-8xl font-extrabold tracking-tighter uppercase text-foreground">
-            {item.title}
-          </span>
+          <div className="flex items-center h-[1.2em]">
+            <span className="text-foreground">
+              {item.title}
+            </span>
+          </div>
 
-          {/* State 2: Hover (Italic + Color) — positioned below, rolls into view */}
-          <span className="block text-4xl md:text-6xl lg:text-8xl font-extrabold tracking-tighter uppercase italic text-primary">
-            {item.title}
-          </span>
+          {/* State 2: Hover (Italic + Color) */}
+          <div className="flex items-center h-[1.2em]">
+            <span className={cn("italic text-primary")}>
+              {item.title}
+            </span>
+          </div>
         </div>
       </div>
 
       {/* Category Label */}
-      <span className="text-xs md:text-sm uppercase tracking-widest text-muted-foreground font-medium transition-opacity duration-300 group-hover/item:opacity-60">
+      <span className="text-xs md:text-sm uppercase tracking-widest text-muted-foreground font-medium">
         {item.category}
       </span>
 
-      {/* Image Reveal Effect — near the border line */}
-      <div className="pointer-events-none absolute right-16 md:right-32 bottom-4 z-10 overflow-visible rounded-lg opacity-0 transition-all duration-500 ease-out group-hover/item:opacity-100 group-hover/item:scale-100 scale-75">
+      {/* Image Reveal Effect */}
+      <div className="pointer-events-none absolute right-20 md:right-36 top-1/2 -translate-y-1/2 z-10 overflow-visible opacity-0 scale-90 transition-all duration-500 ease-out group-hover/item:opacity-100 group-hover/item:scale-100">
         <div className="relative h-28 w-36 md:h-36 md:w-52 overflow-hidden rounded-lg shadow-2xl">
           <img
             src={item.src}
             alt={item.alt}
             className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover/item:scale-110"
           />
+          <div className="absolute inset-0 bg-primary/10" />
         </div>
       </div>
     </div>
