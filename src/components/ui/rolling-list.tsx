@@ -6,32 +6,41 @@ interface ListItem {
   category: string;
   src: string;
   alt: string;
+  color?: "blue";
 }
 
 interface RollingTextItemProps {
   item: ListItem;
 }
 
+const colorClassMap: Record<NonNullable<ListItem["color"]>, string> = {
+  blue: "text-primary",
+};
+
 function RollingTextItem({ item }: RollingTextItemProps) {
+  const hoverColorClass = colorClassMap[item.color ?? "blue"];
+
   return (
     <div className="group/item relative flex items-center justify-between border-b border-border py-6 md:py-8 transition-colors duration-300 cursor-pointer">
       {/* Rolling text */}
-      <div className="relative overflow-hidden h-[48px] md:h-[72px] lg:h-[96px]">
-        <div className="transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/item:-translate-y-[48px] md:group-hover/item:-translate-y-[72px] lg:group-hover/item:-translate-y-[96px]">
-          {/* State 1: Normal */}
-          <div className="h-[48px] md:h-[72px] lg:h-[96px] flex items-center">
-            <span className="text-4xl md:text-6xl lg:text-8xl font-extrabold tracking-tighter uppercase text-foreground">
-              {item.title}
-            </span>
-          </div>
+      <div className="relative overflow-hidden h-[1.05em] text-4xl md:text-6xl lg:text-8xl font-extrabold tracking-tighter uppercase leading-none">
+        {/* State 1: Normal */}
+        <span className="absolute inset-0 translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/item:-translate-y-full text-foreground">
+          {item.title}
+        </span>
 
-          {/* State 2: Hover (Italic + Color) */}
-          <div className="h-[48px] md:h-[72px] lg:h-[96px] flex items-center">
-            <span className="text-4xl md:text-6xl lg:text-8xl font-extrabold tracking-tighter uppercase italic text-primary">
-              {item.title}
-            </span>
-          </div>
-        </div>
+        {/* State 2: Hover (Italic + Color) */}
+        <span
+          className={cn(
+            "absolute inset-0 translate-y-full italic transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/item:translate-y-0",
+            hoverColorClass,
+          )}
+        >
+          {item.title}
+        </span>
+
+        {/* Reserve height for layout flow */}
+        <span className="opacity-0 pointer-events-none">{item.title}</span>
       </div>
 
       {/* Category Label */}
