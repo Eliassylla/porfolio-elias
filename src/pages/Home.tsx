@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useRef, useState, useEffect } from 'react';
 import { businessInfo } from '@/data/business';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { SEOHead } from '@/components/seo/SEOHead';
@@ -7,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';
 import { FocusRail, type FocusRailItem } from '@/components/ui/focus-rail';
-import { VerticalCutReveal } from '@/components/ui/vertical-cut-reveal';
+import { VerticalCutReveal, type VerticalCutRevealRef } from '@/components/ui/vertical-cut-reveal';
 import heroPortrait from '@/assets/hero-portrait.jpg';
 
 export default function Home() {
