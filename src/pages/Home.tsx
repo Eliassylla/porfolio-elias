@@ -3,12 +3,13 @@ import { useRef, useState, useEffect } from 'react';
 import { businessInfo } from '@/data/business';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { SEOHead } from '@/components/seo/SEOHead';
-import { ArrowRight, Mail, Calendar } from 'lucide-react';
+import { ArrowRight, Mail, Calendar, Receipt, Users, FileText, BarChart3 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';
 import { FocusRail, type FocusRailItem } from '@/components/ui/focus-rail';
 import { VerticalCutReveal, type VerticalCutRevealRef } from '@/components/ui/vertical-cut-reveal';
+import FeatureSection from '@/components/ui/feature-section';
 import heroPortrait from '@/assets/hero-portrait.jpg';
 
 export default function Home() {
@@ -191,72 +192,32 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Featured Projects Teasers */}
-        <section className="py-24 md:py-32 px-6 lg:px-8 bg-background">
-          <div className="max-w-5xl mx-auto">
-            <ScrollReveal>
-              <div className="flex items-end justify-between mb-12">
-                <div>
-                  <Badge variant="secondary" className="mb-4 text-sm px-4 py-1">
-                    Cas concrets
-                  </Badge>
-                  <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
-                    Projets récents
-                  </h2>
-                </div>
-                <Link to="/portfolio" className="hidden md:block">
-                  <Button variant="ghost" className="text-muted-foreground">
-                    Voir tout
-                    <ArrowRight className="ml-1 size-4" />
-                  </Button>
-                </Link>
-              </div>
-            </ScrollReveal>
-
-            <div className="space-y-6">
-              {businessInfo.projects.slice(0, 3).map((project, index) => (
-                <ScrollReveal key={project.id} delay={index * 0.15}>
-                  <Link to={`/portfolio/${project.id}`}>
-                    <div className="group bg-card border border-border rounded-xl p-6 md:p-8 hover:shadow-lg transition-all hover:border-primary/20">
-                      <div className="flex flex-col md:flex-row md:items-start gap-6">
-                        {/* Project placeholder image */}
-                        <div className="w-full md:w-48 h-32 bg-muted rounded-lg flex items-center justify-center flex-shrink-0">
-                          <span className="text-muted-foreground text-sm">Capture à venir</span>
-                        </div>
-
-                        <div className="flex-1 min-w-0">
-                          <div className="flex flex-wrap gap-2 mb-3">
-                            {project.tags.map((tag) => (
-                              <Badge key={tag} variant="outline" className="text-xs">
-                                {tag}
-                              </Badge>
-                            ))}
-                          </div>
-                          <h3 className="text-xl font-semibold text-card-foreground group-hover:text-primary transition-colors mb-2">
-                            {project.title}
-                          </h3>
-                          <p className="text-muted-foreground text-sm mb-3">{project.context}</p>
-                          <p className="text-sm text-foreground/80">
-                            <span className="font-medium">Résultat :</span> {project.result}
-                          </p>
-                        </div>
-
-                        <ArrowRight className="size-5 text-muted-foreground group-hover:text-primary transition-colors hidden md:block mt-2 flex-shrink-0" />
-                      </div>
-                    </div>
-                  </Link>
-                </ScrollReveal>
-              ))}
-            </div>
-
-            <div className="mt-8 text-center md:hidden">
-              <Link to="/portfolio">
-                <Button variant="outline">
-                  Voir tous les projets
-                  <ArrowRight className="ml-1 size-4" />
-                </Button>
-              </Link>
-            </div>
+        {/* Featured Projects — Feature Section */}
+        <section className="py-16 md:py-24 px-6 lg:px-8 bg-background">
+          <ScrollReveal>
+            <FeatureSection
+              badge="Cas concrets"
+              heading="Projets récents"
+              headingHighlight="des résultats mesurables pour chaque client."
+              description="Je conçois des automatisations qui libèrent du temps et fiabilisent vos processus. Voici quelques exemples concrets."
+              badges={['n8n', 'Claude Code', 'Notion', 'CRM']}
+              items={businessInfo.projects.map((project) => ({
+                title: project.title,
+                subtitle: project.result,
+                icon: project.tags.includes('CRM') ? <Users className="size-4 text-muted-foreground" /> :
+                      project.tags.includes('Notion') ? <FileText className="size-4 text-muted-foreground" /> :
+                      project.id === 'reporting-hebdo' ? <BarChart3 className="size-4 text-muted-foreground" /> :
+                      <Receipt className="size-4 text-muted-foreground" />,
+              }))}
+            />
+          </ScrollReveal>
+          <div className="mt-8 text-center">
+            <Link to="/portfolio">
+              <Button variant="outline">
+                Voir tous les projets
+                <ArrowRight className="ml-1 size-4" />
+              </Button>
+            </Link>
           </div>
         </section>
 
