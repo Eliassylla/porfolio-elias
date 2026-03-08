@@ -162,10 +162,10 @@ export function FocusRail({
             const isCenter = offset === 0;
             const dist = Math.abs(offset);
 
-            const xOffset = offset * 320;
-            const zOffset = -dist * 180;
+            const xOffset = offset * 220;
+            const zOffset = -dist * 120;
             const scale = isCenter ? 1 : 0.85;
-            const rotateY = offset * -20;
+            const rotateY = offset * -15;
 
             const opacity = isCenter ? 1 : Math.max(0.1, 1 - dist * 0.5);
             const blur = isCenter ? 0 : dist * 6;
@@ -175,7 +175,7 @@ export function FocusRail({
               <motion.div
                 key={absIndex}
                 className={cn(
-                  "absolute aspect-[3/4] w-[260px] md:w-[300px] rounded-2xl border-t border-white/20 bg-neutral-900 shadow-2xl transition-shadow duration-300",
+                  "absolute aspect-[3/4] w-[160px] md:w-[200px] rounded-xl border-t border-white/20 bg-neutral-900 shadow-2xl transition-shadow duration-300",
                   isCenter ? "z-20 shadow-white/10" : "z-10"
                 )}
                 initial={false}
