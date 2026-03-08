@@ -23,16 +23,16 @@ function RollingTextItem({ item }: RollingTextItemProps) {
   return (
     <div className="group/item relative flex items-center justify-between border-b border-border py-6 md:py-8 transition-colors duration-300 cursor-pointer">
       {/* Rolling text */}
-      <div className="relative overflow-hidden h-[1.05em] text-4xl md:text-6xl lg:text-8xl font-extrabold tracking-tighter uppercase leading-none">
+      <div className="relative overflow-y-hidden overflow-x-visible pr-[0.12em] h-[1.05em] text-4xl md:text-6xl lg:text-8xl font-extrabold tracking-tighter uppercase leading-none">
         {/* State 1: Normal */}
-        <span className="absolute inset-0 translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/item:-translate-y-full text-foreground">
+        <span className="absolute inset-0 inline-block whitespace-nowrap translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/item:-translate-y-full text-foreground">
           {item.title}
         </span>
 
         {/* State 2: Hover (Italic + Color) */}
         <span
           className={cn(
-            "absolute inset-0 translate-y-full italic transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/item:translate-y-0",
+            "absolute inset-0 inline-block whitespace-nowrap translate-y-full italic transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/item:translate-y-0",
             hoverColorClass,
           )}
         >
@@ -40,7 +40,7 @@ function RollingTextItem({ item }: RollingTextItemProps) {
         </span>
 
         {/* Reserve height for layout flow */}
-        <span className="opacity-0 pointer-events-none">{item.title}</span>
+        <span className="inline-block whitespace-nowrap opacity-0 pointer-events-none">{item.title}</span>
       </div>
 
       {/* Category Label */}
