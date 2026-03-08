@@ -1,161 +1,206 @@
 import { motion } from 'framer-motion';
-import { photographerInfo } from '@/data/photographer';
-import { getFeaturedProjects } from '@/data/projects';
-import { ProjectCard } from '@/components/portfolio/ProjectCard';
-import { ScrollIndicator } from '@/components/ui/ScrollIndicator';
+import { businessInfo } from '@/data/business';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { SEOHead } from '@/components/seo/SEOHead';
-import { ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Receipt, Users, ClipboardList, ArrowRight, CheckCircle, MessageSquareQuote } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
-/**
- * Homepage with immersive hero section and featured projects grid
- * Showcases photographer's best work with minimal, elegant design
- */
+const iconMap = {
+  receipt: Receipt,
+  users: Users,
+  clipboard: ClipboardList,
+};
+
 export default function Home() {
-  const featuredProjects = getFeaturedProjects();
-
   return (
     <>
-      <SEOHead />
-      
+      <SEOHead
+        title="Elias — Automatisation n8n pour PME de services"
+        description="Automatisez vos factures, relances clients et onboarding. Spécialiste n8n pour cabinets de conseil, organismes de formation et services professionnels."
+      />
+
       <div className="min-h-screen">
-        {/* Hero Section - Full viewport with featured image */}
-      <section className="relative h-screen w-full overflow-hidden">
-        {/* Background Video */}
-        <div className="absolute inset-0">
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            poster="https://images.pexels.com/videos/2675516/free-video-2675516.jpg?auto=compress&cs=tinysrgb&fit=crop&h=630&w=1200"
-            className="w-full h-full object-cover"
-            onError={(e) => {
-              const target = e.currentTarget;
-              target.style.opacity = '0';
-            }}
-          >
-            <source src="https://videos.pexels.com/video-files/2675516/2675516-sd_960_540_24fps.mp4" type="video/mp4" />
-          </video>
-          {/* Video from Pexels */}
-          {/* Gradient Overlay for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60" />
-        </div>
+        {/* Hero Section */}
+        <section className="relative min-h-screen flex items-center bg-primary text-primary-foreground overflow-hidden">
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-20 left-10 w-72 h-72 bg-accent rounded-full blur-3xl" />
+            <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent rounded-full blur-3xl" />
+          </div>
 
-        {/* Hero Content */}
-        <div className="relative h-full flex flex-col items-center justify-center px-6">
-          <motion.div
-            className="text-center space-y-6 max-w-4xl"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-          >
+          <div className="relative max-w-5xl mx-auto px-6 lg:px-8 py-32 text-center">
+            <motion.p
+              className="text-sm font-medium tracking-widest uppercase mb-6 opacity-80"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              Spécialiste automatisation n8n
+            </motion.p>
+
             <motion.h1
-              className="text-6xl md:text-8xl lg:text-9xl font-extralight tracking-widest text-white"
-              initial={{ opacity: 0, y: 20 }}
+              className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight"
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.2 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
             >
-              {photographerInfo.name.toUpperCase()}
+              {businessInfo.tagline}
             </motion.h1>
-            
-            <motion.p
-              className="text-xl md:text-2xl font-light tracking-wide text-white/90"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.4 }}
-            >
-              {photographerInfo.tagline}
-            </motion.p>
 
             <motion.p
-              className="text-base md:text-lg font-light leading-relaxed text-white/80 max-w-2xl mx-auto"
+              className="mt-8 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto opacity-90"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.6 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
             >
-              {photographerInfo.heroIntroduction}
+              {businessInfo.heroDescription}
             </motion.p>
-          </motion.div>
 
-          {/* Scroll Indicator */}
-          <motion.div
-            className="absolute bottom-12"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.2, duration: 0.8 }}
-          >
-            <ScrollIndicator />
-          </motion.div>
-        </div>
-      </section>
-
-        {/* Introduction Section */}
-        <section className="py-24 md:py-32 px-6 lg:px-8 bg-background">
-          <div className="max-w-4xl mx-auto text-center space-y-8">
-            <ScrollReveal>
-              <div className="space-y-6">
-            <h2 className="text-3xl md:text-4xl font-light tracking-wide">
-              About My Work
-            </h2>
-            <div className="space-y-4 text-lg font-light leading-relaxed text-muted-foreground">
-              <p>
-                {photographerInfo.biography.split('\n\n')[0]}
-              </p>
-            </div>
-                <Link
-                  to="/about"
-                  className="inline-flex items-center gap-2 text-base font-light tracking-wide text-foreground hover:text-muted-foreground transition-colors group"
-                >
-                  <span>Learn More About Me</span>
-                  <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
-                </Link>
-              </div>
-            </ScrollReveal>
+            <motion.div
+              className="mt-10"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+            >
+              <a href="#contact">
+                <Button size="lg" variant="secondary" className="text-lg px-8 py-6 font-semibold">
+                  {businessInfo.heroCta}
+                  <ArrowRight className="ml-2 size-5" />
+                </Button>
+              </a>
+            </motion.div>
           </div>
         </section>
 
-        {/* Featured Projects Section */}
-        <section className="py-24 md:py-32 border-t border-border">
-          {/* Section Header */}
-          <ScrollReveal>
-            <div className="text-center mb-16 space-y-4 px-6">
-              <h2 className="text-4xl md:text-5xl font-light tracking-wide">
-                Featured Projects
-              </h2>
-              <p className="text-lg text-muted-foreground font-light tracking-wide">
-                A selection of recent work
-              </p>
-            </div>
-          </ScrollReveal>
+        {/* Services Section */}
+        <section id="services" className="py-24 md:py-32 px-6 lg:px-8 bg-background">
+          <div className="max-w-6xl mx-auto">
+            <ScrollReveal>
+              <div className="text-center mb-16">
+                <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
+                  Ce que j'automatise pour vous
+                </h2>
+                <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
+                  Des automatisations concrètes qui libèrent votre temps et éliminent les oublis.
+                </p>
+              </div>
+            </ScrollReveal>
 
-          {/* Projects Grid - Edge to edge with minimal gaps */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4">
-            {featuredProjects.map((project, index) => (
-              <ProjectCard
-                key={project.id}
-                project={project}
-                aspectRatio="landscape"
-                showCategory={true}
-                index={index}
-              />
-            ))}
+            <div className="grid md:grid-cols-3 gap-8">
+              {businessInfo.services.map((service, index) => {
+                const Icon = iconMap[service.icon];
+                return (
+                  <ScrollReveal key={service.id} delay={index * 0.15}>
+                    <div className="bg-card border border-border rounded-xl p-8 h-full hover:shadow-lg transition-shadow">
+                      <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6">
+                        <Icon className="size-6 text-primary" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-card-foreground mb-3">
+                        {service.title}
+                      </h3>
+                      <p className="text-muted-foreground leading-relaxed">
+                        {service.description}
+                      </p>
+                    </div>
+                  </ScrollReveal>
+                );
+              })}
+            </div>
           </div>
+        </section>
 
-          {/* View All Link */}
-          <ScrollReveal delay={0.4}>
-            <div className="flex justify-center mt-16 px-6">
-              <Link
-                to="/portfolio"
-                className="group inline-flex items-center gap-2 text-lg font-light tracking-wide text-foreground hover:text-muted-foreground transition-colors"
-              >
-                <span>View All Projects</span>
-                <ArrowRight className="size-5 transition-transform group-hover:translate-x-1" />
-              </Link>
+        {/* Target Clients Section */}
+        <section id="clients" className="py-24 md:py-32 px-6 lg:px-8 bg-secondary">
+          <div className="max-w-6xl mx-auto">
+            <ScrollReveal>
+              <div className="text-center mb-16">
+                <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-secondary-foreground">
+                  Vous vous reconnaissez ?
+                </h2>
+                <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
+                  Je travaille avec des PME de services qui veulent arrêter de perdre du temps sur l'administratif.
+                </p>
+              </div>
+            </ScrollReveal>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              {businessInfo.targets.map((target, index) => (
+                <ScrollReveal key={target.id} delay={index * 0.15}>
+                  <div className="bg-card border border-border rounded-xl p-8 h-full">
+                    <h3 className="text-xl font-semibold text-card-foreground mb-3">
+                      {target.title}
+                    </h3>
+                    <p className="text-muted-foreground mb-4 leading-relaxed">
+                      {target.description}
+                    </p>
+                    <div className="flex items-start gap-2 bg-destructive/5 rounded-lg p-3">
+                      <CheckCircle className="size-5 text-destructive mt-0.5 flex-shrink-0" />
+                      <p className="text-sm text-destructive font-medium">{target.pain}</p>
+                    </div>
+                  </div>
+                </ScrollReveal>
+              ))}
             </div>
-          </ScrollReveal>
+          </div>
+        </section>
+
+        {/* Testimonials Section */}
+        <section id="temoignages" className="py-24 md:py-32 px-6 lg:px-8 bg-background">
+          <div className="max-w-6xl mx-auto">
+            <ScrollReveal>
+              <div className="text-center mb-16">
+                <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
+                  Ce qu'en disent mes clients
+                </h2>
+                <p className="mt-2 text-sm text-muted-foreground">(Témoignages à venir — placeholders)</p>
+              </div>
+            </ScrollReveal>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              {businessInfo.testimonials.map((testimonial, index) => (
+                <ScrollReveal key={testimonial.id} delay={index * 0.15}>
+                  <div className="bg-card border border-border rounded-xl p-8 h-full flex flex-col">
+                    <MessageSquareQuote className="size-8 text-primary/30 mb-4" />
+                    <blockquote className="text-card-foreground leading-relaxed flex-1">
+                      "{testimonial.quote}"
+                    </blockquote>
+                    <div className="mt-6 pt-4 border-t border-border">
+                      <p className="font-semibold text-card-foreground">{testimonial.author}</p>
+                      <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                    </div>
+                  </div>
+                </ScrollReveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* CTA / Contact Section */}
+        <section id="contact" className="py-24 md:py-32 px-6 lg:px-8 bg-primary text-primary-foreground">
+          <div className="max-w-3xl mx-auto text-center">
+            <ScrollReveal>
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+                Prêt à automatiser votre quotidien ?
+              </h2>
+              <p className="mt-6 text-lg opacity-90 leading-relaxed">
+                Un appel de 20 minutes, gratuit et sans engagement. On identifie ensemble les tâches qui vous font perdre le plus de temps, et je vous montre ce qu'on peut automatiser.
+              </p>
+              <div className="mt-10">
+                <a
+                  href={businessInfo.calendlyUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Button size="lg" variant="secondary" className="text-lg px-8 py-6 font-semibold">
+                    Réserver mon appel découverte
+                    <ArrowRight className="ml-2 size-5" />
+                  </Button>
+                </a>
+              </div>
+              <p className="mt-6 text-sm opacity-70">
+                Ou écrivez-moi directement : {businessInfo.email}
+              </p>
+            </ScrollReveal>
+          </div>
         </section>
       </div>
     </>
