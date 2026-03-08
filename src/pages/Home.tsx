@@ -36,24 +36,22 @@ export default function Home() {
                 </motion.div>
 
                 <motion.h1
-                  className="text-4xl md:text-5xl lg:text-[3.5rem] font-bold tracking-tight leading-[1.1] text-foreground"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.1 }}
-                >
-                  Je construis des automatisations avec{' '}
-                  <em className="not-italic text-primary/70 font-bold italic">Claude Code</em>{' '}
-                  pour les entreprises de services.
-                </motion.h1>
+                   className="text-4xl md:text-5xl lg:text-[3.5rem] font-bold tracking-tight leading-[1.1] text-foreground"
+                   initial={{ opacity: 0, y: 30 }}
+                   animate={{ opacity: 1, y: 0 }}
+                   transition={{ duration: 0.8, delay: 0.1 }}
+                 >
+                   Automatisation pour entreprises de services
+                 </motion.h1>
 
                 <motion.p
-                  className="mt-6 text-base md:text-lg text-muted-foreground leading-relaxed max-w-lg"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.3 }}
-                >
-                  Pas de théorie. Des systèmes concrets, robustes et documentés pour libérer votre temps et sécuriser votre croissance.
-                </motion.p>
+                   className="mt-6 text-base md:text-lg text-muted-foreground leading-relaxed max-w-lg"
+                   initial={{ opacity: 0, y: 20 }}
+                   animate={{ opacity: 1, y: 0 }}
+                   transition={{ duration: 0.8, delay: 0.3 }}
+                 >
+                   Je conçois des systèmes concrets pour supprimer vos tâches répétitives et libérer du temps chaque semaine.
+                 </motion.p>
 
                 <motion.div
                   className="mt-10 flex flex-col sm:flex-row gap-4"
