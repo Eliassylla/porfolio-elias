@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';
 import { FocusRail, type FocusRailItem } from '@/components/ui/focus-rail';
+import { VerticalCutReveal } from '@/components/ui/vertical-cut-reveal';
 import heroPortrait from '@/assets/hero-portrait.jpg';
 
 export default function Home() {
@@ -106,14 +107,26 @@ export default function Home() {
         {/* What I Build — FocusRail */}
         <section className="py-24 md:py-32 px-6 lg:px-8 bg-background border-b border-border">
           <div className="max-w-5xl mx-auto">
-            <ScrollReveal>
+            <div className="mb-12">
               <p className="text-lg text-muted-foreground mb-4 max-w-2xl">
-                Je construis des systèmes simples à utiliser, pensés pour les entreprises de services.
+                <VerticalCutReveal
+                  splitBy="words"
+                  staggerDuration={0.08}
+                  transition={{ type: "spring", stiffness: 200, damping: 25 }}
+                >
+                  Je construis des systèmes simples à utiliser, pensés pour les entreprises de services.
+                </VerticalCutReveal>
               </p>
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-12">
-                Ce que je construis
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
+                <VerticalCutReveal
+                  splitBy="words"
+                  staggerDuration={0.1}
+                  transition={{ type: "spring", stiffness: 180, damping: 22, delay: 0.3 }}
+                >
+                  Ce que je construis
+                </VerticalCutReveal>
               </h2>
-            </ScrollReveal>
+            </div>
 
             <div className="rounded-2xl overflow-hidden border border-border shadow-lg">
               <FocusRail
