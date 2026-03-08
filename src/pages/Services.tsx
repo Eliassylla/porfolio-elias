@@ -8,9 +8,18 @@ import { Link } from 'react-router-dom';
 import { RollingTextList } from '@/components/ui/rolling-list';
 
 export default function Services() {
-  const [activeStep, setActiveStep] = useState(0);
-  const currentStep = businessInfo.process[activeStep];
-  const CurrentIcon = stepIcons[activeStep];
+  const processItems = businessInfo.process.map((step, index) => ({
+    id: index + 1,
+    title: step.title,
+    category: `Étape ${step.number}`,
+    src: [
+      'https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&auto=format&fit=crop&q=60',
+      'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400&auto=format&fit=crop&q=60',
+      'https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&auto=format&fit=crop&q=60',
+      'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=400&auto=format&fit=crop&q=60',
+    ][index] ?? 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&auto=format&fit=crop&q=60',
+    alt: step.title,
+  }));
 
   return (
     <>
@@ -33,73 +42,14 @@ export default function Services() {
           </div>
         </section>
 
-        {/* Process Steps — Vertical Tabs */}
+        {/* Process Steps — Rolling List */}
         <section className="py-24 px-6 lg:px-8 bg-background">
           <div className="max-w-5xl mx-auto">
             <ScrollReveal>
-              <h2 className="text-3xl font-bold text-foreground mb-12">
-                Le processus, étape par étape
-              </h2>
-            </ScrollReveal>
-
-            <ScrollReveal delay={0.15}>
-              <div className="flex flex-col md:flex-row gap-0 md:gap-8">
-                {/* Left: Tab buttons */}
-                <div className="flex flex-row md:flex-col gap-1 md:w-64 flex-shrink-0 overflow-x-auto md:overflow-visible pb-4 md:pb-0">
-                  {businessInfo.process.map((step, index) => (
-                    <button
-                      key={step.id}
-                      onClick={() => setActiveStep(index)}
-                      className={cn(
-                        'flex items-center gap-3 px-4 py-4 rounded-xl text-left transition-all min-w-[160px] md:min-w-0',
-                        activeStep === index
-                          ? 'bg-primary text-primary-foreground shadow-lg'
-                          : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
-                      )}
-                    >
-                      <div className={cn(
-                        'w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-bold',
-                        activeStep === index
-                          ? 'bg-primary-foreground/20 text-primary-foreground'
-                          : 'bg-background text-foreground'
-                      )}>
-                        {step.number}
-                      </div>
-                      <span className="font-medium text-sm leading-tight">{step.title}</span>
-                    </button>
-                  ))}
-                </div>
-
-                {/* Right: Content panel */}
-                <div className="flex-1 bg-card border border-border rounded-xl p-8 md:p-10 min-h-[280px]">
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center">
-                      <CurrentIcon className="size-7 text-primary" />
-                    </div>
-                    <div>
-                      <p className="text-sm text-muted-foreground font-medium">Étape {currentStep.number}</p>
-                      <h3 className="text-2xl font-bold text-card-foreground">{currentStep.title}</h3>
-                    </div>
-                  </div>
-                  
-                  <p className="text-muted-foreground leading-relaxed text-lg">
-                    {currentStep.description}
-                  </p>
-
-                  {/* Progress indicator */}
-                  <div className="flex gap-2 mt-8">
-                    {businessInfo.process.map((_, i) => (
-                      <div
-                        key={i}
-                        className={cn(
-                          'h-1.5 rounded-full transition-all',
-                          i === activeStep ? 'bg-primary flex-[3]' : 'bg-border flex-1'
-                        )}
-                      />
-                    ))}
-                  </div>
-                </div>
-              </div>
+              <RollingTextList
+                title="Le processus, étape par étape"
+                items={processItems}
+              />
             </ScrollReveal>
           </div>
         </section>
