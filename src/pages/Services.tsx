@@ -4,12 +4,17 @@ import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { businessInfo } from '@/data/business';
-import { Phone, Search, Zap, GraduationCap } from 'lucide-react';
+import { Phone, Search, Zap, GraduationCap, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
+const stepIcons = [Phone, Search, Zap, GraduationCap];
+
 export default function Services() {
+  const [activeStep, setActiveStep] = useState(0);
+  const currentStep = businessInfo.process[activeStep];
+  const CurrentIcon = stepIcons[activeStep];
+
   return (
     <>
       <SEOHead
@@ -31,37 +36,74 @@ export default function Services() {
           </div>
         </section>
 
-        {/* Process Steps */}
+        {/* Process Steps — Vertical Tabs */}
         <section className="py-24 px-6 lg:px-8 bg-background">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-5xl mx-auto">
             <ScrollReveal>
               <h2 className="text-3xl font-bold text-foreground mb-12">
                 Le processus, étape par étape
               </h2>
             </ScrollReveal>
 
-            <div className="space-y-0">
-              {businessInfo.process.map((step, index) => (
-                <ScrollReveal key={step.id} delay={index * 0.15}>
-                  <div className="relative flex gap-6 pb-12 last:pb-0">
-                    {/* Vertical line */}
-                    {index < businessInfo.process.length - 1 && (
-                      <div className="absolute left-7 top-14 bottom-0 w-px bg-border" />
-                    )}
-                    
-                    {/* Step number */}
-                    <div className="relative z-10 w-14 h-14 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-lg font-bold flex-shrink-0">
-                      {step.number}
-                    </div>
+            <ScrollReveal delay={0.15}>
+              <div className="flex flex-col md:flex-row gap-0 md:gap-8">
+                {/* Left: Tab buttons */}
+                <div className="flex flex-row md:flex-col gap-1 md:w-64 flex-shrink-0 overflow-x-auto md:overflow-visible pb-4 md:pb-0">
+                  {businessInfo.process.map((step, index) => (
+                    <button
+                      key={step.id}
+                      onClick={() => setActiveStep(index)}
+                      className={cn(
+                        'flex items-center gap-3 px-4 py-4 rounded-xl text-left transition-all min-w-[160px] md:min-w-0',
+                        activeStep === index
+                          ? 'bg-primary text-primary-foreground shadow-lg'
+                          : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
+                      )}
+                    >
+                      <div className={cn(
+                        'w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-bold',
+                        activeStep === index
+                          ? 'bg-primary-foreground/20 text-primary-foreground'
+                          : 'bg-background text-foreground'
+                      )}>
+                        {step.number}
+                      </div>
+                      <span className="font-medium text-sm leading-tight">{step.title}</span>
+                    </button>
+                  ))}
+                </div>
 
-                    <div className="pt-2">
-                      <h3 className="text-xl font-semibold text-foreground mb-2">{step.title}</h3>
-                      <p className="text-muted-foreground leading-relaxed">{step.description}</p>
+                {/* Right: Content panel */}
+                <div className="flex-1 bg-card border border-border rounded-xl p-8 md:p-10 min-h-[280px]">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center">
+                      <CurrentIcon className="size-7 text-primary" />
+                    </div>
+                    <div>
+                      <p className="text-sm text-muted-foreground font-medium">Étape {currentStep.number}</p>
+                      <h3 className="text-2xl font-bold text-card-foreground">{currentStep.title}</h3>
                     </div>
                   </div>
-                </ScrollReveal>
-              ))}
-            </div>
+                  
+                  <p className="text-muted-foreground leading-relaxed text-lg">
+                    {currentStep.description}
+                  </p>
+
+                  {/* Progress indicator */}
+                  <div className="flex gap-2 mt-8">
+                    {businessInfo.process.map((_, i) => (
+                      <div
+                        key={i}
+                        className={cn(
+                          'h-1.5 rounded-full transition-all',
+                          i === activeStep ? 'bg-primary flex-[3]' : 'bg-border flex-1'
+                        )}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </ScrollReveal>
           </div>
         </section>
 
