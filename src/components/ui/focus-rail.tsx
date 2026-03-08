@@ -145,7 +145,7 @@ export function FocusRail({
       <div className="relative z-10 flex flex-1 flex-col justify-center px-4 md:px-8">
         {/* DRAGGABLE RAIL CONTAINER */}
         <motion.div
-          className="relative mx-auto flex h-[360px] w-full max-w-6xl items-center justify-center cursor-grab active:cursor-grabbing"
+          className="relative mx-auto flex h-[220px] md:h-[260px] w-full max-w-4xl items-center justify-center cursor-grab active:cursor-grabbing"
           style={{ perspective: 1200 }}
           drag="x"
           dragConstraints={{ left: 0, right: 0 }}
