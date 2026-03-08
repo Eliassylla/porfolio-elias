@@ -104,48 +104,51 @@ export default function Home() {
         </section>
 
         {/* What I Build — FocusRail */}
-        <section className="border-b border-border">
-          <div className="py-16 md:py-20 px-6 lg:px-8 max-w-5xl mx-auto text-center">
+        <section className="py-24 md:py-32 px-6 lg:px-8 bg-background border-b border-border">
+          <div className="max-w-5xl mx-auto">
             <ScrollReveal>
-              <p className="text-lg text-muted-foreground mb-4 max-w-2xl mx-auto">
+              <p className="text-lg text-muted-foreground mb-4 max-w-2xl">
                 Je construis des systèmes simples à utiliser, pensés pour les entreprises de services.
               </p>
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-12">
                 Ce que je construis
               </h2>
             </ScrollReveal>
-          </div>
 
-          <FocusRail
-            items={[
-              {
-                id: 'auto-ia',
-                title: 'Automatisations IA',
-                description: "J'identifie vos tâches répétitives et je crée des workflows automatisés pour vous faire gagner du temps chaque semaine.",
-                meta: 'Workflows • n8n • Claude',
-                imageSrc: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1000&auto=format&fit=crop',
-                href: '/contact',
-              },
-              {
-                id: 'micro-saas',
-                title: 'Micro-outils & micro-SaaS',
-                description: 'Je conçois de petits outils sur mesure (tableaux de bord, mini-apps) pour fiabiliser vos processus et centraliser l\'information.',
-                meta: 'Outils • Dashboards',
-                imageSrc: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000&auto=format&fit=crop',
-                href: '/contact',
-              },
-              ...businessInfo.projects.slice(0, 3).map((project) => ({
-                id: project.id,
-                title: project.title,
-                description: `${project.context}. ${project.result}`,
-                meta: project.tags.join(' • '),
-                imageSrc: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop',
-                href: `/portfolio/${project.id}`,
-              })),
-            ]}
-            autoPlay
-            loop
-          />
+            <div className="rounded-2xl overflow-hidden border border-border shadow-lg">
+              <FocusRail
+                className="h-[500px]"
+                items={[
+                  {
+                    id: 'auto-ia',
+                    title: 'Automatisations IA',
+                    description: "J'identifie vos tâches répétitives et je crée des workflows automatisés pour vous faire gagner du temps chaque semaine.",
+                    meta: 'Workflows • n8n • Claude',
+                    imageSrc: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1000&auto=format&fit=crop',
+                    href: '/contact',
+                  },
+                  {
+                    id: 'micro-saas',
+                    title: 'Micro-outils & micro-SaaS',
+                    description: 'Je conçois de petits outils sur mesure (tableaux de bord, mini-apps) pour fiabiliser vos processus et centraliser l\'information.',
+                    meta: 'Outils • Dashboards',
+                    imageSrc: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000&auto=format&fit=crop',
+                    href: '/contact',
+                  },
+                  ...businessInfo.projects.slice(0, 3).map((project) => ({
+                    id: project.id,
+                    title: project.title,
+                    description: `${project.context}. ${project.result}`,
+                    meta: project.tags.join(' • '),
+                    imageSrc: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop',
+                    href: `/portfolio/${project.id}`,
+                  })),
+                ]}
+                autoPlay
+                loop
+              />
+            </div>
+          </div>
         </section>
 
         {/* Featured Projects Teasers */}
