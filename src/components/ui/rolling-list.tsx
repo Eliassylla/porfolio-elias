@@ -49,7 +49,7 @@ function RollingTextItem({ item }: RollingTextItemProps) {
       </span>
 
       {/* Image Reveal Effect */}
-      <div className="pointer-events-none absolute right-20 md:right-36 top-1/2 -translate-y-1/2 z-10 overflow-visible opacity-0 scale-90 transition-all duration-500 ease-out group-hover/item:opacity-100 group-hover/item:scale-100">
+      <div className="pointer-events-none absolute right-20 md:right-36 bottom-2 z-10 overflow-visible opacity-0 scale-90 transition-all duration-500 ease-out group-hover/item:opacity-100 group-hover/item:scale-100">
         <div className="relative h-28 w-36 md:h-36 md:w-52 overflow-hidden rounded-lg shadow-2xl">
           <img
             src={item.src}
