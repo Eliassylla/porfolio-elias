@@ -16,18 +16,18 @@ function RollingTextItem({ item }: RollingTextItemProps) {
   return (
     <div className="group/item relative flex items-center justify-between border-b border-border py-6 md:py-8 transition-colors duration-300 cursor-pointer">
       {/* Rolling text */}
-      <div className="relative h-[1.2em] overflow-hidden text-4xl md:text-6xl lg:text-8xl font-extrabold tracking-tighter uppercase">
-        <div className="transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/item:-translate-y-1/2">
+      <div className="relative overflow-hidden h-[48px] md:h-[72px] lg:h-[96px]">
+        <div className="transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/item:-translate-y-[48px] md:group-hover/item:-translate-y-[72px] lg:group-hover/item:-translate-y-[96px]">
           {/* State 1: Normal */}
-          <div className="flex items-center h-[1.2em]">
-            <span className="text-foreground">
+          <div className="h-[48px] md:h-[72px] lg:h-[96px] flex items-center">
+            <span className="text-4xl md:text-6xl lg:text-8xl font-extrabold tracking-tighter uppercase text-foreground">
               {item.title}
             </span>
           </div>
 
           {/* State 2: Hover (Italic + Color) */}
-          <div className="flex items-center h-[1.2em]">
-            <span className={cn("italic text-primary")}>
+          <div className="h-[48px] md:h-[72px] lg:h-[96px] flex items-center">
+            <span className="text-4xl md:text-6xl lg:text-8xl font-extrabold tracking-tighter uppercase italic text-primary">
               {item.title}
             </span>
           </div>
