@@ -236,24 +236,24 @@ export function FocusRail({
             </AnimatePresence>
           </div>
 
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-1 rounded-full bg-neutral-900/80 p-1 ring-1 ring-white/10 backdrop-blur-md">
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-1 rounded-full bg-neutral-900/80 p-0.5 ring-1 ring-white/10 backdrop-blur-md">
               <button
                 onClick={handlePrev}
-                className="rounded-full p-3 text-neutral-400 transition hover:bg-white/10 hover:text-white active:scale-95"
+                className="rounded-full p-2 text-neutral-400 transition hover:bg-white/10 hover:text-white active:scale-95"
                 aria-label="Previous"
               >
-                <ChevronLeft className="h-5 w-5" />
+                <ChevronLeft className="h-4 w-4" />
               </button>
-              <span className="min-w-[40px] text-center text-xs font-mono text-neutral-500">
+              <span className="min-w-[36px] text-center text-[10px] font-mono text-neutral-500">
                 {activeIndex + 1} / {count}
               </span>
               <button
                 onClick={handleNext}
-                className="rounded-full p-3 text-neutral-400 transition hover:bg-white/10 hover:text-white active:scale-95"
+                className="rounded-full p-2 text-neutral-400 transition hover:bg-white/10 hover:text-white active:scale-95"
                 aria-label="Next"
               >
-                <ChevronRight className="h-5 w-5" />
+                <ChevronRight className="h-4 w-4" />
               </button>
             </div>
 
