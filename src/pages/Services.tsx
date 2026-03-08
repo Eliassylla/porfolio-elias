@@ -1,8 +1,11 @@
+import { useState } from 'react';
 import { SEOHead } from '@/components/seo/SEOHead';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { businessInfo } from '@/data/business';
+import { Phone, Search, Zap, GraduationCap } from 'lucide-react';
+import { cn } from '@/lib/utils';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
