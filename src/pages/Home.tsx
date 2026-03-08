@@ -130,9 +130,11 @@ export default function Home() {
         {/* What I Build — FocusRail */}
         <section className="py-24 md:py-32 px-6 lg:px-8 bg-background border-b border-border">
           <div className="max-w-5xl mx-auto">
-            <div className="mb-12">
+            <div className="mb-12" ref={sectionRef}>
               <p className="text-lg text-muted-foreground mb-4 max-w-2xl">
                 <VerticalCutReveal
+                  ref={revealRef1}
+                  autoStart={false}
                   splitBy="words"
                   staggerDuration={0.08}
                   transition={{ type: "spring", stiffness: 200, damping: 25 }}
@@ -142,6 +144,8 @@ export default function Home() {
               </p>
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
                 <VerticalCutReveal
+                  ref={revealRef2}
+                  autoStart={false}
                   splitBy="words"
                   staggerDuration={0.1}
                   transition={{ type: "spring", stiffness: 180, damping: 22, delay: 0.3 }}
