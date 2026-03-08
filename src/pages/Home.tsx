@@ -6,6 +6,7 @@ import { ArrowRight, Mail, Calendar } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';
+import { FocusRail, type FocusRailItem } from '@/components/ui/focus-rail';
 import heroPortrait from '@/assets/hero-portrait.jpg';
 
 export default function Home() {
