@@ -9,10 +9,9 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
 
 const navLinks = [
-  { name: 'Services', href: '/#services' },
-  { name: 'Clients cibles', href: '/#clients' },
-  { name: 'Témoignages', href: '/#temoignages' },
-  { name: 'Contact', href: '/#contact' },
+  { name: 'Services', href: '/services' },
+  { name: 'Portfolio', href: '/portfolio' },
+  { name: 'Contact', href: '/contact' },
 ];
 
 export function Header() {
@@ -21,15 +20,6 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const isTransparent = location.pathname === '/' && !isScrolled;
-
-  const handleNavClick = (href: string) => {
-    setMobileMenuOpen(false);
-    const id = href.replace('/#', '');
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   return (
     <motion.header
@@ -59,24 +49,28 @@ export function Header() {
 
           <nav className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
-              <button
+              <Link
                 key={link.href}
-                onClick={() => handleNavClick(link.href)}
+                to={link.href}
                 className={cn(
                   'text-sm font-medium tracking-wide transition-colors duration-300',
-                  isTransparent
-                    ? 'text-primary-foreground/90 hover:text-primary-foreground'
-                    : 'text-muted-foreground hover:text-foreground'
+                  location.pathname === link.href
+                    ? isTransparent
+                      ? 'text-primary-foreground'
+                      : 'text-foreground'
+                    : isTransparent
+                      ? 'text-primary-foreground/70 hover:text-primary-foreground'
+                      : 'text-muted-foreground hover:text-foreground'
                 )}
               >
                 {link.name}
-              </button>
+              </Link>
             ))}
-            <a href="#contact" onClick={() => handleNavClick('/#contact')}>
+            <Link to="/contact">
               <Button size="sm" variant={isTransparent ? 'secondary' : 'default'}>
                 Réserver un appel
               </Button>
-            </a>
+            </Link>
             <ThemeToggle />
           </nav>
 
@@ -96,17 +90,25 @@ export function Header() {
               <SheetContent side="right" className="w-full sm:w-80">
                 <nav className="flex flex-col gap-6 mt-8">
                   {navLinks.map((link) => (
-                    <button
+                    <Link
                       key={link.href}
-                      onClick={() => handleNavClick(link.href)}
-                      className="text-lg font-medium text-foreground hover:text-foreground/80 text-left"
+                      to={link.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className={cn(
+                        'text-lg font-medium text-left',
+                        location.pathname === link.href
+                          ? 'text-foreground'
+                          : 'text-muted-foreground hover:text-foreground'
+                      )}
                     >
                       {link.name}
-                    </button>
+                    </Link>
                   ))}
-                  <Button onClick={() => handleNavClick('/#contact')} className="mt-4">
-                    Réserver un appel
-                  </Button>
+                  <Link to="/contact" onClick={() => setMobileMenuOpen(false)}>
+                    <Button className="mt-4 w-full">
+                      Réserver un appel
+                    </Button>
+                  </Link>
                 </nav>
               </SheetContent>
             </Sheet>
