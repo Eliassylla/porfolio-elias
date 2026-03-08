@@ -11,6 +11,10 @@ import { lazy, Suspense } from "react";
 import { LoadingFallback } from "@/components/ui/LoadingFallback";
 
 const Home = lazy(() => import("./pages/Home"));
+const Services = lazy(() => import("./pages/Services"));
+const Portfolio = lazy(() => import("./pages/Portfolio"));
+const ProjectDetail = lazy(() => import("./pages/ProjectDetail"));
+const Contact = lazy(() => import("./pages/Contact"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -28,6 +32,10 @@ const App = () => (
               <Suspense fallback={<LoadingFallback />}>
                 <Routes>
                   <Route path="/" element={<Home />} />
+                  <Route path="/services" element={<Services />} />
+                  <Route path="/portfolio" element={<Portfolio />} />
+                  <Route path="/portfolio/:id" element={<ProjectDetail />} />
+                  <Route path="/contact" element={<Contact />} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
               </Suspense>

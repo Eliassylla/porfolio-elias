@@ -1,142 +1,80 @@
-import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin } from 'lucide-react';
-import { photographerInfo } from '@/data/photographer';
-import { ContactForm } from '@/components/forms/ContactForm';
-import { Separator } from '@/components/ui/separator';
 import { SEOHead } from '@/components/seo/SEOHead';
+import { ScrollReveal } from '@/components/ui/ScrollReveal';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { businessInfo } from '@/data/business';
+import { ArrowRight, Mail, MapPin } from 'lucide-react';
 
-/**
- * Contact page with form and contact information
- * Features validated contact form and availability status
- */
 export default function Contact() {
   return (
     <>
       <SEOHead
-        title="Contact"
-        description={`Get in touch with ${photographerInfo.name} for photography inquiries, collaborations, and project bookings. ${photographerInfo.availability}`}
+        title="Contact — Elias Automatisation"
+        description="Réservez un appel découverte de 20 minutes ou envoyez-moi un message."
       />
-      
-      <div className="min-h-screen">
-        {/* Hero Section */}
-      <section className="py-24 md:py-32 px-6 lg:px-8 border-b border-border">
-        <div className="max-w-4xl mx-auto text-center space-y-6">
-          <motion.div
-            initial={{ opacity: 0.8, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-          >
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-light tracking-wide mb-4">
-              Get in Touch
+
+      <div className="min-h-screen pt-24">
+        <section className="py-16 md:py-24 px-6 lg:px-8 bg-primary text-primary-foreground">
+          <div className="max-w-4xl mx-auto">
+            <Badge variant="secondary" className="mb-6 text-sm px-4 py-1">Contact</Badge>
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
+              On en discute ?
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground font-light tracking-wide">
-              Let's discuss your next project
+            <p className="mt-6 text-lg opacity-90 leading-relaxed max-w-2xl">
+              Un appel de 20 minutes, gratuit et sans engagement. On identifie ensemble vos tâches à automatiser.
             </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Main Content */}
-      <section className="py-16 md:py-24 px-6 lg:px-8">
-        <div className="max-w-5xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 lg:gap-16">
-            {/* Contact Form */}
-            <motion.div
-              className="space-y-6"
-              initial={{ opacity: 0.8, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.4 }}
-            >
-              <div className="space-y-3">
-                <h2 className="text-3xl md:text-4xl font-light tracking-wide">
-                  Send a Message
-                </h2>
-                <p className="text-muted-foreground font-light">
-                  Fill out the form below and I'll get back to you within 24-48 hours. {photographerInfo.availability}
-                </p>
-              </div>
-
-              <ContactForm />
-            </motion.div>
-
-            {/* Contact Information */}
-            <motion.div
-              className="space-y-8"
-              initial={{ opacity: 0.8, x: 10 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.4, delay: 0.1 }}
-            >
-              <div className="space-y-3">
-                <h2 className="text-3xl md:text-4xl font-light tracking-wide">
-                  Contact Information
-                </h2>
-                <p className="text-muted-foreground font-light">
-                  Prefer to reach out directly? Here's how you can contact me.
-                </p>
-              </div>
-
-              <Separator />
-
-              {/* Contact Details */}
-              <div className="space-y-6">
-                {/* Email */}
-                <div className="flex items-start gap-4">
-                  <div className="p-3 rounded-sm bg-accent">
-                    <Mail className="size-5 text-muted-foreground" />
-                  </div>
-                  <div className="space-y-1">
-                    <p className="text-sm font-light tracking-wide text-muted-foreground">
-                      Email
-                    </p>
-                    <a
-                      href={`mailto:${photographerInfo.email}`}
-                      className="text-base md:text-lg font-light hover:text-muted-foreground transition-colors"
-                    >
-                      {photographerInfo.email}
-                    </a>
-                  </div>
-                </div>
-
-                {/* Phone */}
-                <div className="flex items-start gap-4">
-                  <div className="p-3 rounded-sm bg-accent">
-                    <Phone className="size-5 text-muted-foreground" />
-                  </div>
-                  <div className="space-y-1">
-                    <p className="text-sm font-light tracking-wide text-muted-foreground">
-                      Phone
-                    </p>
-                    <a
-                      href={`tel:${photographerInfo.phone}`}
-                      className="text-base md:text-lg font-light hover:text-muted-foreground transition-colors"
-                    >
-                      {photographerInfo.phone}
-                    </a>
-                  </div>
-                </div>
-
-                {/* Location */}
-                <div className="flex items-start gap-4">
-                  <div className="p-3 rounded-sm bg-accent">
-                    <MapPin className="size-5 text-muted-foreground" />
-                  </div>
-                  <div className="space-y-1">
-                    <p className="text-sm font-light tracking-wide text-muted-foreground">
-                      Location
-                    </p>
-                    <p className="text-base md:text-lg font-light">
-                      {photographerInfo.location}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
           </div>
-        </div>
-      </section>
+        </section>
 
-        {/* Bottom spacing */}
-        <div className="h-16" />
+        <section className="py-24 px-6 lg:px-8 bg-background">
+          <div className="max-w-4xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-16">
+              {/* Option 1: Calendly */}
+              <ScrollReveal>
+                <div>
+                  <h2 className="text-2xl font-bold text-foreground mb-4">
+                    Réserver un créneau
+                  </h2>
+                  <p className="text-muted-foreground mb-8 leading-relaxed">
+                    Choisissez un créneau qui vous convient. 20 minutes pour faire le point sur vos besoins.
+                  </p>
+                  <a href={businessInfo.calendlyUrl} target="_blank" rel="noopener noreferrer">
+                    <Button size="lg" className="text-lg px-8 py-6 font-semibold w-full">
+                      Ouvrir Calendly
+                      <ArrowRight className="ml-2 size-5" />
+                    </Button>
+                  </a>
+                </div>
+              </ScrollReveal>
+
+              {/* Option 2: Direct contact */}
+              <ScrollReveal delay={0.15}>
+                <div>
+                  <h2 className="text-2xl font-bold text-foreground mb-4">
+                    Me contacter directement
+                  </h2>
+                  <p className="text-muted-foreground mb-8 leading-relaxed">
+                    Vous préférez un email ? Écrivez-moi, je réponds sous 24h.
+                  </p>
+
+                  <div className="space-y-4">
+                    <a
+                      href={`mailto:${businessInfo.email}`}
+                      className="flex items-center gap-3 p-4 bg-secondary rounded-xl hover:bg-secondary/80 transition-colors"
+                    >
+                      <Mail className="size-5 text-primary" />
+                      <span className="text-foreground font-medium">{businessInfo.email}</span>
+                    </a>
+                    <div className="flex items-center gap-3 p-4 bg-secondary rounded-xl">
+                      <MapPin className="size-5 text-primary" />
+                      <span className="text-foreground font-medium">{businessInfo.location}</span>
+                    </div>
+                  </div>
+                </div>
+              </ScrollReveal>
+            </div>
+          </div>
+        </section>
       </div>
     </>
   );
