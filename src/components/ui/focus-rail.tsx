@@ -145,7 +145,7 @@ export function FocusRail({
       <div className="relative z-10 flex flex-1 flex-col justify-center px-4 md:px-8">
         {/* DRAGGABLE RAIL CONTAINER */}
         <motion.div
-          className="relative mx-auto flex h-[360px] w-full max-w-6xl items-center justify-center cursor-grab active:cursor-grabbing"
+          className="relative mx-auto flex h-[220px] md:h-[260px] w-full max-w-4xl items-center justify-center cursor-grab active:cursor-grabbing"
           style={{ perspective: 1200 }}
           drag="x"
           dragConstraints={{ left: 0, right: 0 }}
@@ -162,10 +162,10 @@ export function FocusRail({
             const isCenter = offset === 0;
             const dist = Math.abs(offset);
 
-            const xOffset = offset * 320;
-            const zOffset = -dist * 180;
+            const xOffset = offset * 220;
+            const zOffset = -dist * 120;
             const scale = isCenter ? 1 : 0.85;
-            const rotateY = offset * -20;
+            const rotateY = offset * -15;
 
             const opacity = isCenter ? 1 : Math.max(0.1, 1 - dist * 0.5);
             const blur = isCenter ? 0 : dist * 6;
@@ -175,7 +175,7 @@ export function FocusRail({
               <motion.div
                 key={absIndex}
                 className={cn(
-                  "absolute aspect-[3/4] w-[260px] md:w-[300px] rounded-2xl border-t border-white/20 bg-neutral-900 shadow-2xl transition-shadow duration-300",
+                  "absolute aspect-[3/4] w-[160px] md:w-[200px] rounded-xl border-t border-white/20 bg-neutral-900 shadow-2xl transition-shadow duration-300",
                   isCenter ? "z-20 shadow-white/10" : "z-10"
                 )}
                 initial={false}
@@ -208,8 +208,8 @@ export function FocusRail({
         </motion.div>
 
         {/* Info & Controls */}
-        <div className="mx-auto mt-12 flex w-full max-w-4xl flex-col items-center justify-between gap-6 md:flex-row pointer-events-auto">
-          <div className="flex flex-1 flex-col items-center text-center md:items-start md:text-left h-32 justify-center">
+        <div className="mx-auto mt-6 flex w-full max-w-3xl flex-col items-center justify-between gap-4 md:flex-row pointer-events-auto px-4">
+          <div className="flex flex-1 flex-col items-center text-center md:items-start md:text-left h-24 justify-center">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeItem.id}
@@ -217,18 +217,18 @@ export function FocusRail({
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 exit={{ opacity: 0, y: -10, filter: "blur(4px)" }}
                 transition={{ duration: 0.3 }}
-                className="space-y-2"
+                className="space-y-1"
               >
                 {activeItem.meta && (
-                  <span className="text-xs font-medium uppercase tracking-wider text-emerald-400">
+                  <span className="text-[10px] font-medium uppercase tracking-wider text-emerald-400">
                     {activeItem.meta}
                   </span>
                 )}
-                <h2 className="text-3xl font-bold tracking-tight md:text-4xl text-white">
+                <h2 className="text-xl font-bold tracking-tight md:text-2xl text-white">
                   {activeItem.title}
                 </h2>
                 {activeItem.description && (
-                  <p className="max-w-md text-neutral-400">
+                  <p className="max-w-sm text-xs text-neutral-400 line-clamp-2">
                     {activeItem.description}
                   </p>
                 )}
@@ -236,24 +236,24 @@ export function FocusRail({
             </AnimatePresence>
           </div>
 
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-1 rounded-full bg-neutral-900/80 p-1 ring-1 ring-white/10 backdrop-blur-md">
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-1 rounded-full bg-neutral-900/80 p-0.5 ring-1 ring-white/10 backdrop-blur-md">
               <button
                 onClick={handlePrev}
-                className="rounded-full p-3 text-neutral-400 transition hover:bg-white/10 hover:text-white active:scale-95"
+                className="rounded-full p-2 text-neutral-400 transition hover:bg-white/10 hover:text-white active:scale-95"
                 aria-label="Previous"
               >
-                <ChevronLeft className="h-5 w-5" />
+                <ChevronLeft className="h-4 w-4" />
               </button>
-              <span className="min-w-[40px] text-center text-xs font-mono text-neutral-500">
+              <span className="min-w-[36px] text-center text-[10px] font-mono text-neutral-500">
                 {activeIndex + 1} / {count}
               </span>
               <button
                 onClick={handleNext}
-                className="rounded-full p-3 text-neutral-400 transition hover:bg-white/10 hover:text-white active:scale-95"
+                className="rounded-full p-2 text-neutral-400 transition hover:bg-white/10 hover:text-white active:scale-95"
                 aria-label="Next"
               >
-                <ChevronRight className="h-5 w-5" />
+                <ChevronRight className="h-4 w-4" />
               </button>
             </div>
 
