@@ -12,6 +12,28 @@ import { VerticalCutReveal, type VerticalCutRevealRef } from '@/components/ui/ve
 import heroPortrait from '@/assets/hero-portrait.jpg';
 
 export default function Home() {
+  const revealRef1 = useRef<VerticalCutRevealRef>(null);
+  const revealRef2 = useRef<VerticalCutRevealRef>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [hasTriggered, setHasTriggered] = useState(false);
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasTriggered) {
+          setHasTriggered(true);
+          revealRef1.current?.startAnimation();
+          revealRef2.current?.startAnimation();
+        }
+      },
+      { threshold: 0.3 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [hasTriggered]);
+
   return (
     <>
       <SEOHead
