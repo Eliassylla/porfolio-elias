@@ -1,6 +1,6 @@
 import { SEOHead } from '@/components/seo/SEOHead';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
-import { Badge } from '@/components/ui/badge';
+
 import { Button } from '@/components/ui/button';
 import { businessInfo } from '@/data/business';
 import { ArrowRight } from 'lucide-react';
@@ -24,20 +24,19 @@ export default function Services() {
 
       <div className="min-h-screen pt-24">
         {/* Header */}
-        <section className="py-16 md:py-24 px-6 lg:px-8 bg-primary text-primary-foreground">
+        <section className="py-12 md:py-16 px-6 lg:px-8 bg-primary text-primary-foreground">
           <div className="max-w-4xl mx-auto">
-            <Badge variant="secondary" className="mb-6 text-sm px-4 py-1">Services & Méthode</Badge>
             <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
               Comment je travaille
             </h1>
-            <p className="mt-6 text-lg opacity-90 leading-relaxed max-w-2xl">
+            <p className="mt-4 text-lg opacity-90 leading-relaxed max-w-2xl">
               Pas de tarif horaire, pas de devis flou. Des solutions concrètes, livrées clé en main.
             </p>
           </div>
         </section>
 
         {/* Process Steps — Rolling List */}
-        <section className="py-24 px-6 lg:px-8 bg-background">
+        <section className="py-16 px-6 lg:px-8 bg-background">
           <div className="max-w-5xl mx-auto">
             <ScrollReveal>
               <RollingTextList
@@ -49,7 +48,7 @@ export default function Services() {
         </section>
 
         {/* What I deliver */}
-        <section className="py-24 px-6 lg:px-8 bg-secondary">
+        <section className="py-16 px-6 lg:px-8 bg-secondary">
           <div className="max-w-4xl mx-auto">
             <ScrollReveal>
               <h2 className="text-3xl font-bold text-secondary-foreground mb-4">
@@ -79,7 +78,7 @@ export default function Services() {
         </section>
 
         {/* CTA */}
-        <section className="py-24 px-6 lg:px-8 bg-primary text-primary-foreground">
+        <section className="py-16 px-6 lg:px-8 bg-primary text-primary-foreground">
           <div className="max-w-3xl mx-auto text-center">
             <ScrollReveal>
               <h2 className="text-3xl font-bold tracking-tight">Prêt à automatiser ?</h2>

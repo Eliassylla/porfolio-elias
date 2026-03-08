@@ -1,7 +1,7 @@
 import { SEOHead } from '@/components/seo/SEOHead';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
+
 import { businessInfo } from '@/data/business';
 import { ArrowRight, Mail, MapPin } from 'lucide-react';
 
@@ -14,19 +14,18 @@ export default function Contact() {
       />
 
       <div className="min-h-screen pt-24">
-        <section className="py-16 md:py-24 px-6 lg:px-8 bg-primary text-primary-foreground">
+        <section className="py-12 md:py-16 px-6 lg:px-8 bg-primary text-primary-foreground">
           <div className="max-w-4xl mx-auto">
-            <Badge variant="secondary" className="mb-6 text-sm px-4 py-1">Contact</Badge>
             <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
               On en discute ?
             </h1>
-            <p className="mt-6 text-lg opacity-90 leading-relaxed max-w-2xl">
+            <p className="mt-4 text-lg opacity-90 leading-relaxed max-w-2xl">
               Un appel de 20 minutes, gratuit et sans engagement. On identifie ensemble vos tâches à automatiser.
             </p>
           </div>
         </section>
 
-        <section className="py-24 px-6 lg:px-8 bg-background">
+        <section className="py-16 px-6 lg:px-8 bg-background">
           <div className="max-w-4xl mx-auto">
             <div className="grid md:grid-cols-2 gap-16">
               {/* Option 1: Calendly */}
