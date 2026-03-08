@@ -15,11 +15,19 @@ interface RollingTextItemProps {
 function RollingTextItem({ item }: RollingTextItemProps) {
   return (
     <div className="group/item relative flex items-center justify-between border-b border-border py-6 md:py-10 transition-colors duration-300 hover:border-primary/40 cursor-pointer">
-      {/* Rolling text — the text stays the same, just becomes italic + primary color on hover */}
+      {/* Rolling text — rolls up on hover to reveal italic + primary version */}
       <div className="relative overflow-hidden">
-        <span className="text-4xl md:text-6xl lg:text-8xl font-extrabold tracking-tighter uppercase text-foreground transition-all duration-500 ease-in-out group-hover/item:italic group-hover/item:text-primary">
-          {item.title}
-        </span>
+        <div className="transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/item:-translate-y-full">
+          {/* State 1: Normal */}
+          <span className="block text-4xl md:text-6xl lg:text-8xl font-extrabold tracking-tighter uppercase text-foreground">
+            {item.title}
+          </span>
+
+          {/* State 2: Hover (Italic + Color) — positioned below, rolls into view */}
+          <span className="block text-4xl md:text-6xl lg:text-8xl font-extrabold tracking-tighter uppercase italic text-primary">
+            {item.title}
+          </span>
+        </div>
       </div>
 
       {/* Category Label */}
@@ -27,9 +35,9 @@ function RollingTextItem({ item }: RollingTextItemProps) {
         {item.category}
       </span>
 
-      {/* Image Reveal Effect — positioned near the bottom border line */}
-      <div className="pointer-events-none absolute right-16 md:right-32 bottom-0 translate-y-1/4 z-10 overflow-visible rounded-lg opacity-0 transition-all duration-500 ease-out group-hover/item:opacity-100 group-hover/item:scale-100 scale-75">
-        <div className="relative h-28 w-36 md:h-40 md:w-56 overflow-hidden rounded-lg shadow-2xl">
+      {/* Image Reveal Effect — near the border line */}
+      <div className="pointer-events-none absolute right-16 md:right-32 bottom-4 z-10 overflow-visible rounded-lg opacity-0 transition-all duration-500 ease-out group-hover/item:opacity-100 group-hover/item:scale-100 scale-75">
+        <div className="relative h-28 w-36 md:h-36 md:w-52 overflow-hidden rounded-lg shadow-2xl">
           <img
             src={item.src}
             alt={item.alt}

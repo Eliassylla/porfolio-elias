@@ -8,18 +8,12 @@ import { Link } from 'react-router-dom';
 import { RollingTextList } from '@/components/ui/rolling-list';
 
 export default function Services() {
-  const processItems = businessInfo.process.map((step, index) => ({
-    id: index + 1,
-    title: step.title,
-    category: `Étape ${step.number}`,
-    src: [
-      'https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&auto=format&fit=crop&q=60',
-      'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400&auto=format&fit=crop&q=60',
-      'https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&auto=format&fit=crop&q=60',
-      'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=400&auto=format&fit=crop&q=60',
-    ][index] ?? 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&auto=format&fit=crop&q=60',
-    alt: step.title,
-  }));
+  const processItems = [
+    { id: 1, title: 'Audit', category: 'Analyse', src: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&auto=format&fit=crop&q=60', alt: 'Audit' },
+    { id: 2, title: 'Stratégie', category: 'Planification', src: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400&auto=format&fit=crop&q=60', alt: 'Stratégie' },
+    { id: 3, title: 'Build', category: 'Développement', src: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&auto=format&fit=crop&q=60', alt: 'Build' },
+    { id: 4, title: 'Déploiement', category: 'Lancement', src: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=400&auto=format&fit=crop&q=60', alt: 'Déploiement' },
+  ];
 
   return (
     <>
