@@ -43,26 +43,24 @@ export default function FeatureSection({
           <Card className="border border-border bg-card overflow-hidden">
             <CardContent className="p-0">
               <div className="relative h-[340px] overflow-hidden">
-                {/* Scrollable Container */}
                 <div className="absolute inset-0 overflow-hidden">
-                  {/* Motion list */}
                   <motion.div
                     className="flex flex-col"
-                    animate={{ y: [0, -(items.length * 80)] }}
+                    animate={{ y: ["0%", "-50%"] }}
                     transition={{
                       y: {
-                        duration: items.length * 4,
+                        duration: items.length * 3,
                         repeat: Infinity,
                         ease: "linear",
+                        repeatType: "loop",
                       },
                     }}
                   >
                     {[...items, ...items].map((item, i) => (
                       <div
                         key={i}
-                        className="flex items-center justify-between px-5 py-4 border-b border-border last:border-b-0"
+                        className="flex items-center justify-between px-5 py-4 border-b border-border"
                       >
-                        {/* Icon + Content */}
                         <div className="flex items-center gap-4">
                           <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center flex-shrink-0">
                             {item.icon}
@@ -82,11 +80,11 @@ export default function FeatureSection({
                       </div>
                     ))}
                   </motion.div>
-
-                  {/* Fade effects */}
-                  <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-card to-transparent pointer-events-none z-10" />
-                  <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-card to-transparent pointer-events-none z-10" />
                 </div>
+
+                {/* Fade flow effects top & bottom */}
+                <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-card via-card/80 to-transparent pointer-events-none z-10" />
+                <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-card via-card/80 to-transparent pointer-events-none z-10" />
               </div>
             </CardContent>
           </Card>
