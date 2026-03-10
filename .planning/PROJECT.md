@@ -76,5 +76,17 @@ Un visiteur qualifié doit pouvoir comprendre ce qu'Elias fait, voir des preuves
 | Formulaire de contact via Resend (remplace Formspree) | Contrôle total, pas de dépendance externe, même stack que newsletter | — Pending |
 | Projets documentés avec angle "problème → solution → résultat" | Les clients PME comprennent les résultats, pas la tech | — Pending |
 
+## Current Milestone: v1.0 Portfolio Fonctionnel
+
+**Goal:** Transformer le template photographe cassé en portfolio B2B opérationnel qui convertit les visiteurs en prospects via Cal.com, formulaire de contact et newsletter.
+
+**Target features:**
+- Contenu business réel (business.ts, About, Portfolio)
+- Nettoyage code mort et types TypeScript domaine automation
+- CTA "Réserver un appel" → Cal.com
+- Formulaire de contact fonctionnel (Resend via Supabase Edge Function)
+- Newsletter signup → Supabase + email de bienvenue
+- Dark/light mode polish
+
 ---
-*Last updated: 2026-03-09 after initialization*
+*Last updated: 2026-03-10 after milestone v1.0 initialization*
