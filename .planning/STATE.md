@@ -1,30 +1,63 @@
-# State: Portfolio Antigravity — Elias
+# Project State
 
 ## Project Reference
 
 See: .planning/PROJECT.md (updated 2026-03-10)
 
 **Core value:** Un visiteur qualifié doit pouvoir comprendre ce qu'Elias fait, voir des preuves concrètes de compétence, et réserver un appel découverte — en moins de 2 minutes.
-**Current focus:** Milestone v1.0 — définition des requirements
+**Current focus:** Phase 1 — Contenu & CTAs
 
 ## Current Position
 
-Phase: Not started (defining requirements)
-Plan: —
-Status: Defining requirements
-Last activity: 2026-03-10 — Milestone v1.0 started
+Phase: 1 of 4 (Contenu & CTAs)
+Plan: 0 of 2 in current phase
+Status: Ready to plan
+Last activity: 2026-03-10 — Roadmap v1.0 créé, 15 requirements mappés en 4 phases
 
-## Decisions
+Progress: [░░░░░░░░░░] 0%
 
-(None yet — captured as phases progress)
+## Performance Metrics
 
-## Blockers
+**Velocity:**
+- Total plans completed: 0
+- Average duration: —
+- Total execution time: 0 hours
 
-(None)
+**By Phase:**
+
+| Phase | Plans | Total | Avg/Plan |
+|-------|-------|-------|----------|
+| - | - | - | - |
+
+**Recent Trend:**
+- Last 5 plans: —
+- Trend: —
+
+*Updated after each plan completion*
 
 ## Accumulated Context
 
-- Stack existante opérationnelle : React 18, TypeScript, Vite, Tailwind CSS 4, shadcn/ui, Framer Motion
-- Codebase brownfield initiée via Lovable, a dérivé vers template photographe
-- Supabase client configuré mais aucune table ni Edge Function créée
-- 70% structure visuelle en place, éléments de conversion tous cassés ou placeholders
+### Decisions
+
+Decisions are logged in PROJECT.md Key Decisions table.
+Recent decisions affecting current work:
+
+- [Init]: Cal.com URL manquante — BLOQUEUR Phase 1. Doit être obtenue d'Elias avant de coder
+- [Init]: Resend Audience ID manquant — BLOQUEUR Phase 3. Créer dans Resend dashboard avant Phase 3
+- [Init]: Brownfield rule — remplacer avant supprimer. Build TypeScript doit passer à chaque étape
+
+### Pending Todos
+
+None yet.
+
+### Blockers/Concerns
+
+- **BLOQUEUR Phase 1**: URL Cal.com d'Elias (`cal.com/[user]/[event]`) non disponible — sans elle, CONT-01 est impossible et les 4 CTAs restent cassés
+- **BLOQUEUR Phase 3**: Audience ID Resend non créé — requis par `resend.contacts.create()` avant de coder l'Edge Function `add-subscriber`
+- **À vérifier Phase 3**: Domaine email vérifié dans Resend (éviter spam)
+
+## Session Continuity
+
+Last session: 2026-03-10
+Stopped at: Roadmap créé — prêt à planifier Phase 1
+Resume file: None
