@@ -29,12 +29,12 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. Le formulaire de contact affiche des champs et labels en français avec des questions qualifiantes (secteur, problème principal)
   4. Un partage LinkedIn du site affiche un titre, une description et une image OG corrects (pas de contenu photographe)
   5. Les meta tags `<title>` et `<description>` de toutes les pages décrivent le consulting automation, pas la photographie
-**Plans**: TBD
+**Plans:** 3 plans
 
 Plans:
-- [ ] 01-01: Réécrire le copy Hero, WhatIBuild, CTASection, FeaturedProjects
-- [ ] 01-02: Franciser et qualifier le formulaire de contact (champs + labels + validation messages)
-- [ ] 01-03: Ajouter meta tags, OG tags et structured data schema.org sur toutes les pages
+- [ ] 01-01-PLAN.md — Réécrire le copy business.ts + sections Hero, WhatIBuild, CTA, FeaturedProjects, About
+- [ ] 01-02-PLAN.md — Créer le formulaire de contact qualifiant (4 champs, react-hook-form + zod)
+- [ ] 01-03-PLAN.md — SEO complet : index.html, OG tags, JSON-LD structured data, meta tags toutes pages
 
 ### Phase 2: Contenu & CTAs
 **Goal**: Les visiteurs voient un portfolio B2B réel — vrais services, vrais projets, vraie bio — et peuvent réserver un appel en un clic
