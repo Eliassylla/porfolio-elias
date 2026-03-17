@@ -5,14 +5,14 @@
 See: .planning/PROJECT.md (updated 2026-03-10)
 
 **Core value:** Un visiteur qualifié doit pouvoir comprendre ce qu'Elias fait, voir des preuves concrètes de compétence, et réserver un appel découverte — en moins de 2 minutes.
-**Current focus:** Phase 1 — Contenu & CTAs
+**Current focus:** Phase 1 — Copywriting & SEO
 
 ## Current Position
 
-Phase: 1 of 4 (Contenu & CTAs)
+Phase: 1 of 4 (Copywriting & SEO)
 Plan: 0 of 2 in current phase
 Status: Ready to plan
-Last activity: 2026-03-10 — Roadmap v1.0 créé, 15 requirements mappés en 4 phases
+Last activity: 2026-03-16 — Phases 1 et 2 échangées (UX-first) : Phase 1 = Copywriting & SEO, Phase 2 = Contenu & CTAs
 
 Progress: [░░░░░░░░░░] 0%
 
@@ -59,5 +59,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-03-10
-Stopped at: Roadmap créé — prêt à planifier Phase 1
+Stopped at: Phases réordonnées — discuss-phase 1 (Copywriting & SEO) en cours
 Resume file: None

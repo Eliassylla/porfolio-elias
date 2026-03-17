@@ -58,15 +58,15 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| CONT-01 | Phase 1 | Pending |
-| CONT-02 | Phase 1 | Pending |
-| CONT-03 | Phase 1 | Pending |
-| COPY-01 | Phase 2 | Pending |
-| COPY-02 | Phase 2 | Pending |
-| COPY-03 | Phase 2 | Pending |
-| SEO-01 | Phase 2 | Pending |
-| SEO-02 | Phase 2 | Pending |
-| SEO-03 | Phase 2 | Pending |
+| COPY-01 | Phase 1 | Pending |
+| COPY-02 | Phase 1 | Pending |
+| COPY-03 | Phase 1 | Pending |
+| SEO-01 | Phase 1 | Pending |
+| SEO-02 | Phase 1 | Pending |
+| SEO-03 | Phase 1 | Pending |
+| CONT-01 | Phase 2 | Pending |
+| CONT-02 | Phase 2 | Pending |
+| CONT-03 | Phase 2 | Pending |
 | EMAIL-01 | Phase 3 | Pending |
 | EMAIL-02 | Phase 3 | Pending |
 | EMAIL-03 | Phase 3 | Pending |
