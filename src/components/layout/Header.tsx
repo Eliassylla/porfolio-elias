@@ -29,7 +29,7 @@ export function Header() {
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
         isTransparent
-          ? 'bg-transparent'
+          ? 'bg-background/75 backdrop-blur-lg border-b border-border/60'
           : 'bg-background/90 backdrop-blur-lg border-b border-border shadow-sm'
       )}
     >
@@ -40,7 +40,7 @@ export function Header() {
             className={cn(
               'text-lg font-bold tracking-tight transition-all duration-300',
               isTransparent
-                ? 'text-primary-foreground hover:opacity-80'
+                ? 'text-foreground hover:opacity-80'
                 : 'text-foreground hover:text-foreground/80'
             )}
           >
@@ -56,10 +56,10 @@ export function Header() {
                   'text-sm font-medium tracking-wide transition-colors duration-300',
                   location.pathname === link.href
                     ? isTransparent
-                      ? 'text-primary-foreground'
+                      ? 'text-foreground'
                       : 'text-foreground'
                     : isTransparent
-                      ? 'text-primary-foreground/70 hover:text-primary-foreground'
+                      ? 'text-muted-foreground hover:text-foreground'
                       : 'text-muted-foreground hover:text-foreground'
                 )}
               >
@@ -67,7 +67,7 @@ export function Header() {
               </Link>
             ))}
             <Link to="/contact">
-              <Button size="sm" variant={isTransparent ? 'secondary' : 'default'}>
+              <Button size="sm" variant="default">
                 Réserver un appel
               </Button>
             </Link>
@@ -81,7 +81,7 @@ export function Header() {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className={cn('size-9', isTransparent && 'text-primary-foreground hover:bg-primary-foreground/10')}
+                  className="size-9"
                   aria-label="Ouvrir le menu"
                 >
                   <Menu className="size-5" />
