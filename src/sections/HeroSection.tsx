@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { Calendar } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import heroPortrait from '@/assets/hero-portrait.jpg';
+import heroPortrait from '@/assets/hero-portrait-real.jpg';
 
 export default function HeroSection() {
   return (
@@ -74,7 +74,7 @@ export default function HeroSection() {
                 <img
                   src={heroPortrait}
                   alt="Elias — Expert automatisation"
-                  className="w-full h-full object-cover grayscale"
+                  className="w-full h-full object-cover object-[50%_15%] grayscale"
                 />
               </div>
 

@@ -162,7 +162,7 @@ export function FocusRail({
             const isCenter = offset === 0;
             const dist = Math.abs(offset);
 
-            const xOffset = offset * 220;
+            const xOffset = offset * 260;
             const zOffset = -dist * 120;
             const scale = isCenter ? 1 : 0.85;
             const rotateY = offset * -15;
@@ -175,7 +175,7 @@ export function FocusRail({
               <motion.div
                 key={absIndex}
                 className={cn(
-                  "absolute aspect-[3/4] w-[160px] md:w-[200px] rounded-xl border-t border-white/20 bg-neutral-900 shadow-2xl transition-shadow duration-300",
+                  "absolute aspect-square w-[220px] md:w-[320px] rounded-xl border-t border-white/20 bg-white shadow-2xl transition-shadow duration-300",
                   isCenter ? "z-20 shadow-white/10" : "z-10"
                 )}
                 initial={false}
@@ -200,8 +200,7 @@ export function FocusRail({
                   alt={item.title}
                   className="h-full w-full rounded-2xl object-cover pointer-events-none"
                 />
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-white/10 to-transparent pointer-events-none" />
-                <div className="absolute inset-0 rounded-2xl bg-black/10 pointer-events-none mix-blend-multiply" />
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-black/5 to-transparent pointer-events-none" />
               </motion.div>
             );
           })}

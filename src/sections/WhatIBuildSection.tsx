@@ -1,7 +1,10 @@
-import { useRef, useState, useEffect } from 'react';
-import { businessInfo } from '@/data/business';
-import { FocusRail } from '@/components/ui/focus-rail';
-import { VerticalCutReveal, type VerticalCutRevealRef } from '@/components/ui/vertical-cut-reveal';
+import { useRef, useState, useEffect } from "react";
+
+import { FocusRail } from "@/components/ui/focus-rail";
+import {
+  VerticalCutReveal,
+  type VerticalCutRevealRef,
+} from "@/components/ui/vertical-cut-reveal";
 
 export default function WhatIBuildSection() {
   const revealRef1 = useRef<VerticalCutRevealRef>(null);
@@ -20,7 +23,7 @@ export default function WhatIBuildSection() {
           revealRef2.current?.startAnimation();
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.3 },
     );
     observer.observe(el);
     return () => observer.disconnect();
@@ -47,9 +50,15 @@ export default function WhatIBuildSection() {
               autoStart={false}
               splitBy="words"
               staggerDuration={0.08}
-              transition={{ type: "spring", stiffness: 200, damping: 25, delay: 0.15 }}
+              transition={{
+                type: "spring",
+                stiffness: 200,
+                damping: 25,
+                delay: 0.15,
+              }}
             >
-              Je construis des systèmes simples à utiliser, pensés pour les entreprises de services.
+              Je construis des systèmes simples à utiliser, pensés pour les
+              entreprises de services.
             </VerticalCutReveal>
           </p>
         </div>
@@ -59,29 +68,35 @@ export default function WhatIBuildSection() {
             className="h-[500px]"
             items={[
               {
-                id: 'auto-ia',
-                title: 'Automatisations IA',
-                description: "J'identifie vos tâches répétitives et je crée des workflows automatisés pour vous faire gagner du temps chaque semaine.",
-                meta: 'Workflows • n8n • Claude',
-                imageSrc: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1000&auto=format&fit=crop',
-                href: '/contact',
+                id: "automatisations",
+                title: "Automatisations",
+                description:
+                  "J'identifie vos tâches répétitives et je crée des workflows automatisés pour vous faire gagner du temps chaque semaine.",
+                meta: "Workflows • n8n • Claude",
+                imageSrc:
+                  "/images/infographics/automatisations.png",
+                href: "/contact",
               },
               {
-                id: 'micro-saas',
-                title: 'Micro-outils & micro-SaaS',
-                description: 'Je conçois de petits outils sur mesure (tableaux de bord, mini-apps) pour fiabiliser vos processus et centraliser l\'information.',
-                meta: 'Outils • Dashboards',
-                imageSrc: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000&auto=format&fit=crop',
-                href: '/contact',
+                id: "apps-sur-mesure",
+                title: "Apps sur mesure",
+                description:
+                  "Je développe des applications et dashboards personnalisés pour analyser vos données, automatiser votre veille ou piloter votre activité.",
+                meta: "Apps • Dashboards • Sur mesure",
+                imageSrc:
+                  "/images/infographics/micro-outils.png",
+                href: "/contact",
               },
-              ...businessInfo.projects.slice(0, 3).map((project) => ({
-                id: project.id,
-                title: project.title,
-                description: `${project.context}. ${project.result}`,
-                meta: project.tags.join(' • '),
-                imageSrc: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop',
-                href: `/portfolio/${project.id}`,
-              })),
+              {
+                id: "agents-ia",
+                title: "Agents IA",
+                description:
+                  "Je construis des agents capables de comprendre, décider et agir — pour qualifier vos leads, répondre à vos clients ou automatiser votre support.",
+                meta: "Agents IA • Claude Code • Codex",
+                imageSrc:
+                  "/images/infographics/landing-page.png",
+                href: "/contact",
+              },
             ]}
             autoPlay
             loop
