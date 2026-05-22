@@ -34,7 +34,7 @@ export function Header() {
       stagger: 0.03,
       duration: 0.35,
       ease: "power2.out",
-      delay: 1.0, // après que le rideau se soit ouvert
+      delay: 0.4,
     });
   }, { scope: logoRef, dependencies: [] });
 

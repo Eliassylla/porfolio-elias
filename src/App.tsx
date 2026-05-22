@@ -10,7 +10,6 @@ import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { lazy, Suspense } from "react";
 import { LoadingFallback } from "@/components/ui/LoadingFallback";
 import { SmoothScroll } from "@/components/SmoothScroll";
-import { PageCurtain } from "@/components/PageCurtain";
 
 const Home = lazy(() => import("./pages/Home"));
 const Services = lazy(() => import("./pages/Services"));
@@ -29,7 +28,6 @@ const App = () => (
           <Toaster />
           <Sonner />
           <BrowserRouter>
-            <PageCurtain />
             <SkipToContent />
             <SmoothScroll>
               <Layout>
