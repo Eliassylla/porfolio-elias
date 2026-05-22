@@ -100,14 +100,3 @@ Fichiers de référence : `.planning/ROADMAP.md` (phases + critères), `.plannin
 - Secrets Edge Functions : `supabase secrets set RESEND_API_KEY=...` (ne jamais hardcoder)
 - Connexions tier gratuit : max ~60 directes → utiliser le connection pooler (port 6543)
 
----
-
-## Resend — capacités disponibles
-
-- **Emails transactionnels** : confirmation formulaire contact, notification à Elias (3 000/mois gratuits)
-- **Automations** : séquences event-driven (email de bienvenue newsletter, drip J+3/J+7...) — 10 000 runs/mois gratuits
-- **Broadcasts** : envoi newsletter manuel sans code (WYSIWYG, scheduling, analytics)
-- **Audiences** : gestion abonnés (1 000 contacts gratuits), topics pour segmentation
-- **Tier gratuit suffit** pour un portfolio — pas besoin de Loops.so ou autre outil tiers
-
-Phase 3 requis avant de coder : créer une Audience dans le dashboard Resend → récupérer l'Audience ID.
