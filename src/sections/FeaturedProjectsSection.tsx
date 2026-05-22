@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { ArrowRight, BarChart3, FileText, Receipt, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -41,8 +41,8 @@ export default function FeaturedProjectsSection() {
             variants={fadeUpVariants}
             className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-muted-foreground"
           >
-            Je conçois des automatisations qui libèrent du temps et fiabilisent
-            vos processus. Voici quelques exemples concrets.
+            Je pars de situations concrètes : argent à relancer, dossiers à
+            suivre, informations à remettre au bon endroit.
           </motion.p>
         </motion.div>
 
@@ -59,7 +59,7 @@ export default function FeaturedProjectsSection() {
           >
             <div className="mb-4 flex items-center justify-between px-2">
               <p className="text-sm font-medium text-muted-foreground">
-                Pipeline automatisé
+                Situations traitées
               </p>
               <div className="flex gap-1.5">
                 <span className="size-2 rounded-full bg-muted-foreground/40" />

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { useScrollPosition } from '@/hooks/useScrollPosition';
 import { ThemeToggle } from './ThemeToggle';
 import { Button } from '@/components/ui/button';
@@ -68,7 +68,7 @@ export function Header() {
             ))}
             <Link to="/contact">
               <Button size="sm" variant="default">
-                Réserver un appel
+                Demander un audit
               </Button>
             </Link>
             <ThemeToggle />
@@ -106,7 +106,7 @@ export function Header() {
                   ))}
                   <Link to="/contact" onClick={() => setMobileMenuOpen(false)}>
                     <Button className="mt-4 w-full">
-                      Réserver un appel
+                      Demander un audit
                     </Button>
                   </Link>
                 </nav>

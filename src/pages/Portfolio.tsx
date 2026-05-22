@@ -6,128 +6,180 @@ import { ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
-const allTags = ['Tous', ...Array.from(new Set(businessInfo.projects.flatMap((p) => p.tags)))];
+function ProjectPreview({
+  project,
+  serviceTitle,
+}: {
+  project: (typeof businessInfo.projects)[number];
+  serviceTitle: string;
+}) {
+  if (project.image) {
+    return (
+      <img
+        src={project.image}
+        alt={project.title}
+        className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-[1.02]"
+      />
+    );
+  }
+
+  return (
+    <div className="h-full w-full bg-muted p-4 dark:bg-[#0f1011]">
+      <div className="flex h-full flex-col rounded-lg border border-border bg-card p-4 dark:border-white/10 dark:bg-[#141516]">
+        <div className="flex items-center justify-between border-b border-border pb-3 dark:border-white/10">
+          <div className="flex items-center gap-1.5">
+            <span className="size-2 rounded-full bg-muted-foreground/30" />
+            <span className="size-2 rounded-full bg-muted-foreground/20" />
+            <span className="size-2 rounded-full bg-muted-foreground/20" />
+          </div>
+          <span className="text-[11px] font-medium text-muted-foreground">
+            {serviceTitle}
+          </span>
+        </div>
+        <div className="mt-4 space-y-3">
+          <div className="h-3 w-8/12 rounded-full bg-foreground/15" />
+          <div className="h-2 w-full rounded-full bg-muted-foreground/15" />
+          <div className="h-2 w-9/12 rounded-full bg-muted-foreground/15" />
+        </div>
+        <div className="mt-auto grid grid-cols-3 gap-2">
+          {project.tags.slice(0, 3).map((tag) => (
+            <div
+              key={tag}
+              className="h-9 rounded-md border border-border bg-muted/60 dark:border-white/10 dark:bg-white/[0.04]"
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function Portfolio() {
-  const [activeTag, setActiveTag] = useState('Tous');
+  const [activeServiceId, setActiveServiceId] = useState(
+    businessInfo.services[0]?.id ?? '',
+  );
+  const activeService =
+    businessInfo.services.find((service) => service.id === activeServiceId) ??
+    businessInfo.services[0];
 
-  const filtered = activeTag === 'Tous'
-    ? businessInfo.projects
-    : businessInfo.projects.filter((p) => p.tags.includes(activeTag));
+  const filtered = businessInfo.projects.filter(
+    (project) => project.serviceId === activeService?.id,
+  );
+
+  const getProjectServiceTitle = (serviceId: string) =>
+    businessInfo.services.find((service) => service.id === serviceId)?.title ??
+    activeService?.title ??
+    'Projet';
 
   return (
     <>
       <SEOHead
-        title="Portfolio — Elias Automatisation"
-        description="Découvrez mes projets d'automatisation n8n et Claude Code pour PME de services."
+        title="Portfolio — Elias"
+        description="Découvrez des cas concrets de systèmes opérationnels pour PME de services."
       />
 
-      <div className="min-h-screen pt-24">
-        {/* Hero */}
-        <section className="py-20 md:py-28 px-6 lg:px-8 bg-primary text-primary-foreground text-center">
-          <div className="max-w-3xl mx-auto">
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
-              Mes <span className="text-accent">Projets</span>
-            </h1>
-            <p className="mt-6 text-lg opacity-80 leading-relaxed max-w-2xl mx-auto">
-              Des automatisations concrètes qui font gagner du temps et de l'argent aux PME de services.
-            </p>
-          </div>
-        </section>
-
-        {/* Filters + Grid */}
-        <section className="py-16 px-6 lg:px-8 bg-background">
+      <div className="min-h-screen bg-background pt-20">
+        <section className="px-6 py-8 md:py-10 lg:px-8">
           <div className="max-w-6xl mx-auto">
-            {/* Filters */}
-            <div className="flex flex-wrap justify-center gap-3 mb-14">
-              {allTags.map((tag) => (
-                <button
-                  key={tag}
-                  onClick={() => setActiveTag(tag)}
-                  className={`px-5 py-2 rounded-full text-sm font-medium transition-all border ${
-                    activeTag === tag
-                      ? 'bg-primary text-primary-foreground border-primary shadow-md'
-                      : 'bg-transparent text-muted-foreground border-border hover:border-primary/40 hover:text-foreground'
-                  }`}
+            <div className="mb-4 grid gap-6 border-b border-border pb-4 md:grid-cols-[0.82fr_1.18fr] md:items-center">
+              <div>
+                <h1 className="text-4xl font-semibold tracking-tight text-foreground md:text-5xl">
+                  Cas concrets
+                </h1>
+              </div>
+              <div className="md:justify-self-end">
+                <div
+                  className="flex flex-wrap gap-2.5"
+                  role="tablist"
+                  aria-label="Filtrer les projets par offre"
                 >
-                  {tag}
-                </button>
-              ))}
+                  {businessInfo.services.map((service) => {
+                    const isActive = service.id === activeService?.id;
+
+                    return (
+                      <button
+                        key={service.id}
+                        type="button"
+                        role="tab"
+                        aria-selected={isActive}
+                        onClick={() => setActiveServiceId(service.id)}
+                        className={`min-h-10 rounded-full border px-4 py-2 text-sm font-medium transition-all ${
+                          isActive
+                            ? 'border-primary bg-primary text-primary-foreground shadow-md shadow-primary/10'
+                            : 'border-border bg-transparent text-muted-foreground hover:border-primary/40 hover:text-foreground'
+                        }`}
+                      >
+                        {service.title}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
             </div>
 
-            {/* Projects Grid */}
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filtered.map((project, index) => (
-                <ScrollReveal key={project.id} delay={index * 0.08}>
-                  <Link to={`/portfolio/${project.id}`} className="group block h-full">
-                    <div className="bg-card border border-border rounded-2xl overflow-hidden hover:border-primary/30 transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 h-full flex flex-col">
-                      {/* Image / Placeholder */}
-                      <div className="relative w-full aspect-[16/10] bg-muted overflow-hidden">
-                        {project.image ? (
-                          <img
-                            src={project.image}
-                            alt={project.title}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            {filtered.length === 0 ? (
+              <div className="rounded-xl border border-border bg-card p-8 text-center md:p-12">
+                <h2 className="text-2xl font-semibold tracking-tight text-card-foreground">
+                  Aucun cas publié pour cette offre.
+                </h2>
+                <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-muted-foreground">
+                  Les projets visibles seront ajoutés ici dès qu'un exemple
+                  public pourra être partagé.
+                </p>
+              </div>
+            ) : (
+              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {filtered.map((project, index) => (
+                  <ScrollReveal key={project.id} delay={index * 0.08}>
+                    <Link to={`/portfolio/${project.id}`} className="group block h-full">
+                      <div className="flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card transition-all duration-300 hover:border-primary/30 hover:bg-card/95 dark:hover:bg-[#141516]">
+                        <div className="relative aspect-[16/9] w-full overflow-hidden border-b border-border bg-muted dark:border-white/10">
+                          <ProjectPreview
+                            project={project}
+                            serviceTitle={getProjectServiceTitle(project.serviceId)}
                           />
-                        ) : (
-                          <div className="w-full h-full bg-gradient-to-br from-muted to-muted/50 flex items-center justify-center">
-                            <div className="text-center space-y-2">
-                              <div className="size-12 mx-auto rounded-xl bg-primary/10 flex items-center justify-center">
-                                <svg className="size-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                                  <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" />
-                                </svg>
-                              </div>
-                              <span className="text-xs text-muted-foreground">Capture à venir</span>
+                          <div className="absolute bottom-3 left-3">
+                            <Badge className="border border-border bg-background/90 px-2.5 py-1 text-xs text-foreground backdrop-blur-sm dark:border-white/10 dark:bg-[#010102]/90">
+                              {getProjectServiceTitle(project.serviceId)}
+                            </Badge>
+                          </div>
+                          <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div className="size-8 rounded-md border border-border bg-background/90 backdrop-blur-sm flex items-center justify-center dark:border-white/10 dark:bg-[#010102]/90">
+                              <ArrowUpRight className="size-4 text-foreground" />
                             </div>
                           </div>
-                        )}
-
-                        {/* Category badge overlay */}
-                        <div className="absolute bottom-3 left-3">
-                          <Badge className="bg-primary/90 text-primary-foreground backdrop-blur-sm text-xs px-3 py-1 border-0">
-                            {project.tags[0]}
-                          </Badge>
                         </div>
 
-                        {/* Hover arrow */}
-                        <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          <div className="size-8 rounded-full bg-primary/80 backdrop-blur-sm flex items-center justify-center">
-                            <ArrowUpRight className="size-4 text-primary-foreground" />
+                        <div className="flex flex-1 flex-col p-6">
+                          <h3 className="mb-2 text-base font-semibold text-card-foreground transition-colors group-hover:text-primary line-clamp-2">
+                            {project.title}
+                          </h3>
+                          <p className="mb-4 flex-1 text-sm leading-6 text-muted-foreground line-clamp-2">
+                            {project.context}. {project.result}
+                          </p>
+
+                          <div className="flex flex-wrap gap-2 pt-3 border-t border-border">
+                            {project.tags.slice(0, 3).map((tag) => (
+                              <span
+                                key={tag}
+                                className="rounded-md bg-secondary px-2.5 py-1 text-xs text-muted-foreground"
+                              >
+                                {tag}
+                              </span>
+                            ))}
+                            {project.tags.length > 3 && (
+                              <span className="text-xs text-muted-foreground bg-secondary px-2.5 py-1 rounded-md">
+                                +{project.tags.length - 3}
+                              </span>
+                            )}
                           </div>
                         </div>
                       </div>
-
-                      {/* Content */}
-                      <div className="p-5 flex flex-col flex-1">
-                        <h3 className="text-base font-semibold text-card-foreground group-hover:text-primary transition-colors mb-2 line-clamp-2">
-                          {project.title}
-                        </h3>
-                        <p className="text-sm text-muted-foreground mb-4 line-clamp-2 flex-1">
-                          {project.context}. {project.result}
-                        </p>
-
-                        {/* Tech tags */}
-                        <div className="flex flex-wrap gap-2 pt-3 border-t border-border">
-                          {project.tags.slice(0, 3).map((tag) => (
-                            <span
-                              key={tag}
-                              className="text-xs text-muted-foreground bg-secondary px-2.5 py-1 rounded-md"
-                            >
-                              {tag}
-                            </span>
-                          ))}
-                          {project.tags.length > 3 && (
-                            <span className="text-xs text-muted-foreground bg-secondary px-2.5 py-1 rounded-md">
-                              +{project.tags.length - 3} more
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  </Link>
-                </ScrollReveal>
-              ))}
-            </div>
+                    </Link>
+                  </ScrollReveal>
+                ))}
+              </div>
+            )}
           </div>
         </section>
       </div>

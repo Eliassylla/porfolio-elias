@@ -7,20 +7,20 @@ const steps = [
   {
     number: '01',
     icon: Phone,
-    title: 'Appel découverte',
-    description: '20 minutes pour comprendre votre quotidien, vos outils et identifier les tâches qui vous coûtent le plus de temps.',
+    title: 'Diagnostic',
+    description: 'On clarifie votre quotidien, vos outils et les tâches qui vous coûtent le plus de temps.',
   },
   {
     number: '02',
     icon: Search,
     title: 'Audit & proposition',
-    description: 'Je cartographie vos processus et vous présente un plan d\'automatisation clair, avec le ROI estimé.',
+    description: 'Je cartographie vos processus et vous présente un plan clair, avec le gain attendu.',
   },
   {
     number: '03',
     icon: Zap,
     title: 'Mise en place',
-    description: 'Je construis, teste et déploie vos automatisations. Vous êtes opérationnel en quelques jours, pas en mois.',
+    description: 'Je construis, teste et déploie vos systèmes. Vous êtes opérationnel en quelques jours, pas en mois.',
   },
 ];
 

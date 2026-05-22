@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { CheckCircle2 } from "lucide-react";
 
 import {
@@ -28,7 +28,7 @@ export default function MethodSection() {
             variants={fadeUpVariants}
             className="text-balance text-4xl font-semibold tracking-tight text-foreground md:text-6xl"
           >
-            Un système clair avant la moindre automatisation.
+            Un système clair avant la moindre mise en place.
           </motion.h2>
           <motion.p
             variants={fadeUpVariants}

@@ -11,23 +11,23 @@ const iconMap = {
 };
 
 const detailsMap: Record<string, string[]> = {
-  finance: [
-    'Relances de factures automatiques à J+7, J+15, J+30',
-    'Suivi des paiements en temps réel',
-    'Rappels d\'échéances avant deadline',
-    'Réconciliation automatique des règlements',
+  automatisations: [
+    'Tâches répétitives cadrées',
+    'Relances et rappels mieux suivis',
+    'Moins d\'oublis dans les opérations',
+    'Passation claire à votre équipe',
   ],
-  commercial: [
-    'Suivi automatique des devis envoyés',
-    'Séquence d\'onboarding client personnalisée',
-    'Relances commerciales programmées',
-    'Notifications CRM en temps réel',
+  'apps-sur-mesure': [
+    'Tableaux de bord métier',
+    'Interfaces adaptées à vos process',
+    'Données regroupées au même endroit',
+    'Priorités plus faciles à piloter',
   ],
-  rh: [
-    'Checklist d\'onboarding automatisée',
-    'Rappels de documents manquants',
-    'Suivi des périodes d\'essai',
-    'Notifications RH automatiques',
+  'agents-ia': [
+    'Aide à la préparation de réponses',
+    'Traitement de demandes récurrentes',
+    'Support aux tâches répétitives',
+    'Garde-fous et validation humaine',
   ],
 };
 
@@ -44,13 +44,13 @@ export function ServicesSection() {
               Ce que j'automatise pour vous
             </h2>
             <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-              Des automatisations concrètes qui libèrent votre temps et éliminent les oublis.
+              Des systèmes concrets qui libèrent votre temps et éliminent les oublis.
             </p>
           </div>
         </ScrollReveal>
 
         <ScrollReveal delay={0.15}>
-          <Tabs defaultValue="finance" className="w-full">
+          <Tabs defaultValue={businessInfo.services[0]?.id} className="w-full">
             <TabsList className="w-full grid grid-cols-3 h-auto p-1 mb-8">
               {businessInfo.services.map((service) => {
                 const Icon = iconMap[service.icon];

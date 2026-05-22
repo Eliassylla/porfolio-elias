@@ -1,11 +1,10 @@
 export const businessInfo = {
   name: 'Elias',
-  title: 'Automatisations & Solutions IA pour PME de services',
-  tagline: 'Je construis des automatisations et des solutions avec Claude Code + n8n pour les petites entreprises de services.',
+  title: 'Systèmes opérationnels pour PME de services',
+  tagline: 'Je construis des systèmes simples qui fiabilisent vos relances, votre suivi client et votre administratif.',
   heroDescription:
-    'Factures oubliées, relances jamais envoyées, devis sans suivi… Chaque jour, votre entreprise perd du temps et de l\'argent sur des tâches qui pourraient tourner toutes seules. Je les automatise pour vous.',
-  heroCta: 'Réserver un appel découverte',
-  calendlyUrl: '#calendly', // placeholder
+    'Factures oubliées, devis sans suite, informations dispersées… Chaque semaine, votre entreprise perd du temps sur des tâches qui devraient être cadrées. Je transforme ces points de friction en systèmes clairs, suivis et utilisables.',
+  heroCta: 'Demander un audit',
   email: 'contact@elias-automation.com',
   location: 'France',
   socialLinks: {
@@ -16,7 +15,7 @@ export const businessInfo = {
   // Stats / social proof
   stats: [
     { value: '120+', label: 'Heures économisées pour mes clients' },
-    { value: '15+', label: 'Workflows déployés' },
+    { value: '15+', label: 'Systèmes mis en place' },
     { value: '100%', label: 'Clients satisfaits' },
   ],
 
@@ -32,13 +31,13 @@ export const businessInfo = {
       id: 'strategie',
       number: '02',
       title: 'Stratégie',
-      description: 'Je conçois l\'architecture de la solution : quels outils, quels flux, quel ROI attendu.',
+      description: 'Je définis la solution : les étapes à cadrer, les responsabilités, et le gain attendu.',
     },
     {
       id: 'build',
       number: '03',
-      title: 'Build n8n / Claude Code',
-      description: 'Je construis, teste et itère sur vos automatisations jusqu\'à ce qu\'elles tournent parfaitement.',
+      title: 'Mise en place',
+      description: 'Je construis, teste et ajuste vos systèmes jusqu\'à ce qu\'ils soient fiables au quotidien.',
     },
     {
       id: 'formation',
@@ -51,24 +50,24 @@ export const businessInfo = {
   // Services / offres
   services: [
     {
-      id: 'finance',
-      title: 'Finance & Administration',
+      id: 'automatisations',
+      title: 'Automatisations',
       description:
-        'Relances de factures automatiques, suivi des paiements, rappels d\'échéances. Plus jamais un impayé oublié.',
+        'J\'identifie vos tâches répétitives et je crée des systèmes pour vous faire gagner du temps chaque semaine.',
       icon: 'receipt' as const,
     },
     {
-      id: 'commercial',
-      title: 'Commercial & Clients',
+      id: 'apps-sur-mesure',
+      title: 'Apps sur mesure',
       description:
-        'Suivi des devis, onboarding client automatisé, relances commerciales. Chaque prospect reçoit le bon message au bon moment.',
+        'Je développe des applications et tableaux de bord personnalisés pour analyser vos données, suivre vos priorités ou piloter votre activité.',
       icon: 'users' as const,
     },
     {
-      id: 'rh',
-      title: 'RH & Organisation',
+      id: 'agents-ia',
+      title: 'Agents IA',
       description:
-        'Onboarding collaborateurs, rappels de documents, suivi des congés. Le minimum administratif, sans effort.',
+        'Je construis des assistants capables de traiter des demandes, préparer des réponses et aider votre équipe sur les tâches répétitives.',
       icon: 'clipboard' as const,
     },
   ],
@@ -80,9 +79,10 @@ export const businessInfo = {
       title: 'Automatisation des relances de factures',
       context: 'Solo / projet perso, pensé pour une petite agence de conseil',
       problem: 'Le dirigeant oublie de relancer les factures impayées. Résultat : trésorerie tendue et temps perdu à courir après les paiements.',
-      solution: 'Workflow n8n + Notion + Gmail. Claude Code pour rédiger les mails de relance personnalisés.',
+      solution: 'Un système suit les échéances, prépare les relances et garde une trace claire de chaque paiement en attente.',
       result: 'Gain estimé : 1–2h/semaine, moins d\'impayés.',
-      tags: ['n8n', 'Claude Code', 'Notion'],
+      serviceId: 'automatisations',
+      tags: ['Finance', 'Relances', 'Suivi'],
       image: null, // placeholder
       demoUrl: null,
     },
@@ -91,9 +91,10 @@ export const businessInfo = {
       title: 'Onboarding client automatisé',
       context: 'Cabinet de conseil RH — 3 salariés',
       problem: 'Chaque nouveau client nécessite 45 minutes de setup manuel : email de bienvenue, accès outils, questionnaire, agenda.',
-      solution: 'Workflow n8n déclenché à la signature du devis. Envoi automatique de tous les documents + création des accès.',
+      solution: 'Un parcours d\'accueil envoie les bons documents, prépare les accès et rappelle les étapes à suivre.',
       result: 'Gain estimé : 45 min par client, zéro oubli.',
-      tags: ['n8n', 'CRM'],
+      serviceId: 'automatisations',
+      tags: ['Accueil client', 'Documents'],
       image: null,
       demoUrl: null,
     },
@@ -102,9 +103,10 @@ export const businessInfo = {
       title: 'Suivi et relance des devis',
       context: 'Organisme de formation — 8 personnes',
       problem: 'Les devis envoyés tombent dans l\'oubli. Aucun suivi systématique, des prospects perdus.',
-      solution: 'Pipeline automatisé : notification à J+3, relance à J+7, alerte au commercial à J+14. Claude Code génère des relances contextuelles.',
+      solution: 'Un suivi commercial rappelle les bons prospects au bon moment et signale les dossiers qui nécessitent une réponse humaine.',
       result: 'Taux de conversion devis estimé : +20%.',
-      tags: ['n8n', 'Claude Code', 'CRM'],
+      serviceId: 'automatisations',
+      tags: ['Commercial', 'Devis', 'Relances'],
       image: null,
       demoUrl: null,
     },
@@ -113,9 +115,10 @@ export const businessInfo = {
       title: 'Reporting hebdomadaire automatique',
       context: 'Cabinet comptable — projet interne',
       problem: 'Le dirigeant passe 2h chaque lundi à compiler les chiffres de la semaine depuis 4 outils différents.',
-      solution: 'n8n récupère les données de chaque outil, Claude Code génère un résumé structuré envoyé par email chaque lundi à 8h.',
+      solution: 'Un tableau de bord hebdomadaire rassemble les chiffres utiles et les transforme en résumé clair chaque lundi matin.',
       result: 'Gain estimé : 2h/semaine, vision claire dès le lundi matin.',
-      tags: ['n8n', 'Claude Code'],
+      serviceId: 'apps-sur-mesure',
+      tags: ['Reporting', 'Pilotage'],
       image: null,
       demoUrl: null,
     },

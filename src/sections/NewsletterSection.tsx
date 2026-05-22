@@ -16,8 +16,8 @@ export default function NewsletterSection() {
             Une automatisation décortiquée par mois
           </h2>
           <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-muted-foreground">
-            Chaque mois, je décortique un workflow réel : le problème, la
-            solution technique, et comment l'adapter à votre business.
+            Chaque mois, je décortique un problème métier : le blocage, le
+            système mis en place, et comment l'adapter à votre activité.
           </p>
           <div className="mx-auto mt-8 flex max-w-lg flex-col gap-3 sm:flex-row">
             <input

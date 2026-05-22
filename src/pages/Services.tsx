@@ -11,15 +11,15 @@ export default function Services() {
   const processItems = [
     { id: 1, title: 'Audit', category: 'Analyse', src: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&auto=format&fit=crop&q=60', alt: 'Audit' },
     { id: 2, title: 'Stratégie', category: 'Planification', src: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400&auto=format&fit=crop&q=60', alt: 'Stratégie' },
-    { id: 3, title: 'Build', category: 'Développement', src: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&auto=format&fit=crop&q=60', alt: 'Build' },
+    { id: 3, title: 'Mise en place', category: 'Production', src: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&auto=format&fit=crop&q=60', alt: 'Mise en place' },
     { id: 4, title: 'Déploiement', category: 'Lancement', src: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=400&auto=format&fit=crop&q=60', alt: 'Déploiement' },
   ];
 
   return (
     <>
       <SEOHead
-        title="Services & Méthode — Elias Automatisation"
-        description="Mon processus en 4 étapes pour automatiser vos tâches répétitives avec n8n et Claude Code."
+        title="Services & Méthode — Elias"
+        description="Une méthode simple pour fiabiliser vos relances, vos dossiers et votre suivi client."
       />
 
       <div className="min-h-screen pt-24">
@@ -61,9 +61,9 @@ export default function Services() {
 
             <div className="grid md:grid-cols-2 gap-6">
               {[
-                { title: 'Workflows n8n opérationnels', desc: 'Testés, documentés, prêts à tourner. Pas de prototype, du production-ready.' },
-                { title: 'Scripts Claude Code sur mesure', desc: 'Génération de contenu, analyse de données, automatisation intelligente.' },
-                { title: 'Documentation complète', desc: 'Chaque automatisation est documentée pour que votre équipe puisse la comprendre et la maintenir.' },
+                { title: 'Systèmes prêts à utiliser', desc: 'Testés, documentés, pensés pour votre quotidien. Pas de prototype décoratif.' },
+                { title: 'Outils internes sur mesure', desc: 'Des interfaces simples pour suivre vos dossiers, vos relances et vos priorités.' },
+                { title: 'Documentation complète', desc: 'Chaque système est expliqué pour que votre équipe puisse le comprendre et le maintenir.' },
                 { title: 'Formation & support', desc: 'Je vous forme sur vos outils et reste disponible pour les ajustements.' },
               ].map((item, index) => (
                 <ScrollReveal key={index} delay={index * 0.1}>
@@ -81,12 +81,12 @@ export default function Services() {
         <section className="py-16 px-6 lg:px-8 bg-primary text-primary-foreground">
           <div className="max-w-3xl mx-auto text-center">
             <ScrollReveal>
-              <h2 className="text-3xl font-bold tracking-tight">Prêt à automatiser ?</h2>
-              <p className="mt-4 text-lg opacity-90">On commence par un appel de 20 minutes.</p>
+              <h2 className="text-3xl font-bold tracking-tight">Prêt à cadrer ce qui vous ralentit ?</h2>
+              <p className="mt-4 text-lg opacity-90">Envoyez votre contexte, je vous réponds avec une première lecture.</p>
               <div className="mt-8">
                 <Link to="/contact">
                   <Button size="lg" variant="secondary" className="text-lg px-8 py-6 font-semibold">
-                    Réserver mon appel
+                    Demander un audit
                     <ArrowRight className="ml-2 size-5" />
                   </Button>
                 </Link>

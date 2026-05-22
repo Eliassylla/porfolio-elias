@@ -1,77 +1,74 @@
 import { SEOHead } from '@/components/seo/SEOHead';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
-import { Button } from '@/components/ui/button';
 
 import { businessInfo } from '@/data/business';
-import { ArrowRight, Mail, MapPin } from 'lucide-react';
+import { ContactForm } from '@/components/forms/ContactForm';
+import { Mail, MapPin } from 'lucide-react';
 
 export default function Contact() {
   return (
     <>
       <SEOHead
-        title="Contact — Elias Automatisation"
-        description="Réservez un appel découverte de 20 minutes ou envoyez-moi un message."
+        title="Contact — Elias"
+        description="Décrivez votre besoin et recevez une première lecture claire de vos priorités opérationnelles."
       />
 
       <div className="min-h-screen pt-24">
-        <section className="py-12 md:py-16 px-6 lg:px-8 bg-primary text-primary-foreground">
+        <section className="bg-primary px-6 py-12 text-primary-foreground md:py-16 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
-              On en discute ?
+              Décrivez ce qui vous ralentit
             </h1>
             <p className="mt-4 text-lg opacity-90 leading-relaxed max-w-2xl">
-              Un appel de 20 minutes, gratuit et sans engagement. On identifie ensemble vos tâches à automatiser.
+              Envoyez-moi le contexte. Je vous réponds avec les points à cadrer en priorité et une suite simple.
             </p>
           </div>
         </section>
 
-        <section className="py-16 px-6 lg:px-8 bg-background">
-          <div className="max-w-4xl mx-auto">
-            <div className="grid md:grid-cols-2 gap-16">
-              {/* Option 1: Calendly */}
-              <ScrollReveal>
-                <div>
-                  <h2 className="text-2xl font-bold text-foreground mb-4">
-                    Réserver un créneau
-                  </h2>
-                  <p className="text-muted-foreground mb-8 leading-relaxed">
-                    Choisissez un créneau qui vous convient. 20 minutes pour faire le point sur vos besoins.
-                  </p>
-                  <a href={businessInfo.calendlyUrl} target="_blank" rel="noopener noreferrer">
-                    <Button size="lg" className="text-lg px-8 py-6 font-semibold w-full">
-                      Ouvrir Calendly
-                      <ArrowRight className="ml-2 size-5" />
-                    </Button>
+        <section className="bg-background px-6 py-16 lg:px-8">
+          <div className="mx-auto grid max-w-5xl gap-12 md:grid-cols-[0.85fr_1.15fr]">
+            <ScrollReveal>
+              <div className="rounded-2xl border border-border bg-card p-6 dark:border-white/10 dark:bg-[#0f1011] md:p-8">
+                <h2 className="mb-4 text-2xl font-semibold tracking-tight text-card-foreground">
+                  Ce que j’analyse
+                </h2>
+                <ul className="space-y-4 text-sm leading-6 text-muted-foreground">
+                  <li>Les tâches qui reviennent chaque semaine.</li>
+                  <li>Les relances, suivis ou validations qui passent entre les mailles.</li>
+                  <li>Les endroits où votre équipe perd du temps à recoller l’information.</li>
+                </ul>
+                <div className="mt-8 space-y-4 border-t border-border pt-6 dark:border-white/10">
+                  <a
+                    href={`mailto:${businessInfo.email}`}
+                    className="flex items-center gap-3 rounded-xl bg-secondary p-4 transition-colors hover:bg-secondary/80"
+                  >
+                    <Mail className="size-5 text-primary dark:text-[#5e6ad2]" />
+                    <span className="text-sm font-medium text-foreground">{businessInfo.email}</span>
                   </a>
-                </div>
-              </ScrollReveal>
-
-              {/* Option 2: Direct contact */}
-              <ScrollReveal delay={0.15}>
-                <div>
-                  <h2 className="text-2xl font-bold text-foreground mb-4">
-                    Me contacter directement
-                  </h2>
-                  <p className="text-muted-foreground mb-8 leading-relaxed">
-                    Vous préférez un email ? Écrivez-moi, je réponds sous 24h.
-                  </p>
-
-                  <div className="space-y-4">
-                    <a
-                      href={`mailto:${businessInfo.email}`}
-                      className="flex items-center gap-3 p-4 bg-secondary rounded-xl hover:bg-secondary/80 transition-colors"
-                    >
-                      <Mail className="size-5 text-primary" />
-                      <span className="text-foreground font-medium">{businessInfo.email}</span>
-                    </a>
-                    <div className="flex items-center gap-3 p-4 bg-secondary rounded-xl">
-                      <MapPin className="size-5 text-primary" />
-                      <span className="text-foreground font-medium">{businessInfo.location}</span>
-                    </div>
+                  <div className="flex items-center gap-3 rounded-xl bg-secondary p-4">
+                    <MapPin className="size-5 text-primary dark:text-[#5e6ad2]" />
+                    <span className="text-sm font-medium text-foreground">{businessInfo.location}</span>
                   </div>
                 </div>
-              </ScrollReveal>
-            </div>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal delay={0.15}>
+              <div className="rounded-2xl border border-border bg-card p-6 shadow-sm dark:border-white/10 dark:bg-[#0f1011] md:p-8">
+                <div className="mb-8">
+                  <p className="mb-3 text-sm font-medium text-muted-foreground">
+                    Audit opérationnel
+                  </p>
+                  <h2 className="text-3xl font-semibold tracking-tight text-card-foreground">
+                    Envoyer une demande
+                  </h2>
+                  <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                    Quelques lignes suffisent : le contexte, le problème, et ce que vous aimeriez rendre plus fiable.
+                  </p>
+                </div>
+                <ContactForm />
+              </div>
+            </ScrollReveal>
           </div>
         </section>
       </div>

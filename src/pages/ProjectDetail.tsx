@@ -84,10 +84,10 @@ export default function ProjectDetail() {
             <ScrollReveal delay={0.15}>
               <div className="bg-card border border-border rounded-xl p-12 mb-8 flex flex-col items-center justify-center min-h-[300px]">
                 <div className="w-full max-w-lg h-48 bg-muted rounded-lg flex items-center justify-center mb-4">
-                  <span className="text-muted-foreground text-sm">Capture du workflow n8n à venir</span>
+                  <span className="text-muted-foreground text-sm">Schéma du système à venir</span>
                 </div>
                 <p className="text-muted-foreground text-sm text-center max-w-md">
-                  Ici, je montrerai le workflow n8n annoté ou les blocs de code Claude Code avec des explications détaillées.
+                  Ici, je montrerai le parcours métier, les points de contrôle et les éléments que l'équipe utilise au quotidien.
                 </p>
               </div>
             </ScrollReveal>
@@ -113,12 +113,12 @@ export default function ProjectDetail() {
                 Vous avez ce problème ? On en discute.
               </h2>
               <p className="mt-4 text-lg opacity-90">
-                Un appel de 20 minutes pour voir comment adapter cette solution à votre business.
+                Décrivez votre contexte pour voir comment adapter cette approche à votre activité.
               </p>
               <div className="mt-8">
                 <Link to="/contact">
                   <Button size="lg" variant="secondary" className="text-lg px-8 py-6 font-semibold">
-                    Réserver mon appel
+                    Décrire mon besoin
                     <ArrowRight className="ml-2 size-5" />
                   </Button>
                 </Link>

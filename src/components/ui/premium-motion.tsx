@@ -1,4 +1,4 @@
-import { motion, useInView } from "framer-motion";
+import { motion, useInView } from "motion/react";
 import { type ReactNode, useRef } from "react";
 
 import { fadeUpVariants, premiumEase } from "./premium-motion-variants";

@@ -1,5 +1,5 @@
-import { motion } from "framer-motion";
-import { ArrowRight, Calendar } from "lucide-react";
+import { motion } from "motion/react";
+import { ArrowRight, ClipboardCheck } from "lucide-react";
 import { Link } from "react-router-dom";
 
 import heroPortrait from "@/assets/hero-portrait-real.jpg";
@@ -28,22 +28,22 @@ export default function HeroSection() {
             className="mb-8 inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1.5 text-xs font-medium text-muted-foreground shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/[0.04]"
           >
             <span className="size-1.5 rounded-full bg-emerald-500" />
-            Disponible pour nouveaux projets
+            Disponible pour nouveaux diagnostics
           </motion.div>
 
           <motion.h1
             variants={fadeUpVariants}
             className="mx-auto max-w-3xl text-balance text-5xl font-semibold tracking-tight text-foreground md:text-7xl lg:mx-0 lg:text-[5rem] lg:leading-[0.98]"
           >
-            Automatisation pour entreprises de services
+            Des opérations plus fiables, sans recruter une équipe en plus
           </motion.h1>
 
           <motion.p
             variants={fadeUpVariants}
             className="mx-auto mt-7 max-w-2xl text-pretty text-base leading-8 text-muted-foreground md:text-xl lg:mx-0"
           >
-            Je conçois des systèmes concrets pour supprimer vos tâches
-            répétitives et libérer du temps chaque semaine.
+            Je transforme vos relances, suivis et routines administratives en
+            systèmes simples que votre équipe peut utiliser sans friction.
           </motion.p>
 
           <motion.div
@@ -55,8 +55,8 @@ export default function HeroSection() {
                 size="lg"
                 className="h-12 w-full rounded-lg px-4 text-center font-semibold whitespace-normal shadow-sm dark:bg-[#5e6ad2] dark:text-white dark:hover:bg-[#828fff] sm:px-6 sm:whitespace-nowrap"
               >
-                <Calendar className="mr-2 size-4" />
-                Réserver un audit (30min)
+                <ClipboardCheck className="mr-2 size-4" />
+                Demander un audit
               </Button>
             </Link>
             <Link to="/portfolio" className="w-full max-w-xs sm:w-auto">
@@ -65,7 +65,7 @@ export default function HeroSection() {
                 variant="outline"
                 className="h-12 w-full rounded-lg border-border bg-background/70 px-4 text-center font-semibold whitespace-normal backdrop-blur hover:bg-muted dark:border-white/10 dark:bg-white/[0.03] dark:hover:bg-white/[0.07] sm:px-6 sm:whitespace-nowrap"
               >
-                Voir mes réalisations
+                Voir les cas concrets
                 <ArrowRight className="ml-2 size-4" />
               </Button>
             </Link>
@@ -83,7 +83,7 @@ export default function HeroSection() {
             <div className="relative aspect-[4/5] overflow-hidden rounded-xl bg-muted">
               <img
                 src={heroPortrait}
-                alt="Elias — Expert automatisation"
+                alt="Elias — Consultant opérations"
                 className="h-full w-full object-cover object-[50%_15%] grayscale transition duration-1000 hover:scale-[1.03] hover:grayscale-0"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
@@ -95,8 +95,8 @@ export default function HeroSection() {
             className="absolute -bottom-6 left-4 right-4 rounded-xl border border-border bg-card/95 p-4 shadow-lg backdrop-blur dark:border-white/10 dark:bg-[#0f1011]/95 sm:left-auto sm:right-auto sm:w-64"
           >
             <p className="text-sm leading-6 text-muted-foreground">
-              "L'automatisation n'est pas un luxe, c'est l'infrastructure de
-              votre liberté."
+              "Le bon système enlève les oublis avant d'ajouter de la
+              vitesse."
             </p>
           </motion.div>
         </motion.div>

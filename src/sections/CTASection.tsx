@@ -15,11 +15,12 @@ export default function CTASection() {
               Prochaine étape
             </div>
             <h2 className="mx-auto max-w-3xl text-balance text-4xl font-semibold tracking-tight md:text-6xl">
-              Si vous voulez la même chose adapté à votre business, on peut en
-              parler.
+              Si votre équipe compense les mêmes oublis chaque semaine, il est
+              temps de cadrer le système.
             </h2>
             <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-background/75 dark:text-white/65">
-              Un appel de 20 minutes, gratuit et sans engagement.
+              Décrivez le blocage. Je vous réponds avec une première lecture
+              claire.
             </p>
             <div className="mt-10">
               <Link to="/contact">
@@ -28,7 +29,7 @@ export default function CTASection() {
                   variant="secondary"
                   className="h-auto min-h-12 rounded-lg px-5 py-3 text-center font-semibold whitespace-normal dark:bg-white dark:text-black dark:hover:bg-white/90 sm:whitespace-nowrap"
                 >
-                  Réserver mon appel découverte
+                  Décrire mon besoin
                   <ArrowRight className="ml-2 size-5" />
                 </Button>
               </Link>

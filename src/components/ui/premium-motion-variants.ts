@@ -1,4 +1,4 @@
-import { type Variants } from "framer-motion";
+import { type Variants } from "motion/react";
 
 export const premiumEase = [0.23, 1, 0.32, 1] as const;
 
