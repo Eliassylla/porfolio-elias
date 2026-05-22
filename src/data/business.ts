@@ -39,12 +39,6 @@ export const businessInfo = {
       title: 'Mise en place',
       description: 'Je construis, teste et ajuste vos systèmes jusqu\'à ce qu\'ils soient fiables au quotidien.',
     },
-    {
-      id: 'formation',
-      number: '04',
-      title: 'Formation & Passation',
-      description: 'Je vous forme sur vos nouveaux outils et reste disponible pour le support.',
-    },
   ],
 
   // Services / offres
