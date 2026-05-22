@@ -59,44 +59,23 @@ supabase/
 | **4** | Nettoyage & Polish — code mort + types + dark mode | En attente |
 
 **Blockers connus :**
-- Phase 1 : URL Cal.com d'Elias (`cal.com/[user]/[event]`) — demander avant de coder
 - Phase 3 : Audience ID Resend — créer dans le dashboard Resend avant de coder
 
----
-
-## Skills disponibles — quand les utiliser
-
-### Supabase
-- **`supabase-cli-operations`** → "quelle commande lancer ?" (init, migrate, deploy, secrets)
-- **`supabase-postgres-best-practices`** → "comment concevoir correctement ?" (schéma, indexes, RLS)
-- Workflow naturel : conception (best-practices) → exécution (cli-operations)
-
-### Marketing & Contenu
-- **`copywriting`** → réécrire ou améliorer le copy d'une section (Hero, CTA, WhatIBuild...)
-- **`seo-audit`** → auditer ou diagnostiquer les problèmes SEO
-- **`content-strategy`** → planifier les contenus (newsletter, projets à documenter)
-- **`marketing-psychology`** → appliquer des principes comportementaux au copy ou à l'UX
-
-### Outils
-- **`find-skills`** → trouver un skill adapté à une tâche
-- **`skill-creator`** → créer ou améliorer un skill
+**Débloqué :**
+- Cal.com : compte créé, URL disponible — demander à Elias avant Phase 2
 
 ---
 
-## Workflow GSD
 
-Ce projet utilise le plugin GSD (Get Shit Done) pour la planification.
+## Workflow de développement
 
-```
-/gsd:progress        → voir où on en est, quelle action suivante
-/gsd:plan-phase      → planifier la prochaine phase
-/gsd:execute-phase   → exécuter les plans d'une phase
-/gsd:verify-work     → valider qu'une phase est réellement terminée
-/gsd:debug           → déboguer un problème avec état persistant
-```
+Philosophie : lire le plan → exécuter tâche par tâche → commit atomique → vérifier les critères de succès.
 
-**Ne jamais commencer à coder sans un plan GSD validé.**
-**Fichiers de planning :** `.planning/` — ne pas modifier manuellement sauf `STATE.md` pour les décisions.
+**Avant de coder :** lire `.planning/phases/0X-*/0X-0Y-PLAN.md` pour la phase concernée.
+**Pendant :** un commit par tâche complétée (pas de mega-commit en fin de phase).
+**Après :** vérifier que chaque critère de succès du ROADMAP est réellement satisfait, pas juste que les tâches sont cochées.
+
+Fichiers de référence : `.planning/ROADMAP.md` (phases + critères), `.planning/phases/` (plans détaillés).
 
 ---
 
@@ -123,12 +102,12 @@ Ce projet utilise le plugin GSD (Get Shit Done) pour la planification.
 
 ---
 
-## Skills — emplacements
+## Resend — capacités disponibles
 
-```
-.claude/skills/     ← SOURCE DE VÉRITÉ (vrais fichiers, lus directement par Claude Code)
-```
+- **Emails transactionnels** : confirmation formulaire contact, notification à Elias (3 000/mois gratuits)
+- **Automations** : séquences event-driven (email de bienvenue newsletter, drip J+3/J+7...) — 10 000 runs/mois gratuits
+- **Broadcasts** : envoi newsletter manuel sans code (WYSIWYG, scheduling, analytics)
+- **Audiences** : gestion abonnés (1 000 contacts gratuits), topics pour segmentation
+- **Tier gratuit suffit** pour un portfolio — pas besoin de Loops.so ou autre outil tiers
 
-**Pour ajouter un nouveau skill :**
-1. Créer le dossier `.claude/skills/[nom-skill]/`
-2. Y ajouter un fichier `SKILL.md`
+Phase 3 requis avant de coder : créer une Audience dans le dashboard Resend → récupérer l'Audience ID.
