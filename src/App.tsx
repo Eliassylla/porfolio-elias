@@ -9,6 +9,8 @@ import { SkipToContent } from "@/components/ui/SkipToContent";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { lazy, Suspense } from "react";
 import { LoadingFallback } from "@/components/ui/LoadingFallback";
+import { SmoothScroll } from "@/components/SmoothScroll";
+import { PageCurtain } from "@/components/PageCurtain";
 
 const Home = lazy(() => import("./pages/Home"));
 const Services = lazy(() => import("./pages/Services"));
@@ -27,19 +29,22 @@ const App = () => (
           <Toaster />
           <Sonner />
           <BrowserRouter>
+            <PageCurtain />
             <SkipToContent />
-            <Layout>
-              <Suspense fallback={<LoadingFallback />}>
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/services" element={<Services />} />
-                  <Route path="/portfolio" element={<Portfolio />} />
-                  <Route path="/portfolio/:id" element={<ProjectDetail />} />
-                  <Route path="/contact" element={<Contact />} />
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
-              </Suspense>
-            </Layout>
+            <SmoothScroll>
+              <Layout>
+                <Suspense fallback={<LoadingFallback />}>
+                  <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/services" element={<Services />} />
+                    <Route path="/portfolio" element={<Portfolio />} />
+                    <Route path="/portfolio/:id" element={<ProjectDetail />} />
+                    <Route path="/contact" element={<Contact />} />
+                    <Route path="*" element={<NotFound />} />
+                  </Routes>
+                </Suspense>
+              </Layout>
+            </SmoothScroll>
           </BrowserRouter>
         </TooltipProvider>
       </ThemeProvider>

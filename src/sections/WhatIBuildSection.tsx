@@ -3,13 +3,16 @@ import { ArrowUpRight, Plus } from "lucide-react";
 import {
   LayoutGroup,
   motion,
-  type MotionValue,
   useReducedMotion,
   useScroll,
   useSpring,
   useTransform,
 } from "motion/react";
 import { Link } from "react-router-dom";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SplitText } from "gsap/SplitText";
 
 import {
   VerticalCutReveal,
@@ -17,6 +20,8 @@ import {
 } from "@/components/ui/vertical-cut-reveal";
 import { staggerContainer } from "@/components/ui/premium-motion-variants";
 import { businessInfo } from "@/data/business";
+
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
 const serviceImages: Record<string, string> = {
   automatisations: "/images/infographics/automatisations.png",
@@ -32,68 +37,10 @@ const serviceItems = businessInfo.services.map((service) => ({
 
 const headline = "Transformer vos tâches répétitives en outils";
 
-function ScrollLinkedWord({
-  word,
-  index,
-  total,
-  progress,
-}: {
-  word: string;
-  index: number;
-  total: number;
-  progress: MotionValue<number>;
-}) {
-  const start = Math.min(0.08 + (index / total) * 0.62, 0.76);
-  const end = Math.min(start + 0.22, 1);
-  const opacity = useTransform(progress, [0, start, end], [0, 0, 1]);
-  const y = useTransform(progress, [start, end], [14, 0]);
-  const blur = useTransform(progress, [0, start, end], [0, 6, 0]);
-  const filter = useTransform(blur, (value) => `blur(${value}px)`);
-
-  return (
-    <motion.span
-      aria-hidden="true"
-      className="inline-block"
-      style={{ opacity, y, filter }}
-    >
-      {word}
-    </motion.span>
-  );
-}
-
-function ScrollLinkedHeadline({ text }: { text: string }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const reduceMotion = useReducedMotion();
-  const words = text.split(" ");
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start 0.72", "end 0.38"],
-  });
-
-  return (
-    <span
-      ref={ref}
-      className="inline-flex flex-wrap justify-center gap-x-3 gap-y-2"
-    >
-      <span className="sr-only">{text}</span>
-      {reduceMotion
-        ? text
-        : words.map((word, index) => (
-            <ScrollLinkedWord
-              key={`${word}-${index}`}
-              word={word}
-              index={index}
-              total={words.length}
-              progress={scrollYProgress}
-            />
-          ))}
-    </span>
-  );
-}
-
 export default function WhatIBuildSection() {
   const revealRef2 = useRef<VerticalCutRevealRef>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLElement>(null);
   const cardRef = useRef<HTMLElement>(null);
   const reduceMotion = useReducedMotion();
   const [hasTriggered, setHasTriggered] = useState(false);
@@ -120,6 +67,41 @@ export default function WhatIBuildSection() {
   const cardScale = useTransform(smoothCardProgress, [0, 1], [0.97, 1]);
   const imageScale = useTransform(smoothCardProgress, [0, 1], [1.04, 1]);
 
+  useGSAP(() => {
+    // Headline — mots révélés au scroll avec SplitText
+    const headlineEl = containerRef.current?.querySelector(".what-headline");
+    if (headlineEl) {
+      const split = new SplitText(headlineEl, { type: "words" });
+      gsap.from(split.words, {
+        opacity: 0,
+        y: 20,
+        filter: "blur(5px)",
+        stagger: 0.04,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: headlineEl,
+          start: "top 72%",
+          end: "top 38%",
+          scrub: 0.8,
+        },
+      });
+    }
+
+    // Cartes services — entrée en stagger au scroll
+    gsap.from(".service-card", {
+      opacity: 0,
+      y: 40,
+      stagger: 0.15,
+      duration: 0.7,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: ".services-tabs",
+        start: "top 80%",
+        toggleActions: "play none none reverse",
+      },
+    });
+  }, { scope: containerRef });
+
   useEffect(() => {
     const el = sectionRef.current;
     if (!el) return;
@@ -137,15 +119,15 @@ export default function WhatIBuildSection() {
   }, [hasTriggered]);
 
   return (
-    <section className="relative overflow-hidden border-b border-border bg-background px-6 py-24 md:py-32 lg:px-8">
+    <section ref={containerRef} className="relative overflow-hidden border-b border-border bg-background px-6 py-24 md:py-32 lg:px-8">
       <div className="absolute inset-x-0 top-0 -z-10 h-64 bg-gradient-to-b from-muted/60 to-transparent dark:from-white/[0.03]" />
       <div className="mx-auto max-w-6xl">
         <div className="mx-auto mb-12 max-w-3xl text-center" ref={sectionRef}>
           <div className="mb-4 inline-flex rounded-full border border-border bg-card px-3 py-1 text-xs font-medium text-muted-foreground dark:border-white/10 dark:bg-white/[0.04]">
             Services
           </div>
-          <h2 className="mb-4 text-4xl font-semibold tracking-tight text-foreground md:text-6xl">
-            <ScrollLinkedHeadline text={headline} />
+          <h2 className="what-headline mb-4 text-4xl font-semibold tracking-tight text-foreground md:text-6xl">
+            {headline}
           </h2>
           <p className="mx-auto max-w-2xl text-lg leading-8 text-muted-foreground">
             <VerticalCutReveal
@@ -166,13 +148,7 @@ export default function WhatIBuildSection() {
           </p>
         </div>
 
-        <motion.div
-          className="space-y-8"
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-        >
+        <div className="services-tabs space-y-8">
           <LayoutGroup>
             <div
               className="flex flex-wrap items-center justify-center gap-3"
@@ -232,7 +208,7 @@ export default function WhatIBuildSection() {
                 ? undefined
                 : { opacity: cardOpacity, y: cardY, scale: cardScale }
             }
-            className="mx-auto max-w-3xl overflow-hidden rounded-2xl border border-border bg-card shadow-2xl shadow-foreground/5 dark:border-white/10 dark:bg-[#0f1011]"
+            className="service-card mx-auto max-w-3xl overflow-hidden rounded-2xl border border-border bg-card shadow-2xl shadow-foreground/5 dark:border-white/10 dark:bg-[#0f1011]"
           >
             <div className="bg-muted p-4 dark:bg-[#010102] md:p-5">
               <motion.div
@@ -280,7 +256,7 @@ export default function WhatIBuildSection() {
               </div>
             </div>
           </motion.article>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

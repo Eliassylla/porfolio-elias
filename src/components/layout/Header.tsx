@@ -1,12 +1,17 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu } from 'lucide-react';
 import { motion } from 'motion/react';
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { SplitText } from 'gsap/SplitText';
 import { useScrollPosition } from '@/hooks/useScrollPosition';
 import { ThemeToggle } from './ThemeToggle';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
+
+gsap.registerPlugin(SplitText);
 
 const navLinks = [
   { name: 'Services', href: '/services' },
@@ -18,6 +23,20 @@ export function Header() {
   const location = useLocation();
   const { isScrolled } = useScrollPosition();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const logoRef = useRef<HTMLAnchorElement>(null);
+
+  useGSAP(() => {
+    if (location.pathname !== '/') return;
+    const split = new SplitText(logoRef.current, { type: "chars" });
+    gsap.from(split.chars, {
+      opacity: 0,
+      y: -12,
+      stagger: 0.03,
+      duration: 0.35,
+      ease: "power2.out",
+      delay: 1.0, // après que le rideau se soit ouvert
+    });
+  }, { scope: logoRef, dependencies: [] });
 
   const isTransparent = location.pathname === '/' && !isScrolled;
 
@@ -36,6 +55,7 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link
+            ref={logoRef}
             to="/"
             className={cn(
               'text-lg font-bold tracking-tight transition-all duration-300',
