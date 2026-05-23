@@ -1,33 +1,37 @@
-# Schemas — pages créées par web-research
+# Schemas — sorties web-research pour ce projet
 
-## type: article
+## Contexte
 
-`wiki/contenu/veille/articles/[slug].md`
+Ce projet n'a pas de wiki. Quand web-research produit de la documentation à conserver,
+elle est écrite dans le dossier `references/` du skill concerné.
+
+---
+
+## type: skill-reference
+
+Chemin : `.claude/skills/<nom-du-skill>/references/<slug>.md`
 
 ```yaml
 ---
-type: article
-title: "[titre]"
-url: https://...
-source: [domaine ou auteur]
-published: YYYY-MM-DD
+name: <slug-kebab-case>
+description: <une ligne — ce que ce fichier contient>
+source: <url ou "CLI inspection">
 scraped: YYYY-MM-DD
-topic: [sujet en 2-3 mots]
-domain: contenu
-last-updated: YYYY-MM-DD
+topic: <2-3 mots>
 ---
 ```
 
 Sections :
-- **`## Résumé`** — 1 paragraphe sur le contenu et pourquoi c'est pertinent
-- **`## Points clés`** — 3-5 bullets extraits de l'article
-- **`## Lien`** — URL source complète
+- **`## Résumé`** — Ce que couvre ce document et pourquoi c'est utile dans ce projet
+- **`## Points clés`** — 5-10 bullets avec les infos actionnables (API, options, comportements)
+- **`## Exemples`** — Code snippets prêts à copier
+- **`## Source`** — URL complète
 
 ---
 
 ## Règles communes
 
-- `slug` → lowercase, tirets, pas d'accents (ex: `ai-agents-state-2026`)
-- `source` → domaine simplifié (ex: `anthropic.com`, `Simon Willison`, `The Verge`)
-- `topic` → 2-3 mots décrivant le sujet (ex: `claude-code`, `agents-ia`, `design-systems`)
-- Liens internes → format `[[wiki/contenu/veille/...]]`
+- `slug` → lowercase, tirets, pas d'accents (ex: `splittext-animate-on-scroll`)
+- `topic` → correspond au thème du skill parent (ex: `gsap-text`, `gsap-scroll`)
+- Un fichier = un sujet précis (pas de fourre-tout)
+- Si le contenu dépasse ~150 lignes → split en deux fichiers
