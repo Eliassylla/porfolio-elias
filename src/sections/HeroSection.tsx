@@ -1,18 +1,63 @@
 import { useRef } from "react";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, ClipboardCheck } from "lucide-react";
+import { Link } from "react-router-dom";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SplitText } from "gsap/SplitText";
 
 import heroPortrait from "@/assets/hero-portrait-real.jpg";
+import { Button } from "@/components/ui/button";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
-const PHRASE_PART_1 = "Vos opérations méritent mieux. Salut, moi c'est";
+const PHRASE_PART_1 = "Vos opérations méritent mieux Salut, moi c'est";
 const PHRASE_PART_2 = "et je construis les systèmes qui enlèvent les oublis avant qu'ils coûtent.";
 
 const part1Words = PHRASE_PART_1.split(/\s+/);
 const part2Words = PHRASE_PART_2.split(/\s+/);
+
+// Mots à mettre en évidence dans la phrase horizontale (highlight coloré à l'apparition)
+// `visiblePart` permet de ne mettre en surbrillance qu'une partie du mot (ex : "mieux" sans le ".")
+type HighlightConfig = { color: "green" | "violet"; visiblePart?: string };
+
+const HIGHLIGHTS: Record<string, HighlightConfig> = {
+  "mieux": { color: "green", visiblePart: "mieux" },
+  "systèmes": { color: "violet" },
+};
+
+const HIGHLIGHT_BG_CLASS: Record<"green" | "violet", string> = {
+  green: "bg-emerald-500/20",
+  violet: "bg-primary/25 dark:bg-[#5e6ad2]/35",
+};
+
+const WORD_BASE_CLASS =
+  "h-word text-5xl font-semibold tracking-tight text-foreground md:text-7xl lg:text-[5.5rem] lg:leading-[1.05]";
+
+function renderWord(word: string, key: string) {
+  const highlight = HIGHLIGHTS[word];
+  if (!highlight) {
+    return (
+      <span key={key} className={WORD_BASE_CLASS}>
+        {word}
+      </span>
+    );
+  }
+  const targeted = highlight.visiblePart ?? word;
+  const rest = highlight.visiblePart ? word.slice(highlight.visiblePart.length) : "";
+  return (
+    <span key={key} className={WORD_BASE_CLASS}>
+      <span className="h-word-highlight relative inline-block">
+        <span
+          aria-hidden="true"
+          className={`h-highlight-bg pointer-events-none absolute inset-x-[-0.12em] -inset-y-[0.12em] origin-left rounded-md ${HIGHLIGHT_BG_CLASS[highlight.color]}`}
+        />
+        <span className="relative">{targeted}</span>
+      </span>
+      {rest}
+    </span>
+  );
+}
 
 export default function HeroSection() {
   const containerRef = useRef<HTMLElement>(null);
@@ -58,26 +103,31 @@ export default function HeroSection() {
         return;
       }
 
-      // === Intro auto scène 1 (pain points) ===
-      gsap.set(".pain-line", { opacity: 0, y: 30 });
-      gsap.set(".pain-sub", { opacity: 0, y: 20 });
-      gsap.set(".scroll-indicator", { opacity: 0, y: 20 });
+      // === Intro auto scène 1 — SplitText words + fade-up séquentiel ===
+      const titleEl = section.querySelector<HTMLElement>(".scene-1-title");
+      if (titleEl) {
+        const titleSplit = SplitText.create(titleEl, { type: "words" });
 
-      const introTl = gsap.timeline({ defaults: { ease: "power3.out" } });
-      introTl
-        .to(".pain-line", { opacity: 1, y: 0, stagger: 0.18, duration: 0.7 })
-        .to(".pain-sub", { opacity: 1, y: 0, duration: 0.5 }, "-=0.2")
-        .to(".scroll-indicator", { opacity: 1, y: 0, duration: 0.4 }, "+=0.2");
+        gsap.set(titleSplit.words, { opacity: 0, y: 40 });
+        gsap.set(".scene-1-sub", { opacity: 0, y: 20 });
+        gsap.set(".scene-1-cta", { opacity: 0, y: 20 });
+        gsap.set(".scroll-indicator", { opacity: 0, y: 20 });
+
+        const introTl = gsap.timeline({ defaults: { ease: "power3.out" } });
+        introTl
+          .to(titleSplit.words, { opacity: 1, y: 0, stagger: 0.1, duration: 0.6 })
+          .to(".scene-1-sub", { opacity: 1, y: 0, duration: 0.5 }, "-=0.2")
+          .to(".scene-1-cta", { opacity: 1, y: 0, duration: 0.5 }, "-=0.3")
+          .to(".scroll-indicator", { opacity: 1, y: 0, duration: 0.4 }, "+=0.1");
+      }
 
       // === États initiaux phrase horizontale ===
       if (!track || wordEls.length === 0) return;
 
       gsap.set(wordEls, { yPercent: -60, opacity: 0 });
 
-      // === Scroll horizontal piloté par scrub (moteur principal) ===
       // Hauteur dynamique de la section parent : aligne la durée de scroll
-      // vertical avec la durée de la phrase horizontale, pour que la section
-      // suivante (WhatIBuildSection) n'apparaisse qu'à la fin du dernier mot.
+      // vertical avec la durée de la phrase horizontale.
       const setSectionHeight = () => {
         if (!track) return;
         section.style.height = `${track.scrollWidth + window.innerHeight}px`;
@@ -100,7 +150,7 @@ export default function HeroSection() {
         },
       });
 
-      // === Entry de chaque mot/card quand il devient visible dans la track horizontale ===
+      // === Entry de chaque mot/card quand il devient visible ===
       wordEls.forEach((word) => {
         gsap.to(word, {
           yPercent: 0,
@@ -112,6 +162,26 @@ export default function HeroSection() {
             containerAnimation: horizontalScrollTween,
             start: "left 85%",
             end: "left 55%",
+            toggleActions: "play none none reverse",
+          },
+        });
+      });
+
+      // === Highlights colorés (scaleX du bg) sur les mots ciblés ===
+      const highlightBgs = section.querySelectorAll<HTMLElement>(".h-highlight-bg");
+      gsap.set(highlightBgs, { scaleX: 0 });
+      highlightBgs.forEach((bg) => {
+        const parent = bg.closest<HTMLElement>(".h-word-highlight");
+        if (!parent) return;
+        gsap.to(bg, {
+          scaleX: 1,
+          duration: 0.5,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: parent,
+            containerAnimation: horizontalScrollTween,
+            start: "left 80%",
+            end: "left 50%",
             toggleActions: "play none none reverse",
           },
         });
@@ -142,35 +212,33 @@ export default function HeroSection() {
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,hsl(var(--muted))_0,transparent_42%)] opacity-70 dark:bg-[radial-gradient(circle_at_top,#18191a_0,transparent_46%)]" />
         <div className="absolute left-1/2 top-24 -z-10 h-64 w-[42rem] max-w-[90vw] -translate-x-1/2 rounded-full bg-primary/5 blur-3xl dark:bg-[#5e6ad2]/10" />
 
-        {/* SCÈNE 1 — Pain points (intro auto au load, fade-out au premier scroll) */}
+        {/* SCÈNE 1 — Titre valeur + sous-titre pain compact + CTA */}
         <div className="scene-1 absolute inset-0 flex flex-col items-center justify-center px-6 lg:px-8">
-          <div className="mx-auto max-w-4xl text-center">
-            <p className="pain-line text-4xl font-semibold tracking-tight text-foreground md:text-7xl lg:text-[5.5rem] lg:leading-[1.05]">
-              Factures oubliées.
+          <div className="mx-auto max-w-3xl text-center">
+            <h1 className="scene-1-title text-5xl font-semibold tracking-tight text-foreground md:text-7xl lg:text-[5.5rem] lg:leading-[1.05]">
+              Vos opérations méritent mieux.
+            </h1>
+            <p className="scene-1-sub mx-auto mt-6 max-w-xl text-base leading-7 text-muted-foreground md:mt-8 md:text-lg">
+              Factures oubliées, devis sans suite, infos dispersées. Chaque semaine, votre entreprise perd du temps.
             </p>
-            <p className="pain-line mt-2 text-4xl font-semibold tracking-tight text-foreground/65 md:text-7xl lg:text-[5.5rem] lg:leading-[1.05]">
-              Devis sans suite.
-            </p>
-            <p className="pain-line mt-2 text-4xl font-semibold tracking-tight text-foreground/40 md:text-7xl lg:text-[5.5rem] lg:leading-[1.05]">
-              Informations dispersées.
-            </p>
-            <p className="pain-sub mx-auto mt-10 max-w-xl text-base leading-7 text-muted-foreground md:text-lg">
-              Chaque semaine, votre entreprise perd du temps sur des tâches qui devraient être cadrées.
-            </p>
+            <div className="scene-1-cta mt-8 flex justify-center md:mt-10">
+              <Link to="/contact">
+                <Button
+                  size="lg"
+                  className="h-12 rounded-lg px-6 font-semibold shadow-sm dark:bg-[#5e6ad2] dark:text-white dark:hover:bg-[#828fff]"
+                >
+                  <ClipboardCheck className="mr-2 size-4" />
+                  Demander un audit
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
 
         {/* PHRASE HORIZONTALE — défile de droite à gauche au scroll */}
         <div className="h-phrase-wrap absolute inset-0 flex items-center overflow-hidden">
           <div className="h-phrase-track flex items-center gap-x-4 whitespace-nowrap will-change-transform pl-[100vw] pr-24">
-            {part1Words.map((word, i) => (
-              <span
-                key={`p1-${i}`}
-                className="h-word text-5xl font-semibold tracking-tight text-foreground md:text-7xl lg:text-[5.5rem] lg:leading-[1.05]"
-              >
-                {word}
-              </span>
-            ))}
+            {part1Words.map((word, i) => renderWord(word, `p1-${i}`))}
 
             <div className="h-card-elias mx-2 inline-flex shrink-0 items-stretch overflow-hidden rounded-2xl border border-border bg-card shadow-2xl shadow-foreground/5 dark:border-white/10 dark:bg-[#0f1011]">
 
@@ -204,14 +272,7 @@ export default function HeroSection() {
               </div>
             </div>
 
-            {part2Words.map((word, i) => (
-              <span
-                key={`p2-${i}`}
-                className="h-word text-5xl font-semibold tracking-tight text-foreground md:text-7xl lg:text-[5.5rem] lg:leading-[1.05]"
-              >
-                {word}
-              </span>
-            ))}
+            {part2Words.map((word, i) => renderWord(word, `p2-${i}`))}
           </div>
         </div>
 
