@@ -40,6 +40,12 @@ de référence correspondants dans le tableau ci-dessous.
 | **PhysicsProps** | `references/other/physicsprops.md` |
 | **GSDevTools** | `references/other/gsdevtools.md` |
 
+## Patterns avancés (recettes complètes)
+
+| Pattern | Fichier à lire | Quand l'utiliser |
+|---------|----------------|------------------|
+| **Phrase horizontale scrub mot-par-mot** | `references/scroll/horizontal-scroll-words.md` | Section pinned où une longue phrase défile horizontalement au scroll vertical, avec animation d'entrée individuelle par mot et éléments inline (card, image). Ex : hero d'accueil. |
+
 > Si un fichier de référence est absent (pas encore rempli), signaler à l'utilisateur
 > que la documentation de ce plugin n'a pas encore été récupérée.
 
