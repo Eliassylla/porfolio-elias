@@ -19,16 +19,33 @@ const part2Words = PHRASE_PART_2.split(/\s+/);
 
 // Mots à mettre en évidence dans la phrase horizontale (highlight coloré à l'apparition)
 // `visiblePart` permet de ne mettre en surbrillance qu'une partie du mot (ex : "mieux" sans le ".")
-type HighlightConfig = { color: "green" | "violet"; visiblePart?: string };
+// `card` permet d'ajouter une card flottante style "Easy/Easing" (vidéo GSAP) au-dessus du mot
+type HighlightConfig = {
+  color: "green" | "violet";
+  visiblePart?: string;
+  card?: { label: string; rotate: number };
+};
 
 const HIGHLIGHTS: Record<string, HighlightConfig> = {
-  "mieux": { color: "green", visiblePart: "mieux" },
-  "systèmes": { color: "violet" },
+  "mieux": {
+    color: "green",
+    visiblePart: "mieux",
+    card: { label: "+ fiable", rotate: -6 },
+  },
+  "systèmes": {
+    color: "violet",
+    card: { label: "Automatisé", rotate: 5 },
+  },
 };
 
 const HIGHLIGHT_BG_CLASS: Record<"green" | "violet", string> = {
   green: "bg-emerald-500/20",
   violet: "bg-primary/25 dark:bg-[#5e6ad2]/35",
+};
+
+const CARD_BG_CLASS: Record<"green" | "violet", string> = {
+  green: "bg-gradient-to-br from-emerald-400 to-emerald-600 text-white",
+  violet: "bg-gradient-to-br from-violet-500 to-purple-600 text-white",
 };
 
 const WORD_BASE_CLASS =
@@ -53,6 +70,15 @@ function renderWord(word: string, key: string) {
           className={`h-highlight-bg pointer-events-none absolute inset-x-[-0.12em] -inset-y-[0.12em] origin-left rounded-md ${HIGHLIGHT_BG_CLASS[highlight.color]}`}
         />
         <span className="relative">{targeted}</span>
+
+        {highlight.card && (
+          <span
+            className={`h-word-card pointer-events-none absolute -top-10 right-[-0.5em] inline-block whitespace-nowrap rounded-xl px-3 py-1.5 text-base font-bold shadow-2xl shadow-black/30 md:-top-12 md:px-4 md:py-2 md:text-lg lg:-top-14 lg:text-xl ${CARD_BG_CLASS[highlight.color]}`}
+            data-rotate={highlight.card.rotate}
+          >
+            {highlight.card.label}
+          </span>
+        )}
       </span>
       {rest}
     </span>
@@ -182,6 +208,30 @@ export default function HeroSection() {
             containerAnimation: horizontalScrollTween,
             start: "left 80%",
             end: "left 50%",
+            toggleActions: "play none none reverse",
+          },
+        });
+      });
+
+      // === Cards style "Easy/Easing" — pop au-dessus des mots clés ===
+      const wordCards = section.querySelectorAll<HTMLElement>(".h-word-card");
+      gsap.set(wordCards, { opacity: 0, y: -30, scale: 0.4, rotation: 0 });
+      wordCards.forEach((card) => {
+        const targetRotate = parseFloat(card.dataset.rotate ?? "0");
+        const parent = card.closest<HTMLElement>(".h-word-highlight");
+        if (!parent) return;
+        gsap.to(card, {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          rotation: targetRotate,
+          duration: 0.6,
+          ease: "back.out(2)",
+          scrollTrigger: {
+            trigger: parent,
+            containerAnimation: horizontalScrollTween,
+            start: "left 75%",
+            end: "left 45%",
             toggleActions: "play none none reverse",
           },
         });
