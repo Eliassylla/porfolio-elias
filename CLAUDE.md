@@ -23,6 +23,7 @@ Un visiteur doit comprendre ce qu'Elias fait, voir des preuves, et réserver un 
 - **Backend = Edge Functions uniquement** — pas de serveur séparé, jamais
 - **Simple et maintenable** — Elias est débutant. Éviter la sur-ingénierie
 - **Contenu en français** — labels, messages d'erreur, emails, copy
+- **GSAP : toujours consulter la doc** — avant de modifier toute animation dont le code contient `gsap`, `useGSAP`, `ScrollTrigger`, `SplitText`, `ScrollSmoother` ou tout autre plugin GSAP, lire en premier le(s) fichier(s) pertinent(s) dans `.claude/skills/gsap-doc/references/` (mapping plugin → fichier dans `gsap-doc/SKILL.md`). Les options, gotchas et patterns React y sont documentés et évitent les erreurs récurrentes (`text-balance` qui casse SplitText, double pinning, conflit Motion+GSAP, etc.).
 
 ---
 

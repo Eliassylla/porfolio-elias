@@ -172,15 +172,35 @@ export default function HeroSection() {
               </span>
             ))}
 
-            <div className="h-card-elias inline-flex items-center gap-3 rounded-2xl border border-border bg-card px-4 py-3 shadow-xl shadow-foreground/10 dark:border-white/10 dark:bg-[#0f1011]">
-              <img
-                src={heroPortrait}
-                alt="Elias"
-                className="size-14 rounded-xl object-cover object-[50%_15%] md:size-16 lg:size-20"
-              />
-              <div className="text-left">
-                <p className="text-base font-semibold text-foreground md:text-xl lg:text-2xl">Elias.</p>
-                <p className="text-xs text-muted-foreground md:text-sm">Consultant systèmes</p>
+            <div className="h-card-elias mx-2 inline-flex shrink-0 items-stretch overflow-hidden rounded-2xl border border-border bg-card shadow-2xl shadow-foreground/5 dark:border-white/10 dark:bg-[#0f1011]">
+
+              {/* Mini-panel photo (style WhatIBuild image area) */}
+              <div className="flex shrink-0 items-center justify-center bg-muted p-3 dark:bg-[#010102]">
+                <img
+                  src={heroPortrait}
+                  alt="Elias"
+                  className="h-24 w-20 rounded-xl border border-border object-cover object-[50%_15%] dark:border-white/10 md:h-28 md:w-24 lg:h-32 lg:w-28"
+                />
+              </div>
+
+              {/* Bloc texte */}
+              <div className="flex flex-col justify-center gap-2 px-5 py-4">
+                {/* Status badge */}
+                <div className="inline-flex items-center gap-1.5 self-start rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 text-[10px] font-medium text-emerald-600 dark:text-emerald-400 md:text-xs">
+                  <span className="size-1.5 rounded-full bg-emerald-500" />
+                  Disponible
+                </div>
+
+                {/* Nom + séparateur + rôle complet */}
+                <div className="flex flex-col gap-2">
+                  <p className="text-2xl font-semibold leading-none tracking-tight text-card-foreground md:text-3xl lg:text-4xl">
+                    Elias.
+                  </p>
+                  <div aria-hidden="true" className="h-px w-10 bg-border dark:bg-white/10" />
+                  <p className="max-w-[14ch] whitespace-normal text-xs leading-tight text-muted-foreground md:max-w-[16ch] md:text-sm">
+                    Consultant en systèmes opérationnels
+                  </p>
+                </div>
               </div>
             </div>
 

@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { Layout } from "@/components/layout/Layout";
+import { Header } from "@/components/layout/Header";
 import { SkipToContent } from "@/components/ui/SkipToContent";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { lazy, Suspense } from "react";
@@ -29,6 +30,7 @@ const App = () => (
           <Sonner />
           <BrowserRouter>
             <SkipToContent />
+            <Header />
             <SmoothScroll>
               <Layout>
                 <Suspense fallback={<LoadingFallback />}>
