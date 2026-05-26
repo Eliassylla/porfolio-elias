@@ -18,13 +18,14 @@ import {
   VerticalCutReveal,
   type VerticalCutRevealRef,
 } from "@/components/ui/vertical-cut-reveal";
+import { AutomationSvg } from "@/components/AutomationSvg";
 import { staggerContainer } from "@/components/ui/premium-motion-variants";
 import { businessInfo } from "@/data/business";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
 const serviceImages: Record<string, string> = {
-  automatisations: "/images/infographics/automatisations.png",
+  automatisations: "/automation-2.svg",
   "apps-sur-mesure": "/images/infographics/micro-outils.png",
   "agents-ia": "/images/infographics/landing-page.png",
 };
@@ -208,25 +209,38 @@ export default function WhatIBuildSection() {
                 ? undefined
                 : { opacity: cardOpacity, y: cardY, scale: cardScale }
             }
-            className="service-card mx-auto max-w-3xl overflow-hidden rounded-2xl border border-border bg-card shadow-2xl shadow-foreground/5 dark:border-white/10 dark:bg-[#0f1011]"
+            className="service-card mx-auto max-w-3xl"
           >
-            <div className="bg-muted p-4 dark:bg-[#010102] md:p-5">
-              <motion.div
-                style={reduceMotion ? undefined : { scale: imageScale }}
-                className="flex aspect-[16/10] items-center justify-center overflow-hidden rounded-xl border border-border bg-white p-3 dark:border-white/10 dark:bg-white"
-              >
-                <img
-                  src={activeService.imageSrc}
-                  alt={activeService.title}
-                  className="h-full w-full object-contain transition duration-700 ease-out hover:scale-[1.02]"
-                />
-              </motion.div>
-            </div>
+            {/* Zone illustration — gradient bleu + card blanche semi-transparente */}
+            {(() => {
+              const isSvg = activeService.imageSrc.endsWith(".svg");
+              return (
+                <div className="overflow-hidden rounded-2xl bg-gradient-to-br from-blue-200 via-blue-300 to-blue-400 p-8 md:p-12 dark:from-blue-300/50 dark:via-blue-400/40 dark:to-blue-500/50">
+                  <motion.div
+                    style={reduceMotion ? undefined : { scale: imageScale }}
+                    className="flex aspect-[16/10] items-center justify-center overflow-hidden rounded-2xl bg-white/50 p-6 shadow-sm backdrop-blur-sm md:p-8"
+                  >
+                    {isSvg ? (
+                      <AutomationSvg
+                        src={activeService.imageSrc}
+                        className="h-full w-full [&>svg]:h-full [&>svg]:w-full"
+                      />
+                    ) : (
+                      <img
+                        src={activeService.imageSrc}
+                        alt={activeService.title}
+                        className="h-full w-full object-contain"
+                      />
+                    )}
+                  </motion.div>
+                </div>
+              );
+            })()}
 
-            <div className="p-6 md:p-8">
+            <div className="px-2 pt-8 md:px-4 md:pt-10">
               <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
                 <div>
-                  <h3 className="text-3xl font-semibold tracking-tight text-card-foreground">
+                  <h3 className="text-3xl font-semibold tracking-tight text-foreground">
                     {activeService.title}
                   </h3>
                 </div>

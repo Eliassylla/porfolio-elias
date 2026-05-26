@@ -45,6 +45,7 @@ de référence correspondants dans le tableau ci-dessous.
 | Pattern | Fichier à lire | Quand l'utiliser |
 |---------|----------------|------------------|
 | **Phrase horizontale scrub mot-par-mot** | `references/scroll/horizontal-scroll-words.md` | Section pinned où une longue phrase défile horizontalement au scroll vertical, avec animation d'entrée individuelle par mot et éléments inline (card, image). Ex : hero d'accueil. |
+| **Workflow Illustrator → SVG → GSAP** | `references/svg/illustrator-export-workflow.md` | Préparer une illustration créée dans Adobe Illustrator pour qu'elle soit facilement animable avec DrawSVG/MorphSVG/MotionPath. Structure de calques, naming, réglages d'export, gotchas DrawSVG. |
 
 > Si un fichier de référence est absent (pas encore rempli), signaler à l'utilisateur
 > que la documentation de ce plugin n'a pas encore été récupérée.
