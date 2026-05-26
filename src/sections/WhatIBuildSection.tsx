@@ -204,7 +204,7 @@ export default function WhatIBuildSection() {
               const isSvg = activeService.imageSrc.endsWith(".svg");
               return (
                 <div className="overflow-hidden rounded-2xl bg-gradient-to-br from-blue-200 via-blue-300 to-blue-400 p-8 md:p-12 dark:from-blue-300/50 dark:via-blue-400/40 dark:to-blue-500/50">
-                  <div className="flex aspect-[16/10] items-center justify-center overflow-hidden rounded-2xl bg-white/50 p-6 shadow-sm backdrop-blur-sm md:p-8">
+                  <div className="mx-auto flex w-[88%] aspect-[16/9] items-center justify-center overflow-hidden rounded-3xl bg-white/40 p-4 shadow-md backdrop-blur-sm md:p-6">
                     {isSvg ? (
                       <AutomationSvg
                         src={activeService.imageSrc}
