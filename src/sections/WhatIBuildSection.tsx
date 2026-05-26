@@ -200,27 +200,44 @@ export default function WhatIBuildSection() {
             aria-labelledby={`what-i-build-tab-${activeService.id}`}
             className="service-card mx-auto max-w-3xl"
           >
-            {(() => {
-              const isSvg = activeService.imageSrc.endsWith(".svg");
-              return (
-                <div className="overflow-hidden rounded-2xl bg-gradient-to-br from-blue-200 via-blue-300 to-blue-400 p-8 md:p-12 dark:from-blue-300/50 dark:via-blue-400/40 dark:to-blue-500/50">
-                  <div className="mx-auto flex w-[88%] aspect-[16/9] items-center justify-center overflow-hidden rounded-3xl bg-white/40 p-4 shadow-md backdrop-blur-sm md:p-6">
-                    {isSvg ? (
-                      <AutomationSvg
-                        src={activeService.imageSrc}
-                        className="h-full w-full [&>svg]:h-full [&>svg]:w-full"
-                      />
-                    ) : (
-                      <img
-                        src={activeService.imageSrc}
-                        alt={activeService.title}
-                        className="h-full w-full object-contain"
-                      />
-                    )}
-                  </div>
+            <div className="relative overflow-hidden rounded-2xl p-8 md:p-12" style={{ background: "#dbeafe" }}>
+              {/* Orbs aura — mêmes couleurs, positions tournées par service */}
+              {activeService.id === "automatisations" && (
+                <div className="pointer-events-none absolute inset-0 overflow-hidden">
+                  <div className="absolute -left-10 -top-10 h-64 w-64 rounded-full bg-blue-400 opacity-50" style={{ filter: "blur(72px)" }} />
+                  <div className="absolute -bottom-8 right-4 h-56 w-56 rounded-full bg-indigo-400 opacity-40" style={{ filter: "blur(64px)" }} />
+                  <div className="absolute left-1/2 top-1/2 h-48 w-48 -translate-x-1/2 -translate-y-1/2 rounded-full bg-sky-300 opacity-35" style={{ filter: "blur(56px)" }} />
                 </div>
-              );
-            })()}
+              )}
+              {activeService.id === "apps-sur-mesure" && (
+                <div className="pointer-events-none absolute inset-0 overflow-hidden">
+                  <div className="absolute -right-10 -top-10 h-64 w-64 rounded-full bg-indigo-400 opacity-50" style={{ filter: "blur(72px)" }} />
+                  <div className="absolute -left-4 bottom-[-2rem] h-56 w-56 rounded-full bg-sky-300 opacity-40" style={{ filter: "blur(64px)" }} />
+                  <div className="absolute right-1/3 top-1/3 h-48 w-48 rounded-full bg-blue-400 opacity-35" style={{ filter: "blur(56px)" }} />
+                </div>
+              )}
+              {activeService.id === "agents-ia" && (
+                <div className="pointer-events-none absolute inset-0 overflow-hidden">
+                  <div className="absolute left-1/2 -top-12 h-64 w-64 -translate-x-1/2 rounded-full bg-sky-300 opacity-50" style={{ filter: "blur(72px)" }} />
+                  <div className="absolute -left-8 -bottom-4 h-56 w-56 rounded-full bg-blue-400 opacity-40" style={{ filter: "blur(64px)" }} />
+                  <div className="absolute right-[-1rem] top-1/4 h-48 w-48 rounded-full bg-indigo-400 opacity-35" style={{ filter: "blur(56px)" }} />
+                </div>
+              )}
+              {/* Gabarit identique pour tous — card blanche uniquement sur automatisations */}
+              <div className={[
+                "relative mx-auto flex w-[88%] aspect-[16/9] items-center justify-center overflow-hidden rounded-3xl p-4 md:p-6",
+                activeService.id === "automatisations"
+                  ? "bg-white/40 shadow-md backdrop-blur-sm"
+                  : "",
+              ].join(" ")}>
+                {activeService.id === "automatisations" && (
+                  <AutomationSvg
+                    src={activeService.imageSrc}
+                    className="h-full w-full [&>svg]:h-full [&>svg]:w-full"
+                  />
+                )}
+              </div>
+            </div>
 
             <div className="px-2 pt-8 md:px-4 md:pt-10">
               <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
