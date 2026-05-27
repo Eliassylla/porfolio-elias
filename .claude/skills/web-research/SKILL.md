@@ -14,7 +14,6 @@ description: >
   question porte sur des versions, des comparaisons de librairies, des prix,
   de l'actualité tech, ou tout sujet pouvant avoir évolué récemment.
 compatibility: Requires firecrawl CLI (npm install -g @mendable/firecrawl-js). Auth : FIRECRAWL_API_KEY chargée automatiquement via scripts/firecrawl.sh (lit ~/.claude/settings.json, puis .env projet en fallback).
-context: fork
 argument-hint: "<query>, <url>, ou agent <prompt>"
 ---
 

@@ -227,9 +227,9 @@ export default function WhatIBuildSection() {
               )}
               {/* Gabarit identique pour tous — card blanche sur automatisations + skills */}
               <div className={[
-                "relative mx-auto flex w-[88%] aspect-[16/9] items-center justify-center overflow-hidden rounded-3xl",
+                "relative mx-auto flex w-[88%] aspect-[16/9] items-center justify-center rounded-3xl",
                 activeService.id === "automatisations"
-                  ? "bg-white/40 p-4 shadow-md backdrop-blur-sm md:p-6"
+                  ? "overflow-hidden bg-white/40 p-4 shadow-md backdrop-blur-sm md:p-6"
                   : "",
               ].join(" ")}>
                 {activeService.id === "automatisations" && (
@@ -242,7 +242,7 @@ export default function WhatIBuildSection() {
                   <Lottie
                     animationData={skillsAnimation}
                     loop={false}
-                    className="h-full w-full"
+                    className="h-full w-full scale-[1.6]"
                   />
                 )}
               </div>
