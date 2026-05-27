@@ -11,6 +11,8 @@ import {
   VerticalCutReveal,
   type VerticalCutRevealRef,
 } from "@/components/ui/vertical-cut-reveal";
+import Lottie from "lottie-react";
+import skillsAnimation from "/public/video/animation.json";
 import { AutomationSvg } from "@/components/AutomationSvg";
 import { businessInfo } from "@/data/business";
 
@@ -223,17 +225,24 @@ export default function WhatIBuildSection() {
                   <div className="absolute right-[-1rem] top-1/4 h-48 w-48 rounded-full bg-indigo-400 opacity-35" style={{ filter: "blur(56px)" }} />
                 </div>
               )}
-              {/* Gabarit identique pour tous — card blanche uniquement sur automatisations */}
+              {/* Gabarit identique pour tous — card blanche sur automatisations + skills */}
               <div className={[
-                "relative mx-auto flex w-[88%] aspect-[16/9] items-center justify-center overflow-hidden rounded-3xl p-4 md:p-6",
+                "relative mx-auto flex w-[88%] aspect-[16/9] items-center justify-center overflow-hidden rounded-3xl",
                 activeService.id === "automatisations"
-                  ? "bg-white/40 shadow-md backdrop-blur-sm"
+                  ? "bg-white/40 p-4 shadow-md backdrop-blur-sm md:p-6"
                   : "",
               ].join(" ")}>
                 {activeService.id === "automatisations" && (
                   <AutomationSvg
                     src={activeService.imageSrc}
                     className="h-full w-full [&>svg]:h-full [&>svg]:w-full"
+                  />
+                )}
+                {activeService.id === "skills" && (
+                  <Lottie
+                    animationData={skillsAnimation}
+                    loop={false}
+                    className="h-full w-full"
                   />
                 )}
               </div>
