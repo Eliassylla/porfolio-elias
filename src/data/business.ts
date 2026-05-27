@@ -39,12 +39,6 @@ export const businessInfo = {
       title: 'Mise en place',
       description: 'Je construis, teste et ajuste vos systèmes jusqu\'à ce qu\'ils soient fiables au quotidien.',
     },
-    {
-      id: 'formation',
-      number: '04',
-      title: 'Formation & Passation',
-      description: 'Je vous forme sur vos nouveaux outils et reste disponible pour le support.',
-    },
   ],
 
   // Services / offres
@@ -57,10 +51,10 @@ export const businessInfo = {
       icon: 'receipt' as const,
     },
     {
-      id: 'apps-sur-mesure',
-      title: 'Apps sur mesure',
+      id: 'skills',
+      title: 'Skills',
       description:
-        'Je développe des applications et tableaux de bord personnalisés pour analyser vos données, suivre vos priorités ou piloter votre activité.',
+        'Je construis des briques réutilisables — tableaux de bord, connecteurs, modèles de process — que vous pouvez activer et adapter sans dépendre de moi.',
       icon: 'users' as const,
     },
     {
@@ -117,7 +111,7 @@ export const businessInfo = {
       problem: 'Le dirigeant passe 2h chaque lundi à compiler les chiffres de la semaine depuis 4 outils différents.',
       solution: 'Un tableau de bord hebdomadaire rassemble les chiffres utiles et les transforme en résumé clair chaque lundi matin.',
       result: 'Gain estimé : 2h/semaine, vision claire dès le lundi matin.',
-      serviceId: 'apps-sur-mesure',
+      serviceId: 'skills',
       tags: ['Reporting', 'Pilotage'],
       image: null,
       demoUrl: null,

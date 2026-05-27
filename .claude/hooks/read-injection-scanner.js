@@ -15,7 +15,7 @@
 // False-positive exclusion: .planning/, REVIEW.md, CHECKPOINT, security docs,
 // hook source files — these legitimately contain injection-like strings.
 
-const path = require('path');
+const basename = (p) => p.split(/[/\\]/).pop() || p;
 
 // Summarisation-specific patterns (novel — not in gsd-prompt-guard.js).
 // These target instructions specifically designed to survive context compression.
@@ -52,7 +52,7 @@ function isExcludedPath(filePath) {
     p.includes('/.planning/') ||
     p.includes('.planning/') ||
     /(?:^|\/)REVIEW\.md$/i.test(p) ||
-    /CHECKPOINT/i.test(path.basename(p)) ||
+    /CHECKPOINT/i.test(basename(p)) ||
     /[/\\](?:security|techsec|injection)[/\\.]/i.test(p) ||
     /security\.cjs$/.test(p) ||
     p.includes('/.claude/hooks/')
@@ -127,7 +127,7 @@ process.stdin.on('end', () => {
     }
 
     const severity = findings.length >= 3 ? 'HIGH' : 'LOW';
-    const fileName = path.basename(filePath);
+    const fileName = basename(filePath);
     const detail = severity === 'HIGH'
       ? 'Multiple patterns — strong injection signal. Review the file for embedded instructions before proceeding.'
       : 'Single pattern match may be a false positive (e.g., documentation). Proceed with awareness.';
