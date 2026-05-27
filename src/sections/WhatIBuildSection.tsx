@@ -18,8 +18,8 @@ gsap.registerPlugin(ScrollTrigger, SplitText);
 
 const serviceImages: Record<string, string> = {
   automatisations: "/automation-2.svg",
-  "apps-sur-mesure": "/images/infographics/micro-outils.png",
-  "agents-ia": "/images/infographics/landing-page.png",
+  skills: "/images/infographics/skills.png",
+  "agents-ia": "/images/infographics/agents-ia.png",
 };
 
 const serviceItems = businessInfo.services.map((service) => ({
@@ -209,7 +209,7 @@ export default function WhatIBuildSection() {
                   <div className="absolute left-1/2 top-1/2 h-48 w-48 -translate-x-1/2 -translate-y-1/2 rounded-full bg-sky-300 opacity-35" style={{ filter: "blur(56px)" }} />
                 </div>
               )}
-              {activeService.id === "apps-sur-mesure" && (
+              {activeService.id === "skills" && (
                 <div className="pointer-events-none absolute inset-0 overflow-hidden">
                   <div className="absolute -right-10 -top-10 h-64 w-64 rounded-full bg-indigo-400 opacity-50" style={{ filter: "blur(72px)" }} />
                   <div className="absolute -left-4 bottom-[-2rem] h-56 w-56 rounded-full bg-sky-300 opacity-40" style={{ filter: "blur(64px)" }} />
