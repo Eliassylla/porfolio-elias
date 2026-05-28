@@ -47,21 +47,21 @@ export const businessInfo = {
       id: 'automatisations',
       title: 'Automatisations',
       description:
-        'J\'identifie vos tâches répétitives et je crée des systèmes pour vous faire gagner du temps chaque semaine.',
+        'Relances de factures, onboarding client, rapports hebdo. Je configure l\'automation et elle s\'enclenche au bon moment.',
       icon: 'receipt' as const,
     },
     {
       id: 'skills',
       title: 'Skills',
       description:
-        'Je construis des briques réutilisables — tableaux de bord, connecteurs, modèles de process — que vous pouvez activer et adapter sans dépendre de moi.',
+        'Votre IA sait rédiger mais pas à votre façon. Je lui crée les compétences qui manquent : vos modèles, vos procédures, votre vocabulaire métier — utilisables dans chacune de vos sessions.',
       icon: 'users' as const,
     },
     {
       id: 'agents-ia',
       title: 'Agents IA',
       description:
-        'Je construis des assistants capables de traiter des demandes, préparer des réponses et aider votre équipe sur les tâches répétitives.',
+        'Un agent se connecte à vos outils, gère les étapes d\'une tâche de bout en bout et atteint l\'objectif que vous lui avez fixé. Je les construis sur mesure : qualification de leads, traitement de demandes, production de rapports.',
       icon: 'clipboard' as const,
     },
   ],

@@ -12,7 +12,8 @@ import {
   type VerticalCutRevealRef,
 } from "@/components/ui/vertical-cut-reveal";
 import Lottie from "lottie-react";
-import skillsAnimation from "/public/video/animation.json";
+import skillsAnimation from "@/video/animation.json";
+import agentsAnimation from "@/video/animation-2.json";
 import { AutomationSvg } from "@/components/AutomationSvg";
 import { businessInfo } from "@/data/business";
 
@@ -241,6 +242,13 @@ export default function WhatIBuildSection() {
                 {activeService.id === "skills" && (
                   <Lottie
                     animationData={skillsAnimation}
+                    loop={false}
+                    className="h-full w-full scale-[1.6]"
+                  />
+                )}
+                {activeService.id === "agents-ia" && (
+                  <Lottie
+                    animationData={agentsAnimation}
                     loop={false}
                     className="h-full w-full scale-[1.6]"
                   />
