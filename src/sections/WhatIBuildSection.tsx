@@ -1,15 +1,17 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, Plus } from "lucide-react";
-import { LayoutGroup, motion } from "motion/react";
 import { Link } from "react-router-dom";
+import { useTheme } from "next-themes";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 
 import Lottie from "lottie-react";
-import skillsAnimation from "@/video/animation.json";
-import agentsAnimation from "@/video/animation-2.json";
+import skillsLight from "@/video/animation.json";
+import skillsDark from "@/video/skills-dark.json";
+import agentsLight from "@/video/animation-2.json";
+import agentsDark from "@/video/agents-dark.json";
 import { AutomationSvg } from "@/components/AutomationSvg";
 import { businessInfo } from "@/data/business";
 import { GsapTextReveal } from "@/components/ui/gsap-text-reveal";
@@ -35,6 +37,23 @@ export default function WhatIBuildSection() {
   const cardRef = useRef<HTMLElement>(null);
   const hasMounted = useRef(false);
   const [activeServiceId, setActiveServiceId] = useState(serviceItems[0].id);
+
+  // Thème (next-themes). Le cadran s'inverse : panneau sombre en light, clair en dark.
+  // mounted évite le flash avant hydratation de next-themes.
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  const isDark = mounted && resolvedTheme === "dark";
+
+  // Panneau inversé + couleur de contenu/label qui contraste avec le panneau
+  const panelStyle = isDark
+    ? { background: "#f5f6f6", border: "1px solid rgba(0,0,0,0.08)" }
+    : { background: "#010102", border: "1px solid rgba(255,255,255,0.10)" };
+  // Carte média interne (même logique que les Lottie) : couleur de la page,
+  // avec un contenu qui contraste avec elle.
+  const innerCardStyle = isDark
+    ? { background: "#0f1011", border: "1px solid rgba(255,255,255,0.08)" }
+    : { background: "#ffffff", border: "1px solid rgba(0,0,0,0.06)" };
 
   const activeService =
     serviceItems.find((service) => service.id === activeServiceId) ??
@@ -123,50 +142,34 @@ export default function WhatIBuildSection() {
         </div>
 
         <div className="services-tabs space-y-8">
-          <LayoutGroup>
-            <div
-              className="flex flex-nowrap items-center justify-center gap-2 md:gap-3"
-              role="tablist"
-              aria-label="Services"
-            >
-              {serviceItems.map((service) => {
-                const isActive = service.id === activeService.id;
-                return (
-                  <button
-                    id={`what-i-build-tab-${service.id}`}
-                    key={service.id}
-                    type="button"
-                    role="tab"
-                    aria-selected={isActive}
-                    aria-controls="what-i-build-card"
-                    onClick={() => setActiveServiceId(service.id)}
-                    className="relative shrink-0 overflow-hidden whitespace-nowrap rounded-full border border-border bg-card px-3 py-2 text-xs font-medium text-muted-foreground transition-all hover:-translate-y-px hover:border-foreground/40 hover:text-foreground active:scale-[0.97] md:px-5 md:py-2.5 md:text-sm dark:border-white/10 dark:bg-white/[0.03] dark:hover:bg-white/[0.07]"
-                  >
-                    {isActive ? (
-                      <motion.span
-                        layoutId="what-i-build-active-tab"
-                        className="absolute inset-0 rounded-full bg-foreground dark:bg-[#5e6ad2]"
-                        transition={{
-                          type: "spring",
-                          stiffness: 420,
-                          damping: 34,
-                        }}
-                      />
-                    ) : null}
-                    <span
-                      className={
-                        isActive
-                          ? "relative z-10 text-background dark:text-white"
-                          : "relative z-10"
-                      }
-                    >
-                      {service.title}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-          </LayoutGroup>
+          <div
+            className="flex flex-nowrap items-center justify-center gap-2 md:gap-3"
+            role="tablist"
+            aria-label="Services"
+          >
+            {serviceItems.map((service) => {
+              const isActive = service.id === activeService.id;
+              return (
+                <button
+                  id={`what-i-build-tab-${service.id}`}
+                  key={service.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={isActive}
+                  aria-controls="what-i-build-card"
+                  onClick={() => setActiveServiceId(service.id)}
+                  className={[
+                    "shrink-0 whitespace-nowrap rounded-full border px-3 py-2 text-xs font-medium transition-all active:scale-[0.97] md:px-5 md:py-2.5 md:text-sm",
+                    isActive
+                      ? "border-transparent bg-foreground text-background"
+                      : "border-border bg-card text-muted-foreground hover:-translate-y-px hover:border-foreground/40 hover:text-foreground dark:border-white/10 dark:bg-white/[0.04] dark:hover:bg-white/[0.07]",
+                  ].join(" ")}
+                >
+                  {service.title}
+                </button>
+              );
+            })}
+          </div>
 
           <article
             key={activeService.id}
@@ -176,25 +179,35 @@ export default function WhatIBuildSection() {
             aria-labelledby={`what-i-build-tab-${activeService.id}`}
             className="service-card mx-auto max-w-3xl"
           >
-            {/* Visuel animé en vedette — fond neutre qui s'adapte au thème (plus de cadran bleu figé) */}
-            <div className="relative overflow-hidden rounded-2xl border border-border bg-muted/40 p-3 shadow-sm md:p-4 dark:border-white/10 dark:bg-white/[0.03]">
+            {/* Cadran encadré — panneau inversé vs la page (sombre en light, clair en dark),
+                contenu animé qui contraste toujours avec le panneau */}
+            <div
+              className="relative overflow-hidden rounded-2xl p-3 shadow-md md:p-4"
+              style={panelStyle}
+            >
               <div className="relative mx-auto flex aspect-[16/9] w-full items-center justify-center rounded-3xl">
                 {activeService.id === "automatisations" && (
-                  <AutomationSvg
-                    src={activeService.imageSrc}
-                    className="h-full w-full [&>svg]:h-full [&>svg]:w-full"
-                  />
+                  <div
+                    className="flex w-[94%] items-center justify-center rounded-2xl p-3 md:w-[88%] md:p-5"
+                    style={innerCardStyle}
+                  >
+                    <AutomationSvg
+                      src={isDark ? "/automation-2-dark.svg" : "/automation-2.svg"}
+                      labelColor={isDark ? "#e5e7eb" : "#374151"}
+                      className="w-full [&>svg]:h-auto [&>svg]:w-full"
+                    />
+                  </div>
                 )}
                 {activeService.id === "skills" && (
                   <Lottie
-                    animationData={skillsAnimation}
+                    animationData={isDark ? skillsDark : skillsLight}
                     loop={false}
                     className="h-full w-full"
                   />
                 )}
                 {activeService.id === "agents-ia" && (
                   <Lottie
-                    animationData={agentsAnimation}
+                    animationData={isDark ? agentsDark : agentsLight}
                     loop={false}
                     className="h-full w-full"
                   />

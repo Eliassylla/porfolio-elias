@@ -9,13 +9,14 @@ gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin);
 interface AutomationSvgProps {
   src?: string;
   className?: string;
+  labelColor?: string;
 }
 
 // Labels positionnés juste sous l'icône de chaque node
 // Top nodes : icônes finissent vers y≈5 (webhook) et y≈7 (ai-agent, code)
 // Bottom nodes : icônes finissent vers y≈29-31 dans leurs rects (y=23.21 à y=32.33)
-const LABELS = `
-  <g id="labels" font-size="1.5" fill="#374151" text-anchor="middle" font-family="system-ui,sans-serif">
+const buildLabels = (fill: string) => `
+  <g id="labels" font-size="1.5" fill="${fill}" text-anchor="middle" font-family="system-ui,sans-serif">
     <text id="label-webhook"    x="6.44"  y="9.5">webhook</text>
     <text id="label-ai-agent"   x="33.31" y="9.5">ai-agent</text>
     <text id="label-code"       x="60.18" y="9.5">code</text>
@@ -28,6 +29,7 @@ const LABELS = `
 export function AutomationSvg({
   src = "/automation-2.svg",
   className,
+  labelColor = "#374151",
 }: AutomationSvgProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [svgMarkup, setSvgMarkup] = useState<string>("");
@@ -42,14 +44,14 @@ export function AutomationSvg({
         // et réduit légèrement la taille du contenu dans la card blanche
         const markup = text
           .replace('viewBox="0 0 66.63 32.45"', 'viewBox="-4 -3 74.63 38.45"')
-          .replace("</svg>", `${LABELS}</svg>`);
+          .replace("</svg>", `${buildLabels(labelColor)}</svg>`);
         setSvgMarkup(markup);
       })
       .catch((err) => {
         console.error(`AutomationSvg: failed to load ${src}`, err);
       });
     return () => { cancelled = true; };
-  }, [src]);
+  }, [src, labelColor]);
 
   useGSAP(
     () => {
