@@ -17,7 +17,7 @@ export function TargetsSection() {
               Vous vous reconnaissez ?
             </h2>
             <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-              Je travaille avec des PME de services qui veulent arrêter de perdre du temps sur l'administratif.
+              Je travaille avec des solopreneurs, indépendants et petites équipes qui veulent arrêter de perdre du temps sur l'administratif.
             </p>
           </div>
         </ScrollReveal>

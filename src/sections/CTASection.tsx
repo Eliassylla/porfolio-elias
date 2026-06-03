@@ -1,28 +1,88 @@
+import { useRef } from "react";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import { Button } from "@/components/ui/button";
-import { PremiumReveal } from "@/components/ui/premium-motion";
+import { GsapTextReveal } from "@/components/ui/gsap-text-reveal";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function CTASection() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useGSAP(
+    () => {
+      const timeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".cta-panel",
+          start: "top 78%",
+          once: true,
+        },
+      });
+
+      timeline
+        .from(".cta-panel", {
+          opacity: 0,
+          y: 34,
+          scale: 0.98,
+          duration: 0.75,
+          ease: "power3.out",
+        })
+        .from(
+          ".cta-eyebrow, .cta-action",
+          {
+            opacity: 0,
+            y: 16,
+            stagger: 0.12,
+            duration: 0.55,
+            ease: "power2.out",
+          },
+          "-=0.35",
+        );
+    },
+    { scope: sectionRef },
+  );
+
   return (
-    <section className="bg-background px-6 py-24 md:py-32 lg:px-8">
-      <PremiumReveal className="mx-auto max-w-6xl">
-        <div className="relative overflow-hidden rounded-2xl border border-border bg-foreground p-8 text-center text-background shadow-2xl shadow-foreground/10 dark:border-white/10 dark:bg-[#0f1011] dark:text-white md:p-14">
+    <section
+      ref={sectionRef}
+      className="bg-background px-6 py-20 md:py-24 lg:px-8"
+    >
+      <div className="mx-auto max-w-6xl">
+        <div className="cta-panel relative overflow-hidden rounded-2xl border border-border bg-foreground p-8 text-center text-background shadow-2xl shadow-foreground/10 dark:border-white/10 dark:bg-[#0f1011] dark:text-white md:p-14">
           <div className="absolute left-1/2 top-0 h-56 w-[36rem] max-w-[90vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-background/10 blur-3xl dark:bg-[#5e6ad2]/15" />
           <div className="relative">
-            <div className="mb-5 inline-flex rounded-full border border-background/15 px-3 py-1 text-xs font-medium text-background/70 dark:border-white/10 dark:text-white/60">
+            <div className="cta-eyebrow mb-5 inline-flex rounded-full border border-background/15 px-3 py-1 text-xs font-medium text-background/70 dark:border-white/10 dark:text-white/60">
               Prochaine étape
             </div>
-            <h2 className="mx-auto max-w-3xl text-balance text-4xl font-semibold tracking-tight md:text-6xl">
+            <GsapTextReveal
+              as="h2"
+              className="mx-auto max-w-3xl text-4xl font-semibold tracking-tight md:text-6xl"
+              split="lines"
+              mask="lines"
+              y="105%"
+              stagger={0.09}
+              duration={0.8}
+              blur={0}
+            >
               Si votre équipe compense les mêmes oublis chaque semaine, il est
               temps de cadrer le système.
-            </h2>
-            <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-background/75 dark:text-white/65">
+            </GsapTextReveal>
+            <GsapTextReveal
+              as="p"
+              className="mx-auto mt-6 max-w-xl text-lg leading-8 text-background/75 dark:text-white/65"
+              split="words"
+              y={14}
+              stagger={0.025}
+              blur={2}
+            >
               Décrivez le blocage. Je vous réponds avec une première lecture
               claire.
-            </p>
-            <div className="mt-10">
+            </GsapTextReveal>
+            <div className="cta-action mt-10">
               <Link to="/contact">
                 <Button
                   size="lg"
@@ -36,7 +96,7 @@ export default function CTASection() {
             </div>
           </div>
         </div>
-      </PremiumReveal>
+      </div>
     </section>
   );
 }

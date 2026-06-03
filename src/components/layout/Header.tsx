@@ -15,7 +15,7 @@ gsap.registerPlugin(SplitText);
 
 const navLinks = [
   { name: 'Services', href: '/services' },
-  { name: 'Portfolio', href: '/portfolio' },
+  { name: 'Mes projets', href: '/portfolio' },
   { name: 'Contact', href: '/contact' },
 ];
 

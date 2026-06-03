@@ -31,7 +31,7 @@ const contactFormSchema = z.object({
   company: z
     .string()
     .trim()
-    .max(120, { message: 'Le nom de l’entreprise doit faire moins de 120 caractères.' })
+    .max(120, { message: 'Le nom de la structure ou activité doit faire moins de 120 caractères.' })
     .optional()
     .or(z.literal('')),
   need: z
@@ -66,7 +66,7 @@ export function ContactForm() {
         [
           `Nom : ${data.name}`,
           `Email : ${data.email}`,
-          `Entreprise : ${data.company || 'Non renseignée'}`,
+          `Structure / activité : ${data.company || 'Non renseignée'}`,
           '',
           'Besoin principal :',
           data.need,
@@ -147,7 +147,7 @@ export function ContactForm() {
               <FormControl>
                 <Input
                   type="email"
-                  placeholder="vous@entreprise.fr"
+                  placeholder="vous@email.fr"
                   autoComplete="email"
                   {...field}
                 />
@@ -162,10 +162,10 @@ export function ContactForm() {
           name="company"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Entreprise</FormLabel>
+              <FormLabel>Structure / activité</FormLabel>
               <FormControl>
                 <Input
-                  placeholder="Nom de votre entreprise"
+                  placeholder="Nom de votre activité ou structure"
                   autoComplete="organization"
                   {...field}
                 />

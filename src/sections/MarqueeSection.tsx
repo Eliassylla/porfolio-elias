@@ -13,7 +13,7 @@ export default function MarqueeSection() {
   const items = [...words, ...words, ...words];
 
   return (
-    <section className="overflow-hidden border-b border-border bg-background py-10 dark:bg-[#010102]">
+    <section className="overflow-hidden bg-background py-8 md:py-10 dark:bg-[#010102]">
       <div className="group flex whitespace-nowrap">
         <motion.div
           className="flex min-w-max items-center gap-8 pr-8"

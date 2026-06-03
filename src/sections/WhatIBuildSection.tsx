@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { ArrowUpRight, Plus } from "lucide-react";
 import { LayoutGroup, motion } from "motion/react";
 import { Link } from "react-router-dom";
@@ -7,15 +7,12 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 
-import {
-  VerticalCutReveal,
-  type VerticalCutRevealRef,
-} from "@/components/ui/vertical-cut-reveal";
 import Lottie from "lottie-react";
 import skillsAnimation from "@/video/animation.json";
 import agentsAnimation from "@/video/animation-2.json";
 import { AutomationSvg } from "@/components/AutomationSvg";
 import { businessInfo } from "@/data/business";
+import { GsapTextReveal } from "@/components/ui/gsap-text-reveal";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -34,12 +31,9 @@ const serviceItems = businessInfo.services.map((service) => ({
 const headline = "Transformer vos tâches répétitives en outils";
 
 export default function WhatIBuildSection() {
-  const revealRef2 = useRef<VerticalCutRevealRef>(null);
-  const sectionRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLElement>(null);
   const cardRef = useRef<HTMLElement>(null);
   const hasMounted = useRef(false);
-  const [hasTriggered, setHasTriggered] = useState(false);
   const [activeServiceId, setActiveServiceId] = useState(serviceItems[0].id);
 
   const activeService =
@@ -100,53 +94,32 @@ export default function WhatIBuildSection() {
     { dependencies: [activeServiceId] },
   );
 
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !hasTriggered) {
-          setHasTriggered(true);
-          revealRef2.current?.startAnimation();
-        }
-      },
-      { threshold: 0.3 },
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [hasTriggered]);
-
   return (
     <section
       ref={containerRef}
-      className="relative overflow-hidden border-b border-border bg-background px-6 py-24 md:py-32 lg:px-8"
+      className="relative overflow-hidden bg-background px-6 py-20 md:py-24 lg:px-8"
     >
       <div className="absolute inset-x-0 top-0 -z-10 h-64 bg-gradient-to-b from-muted/60 to-transparent dark:from-white/[0.03]" />
       <div className="mx-auto max-w-6xl">
-        <div className="mx-auto mb-12 max-w-3xl text-center" ref={sectionRef}>
+        <div className="mx-auto mb-12 max-w-3xl text-center">
           <div className="mb-4 inline-flex rounded-full border border-border bg-card px-3 py-1 text-xs font-medium text-muted-foreground dark:border-white/10 dark:bg-white/[0.04]">
             Services
           </div>
           <h2 className="what-headline mb-4 text-4xl font-semibold tracking-tight text-foreground md:text-6xl">
             {headline}
           </h2>
-          <p className="mx-auto max-w-2xl text-lg leading-8 text-muted-foreground">
-            <VerticalCutReveal
-              ref={revealRef2}
-              autoStart={false}
-              splitBy="words"
-              staggerDuration={0.08}
-              transition={{
-                type: "spring",
-                stiffness: 200,
-                damping: 25,
-                delay: 0.15,
-              }}
-            >
-              Automatisations, apps et agents IA pour reprendre la main sur
-              votre quotidien.
-            </VerticalCutReveal>
-          </p>
+          <GsapTextReveal
+            as="p"
+            className="mx-auto max-w-2xl text-lg leading-8 text-muted-foreground"
+            split="words"
+            scrub={0.7}
+            once={false}
+            y={14}
+            blur={3}
+          >
+            Automatisations, apps et agents IA pour reprendre la main sur votre
+            quotidien.
+          </GsapTextReveal>
         </div>
 
         <div className="services-tabs space-y-8">
@@ -228,7 +201,8 @@ export default function WhatIBuildSection() {
               )}
               {/* Gabarit identique pour tous — card blanche sur automatisations + skills */}
               <div className={[
-                "relative mx-auto flex w-[88%] aspect-[16/9] items-center justify-center rounded-3xl",
+                "relative mx-auto flex aspect-[16/9] items-center justify-center rounded-3xl",
+                activeService.id === "automatisations" ? "w-[88%]" : "w-full",
                 activeService.id === "automatisations"
                   ? "overflow-hidden bg-white/40 p-4 shadow-md backdrop-blur-sm md:p-6"
                   : "",
@@ -243,14 +217,14 @@ export default function WhatIBuildSection() {
                   <Lottie
                     animationData={skillsAnimation}
                     loop={false}
-                    className="h-full w-full scale-[1.6]"
+                    className="h-full w-full"
                   />
                 )}
                 {activeService.id === "agents-ia" && (
                   <Lottie
                     animationData={agentsAnimation}
                     loop={false}
-                    className="h-full w-full scale-[1.6]"
+                    className="h-full w-full"
                   />
                 )}
               </div>

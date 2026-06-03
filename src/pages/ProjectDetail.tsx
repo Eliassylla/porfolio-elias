@@ -25,7 +25,7 @@ export default function ProjectDetail() {
           <div className="max-w-4xl mx-auto">
             <Link to="/portfolio" className="inline-flex items-center gap-2 text-sm opacity-80 hover:opacity-100 mb-6 transition-opacity">
               <ArrowLeft className="size-4" />
-              Retour au portfolio
+              Retour aux projets
             </Link>
 
             <div className="flex flex-wrap gap-2 mb-4">

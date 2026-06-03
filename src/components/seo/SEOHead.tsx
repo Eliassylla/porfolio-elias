@@ -47,7 +47,7 @@ export function SEOHead({
     updateMetaTag('twitter:title', fullTitle);
     updateMetaTag('twitter:description', fullDescription);
     updateMetaTag('author', businessInfo.name);
-    updateMetaTag('keywords', 'automatisation, PME, services B2B, facturation, relances, onboarding client, suivi commercial');
+    updateMetaTag('keywords', 'automatisation, solopreneur, indépendant, petites équipes, systèmes opérationnels, facturation, relances, onboarding client, suivi commercial');
   }, [fullTitle, fullDescription, fullUrl, image, type]);
 
   return null;

@@ -1,9 +1,9 @@
 export const businessInfo = {
   name: 'Elias',
-  title: 'Systèmes opérationnels pour PME de services',
+  title: 'Systèmes opérationnels pour solopreneurs, indépendants et petites équipes',
   tagline: 'Je construis des systèmes simples qui fiabilisent vos relances, votre suivi client et votre administratif.',
   heroDescription:
-    'Factures oubliées, devis sans suite, informations dispersées… Chaque semaine, votre entreprise perd du temps sur des tâches qui devraient être cadrées. Je transforme ces points de friction en systèmes clairs, suivis et utilisables.',
+    'Factures oubliées, devis sans suite, informations dispersées… Chaque semaine, votre activité perd du temps sur des tâches qui devraient être cadrées. Je transforme ces points de friction en systèmes clairs, suivis et utilisables.',
   heroCta: 'Demander un audit',
   email: 'contact@elias-automation.com',
   location: 'France',

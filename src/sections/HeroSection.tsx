@@ -6,13 +6,13 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 
-import heroPortrait from "@/assets/hero-portrait-real.jpg";
 import { Button } from "@/components/ui/button";
+import { EliasCard } from "@/components/ui/elias-card";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
-const PHRASE_PART_1 = "Vos opérations méritent mieux Salut, moi c'est";
-const PHRASE_PART_2 = "et je construis les systèmes qui enlèvent les oublis avant qu'ils coûtent.";
+const PHRASE_PART_1 = "La plupart des indépendants et petites équipes perdent des heures sur des tâches répétitives. Salut, moi c'est";
+const PHRASE_PART_2 = "je construis des systèmes qui améliorent vos process métier";
 
 const part1Words = PHRASE_PART_1.split(/\s+/);
 const part2Words = PHRASE_PART_2.split(/\s+/);
@@ -23,24 +23,23 @@ const part2Words = PHRASE_PART_2.split(/\s+/);
 type HighlightConfig = {
   color: "green" | "violet";
   visiblePart?: string;
-  card?: { label: string; rotate: number };
+  card?: { label: string; rotate: number; positionClass?: string };
 };
 
 const HIGHLIGHTS: Record<string, HighlightConfig> = {
-  "mieux": {
+  "heures": {
     color: "green",
-    visiblePart: "mieux",
-    card: { label: "+ fiable", rotate: -6 },
+    card: { label: "15h/sem", rotate: -6, positionClass: "top-[calc(100%+0.5rem)] left-0 md:top-[calc(100%+0.6rem)]" },
   },
   "systèmes": {
     color: "violet",
-    card: { label: "Automatisé", rotate: 5 },
+    card: { label: "Automatisé", rotate: 5, positionClass: "-top-10 left-[-0.5em] md:-top-12 lg:-top-14" },
   },
 };
 
 const HIGHLIGHT_BG_CLASS: Record<"green" | "violet", string> = {
   green: "bg-emerald-500/20",
-  violet: "bg-primary/25 dark:bg-[#5e6ad2]/35",
+  violet: "bg-violet-500/20 dark:bg-[#5e6ad2]/35",
 };
 
 const CARD_BG_CLASS: Record<"green" | "violet", string> = {
@@ -69,11 +68,11 @@ function renderWord(word: string, key: string) {
           aria-hidden="true"
           className={`h-highlight-bg pointer-events-none absolute inset-x-[-0.12em] -inset-y-[0.12em] origin-left rounded-md ${HIGHLIGHT_BG_CLASS[highlight.color]}`}
         />
-        <span className="relative">{targeted}</span>
+        <span className="relative italic font-medium">{targeted}</span>
 
         {highlight.card && (
           <span
-            className={`h-word-card pointer-events-none absolute -top-10 right-[-0.5em] inline-block whitespace-nowrap rounded-xl px-3 py-1.5 text-base font-bold shadow-2xl shadow-black/30 md:-top-12 md:px-4 md:py-2 md:text-lg lg:-top-14 lg:text-xl ${CARD_BG_CLASS[highlight.color]}`}
+            className={`h-word-card pointer-events-none absolute ${highlight.card.positionClass ?? "-top-10 right-[-0.5em] md:-top-12 lg:-top-14"} inline-block whitespace-nowrap rounded-xl px-3 py-1.5 text-base font-bold shadow-2xl shadow-black/30 md:px-4 md:py-2 md:text-lg lg:text-xl ${CARD_BG_CLASS[highlight.color]}`}
             data-rotate={highlight.card.rotate}
           >
             {highlight.card.label}
@@ -130,9 +129,10 @@ export default function HeroSection() {
       }
 
       // === Intro auto scène 1 — SplitText words + fade-up séquentiel ===
+      let titleSplit: ReturnType<typeof SplitText.create> | null = null;
       const titleEl = section.querySelector<HTMLElement>(".scene-1-title");
       if (titleEl) {
-        const titleSplit = SplitText.create(titleEl, { type: "words" });
+        titleSplit = SplitText.create(titleEl, { type: "words" });
 
         gsap.set(titleSplit.words, { opacity: 0, y: 40 });
         gsap.set(".scene-1-sub", { opacity: 0, y: 20 });
@@ -164,11 +164,10 @@ export default function HeroSection() {
         x: () => -(track.scrollWidth - window.innerWidth + 96),
         ease: "none",
         scrollTrigger: {
-          trigger: ".hero-story",
+          trigger: section,
           start: "top top",
           end: () => `+=${track.scrollWidth}`,
-          pin: ".hero-story-sticky",
-          pinType: "transform",
+          pin: sticky,
           scrub: 1,
           anticipatePin: 1,
           invalidateOnRefresh: true,
@@ -178,17 +177,20 @@ export default function HeroSection() {
 
       // === Entry de chaque mot/card quand il devient visible ===
       wordEls.forEach((word) => {
-        gsap.to(word, {
+        gsap.fromTo(word, {
+          yPercent: -60,
+          opacity: 0,
+        }, {
           yPercent: 0,
           opacity: 1,
-          duration: 0.4,
-          ease: "power2.out",
+          ease: "none",
           scrollTrigger: {
             trigger: word,
             containerAnimation: horizontalScrollTween,
             start: "left 85%",
             end: "left 55%",
-            toggleActions: "play none none reverse",
+            scrub: 0.25,
+            invalidateOnRefresh: true,
           },
         });
       });
@@ -199,16 +201,18 @@ export default function HeroSection() {
       highlightBgs.forEach((bg) => {
         const parent = bg.closest<HTMLElement>(".h-word-highlight");
         if (!parent) return;
-        gsap.to(bg, {
+        gsap.fromTo(bg, {
+          scaleX: 0,
+        }, {
           scaleX: 1,
-          duration: 0.5,
-          ease: "power2.out",
+          ease: "none",
           scrollTrigger: {
             trigger: parent,
             containerAnimation: horizontalScrollTween,
             start: "left 80%",
             end: "left 50%",
-            toggleActions: "play none none reverse",
+            scrub: 0.25,
+            invalidateOnRefresh: true,
           },
         });
       });
@@ -220,19 +224,24 @@ export default function HeroSection() {
         const targetRotate = parseFloat(card.dataset.rotate ?? "0");
         const parent = card.closest<HTMLElement>(".h-word-highlight");
         if (!parent) return;
-        gsap.to(card, {
+        gsap.fromTo(card, {
+          opacity: 0,
+          y: -30,
+          scale: 0.4,
+          rotation: 0,
+        }, {
           opacity: 1,
           y: 0,
           scale: 1,
           rotation: targetRotate,
-          duration: 0.6,
-          ease: "back.out(2)",
+          ease: "none",
           scrollTrigger: {
             trigger: parent,
             containerAnimation: horizontalScrollTween,
             start: "left 75%",
             end: "left 45%",
-            toggleActions: "play none none reverse",
+            scrub: 0.25,
+            invalidateOnRefresh: true,
           },
         });
       });
@@ -241,12 +250,33 @@ export default function HeroSection() {
       gsap.to([scene1, scrollIndicator].filter(Boolean), {
         opacity: 0,
         scrollTrigger: {
-          trigger: ".hero-story",
+          trigger: section,
           start: "top top",
           end: "top top-=200",
           scrub: true,
+          invalidateOnRefresh: true,
         },
       });
+
+      const refreshHero = () => {
+        setSectionHeight();
+        ScrollTrigger.refresh(true);
+      };
+      const refreshWhenVisible = () => {
+        if (document.visibilityState === "visible") refreshHero();
+      };
+
+      window.addEventListener("focus", refreshHero);
+      window.addEventListener("pageshow", refreshHero);
+      document.addEventListener("visibilitychange", refreshWhenVisible);
+      document.fonts?.ready.then(refreshHero).catch(() => undefined);
+
+      return () => {
+        window.removeEventListener("focus", refreshHero);
+        window.removeEventListener("pageshow", refreshHero);
+        document.removeEventListener("visibilitychange", refreshWhenVisible);
+        titleSplit?.revert();
+      };
     },
     { scope: containerRef },
   );
@@ -254,7 +284,7 @@ export default function HeroSection() {
   return (
     <section
       ref={containerRef}
-      className="hero-story relative border-b border-border"
+      className="hero-story relative"
     >
       <div className="hero-story-sticky relative h-screen overflow-hidden bg-background">
 
@@ -269,7 +299,7 @@ export default function HeroSection() {
               Vos opérations méritent mieux.
             </h1>
             <p className="scene-1-sub mx-auto mt-6 max-w-xl text-base leading-7 text-muted-foreground md:mt-8 md:text-lg">
-              Factures oubliées, devis sans suite, infos dispersées. Chaque semaine, votre entreprise perd du temps.
+              Relances de factures, rapports du lundi, onboarding client — j'automatise ces tâches une fois. Votre équipe n'y pense plus.
             </p>
             <div className="scene-1-cta mt-8 flex justify-center md:mt-10">
               <Link to="/contact">
@@ -290,36 +320,8 @@ export default function HeroSection() {
           <div className="h-phrase-track flex items-center gap-x-4 whitespace-nowrap will-change-transform pl-[100vw] pr-24">
             {part1Words.map((word, i) => renderWord(word, `p1-${i}`))}
 
-            <div className="h-card-elias mx-2 inline-flex shrink-0 items-stretch overflow-hidden rounded-2xl border border-border bg-card shadow-2xl shadow-foreground/5 dark:border-white/10 dark:bg-[#0f1011]">
-
-              {/* Mini-panel photo (style WhatIBuild image area) */}
-              <div className="flex shrink-0 items-center justify-center bg-muted p-3 dark:bg-[#010102]">
-                <img
-                  src={heroPortrait}
-                  alt="Elias"
-                  className="h-24 w-20 rounded-xl border border-border object-cover object-[50%_15%] dark:border-white/10 md:h-28 md:w-24 lg:h-32 lg:w-28"
-                />
-              </div>
-
-              {/* Bloc texte */}
-              <div className="flex flex-col justify-center gap-2 px-5 py-4">
-                {/* Status badge */}
-                <div className="inline-flex items-center gap-1.5 self-start rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 text-[10px] font-medium text-emerald-600 dark:text-emerald-400 md:text-xs">
-                  <span className="size-1.5 rounded-full bg-emerald-500" />
-                  Disponible
-                </div>
-
-                {/* Nom + séparateur + rôle complet */}
-                <div className="flex flex-col gap-2">
-                  <p className="text-2xl font-semibold leading-none tracking-tight text-card-foreground md:text-3xl lg:text-4xl">
-                    Elias.
-                  </p>
-                  <div aria-hidden="true" className="h-px w-10 bg-border dark:bg-white/10" />
-                  <p className="max-w-[14ch] whitespace-normal text-xs leading-tight text-muted-foreground md:max-w-[16ch] md:text-sm">
-                    Consultant en systèmes opérationnels
-                  </p>
-                </div>
-              </div>
+            <div className="h-card-elias mx-3 inline-flex shrink-0 items-center md:mx-4">
+              <EliasCard />
             </div>
 
             {part2Words.map((word, i) => renderWord(word, `p2-${i}`))}

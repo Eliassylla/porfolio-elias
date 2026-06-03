@@ -1,62 +1,103 @@
+import { useRef } from "react";
 import { motion } from "motion/react";
 import { ArrowRight, BarChart3, FileText, Receipt, Users } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import { Button } from "@/components/ui/button";
-import {
-  fadeUpVariants,
-  staggerContainer,
-} from "@/components/ui/premium-motion-variants";
 import { businessInfo } from "@/data/business";
+import { GsapTextReveal } from "@/components/ui/gsap-text-reveal";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const projectIcons = [Receipt, Users, FileText, BarChart3];
 
 export default function FeaturedProjectsSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useGSAP(
+    () => {
+      gsap.from(".featured-eyebrow", {
+        opacity: 0,
+        y: 18,
+        duration: 0.6,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ".featured-header",
+          start: "top 78%",
+          once: true,
+        },
+      });
+
+      gsap.from(".featured-projects-panel", {
+        opacity: 0,
+        y: 36,
+        filter: "blur(8px)",
+        duration: 0.8,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".featured-projects-panel",
+          start: "top 80%",
+          once: true,
+        },
+      });
+
+      gsap.from(".featured-cta", {
+        opacity: 0,
+        y: 16,
+        duration: 0.55,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ".featured-cta",
+          start: "top 90%",
+          once: true,
+        },
+      });
+    },
+    { scope: sectionRef },
+  );
+
   return (
-    <section className="relative overflow-hidden border-b border-border bg-background px-6 py-24 md:py-32 lg:px-8">
+    <section
+      ref={sectionRef}
+      className="relative overflow-hidden border-b border-border bg-background px-6 py-24 md:py-32 lg:px-8"
+    >
       <div className="mx-auto max-w-7xl">
-        <motion.div
-          className="mx-auto max-w-3xl text-center"
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-        >
-          <motion.div
-            variants={fadeUpVariants}
-            className="mb-4 inline-flex rounded-full border border-border bg-card px-3 py-1 text-xs font-medium text-muted-foreground dark:border-white/10 dark:bg-white/[0.04]"
-          >
+        <div className="featured-header mx-auto max-w-3xl text-center">
+          <div className="featured-eyebrow mb-4 inline-flex rounded-full border border-border bg-card px-3 py-1 text-xs font-medium text-muted-foreground dark:border-white/10 dark:bg-white/[0.04]">
             Cas concrets
-          </motion.div>
-          <motion.h2
-            variants={fadeUpVariants}
-            className="text-balance text-4xl font-semibold tracking-tight text-foreground md:text-6xl"
+          </div>
+          <GsapTextReveal
+            as="h2"
+            className="text-4xl font-semibold tracking-tight text-foreground md:text-6xl"
+            split="words"
+            scrub={0.7}
+            once={false}
+            y={22}
+            blur={5}
           >
             Projets récents{" "}
             <span className="text-muted-foreground">
               des résultats mesurables pour chaque client.
             </span>
-          </motion.h2>
-          <motion.p
-            variants={fadeUpVariants}
+          </GsapTextReveal>
+          <GsapTextReveal
+            as="p"
             className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-muted-foreground"
+            split="words"
+            y={14}
+            stagger={0.025}
+            blur={3}
           >
             Je pars de situations concrètes : argent à relancer, dossiers à
             suivre, informations à remettre au bon endroit.
-          </motion.p>
-        </motion.div>
+          </GsapTextReveal>
+        </div>
 
-        <motion.div
-          className="mx-auto mt-14 max-w-3xl"
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
-        >
-          <motion.div
-            variants={fadeUpVariants}
-            className="overflow-hidden rounded-2xl border border-border bg-card p-4 shadow-sm dark:border-white/10 dark:bg-[#0f1011]"
-          >
+        <div className="mx-auto mt-14 max-w-3xl">
+          <div className="featured-projects-panel overflow-hidden rounded-2xl border border-border bg-card p-4 shadow-sm dark:border-white/10 dark:bg-[#0f1011]">
             <div className="mb-4 flex items-center justify-between px-2">
               <p className="text-sm font-medium text-muted-foreground">
                 Situations traitées
@@ -111,11 +152,11 @@ export default function FeaturedProjectsSection() {
               <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-background to-transparent dark:from-[#010102]" />
               <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background to-transparent dark:from-[#010102]" />
             </div>
-          </motion.div>
+          </div>
 
-        </motion.div>
+        </div>
 
-        <div className="mt-10 text-center">
+        <div className="featured-cta mt-10 text-center">
           <Link to="/portfolio">
             <Button variant="outline" className="h-11 rounded-lg">
               Voir tous les projets

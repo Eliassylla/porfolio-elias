@@ -74,8 +74,8 @@ export default function Portfolio() {
   return (
     <>
       <SEOHead
-        title="Portfolio — Elias"
-        description="Découvrez des cas concrets de systèmes opérationnels pour PME de services."
+        title="Mes projets — Elias"
+        description="Découvrez des cas concrets de systèmes opérationnels, d'automatisations et d'expérimentations IA."
       />
 
       <div className="min-h-screen bg-background pt-20">
@@ -84,7 +84,7 @@ export default function Portfolio() {
             <div className="mb-4 grid gap-6 border-b border-border pb-4 md:grid-cols-[0.82fr_1.18fr] md:items-center">
               <div>
                 <h1 className="text-4xl font-semibold tracking-tight text-foreground md:text-5xl">
-                  Cas concrets
+                  Mes projets
                 </h1>
               </div>
               <div className="md:justify-self-end">

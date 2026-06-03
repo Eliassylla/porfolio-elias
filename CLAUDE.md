@@ -2,7 +2,7 @@
 
 ## Ce projet
 
-Portfolio B2B pour Elias, consultant en automatisations agentiques pour PME francophones.
+Portfolio B2B pour Elias, consultant en automatisations agentiques pour solopreneurs, indépendants, petites équipes et PME francophones.
 Objectif : transformer un template photographe cassé (Lovable) en portfolio qui convertit.
 Un visiteur doit comprendre ce qu'Elias fait, voir des preuves, et réserver un appel — en moins de 2 minutes.
 
@@ -11,7 +11,7 @@ Un visiteur doit comprendre ce qu'Elias fait, voir des preuves, et réserver un 
 **Emails :** Resend (transactionnel + newsletter)
 **Prise de RDV :** Cal.com
 **Contenu :** `src/data/business.ts` (pas de CMS)
-**Langue du site :** Français (cible PME francophones)
+**Langue du site :** Français (cible solopreneurs, indépendants, petites équipes et PME francophones)
 
 ---
 
@@ -89,6 +89,28 @@ Fichiers de référence : `.planning/ROADMAP.md` (phases + critères), `.plannin
 | Edge Functions (pas de serveur) | Cohérent avec Supabase, gratuit, SPA-friendly |
 | Formulaire via Resend (pas Formspree) | Contrôle total, même stack que newsletter |
 | Contenu dans business.ts (pas de CMS) | Simple, maintenable par Elias lui-même |
+| Vercel Workflow SDK (option future) | Pertinent plus tard pour lead nurturing avancé, séquences email longues, retries, observabilité et agents IA durables — ne pas installer tant que le tunnel email simple n'est pas validé |
+
+---
+
+## Décisions récentes à conserver
+
+- **Positionnement** : ne pas réduire la cible aux PME. Inclure explicitement solopreneurs, indépendants et petites équipes dans les textes publics.
+- **Homepage v1** : `FeaturedProjectsSection` et `NewsletterSection` ont été retirées de la landing tant que les projets réels et la newsletter ne sont pas prêts. Ne pas les réintroduire sans décision explicite.
+- **Portfolio navigation** : l'onglet public s'appelle `Mes projets`, pas `Portfolio`.
+- **Email architecture** : `Vercel = frontend statique`, `Supabase Edge Functions = backend`, `Resend = email`. Les secrets Resend vont dans Supabase, pas dans Vercel.
+- **Vercel env actuel** : seules `VITE_SUPABASE_URL` et `VITE_SUPABASE_PUBLISHABLE_KEY` sont nécessaires pour le frontend Vercel tant que les Edge Functions ne sont pas branchées.
+- **Dark mode** : thème par défaut `light`, `enableSystem={false}`. Tailwind 4 doit utiliser `@custom-variant dark (&:where(.dark, .dark *));` pour éviter un rendu hybride clair/sombre.
+- **Hero GSAP** : la phrase horizontale doit rester déterministe au scroll. Préférer `scrub` + `invalidateOnRefresh` + cleanup `SplitText` plutôt que des callbacks `toggleActions` qui peuvent rester bloqués en preview/dev.
+
+---
+
+## Vercel Workflow SDK — option future
+
+- **Ne pas installer maintenant** : l'architecture actuelle reste `Vercel = frontend statique`, `Supabase Edge Functions = backend`, `Resend = emails`.
+- **À réévaluer après Phase 3** si Elias veut du lead nurturing avancé : séquences sur plusieurs jours, relances automatiques, workflows persistants, retries, observabilité fine, agents IA long-running.
+- **Choix actuel pour v1** : Supabase Edge Functions + Resend pour formulaire contact, newsletter simple, ajout à l'audience Resend et emails transactionnels.
+- **Si adopté plus tard** : documenter explicitement le changement d'architecture avant d'ajouter `workflow`, `nitro` ou de modifier `vite.config.ts`.
 
 ---
 
@@ -100,4 +122,3 @@ Fichiers de référence : `.planning/ROADMAP.md` (phases + critères), `.plannin
 - RLS obligatoire sur toutes les tables — utiliser `supabase-postgres-best-practices` pour les policies
 - Secrets Edge Functions : `supabase secrets set RESEND_API_KEY=...` (ne jamais hardcoder)
 - Connexions tier gratuit : max ~60 directes → utiliser le connection pooler (port 6543)
-

@@ -12,6 +12,16 @@ dist
 dist-ssr
 *.local
 
+# Secrets — ne jamais committer
+.env
+
+# Outils de dev (skills Claude Code, cache Firecrawl) — pas le site
+.firecrawl/
+.agents/skills/gsap-doc/
+.agents/skills/web-research/
+.claude/agents/
+.claude/skills/watch/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
