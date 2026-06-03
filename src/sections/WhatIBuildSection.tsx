@@ -125,7 +125,7 @@ export default function WhatIBuildSection() {
         <div className="services-tabs space-y-8">
           <LayoutGroup>
             <div
-              className="flex flex-wrap items-center justify-center gap-3"
+              className="flex flex-nowrap items-center justify-center gap-2 md:gap-3"
               role="tablist"
               aria-label="Services"
             >
@@ -140,7 +140,7 @@ export default function WhatIBuildSection() {
                     aria-selected={isActive}
                     aria-controls="what-i-build-card"
                     onClick={() => setActiveServiceId(service.id)}
-                    className="relative overflow-hidden rounded-full border border-border bg-card px-5 py-2.5 text-sm font-medium text-muted-foreground transition-all hover:-translate-y-px hover:border-foreground/40 hover:text-foreground active:scale-[0.97] dark:border-white/10 dark:bg-white/[0.03] dark:hover:bg-white/[0.07]"
+                    className="relative shrink-0 overflow-hidden whitespace-nowrap rounded-full border border-border bg-card px-3 py-2 text-xs font-medium text-muted-foreground transition-all hover:-translate-y-px hover:border-foreground/40 hover:text-foreground active:scale-[0.97] md:px-5 md:py-2.5 md:text-sm dark:border-white/10 dark:bg-white/[0.03] dark:hover:bg-white/[0.07]"
                   >
                     {isActive ? (
                       <motion.span
@@ -176,37 +176,9 @@ export default function WhatIBuildSection() {
             aria-labelledby={`what-i-build-tab-${activeService.id}`}
             className="service-card mx-auto max-w-3xl"
           >
-            <div className="relative overflow-hidden rounded-2xl p-8 md:p-12" style={{ background: "#dbeafe" }}>
-              {/* Orbs aura — mêmes couleurs, positions tournées par service */}
-              {activeService.id === "automatisations" && (
-                <div className="pointer-events-none absolute inset-0 overflow-hidden">
-                  <div className="absolute -left-10 -top-10 h-64 w-64 rounded-full bg-blue-400 opacity-50" style={{ filter: "blur(72px)" }} />
-                  <div className="absolute -bottom-8 right-4 h-56 w-56 rounded-full bg-indigo-400 opacity-40" style={{ filter: "blur(64px)" }} />
-                  <div className="absolute left-1/2 top-1/2 h-48 w-48 -translate-x-1/2 -translate-y-1/2 rounded-full bg-sky-300 opacity-35" style={{ filter: "blur(56px)" }} />
-                </div>
-              )}
-              {activeService.id === "skills" && (
-                <div className="pointer-events-none absolute inset-0 overflow-hidden">
-                  <div className="absolute -right-10 -top-10 h-64 w-64 rounded-full bg-indigo-400 opacity-50" style={{ filter: "blur(72px)" }} />
-                  <div className="absolute -left-4 bottom-[-2rem] h-56 w-56 rounded-full bg-sky-300 opacity-40" style={{ filter: "blur(64px)" }} />
-                  <div className="absolute right-1/3 top-1/3 h-48 w-48 rounded-full bg-blue-400 opacity-35" style={{ filter: "blur(56px)" }} />
-                </div>
-              )}
-              {activeService.id === "agents-ia" && (
-                <div className="pointer-events-none absolute inset-0 overflow-hidden">
-                  <div className="absolute left-1/2 -top-12 h-64 w-64 -translate-x-1/2 rounded-full bg-sky-300 opacity-50" style={{ filter: "blur(72px)" }} />
-                  <div className="absolute -left-8 -bottom-4 h-56 w-56 rounded-full bg-blue-400 opacity-40" style={{ filter: "blur(64px)" }} />
-                  <div className="absolute right-[-1rem] top-1/4 h-48 w-48 rounded-full bg-indigo-400 opacity-35" style={{ filter: "blur(56px)" }} />
-                </div>
-              )}
-              {/* Gabarit identique pour tous — card blanche sur automatisations + skills */}
-              <div className={[
-                "relative mx-auto flex aspect-[16/9] items-center justify-center rounded-3xl",
-                activeService.id === "automatisations" ? "w-[88%]" : "w-full",
-                activeService.id === "automatisations"
-                  ? "overflow-hidden bg-white/40 p-4 shadow-md backdrop-blur-sm md:p-6"
-                  : "",
-              ].join(" ")}>
+            {/* Visuel animé en vedette — fond neutre qui s'adapte au thème (plus de cadran bleu figé) */}
+            <div className="relative overflow-hidden rounded-2xl border border-border bg-muted/40 p-3 shadow-sm md:p-4 dark:border-white/10 dark:bg-white/[0.03]">
+              <div className="relative mx-auto flex aspect-[16/9] w-full items-center justify-center rounded-3xl">
                 {activeService.id === "automatisations" && (
                   <AutomationSvg
                     src={activeService.imageSrc}

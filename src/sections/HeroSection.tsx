@@ -90,7 +90,6 @@ export default function HeroSection() {
   useGSAP(
     () => {
       const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
       const section = containerRef.current;
       if (!section) return;
@@ -102,28 +101,43 @@ export default function HeroSection() {
       const scrollIndicator = section.querySelector<HTMLElement>(".scroll-indicator");
       const wordEls = section.querySelectorAll<HTMLElement>(".h-word, .h-card-elias");
 
-      // === Branche mobile / reduced-motion : version statique ===
-      if (reduce || isMobile) {
+      // === Fallback "réduire les animations" (accessibilité) : hero empilé statique ===
+      // Uniquement si l'utilisateur a activé prefers-reduced-motion. Mobile inclus,
+      // tout le monde a l'animation horizontale ; ici on sert une version sans mouvement :
+      // scène 1 (titre + CTA) + card Elias, mots géants et cards flottantes masqués.
+      if (reduce) {
         section.style.height = "auto";
         if (sticky) {
           sticky.style.position = "relative";
           sticky.style.height = "auto";
+          sticky.style.minHeight = "auto";
           sticky.style.overflow = "visible";
-          sticky.style.minHeight = "100vh";
-          sticky.style.padding = "7rem 0 5rem";
+          sticky.style.padding = "6rem 0 4rem";
+        }
+        // scène 1 en flux normal — sinon elle se superpose à la phrase
+        if (scene1) {
+          scene1.style.position = "relative";
+          scene1.style.inset = "auto";
         }
         if (phraseWrap) {
           phraseWrap.style.position = "relative";
           phraseWrap.style.inset = "auto";
-          phraseWrap.style.marginTop = "4rem";
+          phraseWrap.style.marginTop = "2.5rem";
           phraseWrap.style.overflow = "visible";
         }
         if (track) {
           track.style.flexWrap = "wrap";
           track.style.whiteSpace = "normal";
           track.style.paddingLeft = "0";
+          track.style.paddingRight = "0";
           track.style.justifyContent = "center";
         }
+        // mots géants + cards flottantes : illisibles / se chevauchent sur mobile
+        section
+          .querySelectorAll<HTMLElement>(".h-word, .h-word-card")
+          .forEach((el) => {
+            el.style.display = "none";
+          });
         if (scrollIndicator) scrollIndicator.style.display = "none";
         return;
       }
@@ -152,22 +166,29 @@ export default function HeroSection() {
 
       gsap.set(wordEls, { yPercent: -60, opacity: 0 });
 
-      // Hauteur dynamique de la section parent : aligne la durée de scroll
-      // vertical avec la durée de la phrase horizontale.
+      // Distance horizontale réelle à parcourir = largeur de la track qui dépasse le viewport.
+      // END_PAD règle la position finale du dernier mot ("métier") — augmenter = finit plus à gauche.
+      const END_PAD = 96;
+      const getTravel = () =>
+        Math.max(0, track.scrollWidth - window.innerWidth + END_PAD);
+
+      // Hauteur de section = distance horizontale + 1 viewport (hauteur du sticky épinglé).
+      // Avec pinSpacing:false, cette hauteur définit exactement la durée du pin : la section
+      // suivante suit immédiatement la fin de la phrase (plus d'écran vide).
       const setSectionHeight = () => {
-        if (!track) return;
-        section.style.height = `${track.scrollWidth + window.innerHeight}px`;
+        section.style.height = `${getTravel() + window.innerHeight}px`;
       };
       setSectionHeight();
 
       const horizontalScrollTween = gsap.to(track, {
-        x: () => -(track.scrollWidth - window.innerWidth + 96),
+        x: () => -getTravel(),
         ease: "none",
         scrollTrigger: {
           trigger: section,
           start: "top top",
-          end: () => `+=${track.scrollWidth}`,
+          end: () => `+=${getTravel()}`,
           pin: sticky,
+          pinSpacing: false,
           scrub: 1,
           anticipatePin: 1,
           invalidateOnRefresh: true,
@@ -247,12 +268,16 @@ export default function HeroSection() {
       });
 
       // === Fade-out scène 1 + indicator dès le premier scroll ===
+      // Plage courte et proportionnelle à la largeur d'écran : la scène 1 disparaît AVANT
+      // que le premier mot entre, et en reverse elle ne réapparaît qu'une fois la phrase
+      // totalement sortie (plus de chevauchement). autoAlpha = opacity + visibility.
       gsap.to([scene1, scrollIndicator].filter(Boolean), {
-        opacity: 0,
+        autoAlpha: 0,
+        ease: "none",
         scrollTrigger: {
           trigger: section,
           start: "top top",
-          end: "top top-=200",
+          end: () => `top top-=${window.innerWidth * 0.12}`,
           scrub: true,
           invalidateOnRefresh: true,
         },
