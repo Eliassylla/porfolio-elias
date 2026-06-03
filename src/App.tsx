@@ -9,6 +9,7 @@ import { Header } from "@/components/layout/Header";
 import { SkipToContent } from "@/components/ui/SkipToContent";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { lazy, Suspense } from "react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import { LoadingFallback } from "@/components/ui/LoadingFallback";
 import { SmoothScroll } from "@/components/SmoothScroll";
 
@@ -28,6 +29,7 @@ const App = () => (
         <TooltipProvider>
           <Toaster />
           <Sonner />
+          <SpeedInsights />
           <BrowserRouter>
             <SkipToContent />
             <Header />
