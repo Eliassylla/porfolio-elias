@@ -8,25 +8,19 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 
 import Lottie from "lottie-react";
-import skillsLight from "@/video/animation.json";
+import skillsLight from "@/video/skills.json";
 import skillsDark from "@/video/skills-dark.json";
-import agentsLight from "@/video/animation-2.json";
+import agentsLight from "@/video/agents.json";
 import agentsDark from "@/video/agents-dark.json";
-import { AutomationSvg } from "@/components/AutomationSvg";
+import automationLight from "@/video/automation.json";
+import automationDark from "@/video/automation-dark.json";
 import { businessInfo } from "@/data/business";
 import { GsapTextReveal } from "@/components/ui/gsap-text-reveal";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
-const serviceImages: Record<string, string> = {
-  automatisations: "/automation-2.svg",
-  skills: "/images/infographics/skills.png",
-  "agents-ia": "/images/infographics/agents-ia.png",
-};
-
 const serviceItems = businessInfo.services.map((service) => ({
   ...service,
-  imageSrc: serviceImages[service.id],
   href: "/contact",
 }));
 
@@ -49,11 +43,6 @@ export default function WhatIBuildSection() {
   const panelStyle = isDark
     ? { background: "#f5f6f6", border: "1px solid rgba(0,0,0,0.08)" }
     : { background: "#010102", border: "1px solid rgba(255,255,255,0.10)" };
-  // Carte média interne (même logique que les Lottie) : couleur de la page,
-  // avec un contenu qui contraste avec elle.
-  const innerCardStyle = isDark
-    ? { background: "#0f1011", border: "1px solid rgba(255,255,255,0.08)" }
-    : { background: "#ffffff", border: "1px solid rgba(0,0,0,0.06)" };
 
   const activeService =
     serviceItems.find((service) => service.id === activeServiceId) ??
@@ -182,21 +171,16 @@ export default function WhatIBuildSection() {
             {/* Cadran encadré — panneau inversé vs la page (sombre en light, clair en dark),
                 contenu animé qui contraste toujours avec le panneau */}
             <div
-              className="relative overflow-hidden rounded-2xl p-3 shadow-md md:p-4"
+              className="relative overflow-hidden rounded-2xl shadow-md"
               style={panelStyle}
             >
-              <div className="relative mx-auto flex aspect-[16/9] w-full items-center justify-center rounded-3xl">
+              <div className="relative mx-auto flex aspect-[16/9] w-full items-center justify-center">
                 {activeService.id === "automatisations" && (
-                  <div
-                    className="flex w-[94%] items-center justify-center rounded-2xl p-3 md:w-[88%] md:p-5"
-                    style={innerCardStyle}
-                  >
-                    <AutomationSvg
-                      src={isDark ? "/automation-2-dark.svg" : "/automation-2.svg"}
-                      labelColor={isDark ? "#e5e7eb" : "#374151"}
-                      className="w-full [&>svg]:h-auto [&>svg]:w-full"
-                    />
-                  </div>
+                  <Lottie
+                    animationData={isDark ? automationDark : automationLight}
+                    loop={false}
+                    className="h-full w-full"
+                  />
                 )}
                 {activeService.id === "skills" && (
                   <Lottie
