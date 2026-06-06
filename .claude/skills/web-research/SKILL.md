@@ -13,7 +13,7 @@ description: >
   Toujours utiliser ce skill plutôt que de répondre de mémoire quand la
   question porte sur des versions, des comparaisons de librairies, des prix,
   de l'actualité tech, ou tout sujet pouvant avoir évolué récemment.
-compatibility: Requires firecrawl CLI (npm install -g @mendable/firecrawl-js). Auth : FIRECRAWL_API_KEY chargée automatiquement via scripts/firecrawl.sh (lit ~/.claude/settings.json, puis .env projet en fallback).
+compatibility: Requires firecrawl CLI (npm install -g firecrawl-cli — fournit le binaire `firecrawl`, à ne PAS confondre avec le SDK `@mendable/firecrawl-js`). Auth : FIRECRAWL_API_KEY chargée automatiquement via scripts/firecrawl.sh (lit ~/.claude/settings.json, puis .env projet en fallback).
 argument-hint: "<query>, <url>, ou agent <prompt>"
 ---
 
@@ -33,13 +33,18 @@ Le script lit la clé depuis `~/.claude/settings.json` en priorité — fonction
 
 ```
 Je connais déjà les URLs ?
-├── Oui → Mode Scrape (1 URL) ou Mode Batch (plusieurs URLs)
+├── Oui → Mode Scrape (1+ URLs, scrapées en parallèle)
+│         └── Page JS / contenu derrière un clic ou un onglet → + Mode Interact
 └── Non
     ├── Sujet simple, URL unique probable → Mode Search → puis Scrape
-    ├── Explorer toutes les pages d'un site → Mode Map → puis Batch Scrape
+    ├── Lister les URLs d'un site → Mode Map  (récupérer leur contenu → Mode Crawl)
     ├── Recherche autonome multi-sources complexe → Mode Agent
-    └── Fichier local (PDF, DOCX, XLSX) → Mode Parse
+    ├── Surveiller une page dans le temps (changelog, pricing, blog) → Mode Monitor
+    └── Fichier local (PDF, DOCX, XLSX…) → Mode Parse
 ```
+
+Détail complet des commandes et flags → `references/firecrawl-cli-commands.md`
+Diagnostic rapide → `firecrawl --status` (auth, concurrence, crédits) · `firecrawl doctor`
 
 ---
 
@@ -129,6 +134,54 @@ firecrawl map "https://gsap.com/docs/v3/Plugins/SplitText"
 firecrawl scrape "<url1>" "<url2>" "<url3>" --only-main-content -Q "<question>"
 ```
 Plusieurs URLs en argument → scraped en parallèle, résultats sauvegardés dans `.firecrawl/`.
+
+---
+
+## Mode Crawl
+
+**Quand :** récupérer le **contenu** de plusieurs pages d'un site (là où `map` ne fait que lister les URLs).
+
+```bash
+firecrawl crawl "<url>" --include-paths "/docs" --limit 20 --wait --progress
+```
+
+| Besoin | Flag |
+|---|---|
+| Limiter le volume | `--limit <n>` / `--max-depth <n>` |
+| Cibler / exclure des chemins | `--include-paths` / `--exclude-paths` |
+| Tout le domaine, sous-domaines | `--crawl-entire-domain` / `--allow-subdomains` |
+| Options de scrape par page | `--scrape-options <json>` |
+| Attendre la fin + barre de progression | `--wait --progress` |
+
+---
+
+## Mode Monitor
+
+**Quand :** surveiller une page dans le temps (changelog, page pricing, blog) avec détection de changement et alerte email.
+
+```bash
+firecrawl monitor create --name "Resend changelog" \
+  --goal "Notifier en cas de nouvelle fonctionnalité" \
+  --schedule "every 1 day" --page "https://resend.com/changelog" \
+  --email <email>
+```
+
+Sous-commandes : `list`, `get <id>`, `update <id> --state paused`, `run <id>` (check immédiat), `checks <id>`, `delete <id>`.
+
+---
+
+## Mode Interact
+
+**Quand :** la page nécessite une interaction (clic, onglet, contenu JS) avant d'extraire l'info.
+
+```bash
+firecrawl scrape "<url>"                       # 1. scrape (l'id est mémorisé)
+firecrawl interact "Clique sur l'onglet Annuel" # 2. action en langage naturel
+firecrawl interact "Quel est le prix du plan Pro ?"
+firecrawl interact stop                         # 3. fermer la session
+```
+
+Exécution de code possible : `-c "<code>"` avec `--node` (Playwright, défaut), `--python` ou `--bash`.
 
 ---
 
