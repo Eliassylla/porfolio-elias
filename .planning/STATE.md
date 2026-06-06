@@ -26,6 +26,7 @@ See: .planning/PROJECT.md (updated 2026-06-05)
 ## Stratégie V1 / V2 (re-scope 2026-06-05)
 
 - **V1 (livrer maintenant)** : landing seule qui convertit en RDV. Cal.com branché sur les CTAs, navbar réduite (projets + contact cachés), copy/SEO essentiels. Aucune dépendance backend.
+- **V1.5 (après mise en ligne)** : section « Systèmes types » (option A — section dédiée juste APRÈS WhatIBuild) montrant des exemples concrets de systèmes. Contenu TBD (réutiliser les exemples de `business.ts`). À ne pas confondre avec la page « Mes projets » (V2, vraies preuves).
 - **V2 (itérer)** : page projets (DB Supabase), formulaire contact (Edge Function), lead nurturing (Resend Automations + webhook Cal.com).
 
 Voir `ROADMAP.md` pour le détail des phases annotées V1/V2, et `research/rdv-email-nurturing-2026.md` pour l'architecture email/nurturing.
@@ -53,6 +54,8 @@ Décisions complètes dans PROJECT.md (table Key Decisions). Récentes :
 - [2026-06-05]: **Stratégie V1-first** — livrer une landing minimale qui prend des RDV avant de construire projets/contact/nurturing.
 - [2026-06-05]: **Lien Cal.com obtenu** : `cal.com/elias-sylla` → débloque les CTAs de prise de RDV.
 - [2026-06-05]: **Lead nurturing via Resend Automations** (dispo sur le compte) + webhook Cal.com gratuit → **pas** de Vercel Workflow SDK (sur-ingénierie à ce stade).
+- [2026-06-06]: **Offre = trio Automatisations / Skills / Agents IA** (PAS de "Landing pages" comme service — recherche 2026 : le web/landing est un autre métier qui dilue le positionnement opérationnel). Les projets du workspace = preuves de compétence, pas le catalogue.
+- [2026-06-06]: **Trio conservé tel quel** — Automatisations / Skills / Agents IA, **sans renommage** des labels (Skills = terme connu ; Agents IA = gardé). Seuls les **visuels Lottie** sont à refaire : Automatisations + Agents IA (l'illustration Agents IA montrera différents agents IA).
 
 ### Blockers/Concerns
 
