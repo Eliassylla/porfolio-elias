@@ -4,6 +4,17 @@
 
 Transformer un template photographe cassé (70% visuel, 0% fonctionnel) en portfolio B2B opérationnel pour consultant en automatisations agentiques. La progression suit une logique UX-first : le copy et le visuel d'abord (impact immédiat sur les visiteurs), puis le contenu réel avec Cal.com et screenshots quand ils sont disponibles, ensuite l'infrastructure email (Supabase + Resend), et enfin le nettoyage technique. Un visiteur qualifié doit pouvoir comprendre ce qu'Elias fait, voir des preuves concrètes, et réserver un appel découverte en moins de 2 minutes.
 
+## Périmètre milestone — V1 (ship) vs V2 (iterate)
+
+*Re-scope 2026-06-05.* Plutôt que de tout construire avant de publier, on livre d'abord une **V1 minimale** et on itère. Les 4 phases ci-dessous restent valides ; elles sont désormais **annotées V1 ou V2**.
+
+- **V1 — livrer maintenant** : une landing seule qui convertit en RDV. Cal.com branché sur les CTAs, navbar réduite (onglets « Mes projets » et « Contact » cachés), copy/SEO essentiels, fondation visuelle déjà en place. **Aucune dépendance backend** (Cal.com gère RDV + email de confirmation).
+- **V2 — itérer après les premiers prospects** : page projets (DB Supabase), formulaire contact (Edge Function), lead nurturing (Resend Automations + webhook Cal.com gratuit). **Pas** de Vercel Workflow SDK (sur-ingénierie à ce stade).
+
+Architecture email/nurturing détaillée et sourcée : `research/rdv-email-nurturing-2026.md` (2026-06-05).
+
+**Déjà en place (fondation V1, hors suivi GSD) :** refonte homepage (Hero GSAP, cadran Services Lottie, Méthode, Marquee, CTA), dark/light mode corrigé, nettoyage template photographe (Sarah Mitchell + About supprimées), FeaturedProjects/Newsletter retirées de la landing.
+
 ## Phases
 
 **Phase Numbering:**
@@ -12,10 +23,10 @@ Transformer un template photographe cassé (70% visuel, 0% fonctionnel) en portf
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Copywriting & SEO** - Réécrire le copy de conversion et ajouter les meta/OG/structured data
-- [ ] **Phase 2: Contenu & CTAs** - Remplir business.ts avec les vrais services/projets/bio et connecter les 4 CTAs Cal.com
-- [ ] **Phase 3: Infrastructure Email** - Construire les Edge Functions Supabase + Resend pour le formulaire et la newsletter
-- [ ] **Phase 4: Nettoyage & Polish** - Supprimer le code mort, aligner les types TypeScript, corriger le dark/light mode
+- [ ] **Phase 1: Copywriting & SEO** — `V1` copy/SEO essentiels de la landing ; le copy du formulaire contact passe en V2
+- [ ] **Phase 2: Contenu & CTAs** — **scindée** : `V1` = brancher Cal.com sur les CTAs (priorité) ; `V2` = vrais projets + screenshots (DB Supabase)
+- [ ] **Phase 3: Infrastructure Email** — `V2` Edge Functions Supabase + Resend (formulaire contact, nurturing via Resend Automations + webhook Cal.com)
+- [ ] **Phase 4: Nettoyage & Polish** — `V1`/`V2` en continu (le nettoyage du cadran et du dark mode est déjà largement fait)
 
 ## Phase Details
 

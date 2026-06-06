@@ -20,16 +20,16 @@ Un visiteur qualifié doit pouvoir comprendre ce qu'Elias fait, voir des preuves
 
 ### Active
 
-- [ ] Formulaire de contact fonctionnel (React Hook Form + Resend via Supabase Edge Function)
-- [ ] CTA principal "Réserver un appel" connecté à Cal.com (remplace placeholder `#calendly`)
-- [ ] Newsletter signup connecté à Supabase (table `subscribers`) + email de bienvenue via Resend
-- [ ] Portfolio avec projets réels documentés (automatisations n8n + outils Claude Code)
-- [ ] Page About correcte (remplace contenu photographe "Sarah Mitchell")
-- [ ] Contenu business.ts à jour (vrais services, vrais projets, vraie bio)
-- [ ] Nettoyage code mort (Index.tsx, projects.ts, photographer.ts, About.tsx legacy)
-- [ ] Types TypeScript alignés avec le domaine automation (remplace types photographe)
-- [ ] Images projets réelles ou screenshots workflows
-- [ ] Dark/light mode polish
+- [ ] `V1` CTA principal "Réserver un appel" connecté à Cal.com (`cal.com/elias-sylla`) sur Hero + CTA
+- [ ] `V1` Navbar réduite (cacher « Mes projets » + « Contact ») + désactiver routes /services /portfolio /contact
+- [ ] `V1` Copy/SEO essentiels de la landing
+- [ ] `V2` Formulaire de contact fonctionnel (React Hook Form + Resend via Supabase Edge Function)
+- [ ] `V2` Lead nurturing : webhook Cal.com → Edge Function → Resend Automations
+- [ ] `V2` Portfolio avec projets réels (DB Supabase) + screenshots workflows
+- [ ] `V2` Contenu business.ts à jour (vrais services, vrais projets, vraie bio)
+- [x] ~~Page About / contenu "Sarah Mitchell"~~ — supprimée
+- [ ] Nettoyage code mort restant (Index.tsx, projects.ts, photographer.ts legacy) + types TypeScript domaine automation
+- [x] ~~Dark/light mode~~ — corrigé (polish ponctuel possible)
 
 ### Out of Scope
 
@@ -70,23 +70,29 @@ Un visiteur qualifié doit pouvoir comprendre ce qu'Elias fait, voir des preuves
 
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
-| Cal.com plutôt que Calendly | Gratuit, open source, Google Meet natif, pas de branding forcé | — Pending |
-| Resend pour emails | API simple, 3000 emails/mois gratuits, excellent deliverability, SDK officiel | — Pending |
-| Supabase Edge Functions pour backend | Évite un serveur séparé, gratuit, cohérent avec la stack Supabase existante | — Pending |
-| Formulaire de contact via Resend (remplace Formspree) | Contrôle total, pas de dépendance externe, même stack que newsletter | — Pending |
-| Projets documentés avec angle "problème → solution → résultat" | Les clients PME comprennent les résultats, pas la tech | — Pending |
+| Cal.com plutôt que Calendly | Gratuit, open source, Google Meet natif, pas de branding forcé | ✓ Resolved — lien : `cal.com/elias-sylla` |
+| Resend pour emails | API simple, 3000 emails/mois gratuits, excellent deliverability, SDK officiel | ✓ Resolved (mise en place V2) |
+| Supabase Edge Functions pour backend | Évite un serveur séparé, gratuit, cohérent avec la stack Supabase existante | ✓ Resolved (mise en place V2) |
+| Formulaire de contact via Resend (remplace Formspree) | Contrôle total, pas de dépendance externe, même stack que newsletter | ✓ Resolved (V2) |
+| Projets documentés avec angle "problème → solution → résultat" | Les clients PME comprennent les résultats, pas la tech | ✓ Resolved (contenu V2) |
+| **Stratégie V1-first** (2026-06-05) | Livrer une landing minimale qui prend des RDV avant de construire projets/contact/nurturing — valider l'intérêt avant d'investir | ✓ Resolved |
+| **Lead nurturing via Resend Automations** (pas Vercel Workflow SDK) | Resend Automations dispo sur le compte + webhook Cal.com gratuit suffisent ; Workflow SDK = sur-ingénierie (déploiement compute sur Vercel, incompatible front statique) | ✓ Resolved (V2) — voir `research/rdv-email-nurturing-2026.md` |
+| **FeaturedProjects + Newsletter retirées de la landing** | Pas de projets réels ni de newsletter prêts ; une section vide nuit à la conversion | ✓ Resolved |
 
 ## Current Milestone: v1.0 Portfolio Fonctionnel
 
-**Goal:** Transformer le template photographe cassé en portfolio B2B opérationnel qui convertit les visiteurs en prospects via Cal.com, formulaire de contact et newsletter.
+**Goal:** Transformer le template photographe cassé en portfolio B2B opérationnel qui convertit les visiteurs en prospects. Livré en deux temps (re-scope 2026-06-05) :
 
-**Target features:**
-- Contenu business réel (business.ts, About, Portfolio)
-- Nettoyage code mort et types TypeScript domaine automation
-- CTA "Réserver un appel" → Cal.com
-- Formulaire de contact fonctionnel (Resend via Supabase Edge Function)
-- Newsletter signup → Supabase + email de bienvenue
-- Dark/light mode polish
+**V1 — livrer maintenant (landing qui prend des RDV) :**
+- CTA "Réserver un appel" → Cal.com (`cal.com/elias-sylla`)
+- Navbar réduite (projets + contact cachés) + routes désactivées
+- Copy/SEO essentiels — fondation visuelle déjà en place
+
+**V2 — itérer après les premiers prospects :**
+- Page projets réels (DB Supabase) + screenshots workflows
+- Formulaire de contact (Resend via Supabase Edge Function)
+- Lead nurturing (Resend Automations + webhook Cal.com) — voir `research/rdv-email-nurturing-2026.md`
+- Nettoyage code mort restant + types TypeScript domaine automation
 
 ---
-*Last updated: 2026-03-10 after milestone v1.0 initialization*
+*Last updated: 2026-06-05 — re-scope V1/V2*

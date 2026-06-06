@@ -2,10 +2,10 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: planning
-stopped_at: Phase 1 context gathered
-last_updated: "2026-03-17T11:36:55.171Z"
-last_activity: "2026-03-16 — Phases 1 et 2 échangées (UX-first) : Phase 1 = Copywriting & SEO, Phase 2 = Contenu & CTAs"
+status: in_progress
+stopped_at: V1 cadré — prêt à implémenter la landing + Cal.com
+last_updated: "2026-06-05T00:00:00.000Z"
+last_activity: "2026-06-05 — Re-scope V1/V2 : V1 = livrer une landing minimale qui prend des RDV via Cal.com ; projets, contact et nurturing reportés en V2"
 progress:
   total_phases: 4
   completed_phases: 0
@@ -18,62 +18,49 @@ progress:
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-03-10)
+See: .planning/PROJECT.md (updated 2026-06-05)
 
 **Core value:** Un visiteur qualifié doit pouvoir comprendre ce qu'Elias fait, voir des preuves concrètes de compétence, et réserver un appel découverte — en moins de 2 minutes.
-**Current focus:** Phase 1 — Copywriting & SEO
+**Current focus:** **V1** — livrer une landing minimale qui prend des RDV via Cal.com.
+
+## Stratégie V1 / V2 (re-scope 2026-06-05)
+
+- **V1 (livrer maintenant)** : landing seule qui convertit en RDV. Cal.com branché sur les CTAs, navbar réduite (projets + contact cachés), copy/SEO essentiels. Aucune dépendance backend.
+- **V2 (itérer)** : page projets (DB Supabase), formulaire contact (Edge Function), lead nurturing (Resend Automations + webhook Cal.com).
+
+Voir `ROADMAP.md` pour le détail des phases annotées V1/V2, et `research/rdv-email-nurturing-2026.md` pour l'architecture email/nurturing.
 
 ## Current Position
 
-Phase: 1 of 4 (Copywriting & SEO)
-Plan: 0 of 2 in current phase
-Status: Ready to plan
-Last activity: 2026-03-16 — Phases 1 et 2 échangées (UX-first) : Phase 1 = Copywriting & SEO, Phase 2 = Contenu & CTAs
+Focus: **V1 — landing + Cal.com**
+Status: cadré, prêt à implémenter (branche dédiée `feat/v1-landing-cal`)
+Last activity: 2026-06-05 — re-scope V1/V2
 
-Progress: [░░░░░░░░░░] 0%
+### Fondations déjà en place (hors suivi GSD)
 
-## Performance Metrics
-
-**Velocity:**
-- Total plans completed: 0
-- Average duration: —
-- Total execution time: 0 hours
-
-**By Phase:**
-
-| Phase | Plans | Total | Avg/Plan |
-|-------|-------|-------|----------|
-| - | - | - | - |
-
-**Recent Trend:**
-- Last 5 plans: —
-- Trend: —
-
-*Updated after each plan completion*
+- Refonte complète de la homepage : Hero (GSAP), section Services (cadran Lottie adaptatif au thème), Méthode, Marquee, CTA.
+- FeaturedProjects et Newsletter **retirées** de la landing (réintroduites en V2 si besoin).
+- Dark/light mode corrigé + correctifs mobile.
+- Nettoyage template photographe : « Sarah Mitchell » et page About supprimées.
+- Cadran « automatisations » migré SVG → Lottie + nettoyage du code mort associé.
 
 ## Accumulated Context
 
 ### Decisions
 
-Decisions are logged in PROJECT.md Key Decisions table.
-Recent decisions affecting current work:
+Décisions complètes dans PROJECT.md (table Key Decisions). Récentes :
 
-- [Init]: Cal.com URL manquante — BLOQUEUR Phase 1. Doit être obtenue d'Elias avant de coder
-- [Init]: Resend Audience ID manquant — BLOQUEUR Phase 3. Créer dans Resend dashboard avant Phase 3
-- [Init]: Brownfield rule — remplacer avant supprimer. Build TypeScript doit passer à chaque étape
-
-### Pending Todos
-
-None yet.
+- [2026-06-05]: **Stratégie V1-first** — livrer une landing minimale qui prend des RDV avant de construire projets/contact/nurturing.
+- [2026-06-05]: **Lien Cal.com obtenu** : `cal.com/elias-sylla` → débloque les CTAs de prise de RDV.
+- [2026-06-05]: **Lead nurturing via Resend Automations** (dispo sur le compte) + webhook Cal.com gratuit → **pas** de Vercel Workflow SDK (sur-ingénierie à ce stade).
 
 ### Blockers/Concerns
 
-- **BLOQUEUR Phase 1**: URL Cal.com d'Elias (`cal.com/[user]/[event]`) non disponible — sans elle, CONT-01 est impossible et les 4 CTAs restent cassés
-- **BLOQUEUR Phase 3**: Audience ID Resend non créé — requis par `resend.contacts.create()` avant de coder l'Edge Function `add-subscriber`
-- **À vérifier Phase 3**: Domaine email vérifié dans Resend (éviter spam)
+- **À vérifier (V2)** : le tier exact de « Resend Automations » en gratuit (à confirmer dans le dashboard Resend avant de bâtir le nurturing dessus).
+- **À vérifier (V2)** : domaine email vérifié dans Resend (anti-spam).
 
 ## Session Continuity
 
-Last session: 2026-03-17T11:36:55.160Z
-Stopped at: Phase 1 context gathered
-Resume file: .planning/phases/01-copywriting-seo/01-CONTEXT.md
+Last session: 2026-06-05
+Stopped at: V1 cadré — prêt à implémenter
+Resume: créer la branche `feat/v1-landing-cal` (navbar réduite + Cal.com sur Hero/CTA + désactivation routes /services /portfolio /contact)

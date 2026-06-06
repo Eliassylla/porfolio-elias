@@ -56,29 +56,31 @@
 
 ## Traceability
 
-| Requirement | Phase | Status |
-|-------------|-------|--------|
-| COPY-01 | Phase 1 | Pending |
-| COPY-02 | Phase 1 | Pending |
-| COPY-03 | Phase 1 | Pending |
-| SEO-01 | Phase 1 | Pending |
-| SEO-02 | Phase 1 | Pending |
-| SEO-03 | Phase 1 | Pending |
-| CONT-01 | Phase 2 | Pending |
-| CONT-02 | Phase 2 | Pending |
-| CONT-03 | Phase 2 | Pending |
-| EMAIL-01 | Phase 3 | Pending |
-| EMAIL-02 | Phase 3 | Pending |
-| EMAIL-03 | Phase 3 | Pending |
-| CLEAN-01 | Phase 4 | Pending |
-| CLEAN-02 | Phase 4 | Pending |
-| CLEAN-03 | Phase 4 | Pending |
+*Re-scope 2026-06-05 : colonne Milestone (V1 = livrer la landing qui prend des RDV ; V2 = projets, contact, nurturing).*
+
+| Requirement | Phase | Milestone | Status |
+|-------------|-------|-----------|--------|
+| COPY-01 (Hero) | Phase 1 | **V1** | Pending |
+| COPY-02 (sections landing) | Phase 1 | **V1** | Pending |
+| COPY-03 (copy formulaire contact) | Phase 1 | V2 | Pending |
+| SEO-01 | Phase 1 | **V1** | Pending |
+| SEO-02 | Phase 1 | **V1** | Pending |
+| SEO-03 | Phase 1 | **V1** | Pending |
+| CONT-01 (Cal.com sur CTAs) | Phase 2 | **V1** | Pending — priorité, lien `cal.com/elias-sylla` |
+| CONT-02 (business.ts : services/bio) | Phase 2 | **V1** | Pending (partie projets → V2) |
+| CONT-03 (screenshots case studies) | Phase 2 | V2 | Pending |
+| EMAIL-01 (Edge Function contact) | Phase 3 | V2 | Pending |
+| EMAIL-02 (table contact_submissions) | Phase 3 | V2 | Pending |
+| EMAIL-03 (newsletter/nurturing) | Phase 3 | V2 | Pending |
+| CLEAN-01 (code mort legacy) | Phase 4 | V2 | Pending (cadran déjà nettoyé) |
+| CLEAN-02 (types automation) | Phase 4 | V2 | Pending |
+| CLEAN-03 (dark/light mode) | Phase 4 | **V1** | ✓ Fait (corrigé) |
 
 **Coverage:**
-- v1.0 requirements: 15 total
-- Mapped to phases: 15 (Phase 1: 3, Phase 2: 6, Phase 3: 3, Phase 4: 3)
-- Unmapped: 0 ✓
+- v1.0 requirements: 15 total — mappés à 100%
+- **V1 (livrer maintenant)** : COPY-01, COPY-02, SEO-01/02/03, CONT-01, CONT-02 (services/bio), CLEAN-03 ✓ → ~8 items
+- **V2 (itérer)** : COPY-03, CONT-02 (projets), CONT-03, EMAIL-01/02/03, CLEAN-01, CLEAN-02
 
 ---
 *Requirements defined: 2026-03-10*
-*Last updated: 2026-03-10 after roadmap creation — traceability complete*
+*Last updated: 2026-06-05 — re-scope V1/V2 (colonne Milestone ajoutée)*
