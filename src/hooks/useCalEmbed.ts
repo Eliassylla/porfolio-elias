@@ -24,6 +24,9 @@ export function useCalEmbed() {
         hideEventTypeDetails: false,
         layout: "month_view",
       });
+      // Précharge le calendrier en arrière-plan dès l'ouverture de la page
+      // pour que le popup s'affiche quasi instantanément au clic.
+      cal("preload", { calLink: businessInfo.booking.calLink });
     })();
   }, [resolvedTheme]);
 
