@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{width:1200px;height:630px;}
+  body{
+    font-family:'Satoshi',-apple-system,'Helvetica Neue',Arial,sans-serif;
+    background:#0e0f12;
+    color:#f4f4f5;
+    position:relative;
+    overflow:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  /* Halo de marque indigo en haut */
+  .glow{
+    position:absolute;top:-280px;left:50%;transform:translateX(-50%);
+    width:1100px;height:560px;border-radius:50%;
+    background:radial-gradient(circle, rgba(94,106,210,0.30) 0%, rgba(94,106,210,0) 65%);
+    filter:blur(8px);
+  }
+  .grid{
+    position:absolute;inset:0;
+    background-image:linear-gradient(rgba(255,255,255,0.035) 1px,transparent 1px),
+                     linear-gradient(90deg,rgba(255,255,255,0.035) 1px,transparent 1px);
+    background-size:60px 60px;
+    mask-image:radial-gradient(circle at 50% 0%, #000 0%, transparent 75%);
+  }
+  .wrap{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:center;padding:0 92px;}
+  .pill{
+    display:inline-flex;align-self:flex-start;align-items:center;gap:10px;
+    border:1px solid rgba(255,255,255,0.14);
+    background:rgba(255,255,255,0.04);
+    border-radius:999px;padding:11px 20px;
+    font-size:21px;font-weight:500;letter-spacing:.02em;color:#c9c9d1;
+    margin-bottom:34px;
+  }
+  .pill .dot{width:9px;height:9px;border-radius:50%;background:#828fff;box-shadow:0 0 14px #828fff;}
+  h1{
+    font-size:82px;font-weight:900;line-height:1.04;letter-spacing:-.03em;
+    max-width:18ch;
+  }
+  h1 .accent{color:#828fff;}
+  p{
+    margin-top:30px;font-size:29px;line-height:1.5;color:#a1a1aa;font-weight:400;
+    max-width:30ch;
+  }
+  .foot{
+    position:absolute;left:92px;bottom:60px;z-index:2;
+    display:flex;align-items:center;gap:16px;
+  }
+  .foot .name{font-size:27px;font-weight:700;color:#f4f4f5;}
+  .foot .sep{width:5px;height:5px;border-radius:50%;background:#52525b;}
+  .foot .role{font-size:25px;font-weight:400;color:#71717a;}
+</style>
+</head>
+<body>
+  <div class="glow"></div>
+  <div class="grid"></div>
+  <div class="wrap">
+    <div class="pill"><span class="dot"></span>Automatisations · Skills · Agents IA</div>
+    <h1>Vos opérations <span class="accent">méritent mieux.</span></h1>
+    <p>Des systèmes simples qui fiabilisent vos relances, votre suivi client et votre administratif.</p>
+  </div>
+  <div class="foot">
+    <span class="name">Elias Sylla</span>
+    <span class="sep"></span>
+    <span class="role">Consultant en automatisations</span>
+  </div>
+</body>
+</html>
