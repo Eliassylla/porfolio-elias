@@ -41,8 +41,8 @@ export default function WhatIBuildSection() {
 
   // Panneau inversé + couleur de contenu/label qui contraste avec le panneau
   const panelStyle = isDark
-    ? { background: "#f5f6f6", border: "1px solid rgba(0,0,0,0.08)" }
-    : { background: "#010102", border: "1px solid rgba(255,255,255,0.10)" };
+    ? { background: "#f5f6f6" }
+    : { background: "#010102" };
 
   const activeService =
     serviceItems.find((service) => service.id === activeServiceId) ??
