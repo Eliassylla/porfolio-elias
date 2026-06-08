@@ -1,6 +1,5 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
@@ -8,7 +7,6 @@ import { SplitText } from 'gsap/SplitText';
 import { useScrollPosition } from '@/hooks/useScrollPosition';
 import { ThemeToggle } from './ThemeToggle';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { useCalEmbed } from '@/hooks/useCalEmbed';
 import { cn } from '@/lib/utils';
 
@@ -22,7 +20,6 @@ const navLinks: { name: string; href: string }[] = [];
 export function Header() {
   const location = useLocation();
   const { isScrolled } = useScrollPosition();
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const logoRef = useRef<HTMLAnchorElement>(null);
   const cal = useCalEmbed();
 
@@ -98,45 +95,10 @@ export function Header() {
             </div>
 
             <div className="md:hidden flex items-center gap-2">
+              <Button {...cal} size="sm" variant="default">
+                Demander un audit
+              </Button>
               <ThemeToggle />
-              <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
-                <SheetTrigger asChild>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="size-9"
-                    aria-label="Ouvrir le menu"
-                  >
-                    <Menu className="size-5" />
-                  </Button>
-                </SheetTrigger>
-                <SheetContent side="right" className="w-full sm:w-80">
-                  <nav className="flex flex-col gap-6 mt-8">
-                    {navLinks.map((link) => (
-                      <Link
-                        key={link.href}
-                        to={link.href}
-                        onClick={() => setMobileMenuOpen(false)}
-                        className={cn(
-                          'text-lg font-medium text-left',
-                          location.pathname === link.href
-                            ? 'text-foreground'
-                            : 'text-muted-foreground hover:text-foreground'
-                        )}
-                      >
-                        {link.name}
-                      </Link>
-                    ))}
-                    <Button
-                      {...cal}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="mt-4 w-full"
-                    >
-                      Demander un audit
-                    </Button>
-                  </nav>
-                </SheetContent>
-              </Sheet>
             </div>
           </div>
 
