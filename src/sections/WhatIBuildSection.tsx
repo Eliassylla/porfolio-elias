@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, Plus } from "lucide-react";
-import { Link } from "react-router-dom";
 import { useTheme } from "next-themes";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -16,13 +15,11 @@ import automationLight from "@/video/automation.json";
 import automationDark from "@/video/automation-dark.json";
 import { businessInfo } from "@/data/business";
 import { GsapTextReveal } from "@/components/ui/gsap-text-reveal";
+import { useCalEmbed } from "@/hooks/useCalEmbed";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
-const serviceItems = businessInfo.services.map((service) => ({
-  ...service,
-  href: "/contact",
-}));
+const serviceItems = businessInfo.services;
 
 const headline = "Transformer vos tâches répétitives en outils";
 
@@ -31,6 +28,7 @@ export default function WhatIBuildSection() {
   const cardRef = useRef<HTMLElement>(null);
   const hasMounted = useRef(false);
   const [activeServiceId, setActiveServiceId] = useState(serviceItems[0].id);
+  const cal = useCalEmbed();
 
   // Thème (next-themes). Le cadran s'inverse : panneau sombre en light, clair en dark.
   // mounted évite le flash avant hydratation de next-themes.
@@ -213,13 +211,14 @@ export default function WhatIBuildSection() {
               </p>
 
               <div className="mt-8 flex items-center justify-between border-t border-border pt-6 dark:border-white/10">
-                <Link
-                  to={activeService.href}
+                <button
+                  {...cal}
+                  type="button"
                   className="group inline-flex items-center gap-2 text-sm font-medium text-foreground transition hover:text-muted-foreground"
                 >
                   Décrire ce besoin
                   <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </Link>
+                </button>
                 <button
                   type="button"
                   aria-label={`Voir les détails : ${activeService.title}`}

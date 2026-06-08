@@ -1,17 +1,18 @@
 import { useRef } from "react";
 import { ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import { Button } from "@/components/ui/button";
 import { GsapTextReveal } from "@/components/ui/gsap-text-reveal";
+import { useCalEmbed } from "@/hooks/useCalEmbed";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function CTASection() {
   const sectionRef = useRef<HTMLElement>(null);
+  const cal = useCalEmbed();
 
   useGSAP(
     () => {
@@ -83,16 +84,15 @@ export default function CTASection() {
               claire.
             </GsapTextReveal>
             <div className="cta-action mt-10">
-              <Link to="/contact">
-                <Button
-                  size="lg"
-                  variant="secondary"
-                  className="h-auto min-h-12 rounded-lg px-5 py-3 text-center font-semibold whitespace-normal dark:bg-white dark:text-black dark:hover:bg-white/90 sm:whitespace-nowrap"
-                >
-                  Décrire mon besoin
-                  <ArrowRight className="ml-2 size-5" />
-                </Button>
-              </Link>
+              <Button
+                {...cal}
+                size="lg"
+                variant="secondary"
+                className="h-auto min-h-12 rounded-lg px-5 py-3 text-center font-semibold whitespace-normal dark:bg-white dark:text-black dark:hover:bg-white/90 sm:whitespace-nowrap"
+              >
+                Décrire mon besoin
+                <ArrowRight className="ml-2 size-5" />
+              </Button>
             </div>
           </div>
         </div>

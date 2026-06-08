@@ -7,6 +7,11 @@ export const businessInfo = {
   heroCta: 'Demander un audit',
   email: 'contact@elias-automation.com',
   location: 'France',
+  // Lien de prise de RDV Cal.com — slug seul (ouvre cal.com/<calLink> en popup).
+  // ⚠️ Vérifier que ce slug ouvre bien le bon calendrier avant la mise en ligne.
+  booking: {
+    calLink: 'elias-sylla',
+  },
   socialLinks: {
     linkedin: 'https://linkedin.com/in/elias',
     youtube: 'https://youtube.com/@elias',

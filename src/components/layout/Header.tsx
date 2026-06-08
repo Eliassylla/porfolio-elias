@@ -9,6 +9,7 @@ import { useScrollPosition } from '@/hooks/useScrollPosition';
 import { ThemeToggle } from './ThemeToggle';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { useCalEmbed } from '@/hooks/useCalEmbed';
 import { cn } from '@/lib/utils';
 
 gsap.registerPlugin(SplitText);
@@ -24,6 +25,7 @@ export function Header() {
   const { isScrolled } = useScrollPosition();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const logoRef = useRef<HTMLAnchorElement>(null);
+  const cal = useCalEmbed();
 
   useGSAP(() => {
     if (location.pathname !== '/') return;
@@ -90,11 +92,9 @@ export function Header() {
           {/* Droite : CTA + ThemeToggle (desktop) / Menu (mobile) */}
           <div className="flex items-center justify-end gap-3">
             <div className="hidden md:flex items-center gap-3">
-              <Link to="/contact">
-                <Button size="sm" variant="default">
-                  Demander un audit
-                </Button>
-              </Link>
+              <Button {...cal} size="sm" variant="default">
+                Demander un audit
+              </Button>
               <ThemeToggle />
             </div>
 
@@ -128,11 +128,13 @@ export function Header() {
                         {link.name}
                       </Link>
                     ))}
-                    <Link to="/contact" onClick={() => setMobileMenuOpen(false)}>
-                      <Button className="mt-4 w-full">
-                        Demander un audit
-                      </Button>
-                    </Link>
+                    <Button
+                      {...cal}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="mt-4 w-full"
+                    >
+                      Demander un audit
+                    </Button>
                   </nav>
                 </SheetContent>
               </Sheet>

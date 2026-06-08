@@ -1,6 +1,5 @@
 import { useRef } from "react";
 import { ChevronDown, ClipboardCheck } from "lucide-react";
-import { Link } from "react-router-dom";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -8,6 +7,7 @@ import { SplitText } from "gsap/SplitText";
 
 import { Button } from "@/components/ui/button";
 import { EliasCard } from "@/components/ui/elias-card";
+import { useCalEmbed } from "@/hooks/useCalEmbed";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -86,6 +86,7 @@ function renderWord(word: string, key: string) {
 
 export default function HeroSection() {
   const containerRef = useRef<HTMLElement>(null);
+  const cal = useCalEmbed();
 
   useGSAP(
     () => {
@@ -327,15 +328,14 @@ export default function HeroSection() {
               Relances de factures, rapports du lundi, onboarding client — j'automatise ces tâches une fois. Votre équipe n'y pense plus.
             </p>
             <div className="scene-1-cta mt-8 flex justify-center md:mt-10">
-              <Link to="/contact">
-                <Button
-                  size="lg"
-                  className="h-12 rounded-lg px-6 font-semibold shadow-sm dark:bg-[#5e6ad2] dark:text-white dark:hover:bg-[#828fff]"
-                >
-                  <ClipboardCheck className="mr-2 size-4" />
-                  Demander un audit
-                </Button>
-              </Link>
+              <Button
+                {...cal}
+                size="lg"
+                className="h-12 rounded-lg px-6 font-semibold shadow-sm dark:bg-[#5e6ad2] dark:text-white dark:hover:bg-[#828fff]"
+              >
+                <ClipboardCheck className="mr-2 size-4" />
+                Demander un audit
+              </Button>
             </div>
           </div>
         </div>
