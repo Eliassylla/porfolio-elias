@@ -14,11 +14,10 @@ import { cn } from '@/lib/utils';
 
 gsap.registerPlugin(SplitText);
 
-const navLinks = [
-  { name: 'Services', href: '/services' },
-  { name: 'Mes projets', href: '/portfolio' },
-  { name: 'Contact', href: '/contact' },
-];
+// V1 : landing unique. 'Services' est retiré (couvert par la section ci-dessous).
+// 'Mes projets' et 'Contact' sont masqués — à réactiver en V2 une fois les pages
+// alimentées (DB Supabase pour les projets, Edge Function + Resend pour le contact).
+const navLinks: { name: string; href: string }[] = [];
 
 export function Header() {
   const location = useLocation();
