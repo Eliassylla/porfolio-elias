@@ -4,7 +4,6 @@ import WhatIBuildSection from '@/sections/WhatIBuildSection';
 import MethodSection from '@/sections/MethodSection';
 import MarqueeSection from '@/sections/MarqueeSection';
 import CTASection from '@/sections/CTASection';
-import { ScrollProgress } from '@/components/ui/scroll-progress';
 
 export default function Home() {
   return (
@@ -15,7 +14,6 @@ export default function Home() {
       />
 
       <div className="min-h-screen">
-        <ScrollProgress />
         <HeroSection />
         <WhatIBuildSection />
         <MethodSection />

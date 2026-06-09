@@ -12,6 +12,8 @@ import { lazy, Suspense } from "react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { LoadingFallback } from "@/components/ui/LoadingFallback";
 import { SmoothScroll } from "@/components/SmoothScroll";
+import { CalBookingDialog } from "@/components/booking/CalBookingDialog";
+import { ScrollProgress } from "@/components/ui/scroll-progress";
 
 const Home = lazy(() => import("./pages/Home"));
 const Services = lazy(() => import("./pages/Services"));
@@ -33,6 +35,8 @@ const App = () => (
           <BrowserRouter>
             <SkipToContent />
             <Header />
+            <CalBookingDialog />
+            <ScrollProgress />
             <SmoothScroll>
               <Layout>
                 <Suspense fallback={<LoadingFallback />}>

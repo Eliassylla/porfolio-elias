@@ -178,6 +178,21 @@ All colors MUST be HSL.
 }
 
 @layer base {
+  html {
+    font-size: 100%;
+  }
+
+  @media (min-width: 1800px) {
+    html {
+      /*
+       * Global wide-screen scale.
+       * Most Tailwind spacing, max-width and typography utilities use rem, so this
+       * gives the whole portfolio more presence on 4K without per-section zoom.
+       */
+      font-size: clamp(100%, 0.9vw, 118.75%);
+    }
+  }
+
   * {
     @apply border-border;
   }
@@ -188,6 +203,17 @@ All colors MUST be HSL.
 }
 
 @layer utilities {
+  .cal-gsap-dialog[data-state="open"],
+  .cal-gsap-dialog[data-state="closed"] {
+    animation: none !important;
+  }
+
+  .cal-mobile-sheet-embed .cal-embed {
+    height: 100% !important;
+    min-height: 0 !important;
+    max-height: 100% !important;
+  }
+
   .hide-scrollbar {
     scrollbar-width: none;
     -ms-overflow-style: none;

@@ -29,10 +29,17 @@ export function SmoothScroll({ children }: SmoothScrollProps) {
       content: contentRef.current!,
       smooth: 1.4,
       effects: true,
-      normalizeScroll: true,
+      normalizeScroll: false,
     });
 
-    return () => smoother.kill();
+    const refreshFrame = window.requestAnimationFrame(() => {
+      ScrollTrigger.refresh(true);
+    });
+
+    return () => {
+      window.cancelAnimationFrame(refreshFrame);
+      smoother.kill();
+    };
   }, { scope: wrapperRef, dependencies: [enableSmooth] });
 
   if (!enableSmooth) {

@@ -103,15 +103,12 @@ export default function WhatIBuildSection() {
   return (
     <section
       ref={containerRef}
-      className="relative overflow-hidden bg-background px-6 py-20 md:py-24 lg:px-8"
+      className="relative overflow-hidden bg-background px-6 py-12 md:py-10 lg:px-8 lg:py-[15px]"
     >
       <div className="absolute inset-x-0 top-0 -z-10 h-64 bg-gradient-to-b from-muted/60 to-transparent dark:from-white/[0.03]" />
       <div className="mx-auto max-w-6xl">
-        <div className="mx-auto mb-12 max-w-3xl text-center">
-          <div className="mb-4 inline-flex rounded-full border border-border bg-card px-3 py-1 text-xs font-medium text-muted-foreground dark:border-white/10 dark:bg-white/[0.04]">
-            Services
-          </div>
-          <h2 className="what-headline mb-4 text-4xl font-semibold tracking-tight text-foreground md:text-6xl">
+        <div className="mx-auto mb-12 max-w-[790px] text-center">
+          <h2 className="what-headline mb-4 text-4xl font-semibold tracking-tight text-foreground md:text-6xl lg:text-[5rem] lg:leading-[0.95]">
             {headline}
           </h2>
           <GsapTextReveal
@@ -164,7 +161,7 @@ export default function WhatIBuildSection() {
             id="what-i-build-card"
             role="tabpanel"
             aria-labelledby={`what-i-build-tab-${activeService.id}`}
-            className="service-card mx-auto max-w-3xl"
+            className="service-card mx-auto -mt-4 w-full max-w-3xl overflow-hidden rounded-[15px] md:mt-0"
           >
             {/* Cadran encadré — panneau inversé vs la page (sombre en light, clair en dark),
                 contenu animé qui contraste toujours avec le panneau */}
@@ -197,7 +194,7 @@ export default function WhatIBuildSection() {
               </div>
             </div>
 
-            <div className="px-2 pt-8 md:px-4 md:pt-10">
+            <div className="px-2 pt-8 pb-10 md:px-4 md:pt-10 md:pb-0">
               <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
                 <div>
                   <h3 className="text-3xl font-semibold tracking-tight text-foreground">

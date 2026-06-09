@@ -33,11 +33,10 @@ export default function CTASection() {
           ease: "power3.out",
         })
         .from(
-          ".cta-eyebrow, .cta-action",
+          ".cta-action",
           {
             opacity: 0,
             y: 16,
-            stagger: 0.12,
             duration: 0.55,
             ease: "power2.out",
           },
@@ -56,12 +55,9 @@ export default function CTASection() {
         <div className="cta-panel relative overflow-hidden rounded-2xl border border-border bg-foreground p-8 text-center text-background shadow-2xl shadow-foreground/10 dark:border-white/10 dark:bg-[#0f1011] dark:text-white md:p-14">
           <div className="absolute left-1/2 top-0 h-56 w-[36rem] max-w-[90vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-background/10 blur-3xl dark:bg-[#5e6ad2]/15" />
           <div className="relative">
-            <div className="cta-eyebrow mb-5 inline-flex rounded-full border border-background/15 px-3 py-1 text-xs font-medium text-background/70 dark:border-white/10 dark:text-white/60">
-              Prochaine étape
-            </div>
             <GsapTextReveal
               as="h2"
-              className="mx-auto max-w-3xl text-4xl font-semibold tracking-tight md:text-6xl"
+              className="mx-auto max-w-[790px] text-4xl font-semibold tracking-tight md:text-6xl lg:text-[5rem] lg:leading-[0.95]"
               split="lines"
               mask="lines"
               y="105%"

@@ -167,15 +167,17 @@ export default function HeroSection() {
 
       gsap.set(wordEls, { yPercent: -60, opacity: 0 });
 
-      // Distance horizontale réelle à parcourir = largeur de la track qui dépasse le viewport.
-      // END_PAD règle la position finale du dernier mot ("métier") — augmenter = finit plus à gauche.
-      const END_PAD = 96;
-      const getTravel = () =>
-        Math.max(0, track.scrollWidth - window.innerWidth + END_PAD);
+      const lastWord = wordEls[wordEls.length - 1];
 
-      // Hauteur de section = distance horizontale + 1 viewport (hauteur du sticky épinglé).
-      // Avec pinSpacing:false, cette hauteur définit exactement la durée du pin : la section
-      // suivante suit immédiatement la fin de la phrase (plus d'écran vide).
+      // Distance horizontale réelle à parcourir : le dernier mot doit dépasser
+      // la zone de fin des autres mots (`end: "left 55%"`) avant de libérer le pin.
+      const LAST_WORD_RELEASE_RATIO = 0.35;
+      const getTravel = () =>
+        Math.max(0, lastWord.offsetLeft - window.innerWidth * LAST_WORD_RELEASE_RATIO);
+
+      // Hauteur de section = durée du pin + garde d'un viewport.
+      // Avec pinSpacing:false, cette garde empêche la section suivante d'entrer
+      // dans le viewport pendant que le sticky Hero est encore pinned.
       const setSectionHeight = () => {
         section.style.height = `${getTravel() + window.innerHeight}px`;
       };
@@ -324,8 +326,8 @@ export default function HeroSection() {
             <h1 className="scene-1-title text-5xl font-semibold tracking-tight text-foreground md:text-7xl lg:text-[5.5rem] lg:leading-[1.05]">
               Vos opérations méritent mieux.
             </h1>
-            <p className="scene-1-sub mx-auto mt-6 max-w-xl text-base leading-7 text-muted-foreground md:mt-8 md:text-lg">
-              Relances de factures, rapports du lundi, onboarding client — j'automatise ces tâches une fois. Votre équipe n'y pense plus.
+            <p className="scene-1-sub mx-auto mt-6 max-w-xl text-base font-medium leading-7 text-muted-foreground md:mt-8 md:text-lg">
+              Relances, suivis, validations : on remet de l'ordre dans ce qui ralentit votre quotidien.
             </p>
             <div className="scene-1-cta mt-8 flex justify-center md:mt-10">
               <Button
@@ -341,7 +343,7 @@ export default function HeroSection() {
         </div>
 
         {/* PHRASE HORIZONTALE — défile de droite à gauche au scroll */}
-        <div className="h-phrase-wrap absolute inset-0 flex items-center overflow-hidden">
+        <div className="h-phrase-wrap pointer-events-none absolute inset-0 flex items-center overflow-hidden">
           <div className="h-phrase-track flex items-center gap-x-4 whitespace-nowrap will-change-transform pl-[100vw] pr-24">
             {part1Words.map((word, i) => renderWord(word, `p1-${i}`))}
 
