@@ -176,8 +176,9 @@ export default function HeroSection() {
         Math.max(0, lastWord.offsetLeft - window.innerWidth * LAST_WORD_RELEASE_RATIO);
 
       // Hauteur de section = durée du pin + garde d'un viewport.
-      // Avec pinSpacing:false, cette garde empêche la section suivante d'entrer
-      // dans le viewport pendant que le sticky Hero est encore pinned.
+      // C'est CETTE hauteur manuelle qui réserve l'espace de défilement et
+      // empêche la section suivante de remonter pendant le pin. On garde donc
+      // pinSpacing:false pour ne pas que GSAP ajoute un second espace (cumul = trou).
       const setSectionHeight = () => {
         section.style.height = `${getTravel() + window.innerHeight}px`;
       };
