@@ -14,7 +14,6 @@ import agentsDark from "@/video/agents-dark.json";
 import automationLight from "@/video/automation.json";
 import automationDark from "@/video/automation-dark.json";
 import { businessInfo } from "@/data/business";
-import { GsapTextReveal } from "@/components/ui/gsap-text-reveal";
 import { useCalEmbed } from "@/hooks/useCalEmbed";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
@@ -46,38 +45,67 @@ export default function WhatIBuildSection() {
     serviceItems.find((service) => service.id === activeServiceId) ??
     serviceItems[0];
 
+  // Entrée scrubbée, liée à la position dans le viewport (même patron que
+  // MethodSection). Révèle H1 → sous-texte → boutons → cadran en fonction du
+  // scroll, et se reverse quand on remonte. `once: false` + invalidateOnRefresh.
   useGSAP(
     () => {
       const headlineEl = containerRef.current?.querySelector(".what-headline");
-      if (headlineEl) {
-        const split = new SplitText(headlineEl, { type: "words" });
-        gsap.from(split.words, {
-          opacity: 0,
-          y: 20,
-          filter: "blur(5px)",
-          stagger: 0.04,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: headlineEl,
-            start: "top 72%",
-            end: "top 38%",
-            scrub: 0.8,
-          },
-        });
-      }
+      const subtextEl = containerRef.current?.querySelector(".what-subtext");
+      const headlineSplit = headlineEl
+        ? SplitText.create(headlineEl, { type: "words", aria: "auto" })
+        : null;
+      const subtextSplit = subtextEl
+        ? SplitText.create(subtextEl, { type: "words", aria: "auto" })
+        : null;
+      const headlineWords = headlineSplit?.words ?? [];
+      const subtextWords = subtextSplit?.words ?? [];
+      const tabs = gsap.utils.toArray<HTMLElement>(".service-tab");
+      const card = containerRef.current?.querySelector(".service-card");
 
-      gsap.from(".service-card", {
-        opacity: 0,
-        y: 40,
-        stagger: 0.15,
-        duration: 0.9,
-        ease: "power2.out",
+      gsap.set(headlineWords, { opacity: 0, y: 20, filter: "blur(5px)" });
+      gsap.set(subtextWords, { opacity: 0, y: 14, filter: "blur(3px)" });
+      gsap.set(tabs, { opacity: 0, y: 14, scale: 0.96, filter: "blur(2px)" });
+      gsap.set(card, { opacity: 0, y: 40, filter: "blur(6px)" });
+
+      const timeline = gsap.timeline({
+        defaults: { ease: "none" },
         scrollTrigger: {
-          trigger: ".services-tabs",
-          start: "top 80%",
-          toggleActions: "play none none reverse",
+          trigger: containerRef.current,
+          start: "top 78%",
+          end: "top 22%",
+          scrub: 0.8,
+          once: false,
+          invalidateOnRefresh: true,
         },
       });
+
+      timeline
+        .to(
+          headlineWords,
+          { opacity: 1, y: 0, filter: "blur(0px)", stagger: 0.05, duration: 0.34 },
+          0,
+        )
+        .to(
+          subtextWords,
+          { opacity: 1, y: 0, filter: "blur(0px)", stagger: 0.015, duration: 0.22 },
+          0.24,
+        )
+        .to(
+          tabs,
+          { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", stagger: 0.06, duration: 0.24 },
+          0.42,
+        )
+        .to(
+          card,
+          { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.32 },
+          0.6,
+        );
+
+      return () => {
+        headlineSplit?.revert();
+        subtextSplit?.revert();
+      };
     },
     { scope: containerRef },
   );
@@ -111,18 +139,10 @@ export default function WhatIBuildSection() {
           <h2 className="what-headline mb-4 text-4xl font-semibold tracking-tight text-foreground md:text-6xl lg:text-[5rem] lg:leading-[0.95]">
             {headline}
           </h2>
-          <GsapTextReveal
-            as="p"
-            className="mx-auto max-w-2xl text-lg leading-8 text-muted-foreground"
-            split="words"
-            scrub={0.7}
-            once={false}
-            y={14}
-            blur={3}
-          >
+          <p className="what-subtext mx-auto max-w-2xl text-lg leading-8 text-muted-foreground">
             Automatisations, apps et agents IA pour reprendre la main sur votre
             quotidien.
-          </GsapTextReveal>
+          </p>
         </div>
 
         <div className="services-tabs space-y-8">
@@ -143,7 +163,7 @@ export default function WhatIBuildSection() {
                   aria-controls="what-i-build-card"
                   onClick={() => setActiveServiceId(service.id)}
                   className={[
-                    "shrink-0 whitespace-nowrap rounded-full border px-3 py-2 text-xs font-medium transition-all active:scale-[0.97] md:px-5 md:py-2.5 md:text-sm",
+                    "service-tab shrink-0 whitespace-nowrap rounded-full border px-3 py-2 text-xs font-medium transition-all active:scale-[0.97] md:px-5 md:py-2.5 md:text-sm",
                     isActive
                       ? "border-transparent bg-foreground text-background"
                       : "border-border bg-card text-muted-foreground hover:-translate-y-px hover:border-foreground/40 hover:text-foreground dark:border-white/10 dark:bg-white/[0.04] dark:hover:bg-white/[0.07]",
