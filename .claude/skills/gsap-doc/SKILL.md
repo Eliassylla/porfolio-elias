@@ -7,6 +7,8 @@ description: >
   sur le comportement d'un plugin. Couvre tous les plugins : ScrollTrigger, ScrollSmoother,
   ScrollTo, SplitText, ScrambleText, TextReplace, Flip, Draggable, Inertia, Observer,
   DrawSVG, MorphSVG, MotionPath, MotionPathHelper, Physics2D, PhysicsProps, GSDevTools.
+  Couvre aussi les fondamentaux : Timeline (séquençage, position parameter, labels) et
+  gsap.utils (clamp, mapRange, normalize, random, snap, wrap, toArray, selector, pipe).
   Toujours lire le fichier de référence correspondant AVANT d'écrire du code GSAP —
   les options, signatures d'API et comportements exacts y sont documentés.
 ---
@@ -20,8 +22,10 @@ de référence correspondants dans le tableau ci-dessous.
 
 ## Carte des références
 
-| Plugin | Fichier à lire |
+| Plugin / sujet | Fichier à lire |
 |--------|---------------|
+| **Timeline** (séquençage, position parameter, labels) | `references/core/timeline.md` |
+| **gsap.utils** (clamp, mapRange, random, snap, wrap, toArray…) | `references/core/utils.md` |
 | **ScrollTrigger** | `references/scroll/scrolltrigger.md` |
 | **ScrollSmoother** | `references/scroll/scrollsmoother.md` |
 | **ScrollTo** | `references/scroll/scrollto.md` |
