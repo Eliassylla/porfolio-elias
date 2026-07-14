@@ -21,6 +21,11 @@ dist-ssr
 .agents/skills/web-research/
 .claude/agents/
 .claude/skills/watch/
+.claude/skills/vercel-composition-patterns/
+.claude/skills/vercel-react-best-practices/
+.claude/skills/vercel-react-view-transitions/
+.claude/skills/web-design-guidelines/
+.claude/skills/writing-guidelines/
 
 # Editor directories and files
 .vscode/*
