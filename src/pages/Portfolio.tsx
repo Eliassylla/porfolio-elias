@@ -74,8 +74,9 @@ export default function Portfolio() {
   return (
     <>
       <SEOHead
-        title="Mes projets — Elias"
-        description="Découvrez des cas concrets de systèmes opérationnels, d'automatisations et d'expérimentations IA."
+        title={businessInfo.seo.portfolio.title}
+        description={businessInfo.seo.portfolio.description}
+        image={businessInfo.seo.ogImage}
       />
 
       <div className="min-h-screen bg-background pt-20">

@@ -4,10 +4,11 @@ import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { Button } from '@/components/ui/button';
 import { businessInfo } from '@/data/business';
 import { ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
 import { RollingTextList } from '@/components/ui/rolling-list';
+import { useCalEmbed } from '@/hooks/useCalEmbed';
 
 export default function Services() {
+  const cal = useCalEmbed();
   const processItems = [
     { id: 1, title: 'Audit', category: 'Analyse', src: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&auto=format&fit=crop&q=60', alt: 'Audit' },
     { id: 2, title: 'Stratégie', category: 'Planification', src: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400&auto=format&fit=crop&q=60', alt: 'Stratégie' },
@@ -18,8 +19,9 @@ export default function Services() {
   return (
     <>
       <SEOHead
-        title="Services & Méthode — Elias"
-        description="Une méthode simple pour fiabiliser vos relances, vos dossiers et votre suivi client."
+        title={businessInfo.seo.services.title}
+        description={businessInfo.seo.services.description}
+        image={businessInfo.seo.ogImage}
       />
 
       <div className="min-h-screen pt-24">
@@ -84,12 +86,10 @@ export default function Services() {
               <h2 className="text-3xl font-bold tracking-tight">Prêt à cadrer ce qui vous ralentit ?</h2>
               <p className="mt-4 text-lg opacity-90">Envoyez votre contexte, je vous réponds avec une première lecture.</p>
               <div className="mt-8">
-                <Link to="/contact">
-                  <Button size="lg" variant="secondary" className="text-lg px-8 py-6 font-semibold">
-                    Demander un audit
-                    <ArrowRight className="ml-2 size-5" />
-                  </Button>
-                </Link>
+                <Button {...cal} size="lg" variant="secondary" className="text-lg px-8 py-6 font-semibold">
+                  Demander un audit
+                  <ArrowRight className="ml-2 size-5" />
+                </Button>
               </div>
             </ScrollReveal>
           </div>

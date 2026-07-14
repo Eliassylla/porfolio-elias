@@ -3,6 +3,7 @@ import { motion } from "motion/react";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SEOHead } from "@/components/seo/SEOHead";
+import { businessInfo } from "@/data/business";
 
 /**
  * 404 Not Found page with branded design and smooth animations
@@ -12,8 +13,10 @@ const NotFound = () => {
   return (
     <>
       <SEOHead
-        title="Page Not Found"
-        description="The page you're looking for doesn't exist. Return to the homepage to continue browsing."
+        title={businessInfo.seo.notFound.title}
+        description={businessInfo.seo.notFound.description}
+        image={businessInfo.seo.ogImage}
+        noIndex
       />
       
       <main className="min-h-[calc(100vh-8rem)] flex items-center justify-center px-6">
@@ -42,7 +45,7 @@ const NotFound = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.5 }}
             >
-              Page Not Found
+              Page introuvable
             </motion.h2>
             
             <motion.p
@@ -51,8 +54,8 @@ const NotFound = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.5 }}
             >
-              The page you're looking for doesn't exist or has been moved.
-              Let's get you back on track.
+              Cette page n’existe pas ou a été déplacée.
+              Revenez à l’accueil pour continuer.
             </motion.p>
           </div>
 
@@ -69,7 +72,7 @@ const NotFound = () => {
             >
               <Link to="/">
                 <ArrowLeft className="mr-2 size-5 transition-transform group-hover:-translate-x-1" />
-                Return to Home
+                Retour à l’accueil
               </Link>
             </Button>
           </motion.div>

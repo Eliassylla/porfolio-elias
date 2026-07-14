@@ -3,14 +3,19 @@ import { ScrollReveal } from '@/components/ui/ScrollReveal';
 
 import { businessInfo } from '@/data/business';
 import { ContactForm } from '@/components/forms/ContactForm';
-import { Mail, MapPin } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { CalendarDays, Mail, MapPin } from 'lucide-react';
+import { useCalEmbed } from '@/hooks/useCalEmbed';
 
 export default function Contact() {
+  const cal = useCalEmbed();
+
   return (
     <>
       <SEOHead
-        title="Contact — Elias"
-        description="Décrivez votre besoin et recevez une première lecture claire de vos priorités opérationnelles."
+        title={businessInfo.seo.contact.title}
+        description={businessInfo.seo.contact.description}
+        image={businessInfo.seo.ogImage}
       />
 
       <div className="min-h-screen pt-24">
@@ -38,6 +43,10 @@ export default function Contact() {
                   <li>Les endroits où votre équipe perd du temps à recoller l’information.</li>
                 </ul>
                 <div className="mt-8 space-y-4 border-t border-border pt-6 dark:border-white/10">
+                  <Button {...cal} className="h-auto min-h-12 w-full justify-start gap-3 whitespace-normal p-4 text-left">
+                    <CalendarDays className="size-5 shrink-0" />
+                    Réserver directement un audit
+                  </Button>
                   <a
                     href={`mailto:${businessInfo.email}`}
                     className="flex items-center gap-3 rounded-xl bg-secondary p-4 transition-colors hover:bg-secondary/80"

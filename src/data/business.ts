@@ -14,8 +14,38 @@ export const businessInfo = {
     calLink: 'elias-sylla/30min',
   },
   socialLinks: {
-    linkedin: 'https://linkedin.com/in/elias',
-    youtube: 'https://youtube.com/@elias',
+    // À renseigner uniquement avec les profils publics définitifs.
+    linkedin: '',
+    youtube: '',
+  },
+  seo: {
+    siteUrl: 'https://porfolio-elias.vercel.app',
+    ogImage: '/og-image.png',
+    home: {
+      title: 'Elias — Automatisations agentiques',
+      description:
+        'Consultant en automatisations agentiques pour solopreneurs, indépendants et petites équipes francophones.',
+    },
+    services: {
+      title: 'Services & Méthode — Elias',
+      description:
+        'Une méthode simple pour fiabiliser vos relances, vos dossiers et votre suivi client.',
+    },
+    portfolio: {
+      title: 'Mes projets — Elias',
+      description:
+        'Découvrez des cas concrets de systèmes opérationnels, d’automatisations et d’expérimentations IA.',
+    },
+    contact: {
+      title: 'Contact — Elias',
+      description:
+        'Décrivez votre besoin et recevez une première lecture claire de vos priorités opérationnelles.',
+    },
+    notFound: {
+      title: 'Page introuvable — Elias',
+      description:
+        'Cette page n’existe pas ou a été déplacée. Revenez à l’accueil du portfolio Elias.',
+    },
   },
 
   // Stats / social proof

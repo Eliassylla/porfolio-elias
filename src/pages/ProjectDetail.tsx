@@ -5,8 +5,10 @@ import { Button } from '@/components/ui/button';
 import { businessInfo } from '@/data/business';
 import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react';
 import { Link, useParams, Navigate } from 'react-router-dom';
+import { useCalEmbed } from '@/hooks/useCalEmbed';
 
 export default function ProjectDetail() {
+  const cal = useCalEmbed();
   const { id } = useParams<{ id: string }>();
   const project = businessInfo.projects.find((p) => p.id === id);
 
@@ -17,6 +19,7 @@ export default function ProjectDetail() {
       <SEOHead
         title={`${project.title} — Elias Automatisation`}
         description={`${project.context}. ${project.result}`}
+        image={businessInfo.seo.ogImage}
       />
 
       <div className="min-h-screen pt-24">
@@ -116,12 +119,10 @@ export default function ProjectDetail() {
                 Décrivez votre contexte pour voir comment adapter cette approche à votre activité.
               </p>
               <div className="mt-8">
-                <Link to="/contact">
-                  <Button size="lg" variant="secondary" className="text-lg px-8 py-6 font-semibold">
-                    Décrire mon besoin
-                    <ArrowRight className="ml-2 size-5" />
-                  </Button>
-                </Link>
+                <Button {...cal} size="lg" variant="secondary" className="text-lg px-8 py-6 font-semibold">
+                  Réserver un audit
+                  <ArrowRight className="ml-2 size-5" />
+                </Button>
               </div>
             </ScrollReveal>
           </div>
