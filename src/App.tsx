@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { Layout } from "@/components/layout/Layout";
 import { Header } from "@/components/layout/Header";
@@ -16,10 +16,6 @@ import { CalBookingDialog } from "@/components/booking/CalBookingDialog";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
 
 const Home = lazy(() => import("./pages/Home"));
-const Services = lazy(() => import("./pages/Services"));
-const Portfolio = lazy(() => import("./pages/Portfolio"));
-const ProjectDetail = lazy(() => import("./pages/ProjectDetail"));
-const Contact = lazy(() => import("./pages/Contact"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -42,10 +38,13 @@ const App = () => (
                 <Suspense fallback={<LoadingFallback />}>
                   <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/services" element={<Services />} />
-                    <Route path="/portfolio" element={<Portfolio />} />
-                    <Route path="/portfolio/:id" element={<ProjectDetail />} />
-                    <Route path="/contact" element={<Contact />} />
+                    {/* V1 : landing unique. Les pages secondaires restent dans le
+                        code pour la V2, mais ne sont pas publiées avant d'avoir
+                        des projets réels et le formulaire Supabase + Resend. */}
+                    <Route path="/services" element={<Navigate to="/" replace />} />
+                    <Route path="/portfolio" element={<Navigate to="/" replace />} />
+                    <Route path="/portfolio/:id" element={<Navigate to="/" replace />} />
+                    <Route path="/contact" element={<Navigate to="/" replace />} />
                     <Route path="*" element={<NotFound />} />
                   </Routes>
                 </Suspense>

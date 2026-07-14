@@ -45,7 +45,7 @@ type ContactFormValues = z.infer<typeof contactFormSchema>;
 
 export function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
+  const [isMailClientRequested, setIsMailClientRequested] = useState(false);
 
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(contactFormSchema),
@@ -75,11 +75,10 @@ export function ContactForm() {
 
       window.location.href = `mailto:${businessInfo.email}?subject=${subject}&body=${body}`;
 
-      setIsSuccess(true);
-      form.reset();
+      setIsMailClientRequested(true);
 
       setTimeout(() => {
-        setIsSuccess(false);
+        setIsMailClientRequested(false);
       }, 5000);
     } catch (error) {
       form.setError('root', {
@@ -90,7 +89,7 @@ export function ContactForm() {
     }
   };
 
-  if (isSuccess) {
+  if (isMailClientRequested) {
     return (
       <motion.div
         className="space-y-4 rounded-xl border border-border bg-card p-8 text-center"
@@ -106,10 +105,10 @@ export function ContactForm() {
           <CheckCircle2 className="mx-auto size-14 text-green-600 dark:text-green-400" />
         </motion.div>
         <h3 className="text-2xl font-semibold tracking-tight text-card-foreground">
-          Demande envoyée
+          Passage à votre messagerie
         </h3>
         <p className="text-muted-foreground leading-relaxed">
-          Merci. Je vous réponds avec une première lecture de votre besoin.
+          La demande d’ouverture a été lancée. Si rien ne se passe, revenez ici : vos informations restent dans le formulaire.
         </p>
       </motion.div>
     );
@@ -207,10 +206,10 @@ export function ContactForm() {
           {isSubmitting ? (
             <>
               <Loader2 className="mr-2 size-5 animate-spin" />
-              Envoi en cours
+              Préparation en cours
             </>
           ) : (
-            'Envoyer ma demande'
+            'Préparer mon email'
           )}
         </Button>
       </form>

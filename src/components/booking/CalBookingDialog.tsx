@@ -80,7 +80,7 @@ export function CalBookingDialog() {
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetContent
           side="bottom"
-          className="h-[92svh] overflow-hidden rounded-t-lg border-border bg-background p-0 [&>button]:hidden"
+          className="h-[92svh] overflow-hidden rounded-t-lg border-border bg-background p-0 [&>button]:right-4 [&>button]:top-4 [&>button]:z-20 [&>button]:rounded-full [&>button]:bg-background/90 [&>button]:p-2 [&>button]:shadow-sm"
         >
           <SheetTitle className="sr-only">Réserver un audit</SheetTitle>
           <SheetDescription className="sr-only">
