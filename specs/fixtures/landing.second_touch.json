@@ -1,0 +1,27 @@
+{
+  "name": "second_touch",
+  "description": "Session déjà attribuée à LinkedIn, puis navigation vers une URL portant un autre utm_source. Le premier toucher gagne : on veut savoir ce qui a amené le visiteur, pas la dernière page vue.",
+  "stored": {
+    "utm_source": "linkedin",
+    "utm_medium": "post",
+    "utm_campaign": "agents-ia",
+    "utm_content": "carousel-3",
+    "landing_path": "/",
+    "referrer_host": "www.linkedin.com",
+    "attr_version": 1
+  },
+  "input": {
+    "search": "?utm_source=twitter&utm_medium=bio",
+    "referrer": "https://t.co/abc123",
+    "pathname": "/services"
+  },
+  "expected": {
+    "utm_source": "linkedin",
+    "utm_medium": "post",
+    "utm_campaign": "agents-ia",
+    "utm_content": "carousel-3",
+    "landing_path": "/",
+    "referrer_host": "www.linkedin.com",
+    "attr_version": 1
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "utm_full",
+  "description": "Arrivée depuis un post LinkedIn avec les quatre UTM renseignés. Vérifie la mise en minuscules, la conversion des espaces en tirets et l'extraction du hostname du référent.",
+  "input": {
+    "search": "?utm_source=LinkedIn&utm_medium=Post&utm_campaign=Agents%20IA&utm_content=Carousel-3",
+    "referrer": "https://www.linkedin.com/feed/update/urn:li:activity:123",
+    "pathname": "/"
+  },
+  "expected": {
+    "utm_source": "linkedin",
+    "utm_medium": "post",
+    "utm_campaign": "agents-ia",
+    "utm_content": "carousel-3",
+    "landing_path": "/",
+    "referrer_host": "www.linkedin.com",
+    "attr_version": 1
+  }
+}

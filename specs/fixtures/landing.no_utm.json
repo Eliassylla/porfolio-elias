@@ -1,0 +1,18 @@
+{
+  "name": "no_utm",
+  "description": "Accès direct : aucun paramètre, aucun référent. L'attribution reste exploitable avec ses valeurs par défaut — elle n'est jamais nulle ni vide.",
+  "input": {
+    "search": "",
+    "referrer": "",
+    "pathname": "/"
+  },
+  "expected": {
+    "utm_source": "direct",
+    "utm_medium": "none",
+    "utm_campaign": "none",
+    "utm_content": "none",
+    "landing_path": "/",
+    "referrer_host": "none",
+    "attr_version": 1
+  }
+}

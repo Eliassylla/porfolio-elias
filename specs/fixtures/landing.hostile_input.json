@@ -1,0 +1,18 @@
+{
+  "name": "hostile_input",
+  "description": "Un UTM est un paramètre d'URL public, donc contrôlé par un tiers. Ce cas vérifie qu'une tentative d'injection, un accent, un caractère de contrôle, une valeur de 200 caractères et une query glissée dans le pathname ressortent tous assainis. Les accents sont retirés par la liste blanche : un utm_* doit être un slug ASCII.",
+  "input": {
+    "search": "?utm_source=<script>alert(1)</script>&utm_medium=Réseaux Sociaux&utm_campaign=spam-spam-spam-spam-spam-spam-spam-spam-spam-spam-spam-spam-spam-spam-spam-spam-spam-spam-spam-spam-spam-spam-spam-spam-spam-spam-spam-spam-spam-spam-spam-spam-spam-spam-spam-spam-spam-spam-spam-spam-&utm_content=a%00b",
+    "referrer": "https://mail.google.com/mail/u/0/#inbox/FMfcgzQXJTWZ",
+    "pathname": "/services?secret=1"
+  },
+  "expected": {
+    "utm_source": "scriptalert1script",
+    "utm_medium": "rseaux-sociaux",
+    "utm_campaign": "spam-spam-spam-spam-spam-spam-spam-spam-spam-spam-spam-spam-spam",
+    "utm_content": "ab",
+    "landing_path": "/services",
+    "referrer_host": "mail.google.com",
+    "attr_version": 1
+  }
+}
