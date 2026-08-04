@@ -3,122 +3,108 @@
 ## Ce projet
 
 Portfolio B2B pour Elias, consultant en automatisations agentiques pour solopreneurs, indépendants, petites équipes et PME francophones.
-Objectif : transformer un template photographe cassé (Lovable) en portfolio qui convertit.
-Un visiteur doit comprendre ce qu'Elias fait, voir des preuves, et réserver un appel — en moins de 2 minutes.
+Objectif : permettre à un visiteur de comprendre ce qu’Elias fait, voir des preuves réelles et réserver un appel en moins de 2 minutes.
 
-**Stack :** React 18 + TypeScript + Vite + Tailwind CSS 4 + shadcn/ui + Framer Motion + GSAP
-**Backend :** Supabase Edge Functions uniquement (SPA statique, tier gratuit)
+**Stack :** React 18 + TypeScript + Vite + Tailwind CSS 4 + shadcn/ui + motion ^12.40 + GSAP
+**Frontend :** SPA statique déployée sur Vercel
+**Backend métier :** Supabase Edge Functions, sans serveur applicatif séparé
 **Emails :** Resend (transactionnel + newsletter)
 **Prise de RDV :** Cal.com
 **Contenu :** `src/data/business.ts` (pas de CMS)
-**Langue du site :** Français (cible solopreneurs, indépendants, petites équipes et PME francophones)
+**Langue du site :** français
 
 ---
 
 ## Règles absolues
 
-- **Ne pas changer la stack** — React/TypeScript/Vite, c'est fixé
-- **Brownfield rule** — toujours remplacer avant de supprimer. Le build TypeScript doit passer à chaque étape
-- **Tier gratuit** — Supabase (60 connexions max), Resend (3000 emails/mois), Cal.com gratuit
-- **Backend = Edge Functions uniquement** — pas de serveur séparé, jamais
-- **Simple et maintenable** — Elias est débutant. Éviter la sur-ingénierie
-- **Contenu en français** — labels, messages d'erreur, emails, copy
-- **GSAP : toujours consulter la doc** — avant de modifier toute animation dont le code contient `gsap`, `useGSAP`, `ScrollTrigger`, `SplitText`, `ScrollSmoother` ou tout autre plugin GSAP, lire en premier le(s) fichier(s) pertinent(s) dans `.claude/skills/gsap-doc/references/` (mapping plugin → fichier dans `gsap-doc/SKILL.md`). Les options, gotchas et patterns React y sont documentés et évitent les erreurs récurrentes (`text-balance` qui casse SplitText, double pinning, conflit Motion+GSAP, etc.).
+- **Ne pas changer la stack** — React/TypeScript/Vite est fixé.
+- **Brownfield rule** — toujours remplacer avant de supprimer. Le build TypeScript doit passer à chaque étape.
+- **Tier gratuit** — rester compatible avec les offres gratuites de Supabase, Resend et Cal.com.
+- **Backend métier = Edge Functions** — formulaires, écritures métier et secrets passent par Supabase Edge Functions ; ne pas ajouter de serveur séparé.
+- **Mesure de parcours = contrat distinct** — les événements comme `page_view` et `cta_click` seront définis dans une spec dédiée. Leur collecte peut être émise côté client vers la destination retenue ; ne pas la confondre avec le stockage des réservations ni imposer une Edge Function sans spec.
+- **Simple et maintenable** — Elias est débutant. Éviter la sur-ingénierie.
+- **Contenu en français** — labels, messages d’erreur, emails et copy.
+- **GSAP : toujours consulter la doc** — avant de modifier une animation contenant `gsap`, `useGSAP`, `ScrollTrigger`, `SplitText`, `ScrollSmoother` ou un autre plugin GSAP, lire le ou les fichiers pertinents dans `.claude/skills/gsap-doc/references/` en suivant le mapping de `.claude/skills/gsap-doc/SKILL.md`.
 
 ---
 
-## Structure du projet
+## Structure actuelle
 
-```
+```text
 src/
 ├── data/
-│   ├── business.ts        ← SOURCE DE VÉRITÉ du contenu (services, projets, bio, URLs)
-│   ├── photographer.ts    ← CODE MORT à supprimer en Phase 4
-│   └── projects.ts        ← CODE MORT à supprimer en Phase 4
-├── sections/              ← Sections homepage (Hero, WhatIBuild, FeaturedProjects, Newsletter, CTA...)
-├── pages/                 ← Pages routées (Home, About, Portfolio, Contact, ProjectDetail)
-├── components/            ← Composants réutilisables
-├── hooks/                 ← Custom hooks (useContactForm, useNewsletter à créer)
-├── types/                 ← Types TypeScript (à migrer domaine automation en Phase 4)
-└── integrations/          ← Client Supabase configuré
+│   └── business.ts        # source de vérité du contenu métier
+├── sections/              # sections de la landing
+├── pages/                 # pages React, dont certaines redirigent en V1
+├── components/            # composants réutilisables et embed Cal.com
+├── hooks/                 # hooks React
+├── lib/attribution/       # capture et projection de la provenance
+└── integrations/supabase/ # client Supabase généré
 
-supabase/
-└── config.toml            ← Config Supabase locale (pas encore de tables en prod)
+specs/                     # contrats de comportement et fixtures exécutables
+supabase/config.toml       # configuration locale Supabase
+TASKS.md                   # file d’attente et état du développement
 ```
 
-**Fichiers à ne pas toucher sans raison :** `vite.config.ts`, `tailwind.config`, `components.json`, `tsconfig.json`
+**Fichiers à ne pas toucher sans raison :** `vite.config.ts`, `components.json`, `tsconfig.json`.
 
 ---
 
-## Roadmap active (Milestone v1.0)
+## Sources de vérité et workflow
 
-| Phase | Objectif | Statut |
-|-------|----------|--------|
-| **1** | Contenu & CTAs — business.ts réel + Cal.com connecté | En attente |
-| **2** | Copywriting & SEO — copy conversion + meta/OG tags | En attente |
-| **3** | Infrastructure Email — Edge Functions Supabase + Resend | En attente |
-| **4** | Nettoyage & Polish — code mort + types + dark mode | En attente |
+- `TASKS.md` décrit la tâche active, ses dépendances, ses fichiers réservés, ses tests et son handoff.
+- `specs/` décrit les comportements. Lire uniquement la spec indiquée par la tâche en cours.
+- Les fixtures de `specs/fixtures/` font partie du contrat et ne se modifient pas pour faire passer un test.
+- `src/data/business.ts` est la source de vérité du contenu public.
 
-**Blockers connus :**
-- Phase 3 : Audience ID Resend — créer dans le dashboard Resend avant de coder
-
-**Débloqué :**
-- Cal.com : compte créé, URL disponible — demander à Elias avant Phase 2
+Workflow : lire la tâche et sa spec → réserver les fichiers via `statut: in_progress` → exécuter → vérifier les critères → créer un commit atomique → passer la tâche à `done` avec un handoff vérifié.
 
 ---
 
+## Frontière des responsabilités
 
-## Workflow de développement
-
-Philosophie : lire le plan → exécuter tâche par tâche → commit atomique → vérifier les critères de succès.
-
-**Avant de coder :** lire `.planning/phases/0X-*/0X-0Y-PLAN.md` pour la phase concernée.
-**Pendant :** un commit par tâche complétée (pas de mega-commit en fin de phase).
-**Après :** vérifier que chaque critère de succès du ROADMAP est réellement satisfait, pas juste que les tâches sont cochées.
-
-Fichiers de référence : `.planning/ROADMAP.md` (phases + critères), `.planning/phases/` (plans détaillés).
+- **Cal.com** détient les réservations, leurs statuts, les réponses de qualification et les rappels.
+- **Le Portfolio** capture la provenance et mesurera le parcours ; il ne détient aucune réservation.
+- **L’OS personnel** lit les données Cal.com via Composio et les redistribue aux départements ; cette redistribution ne se spécifie pas dans ce dépôt.
 
 ---
 
 ## Décisions techniques clés
 
 | Décision | Pourquoi |
-|----------|----------|
-| Cal.com (pas Calendly) | Gratuit, open source, Google Meet natif, pas de branding forcé |
-| Resend (pas SendGrid) | API simple, 3000 emails/mois gratuits, excellent deliverability |
-| Edge Functions (pas de serveur) | Cohérent avec Supabase, gratuit, SPA-friendly |
-| Formulaire via Resend (pas Formspree) | Contrôle total, même stack que newsletter |
-| Contenu dans business.ts (pas de CMS) | Simple, maintenable par Elias lui-même |
-| Vercel Workflow SDK (option future) | Pertinent plus tard pour lead nurturing avancé, séquences email longues, retries, observabilité et agents IA durables — ne pas installer tant que le tunnel email simple n'est pas validé |
+|---|---|
+| Cal.com | Gratuit, open source, Google Meet natif |
+| Resend | API simple et adaptée aux emails transactionnels |
+| Supabase Edge Functions | Backend métier cohérent avec la SPA et les secrets centralisés |
+| Contenu dans `business.ts` | Simple et maintenable sans CMS |
+| Vercel Workflow SDK | Option future seulement pour des séquences longues et persistantes |
 
 ---
 
 ## Décisions récentes à conserver
 
-- **Positionnement** : ne pas réduire la cible aux PME. Inclure explicitement solopreneurs, indépendants et petites équipes dans les textes publics.
-- **Homepage v1** : `FeaturedProjectsSection` et `NewsletterSection` ont été retirées de la landing tant que les projets réels et la newsletter ne sont pas prêts. Ne pas les réintroduire sans décision explicite.
-- **Portfolio navigation** : l'onglet public s'appelle `Mes projets`, pas `Portfolio`.
-- **Email architecture** : `Vercel = frontend statique`, `Supabase Edge Functions = backend`, `Resend = email`. Les secrets Resend vont dans Supabase, pas dans Vercel.
-- **Vercel env actuel** : seules `VITE_SUPABASE_URL` et `VITE_SUPABASE_PUBLISHABLE_KEY` sont nécessaires pour le frontend Vercel tant que les Edge Functions ne sont pas branchées.
-- **Dark mode** : thème par défaut `light`, `enableSystem={false}`. Tailwind 4 doit utiliser `@custom-variant dark (&:where(.dark, .dark *));` pour éviter un rendu hybride clair/sombre.
-- **Hero GSAP** : la phrase horizontale doit rester déterministe au scroll. Préférer `scrub` + `invalidateOnRefresh` + cleanup `SplitText` plutôt que des callbacks `toggleActions` qui peuvent rester bloqués en preview/dev.
+- **Positionnement** : inclure explicitement solopreneurs, indépendants et petites équipes, sans réduire la cible aux PME.
+- **Homepage V1** : `FeaturedProjectsSection` et `NewsletterSection` ne sont pas montées tant que les projets réels et la newsletter ne sont pas prêts.
+- **Navigation** : l’onglet public s’appelle `Mes projets`, pas `Portfolio`.
+- **Architecture email** : `Vercel = frontend statique`, `Supabase Edge Functions = backend métier`, `Resend = email`. Les secrets Resend vont dans Supabase, jamais dans Vercel.
+- **Variables Vercel actuelles** : seules `VITE_SUPABASE_URL` et `VITE_SUPABASE_PUBLISHABLE_KEY` sont nécessaires au frontend tant que les Edge Functions ne sont pas branchées.
+- **Dark mode** : thème par défaut `light`, `enableSystem={false}` et `@custom-variant dark (&:where(.dark, .dark *));` avec Tailwind 4.
+- **Hero GSAP** : conserver un scroll déterministe avec `scrub`, `invalidateOnRefresh` et cleanup `SplitText`.
 
 ---
 
 ## Vercel Workflow SDK — option future
 
-- **Ne pas installer maintenant** : l'architecture actuelle reste `Vercel = frontend statique`, `Supabase Edge Functions = backend`, `Resend = emails`.
-- **À réévaluer après Phase 3** si Elias veut du lead nurturing avancé : séquences sur plusieurs jours, relances automatiques, workflows persistants, retries, observabilité fine, agents IA long-running.
-- **Choix actuel pour v1** : Supabase Edge Functions + Resend pour formulaire contact, newsletter simple, ajout à l'audience Resend et emails transactionnels.
-- **Si adopté plus tard** : documenter explicitement le changement d'architecture avant d'ajouter `workflow`, `nitro` ou de modifier `vite.config.ts`.
+- Ne pas l’installer pour le tunnel email simple actuel.
+- Le réévaluer uniquement pour du nurturing avancé : séquences sur plusieurs jours, retries, observabilité fine ou agents durables.
+- Documenter explicitement tout changement d’architecture avant d’ajouter `workflow`, `nitro` ou de modifier `vite.config.ts`.
 
 ---
 
-## Supabase — rappels importants
+## Supabase — rappels
 
-- Config locale : `supabase/config.toml` existe, `supabase start` pour démarrer localement
-- Aucune table en prod pour l'instant — créer via migrations (jamais via dashboard UI)
-- Tables à créer en Phase 3 : `contact_submissions`, `subscribers`
-- RLS obligatoire sur toutes les tables — utiliser `supabase-postgres-best-practices` pour les policies
-- Secrets Edge Functions : `supabase secrets set RESEND_API_KEY=...` (ne jamais hardcoder)
-- Connexions tier gratuit : max ~60 directes → utiliser le connection pooler (port 6543)
+- `supabase/config.toml` existe ; aucune migration ni Edge Function métier n’est encore présente.
+- Créer les tables par migrations, jamais uniquement via le dashboard.
+- Activer RLS sur toutes les tables métier.
+- Configurer les secrets avec `supabase secrets set`, sans les coder en dur.
+- Utiliser le pooler lorsque des connexions PostgreSQL directes sont nécessaires.

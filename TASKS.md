@@ -100,8 +100,8 @@ acceptation:
   - Frontière documentée : Cal.com = réservations, Portfolio = provenance et
     parcours, OS = redistribution
   - Règle « Backend = Edge Functions uniquement » nuancée pour la mesure de parcours
-operateur: null
-statut: backlog
+operateur: codex
+statut: done
 depend_de: [T-002]
 risques:
   - AGENTS.md est un symlink vers CLAUDE.md — ne pas le dé-symlinker
@@ -109,10 +109,13 @@ fichiers:
   - CLAUDE.md
   - README.md
 tests: test -L AGENTS.md
-handoff: null
+handoff: >
+  Livré et vérifié : documentation alignée sur la structure réelle, motion,
+  TASKS.md et specs/. Frontière Cal.com / Portfolio / OS explicitée et mesure
+  de parcours distinguée du backend métier. Symlink AGENTS.md intact, 21 tests
+  verts et build de production réussi.
 next: >
-  Retirer la table de roadmap et la section structure obsolète, puis réécrire la
-  frontière des responsabilités en trois lignes.
+  Rien. Passer à T-004.
 ```
 
 ---
