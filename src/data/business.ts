@@ -48,13 +48,6 @@ export const businessInfo = {
     },
   },
 
-  // Stats / social proof
-  stats: [
-    { value: '120+', label: 'Heures économisées pour mes clients' },
-    { value: '15+', label: 'Systèmes mis en place' },
-    { value: '100%', label: 'Clients satisfaits' },
-  ],
-
   // Process steps (Services & Méthode page)
   process: [
     {
@@ -179,27 +172,4 @@ export const businessInfo = {
     },
   ],
 
-  testimonials: [
-    {
-      id: '1',
-      quote:
-        'Depuis qu\'Elias a automatisé nos relances de factures, on a récupéré 15 heures par mois. Et nos clients paient plus vite.',
-      author: 'Marie D.',
-      role: 'Directrice, Cabinet de conseil RH',
-    },
-    {
-      id: '2',
-      quote:
-        'L\'onboarding de nos stagiaires était un cauchemar administratif. Maintenant tout part automatiquement dès l\'inscription validée.',
-      author: 'Thomas R.',
-      role: 'Responsable formation, Organisme certifié Qualiopi',
-    },
-    {
-      id: '3',
-      quote:
-        'Simple, efficace, pas de jargon technique. Elias comprend nos problèmes métier avant de parler d\'outils.',
-      author: 'Sophie L.',
-      role: 'Gérante, Cabinet comptable',
-    },
-  ],
 };

@@ -65,8 +65,8 @@ acceptation:
   - .planning/ supprimé, remplacé par specs/ + TASKS.md
   - Skills en double supprimés, gsap-doc conservé pour ses 3 références uniques
   - npm run build et npm test passent toujours
-operateur: null
-statut: backlog
+operateur: codex
+statut: done
 depend_de: [T-001]
 risques:
   - .agents/skills/content-strategy est déjà supprimé du disque mais encore
@@ -77,10 +77,12 @@ fichiers:
   - .agents/skills/
   - .mcp.json
 tests: npm test && npm run build
-handoff: null
+handoff: >
+  Livré et vérifié : preuves inventées retirées, ancienne planification et
+  copies de skills supprimées, gsap-doc conservé. 21 tests verts, typecheck
+  sans erreur et build de production réussi.
 next: >
-  Retirer businessInfo.stats et businessInfo.testimonials de src/data/business.ts,
-  vérifier par grep qu'aucun composant ne les référence, puis commiter seul.
+  Rien. Passer à T-003.
 ```
 
 ---
