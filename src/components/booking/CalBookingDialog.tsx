@@ -68,17 +68,19 @@ export function CalBookingDialog({ attribution }: CalBookingDialogProps) {
   );
 
   const calEmbed = open ? (
-    <Cal
-      key={`${surface}-${calTheme}`}
-      namespace={namespace}
-      calLink={businessInfo.booking.calLink}
-      config={{
-        layout: "month_view",
-        theme: calTheme,
-        ...toCalConfig(attribution),
-      }}
-      className="h-full w-full"
-    />
+    <div className="flex min-h-0 flex-1 flex-col">
+      <Cal
+        key={`${surface}-${calTheme}`}
+        namespace={namespace}
+        calLink={businessInfo.booking.calLink}
+        config={{
+          layout: "month_view",
+          theme: calTheme,
+          ...toCalConfig(attribution),
+        }}
+        className="h-full w-full flex-1"
+      />
+    </div>
   ) : null;
 
   if (isMobile) {
@@ -110,7 +112,7 @@ export function CalBookingDialog({ attribution }: CalBookingDialogProps) {
         <DialogDescription className="sr-only">
           Choisissez un créneau pour un audit avec Elias.
         </DialogDescription>
-        <div className="h-[min(720px,calc(100vh-6rem))] bg-background">
+        <div className="flex h-[min(720px,calc(100vh-6rem))] flex-col overflow-auto bg-background">
           {calEmbed}
         </div>
       </DialogContent>

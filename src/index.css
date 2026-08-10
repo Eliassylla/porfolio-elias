@@ -208,6 +208,13 @@ All colors MUST be HSL.
     animation: none !important;
   }
 
+  .cal-embed iframe,
+  [data-cal-namespace] iframe {
+    height: 100% !important;
+    width: 100% !important;
+    border: 0;
+  }
+
   .cal-mobile-sheet-embed .cal-embed {
     height: 100% !important;
     min-height: 0 !important;
