@@ -7,6 +7,7 @@ import gsap from "gsap";
 import { businessInfo } from "@/data/business";
 import { OPEN_CAL_BOOKING_EVENT } from "@/hooks/useCalEmbed";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { type Attribution, toCalConfig } from "@/lib/attribution/capture";
 import {
   Dialog,
   DialogContent,
@@ -22,7 +23,11 @@ import {
 
 gsap.registerPlugin(useGSAP);
 
-export function CalBookingDialog() {
+interface CalBookingDialogProps {
+  attribution: Attribution;
+}
+
+export function CalBookingDialog({ attribution }: CalBookingDialogProps) {
   const [open, setOpen] = useState(false);
   const dialogContentRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
@@ -70,6 +75,7 @@ export function CalBookingDialog() {
       config={{
         layout: "month_view",
         theme: calTheme,
+        ...toCalConfig(attribution),
       }}
       className="h-full w-full"
     />

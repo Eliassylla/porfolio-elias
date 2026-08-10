@@ -130,8 +130,8 @@ acceptation:
   - La capture a lieu une fois au montage de l'app, pas à l'ouverture du dialog
   - Le config du <Cal> contient les 6 champs d'attribution
   - Aucune régression du dialog desktop ni du sheet mobile
-operateur: null
-statut: backlog
+operateur: codex
+statut: done
 depend_de: [T-001]
 risques:
   - Le config n'est lu qu'au montage de l'embed, et l'embed ne monte qu'à
@@ -142,10 +142,14 @@ fichiers:
   - src/App.tsx
   - src/components/booking/CalBookingDialog.tsx
 tests: npm test && npm run build
-handoff: null
+handoff: >
+  Livré et vérifié : attribution capturée à l'initialisation de l'app puis
+  transmise à l'embed Cal avec les 6 champs du contrat. 21 tests verts,
+  typecheck et build réussis. QA navigateur réussie sur desktop 1440x900 et
+  mobile 390x844 ; le premier toucher reste stable après une seconde URL UTM.
+  Revue terminée sans problème critique, important ni mineur.
 next: >
-  Appeler captureAttributionFromWindow() au montage de App, stocker le résultat,
-  puis étendre le config du <Cal> avec toCalConfig().
+  Passer à T-005 pour créer les questions visibles et cachées côté Cal.com.
 ```
 
 ---

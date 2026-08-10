@@ -8,53 +8,58 @@ import { Layout } from "@/components/layout/Layout";
 import { Header } from "@/components/layout/Header";
 import { SkipToContent } from "@/components/ui/SkipToContent";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useState } from "react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { LoadingFallback } from "@/components/ui/LoadingFallback";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { CalBookingDialog } from "@/components/booking/CalBookingDialog";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
+import { captureAttributionFromWindow } from "@/lib/attribution/session";
 
 const Home = lazy(() => import("./pages/Home"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <ErrorBoundary>
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider>
-        <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <SpeedInsights />
-          <BrowserRouter>
-            <SkipToContent />
-            <Header />
-            <CalBookingDialog />
-            <ScrollProgress />
-            <SmoothScroll>
-              <Layout>
-                <Suspense fallback={<LoadingFallback />}>
-                  <Routes>
-                    <Route path="/" element={<Home />} />
-                    {/* V1 : landing unique. Les pages secondaires restent dans le
-                        code pour une évolution fondée sur du contenu réel ; un
-                        formulaire Supabase + Resend n'est pas requis pour la V1. */}
-                    <Route path="/services" element={<Navigate to="/" replace />} />
-                    <Route path="/portfolio" element={<Navigate to="/" replace />} />
-                    <Route path="/portfolio/:id" element={<Navigate to="/" replace />} />
-                    <Route path="/contact" element={<Navigate to="/" replace />} />
-                    <Route path="*" element={<NotFound />} />
-                  </Routes>
-                </Suspense>
-              </Layout>
-            </SmoothScroll>
-          </BrowserRouter>
-        </TooltipProvider>
-      </ThemeProvider>
-    </QueryClientProvider>
-  </ErrorBoundary>
-);
+const App = () => {
+  const [attribution] = useState(captureAttributionFromWindow);
+
+  return (
+    <ErrorBoundary>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider>
+          <TooltipProvider>
+            <Toaster />
+            <Sonner />
+            <SpeedInsights />
+            <BrowserRouter>
+              <SkipToContent />
+              <Header />
+              <CalBookingDialog attribution={attribution} />
+              <ScrollProgress />
+              <SmoothScroll>
+                <Layout>
+                  <Suspense fallback={<LoadingFallback />}>
+                    <Routes>
+                      <Route path="/" element={<Home />} />
+                      {/* V1 : landing unique. Les pages secondaires restent dans le
+                          code pour une évolution fondée sur du contenu réel ; un
+                          formulaire Supabase + Resend n'est pas requis pour la V1. */}
+                      <Route path="/services" element={<Navigate to="/" replace />} />
+                      <Route path="/portfolio" element={<Navigate to="/" replace />} />
+                      <Route path="/portfolio/:id" element={<Navigate to="/" replace />} />
+                      <Route path="/contact" element={<Navigate to="/" replace />} />
+                      <Route path="*" element={<NotFound />} />
+                    </Routes>
+                  </Suspense>
+                </Layout>
+              </SmoothScroll>
+            </BrowserRouter>
+          </TooltipProvider>
+        </ThemeProvider>
+      </QueryClientProvider>
+    </ErrorBoundary>
+  );
+};
 
 export default App;
