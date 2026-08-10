@@ -13,11 +13,11 @@ L’objectif est simple : permettre à un visiteur de comprendre l’offre, voir
 - shadcn/ui
 - motion ^12.40
 - GSAP
-- Supabase client et Edge Functions prévues pour le backend métier
-- Resend prévu pour les emails
+- Supabase client présent ; Edge Functions seulement si une écriture métier est ajoutée
+- Resend reporté jusqu'à l'apparition d'un vrai besoin d'email propre au Portfolio
 - Cal.com pour les réservations
 
-Le site est une SPA statique déployée sur Vercel. Les formulaires, écritures métier et secrets doivent passer par Supabase Edge Functions, sans serveur applicatif séparé. La mesure du parcours (`page_view`, `cta_click`) relève d’un contrat distinct et pourra être émise côté client vers la destination définie par sa future spec.
+Le site est une SPA statique déployée sur Vercel. Cal.com est l'unique entrée structurée de la V1 ; un lien email reste disponible comme secours. Si un formulaire métier est ajouté plus tard, ses écritures et secrets devront passer par Supabase Edge Functions, sans serveur applicatif séparé. La mesure du parcours (`page_view`, `cta_click`) relève d’un contrat distinct et pourra être émise côté client vers la destination définie par sa future spec.
 
 ## Démarrage local
 
@@ -50,7 +50,7 @@ VITE_SUPABASE_URL=
 VITE_SUPABASE_PUBLISHABLE_KEY=
 ```
 
-Les secrets sensibles, comme `RESEND_API_KEY`, ne doivent jamais être exposés côté client ni codés en dur. Ils seront configurés comme secrets Supabase lorsque les Edge Functions seront implémentées.
+Les secrets sensibles ne doivent jamais être exposés côté client ni codés en dur. Si Resend est introduit plus tard, `RESEND_API_KEY` sera configurée comme secret Supabase.
 
 ## Structure importante
 
@@ -73,24 +73,25 @@ Pour modifier le contenu public, commencer par `src/data/business.ts`. Pour une 
 
 ## Frontière des responsabilités
 
-- **Cal.com** est la source de vérité des réservations, statuts, réponses de qualification et rappels.
-- **Le Portfolio** capture la provenance et mesurera le parcours ; il ne stocke pas les réservations.
-- **L’OS personnel** récupère les données Cal.com via Composio et les redistribue aux départements.
+- **Cal.com** est l'entrée structurée et la source de vérité des réservations, statuts, réponses de qualification et rappels.
+- **Le Portfolio** ouvre Cal.com, capture la provenance et propose un lien email de secours ; il ne stocke pas les réservations.
+- **L’OS personnel** devra récupérer les données Cal.com via Composio, puis exécuter les flows validés avec Trigger.dev. La connexion est expirée et aucun flow n'existe encore.
 
 ## Routes publiques
 
 - `/` : landing V1 avec Hero, WhatIBuild, Méthode, Marquee et CTA.
 - `/services`, `/portfolio`, `/portfolio/:id` et `/contact` redirigent temporairement vers l’accueil.
 
-Les pages secondaires restent dans le code pour être réactivées lorsque les projets réels et le formulaire Supabase + Resend seront prêts.
+Les pages secondaires restent dans le code pour être réactivées lorsque leur contenu réel le justifiera. Un formulaire Supabase + Resend n'est pas requis pour la V1.
 
 ## État actuel
 
-- La landing V1 est fonctionnelle.
-- Les CTA ouvrent l’événement Cal.com défini dans `src/data/business.ts`.
+- La landing V1 compile et le code local cible `elias-sylla/decouverte`.
+- Le bundle Vercel audité le 2026-08-10 cible encore `elias-sylla/30min`, désormais en 404 ; un déploiement est requis avant de déclarer le parcours public fonctionnel.
 - La capture de provenance est implémentée et testée, mais son branchement à l’embed Cal.com reste suivi dans `TASKS.md`.
+- L'événement Cal.com `Échange découverte` existe, mais les 4 questions de qualification, les 6 champs UTM cachés et les workflows sont absents.
 - Supabase est configuré côté client, sans tables métier, migrations ni Edge Functions dans le dépôt.
-- Le formulaire de contact repose encore sur `mailto:` ; Resend reste à intégrer.
+- Le lien `mailto:` est un secours V1 accepté ; le formulaire séparé et Resend sont reportés.
 - Les projets doivent être validés avant de rendre les pages secondaires publiques.
 
 ## Développement

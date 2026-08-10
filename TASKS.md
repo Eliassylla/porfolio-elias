@@ -153,21 +153,24 @@ next: >
 ## T-005 · Configuration de l'event type Cal.com
 
 ```yaml
-objectif: Créer côté Cal.com les questions qui recueillent la qualification et
-          la provenance, sans alourdir la réservation.
+objectif: Finaliser côté Cal.com l'événement Échange découverte pour recueillir
+          le contexte utile sans dupliquer les notifications natives.
 spec: specs/calcom/event-type-setup.md   # à écrire dans cette tâche
 acceptation:
   - 4 questions visibles : entreprise, outils quotidiens, problème, objectif
   - 6 champs UTM cachés, nommés exactement comme le contrat
-  - Le slug reste 30min (le renommer casserait l'embed)
-  - Une réservation de test porte les 4 réponses et les 6 champs, vérifié en
-    lecture seule via Composio
+  - L'événement actif reste `elias-sylla/decouverte`, 30 minutes, avec Google Meet
+  - La confirmation native n'est pas dupliquée et un rappel utile est attaché
+  - Réservation, replanification et annulation sont testées ; les 10 réponses
+    sont vérifiées en lecture seule via Composio
 operateur: null
 statut: blocked
 depend_de: [T-004]
 risques:
   - Les 3 connexions Composio cal sont EXPIRED : composio link cal est requis
   - Chaque question ajoutée est de la friction sur la seule action qui compte
+  - Audit UI du 2026-08-10 : aucune question personnalisée, aucun champ UTM et
+    aucun workflow n'étaient configurés
 fichiers:
   - specs/calcom/event-type-setup.md
 tests: >
@@ -175,6 +178,69 @@ tests: >
   consigner l'uid et la date dans la spec.
 handoff: null
 next: >
-  Bloqué sur Elias : relinker Composio (composio link cal) et arrêter le libellé
-  exact des 4 questions.
+  Après T-004, ajouter les 10 champs dans Cal.com, choisir un rappel qui ne
+  répète pas la confirmation native, puis relinker Composio pour le test final.
+```
+
+---
+
+## T-006 · Alignement de l'entrée V1 et de l'état Cal.com
+
+```yaml
+objectif: Donner au repo et à l'OS une seule version de la stratégie inbound V1
+          et de l'état réellement observé le 2026-08-10.
+spec: null
+acceptation:
+  - Cal.com `elias-sylla/decouverte` est l'unique entrée structurée de la V1
+  - Le lien email est un secours acceptable, pas un formulaire ni un CRM
+  - Formulaire séparé, Supabase métier et Resend sont reportés jusqu'à besoin réel
+  - Le traitement post-réservation via Composio et Trigger.dev appartient à l'OS
+operateur: codex
+statut: done
+depend_de: [T-003]
+risques:
+  - T-006 adopte le remplacement local `30min` → `decouverte` ; le déploiement reste distinct
+  - Le bundle Vercel audité pointe encore vers `30min` et restera cassé jusqu'au déploiement
+fichiers:
+  - CLAUDE.md
+  - README.md
+  - TASKS.md
+  - src/data/business.ts
+  - src/App.tsx
+tests: test -L AGENTS.md && npm test && npm run typecheck && npm run build
+handoff: >
+  Livré et vérifié : stratégie inbound V1, état Cal.com et frontières Portfolio/OS
+  alignés. Le code local cible `decouverte`; le déploiement reste explicitement dans
+  T-007. 21 tests verts, typecheck et build réussis, diff-check propre et revue sans
+  problème critique ou important.
+next: >
+  Terminer T-004, puis T-005, puis T-007.
+```
+
+---
+
+## T-007 · Déploiement et vérification du parcours Cal.com
+
+```yaml
+objectif: Réparer le CTA public et prouver en production le parcours de réservation complet.
+spec: specs/calcom/production-verification.md   # à écrire dans cette tâche
+acceptation:
+  - Le bundle Vercel cible `elias-sylla/decouverte` et ne contient plus l'ancien slug
+  - Les CTA desktop et mobile ouvrent l'événement Échange découverte
+  - Une réservation de production porte les 4 réponses visibles et les 6 champs UTM
+  - Replanification et annulation conservent un état cohérent dans Cal.com
+  - URL, date et identifiant de réservation de test sont consignés dans la spec
+operateur: null
+statut: backlog
+depend_de: [T-004, T-005]
+risques:
+  - Le déploiement ne suffit pas si les champs Cal.com ou le flow d'attribution sont incomplets
+  - Utiliser une réservation de test identifiable et l'annuler après vérification
+fichiers:
+  - src/data/business.ts
+  - specs/calcom/production-verification.md
+tests: npm test && npm run typecheck && npm run build
+handoff: null
+next: >
+  Déployer le commit validé, tester le parcours public, puis seulement déclarer le jalon OS terminé.
 ```

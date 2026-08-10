@@ -39,8 +39,8 @@ const App = () => (
                   <Routes>
                     <Route path="/" element={<Home />} />
                     {/* V1 : landing unique. Les pages secondaires restent dans le
-                        code pour la V2, mais ne sont pas publiées avant d'avoir
-                        des projets réels et le formulaire Supabase + Resend. */}
+                        code pour une évolution fondée sur du contenu réel ; un
+                        formulaire Supabase + Resend n'est pas requis pour la V1. */}
                     <Route path="/services" element={<Navigate to="/" replace />} />
                     <Route path="/portfolio" element={<Navigate to="/" replace />} />
                     <Route path="/portfolio/:id" element={<Navigate to="/" replace />} />

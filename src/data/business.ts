@@ -9,9 +9,9 @@ export const businessInfo = {
   location: 'France',
   // Lien de prise de RDV Cal.com — ouvre cal.com/<calLink> en popup.
   // Pointe vers un événement précis (et non le profil) pour afficher directement
-  // le calendrier. Pour un appel express, remplacer '30min' par '15min'.
+  // le calendrier.
   booking: {
-    calLink: 'elias-sylla/30min',
+    calLink: 'elias-sylla/decouverte',
   },
   socialLinks: {
     // À renseigner uniquement avec les profils publics définitifs.
