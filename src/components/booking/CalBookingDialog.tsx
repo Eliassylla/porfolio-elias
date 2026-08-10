@@ -94,7 +94,7 @@ export function CalBookingDialog({ attribution }: CalBookingDialogProps) {
           <SheetDescription className="sr-only">
             Choisissez un créneau pour un audit avec Elias.
           </SheetDescription>
-          <div className="cal-mobile-sheet-embed h-full bg-background pt-3">
+          <div className="cal-mobile-sheet-embed flex h-full flex-col bg-background pt-3">
             {calEmbed}
           </div>
         </SheetContent>
