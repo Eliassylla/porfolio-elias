@@ -7,7 +7,7 @@ import { defineConfig } from "vitest/config";
 // le DOM. Un test qui aurait besoin du navigateur doit le déclarer lui-même.
 export default defineConfig({
   test: {
-    include: ["src/**/*.test.ts"],
+    include: ["src/**/*.test.ts", "worker/**/*.test.ts"],
     environment: "node",
   },
   resolve: {

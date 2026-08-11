@@ -7,7 +7,7 @@ import { SplitText } from "gsap/SplitText";
 
 import { Button } from "@/components/ui/button";
 import { EliasCard } from "@/components/ui/elias-card";
-import { useCalEmbed } from "@/hooks/useCalEmbed";
+import { useBookingDialog } from "@/hooks/useBookingDialog";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -86,7 +86,7 @@ function renderWord(word: string, key: string) {
 
 export default function HeroSection() {
   const containerRef = useRef<HTMLElement>(null);
-  const cal = useCalEmbed();
+  const cal = useBookingDialog();
 
   useGSAP(
     () => {

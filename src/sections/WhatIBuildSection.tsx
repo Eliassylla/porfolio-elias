@@ -14,7 +14,7 @@ import agentsDark from "@/video/agents-dark.json";
 import automationLight from "@/video/automation.json";
 import automationDark from "@/video/automation-dark.json";
 import { businessInfo } from "@/data/business";
-import { useCalEmbed } from "@/hooks/useCalEmbed";
+import { useBookingDialog } from "@/hooks/useBookingDialog";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -27,7 +27,7 @@ export default function WhatIBuildSection() {
   const cardRef = useRef<HTMLElement>(null);
   const hasMounted = useRef(false);
   const [activeServiceId, setActiveServiceId] = useState(serviceItems[0].id);
-  const cal = useCalEmbed();
+  const cal = useBookingDialog();
 
   // Thème (next-themes). Le cadran s'inverse : panneau sombre en light, clair en dark.
   // mounted évite le flash avant hydratation de next-themes.

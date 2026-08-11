@@ -5,10 +5,10 @@ import { Button } from '@/components/ui/button';
 import { businessInfo } from '@/data/business';
 import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react';
 import { Link, useParams, Navigate } from 'react-router-dom';
-import { useCalEmbed } from '@/hooks/useCalEmbed';
+import { useBookingDialog } from '@/hooks/useBookingDialog';
 
 export default function ProjectDetail() {
-  const cal = useCalEmbed();
+  const cal = useBookingDialog();
   const { id } = useParams<{ id: string }>();
   const project = businessInfo.projects.find((p) => p.id === id);
 

@@ -16,7 +16,7 @@ import {
   SheetHeader,
   SheetTitle,
 } from '@/components/ui/sheet';
-import { useCalEmbed } from '@/hooks/useCalEmbed';
+import { useBookingDialog } from '@/hooks/useBookingDialog';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { cn } from '@/lib/utils';
 
@@ -24,7 +24,7 @@ gsap.registerPlugin(SplitText);
 
 // V1 : landing unique. 'Services' est retiré (couvert par la section ci-dessous).
 // 'Mes projets' et 'Contact' sont masqués — à réactiver en V2 une fois les pages
-// alimentées (DB Supabase pour les projets, Edge Function + Resend pour le contact).
+// alimentées par du contenu réel et un besoin métier observé.
 const navLinks: { name: string; href: string }[] = [];
 
 export function Header() {
@@ -33,7 +33,7 @@ export function Header() {
   const logoRef = useRef<HTMLAnchorElement>(null);
   const [profileOpen, setProfileOpen] = useState(false);
   const isMobile = useIsMobile();
-  const cal = useCalEmbed();
+  const cal = useBookingDialog();
 
   useGSAP(() => {
     if (location.pathname !== '/') return;

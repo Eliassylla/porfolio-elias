@@ -13,11 +13,11 @@ L’objectif est simple : permettre à un visiteur de comprendre l’offre, voir
 - shadcn/ui
 - motion ^12.40
 - GSAP
-- Supabase client présent ; Edge Functions seulement si une écriture métier est ajoutée
+- Cloudflare Worker pour servir la SPA et l’API de réservation
 - Resend reporté jusqu'à l'apparition d'un vrai besoin d'email propre au Portfolio
 - Cal.com pour les réservations
 
-Le site est une SPA statique déployée sur Vercel. Cal.com est l'unique entrée structurée de la V1 ; un lien email reste disponible comme secours. Si un formulaire métier est ajouté plus tard, ses écritures et secrets devront passer par Supabase Edge Functions, sans serveur applicatif séparé. La mesure du parcours (`page_view`, `cta_click`) relève d’un contrat distinct et pourra être émise côté client vers la destination définie par sa future spec.
+Le site est une SPA statique déployée avec son API dans un Cloudflare Worker. Le Portfolio affiche un parcours de réservation custom ; le Worker lit les créneaux et crée la réservation via l’API publique Cal.com. Cal.com reste propriétaire des réservations et le Portfolio ne devient ni une base de leads ni un CRM. La mesure du parcours (`page_view`, `cta_click`) relève d’un contrat distinct.
 
 ## Démarrage local
 
@@ -26,6 +26,12 @@ Prérequis : Node.js et npm.
 ```sh
 npm install
 npm run dev
+```
+
+Pour tester la SPA et le Worker ensemble :
+
+```bash
+npm run dev:worker
 ```
 
 Le serveur Vite démarre sur `http://localhost:8080/`.
@@ -43,14 +49,13 @@ npm run preview    # prévisualisation du build
 
 ## Variables d’environnement
 
-Le client Supabase lit :
+Le Worker exige un seul secret, `CAL_API_KEY`, pour appeler les endpoints officiels Cal.com. Créez la clé dans **Cal.com → Settings → Developer → API keys**, puis enregistrez-la dans **Cloudflare → Worker → Settings → Variables and Secrets** comme secret chiffré. Elle ne doit jamais porter le préfixe `VITE_`, être placée dans le frontend ou être commitée.
+
+Pour le développement local, utilisez un fichier `.dev.vars` ignoré par Git :
 
 ```text
-VITE_SUPABASE_URL=
-VITE_SUPABASE_PUBLISHABLE_KEY=
+CAL_API_KEY=cal_votre_cle
 ```
-
-Les secrets sensibles ne doivent jamais être exposés côté client ni codés en dur. Si Resend est introduit plus tard, `RESEND_API_KEY` sera configurée comme secret Supabase.
 
 ## Structure importante
 
@@ -62,10 +67,11 @@ src/
 ├── components/            # composants réutilisables
 ├── hooks/                 # hooks React
 ├── lib/attribution/       # capture de provenance testée
-└── integrations/supabase/ # client Supabase
+
+worker/                    # API Cloudflare et contrat Cal.com
+wrangler.jsonc             # configuration assets + Worker
 
 specs/                     # contrats de comportement et fixtures
-supabase/config.toml       # configuration Supabase locale
 TASKS.md                   # file d’attente du développement
 ```
 
@@ -74,7 +80,7 @@ Pour modifier le contenu public, commencer par `src/data/business.ts`. Pour une 
 ## Frontière des responsabilités
 
 - **Cal.com** est l'entrée structurée et la source de vérité des réservations, statuts, réponses de qualification et rappels.
-- **Le Portfolio** ouvre Cal.com, capture la provenance et propose un lien email de secours ; il ne stocke pas les réservations.
+- **Le Portfolio** affiche le parcours custom, capture la provenance et appelle Cal.com via son Worker ; il ne stocke pas les réservations.
 - **L’OS personnel** devra récupérer les données Cal.com via Composio, puis exécuter les flows validés avec Trigger.dev. La connexion est expirée et aucun flow n'existe encore.
 
 ## Routes publiques
@@ -82,15 +88,14 @@ Pour modifier le contenu public, commencer par `src/data/business.ts`. Pour une 
 - `/` : landing V1 avec Hero, WhatIBuild, Méthode, Marquee et CTA.
 - `/services`, `/portfolio`, `/portfolio/:id` et `/contact` redirigent temporairement vers l’accueil.
 
-Les pages secondaires restent dans le code pour être réactivées lorsque leur contenu réel le justifiera. Un formulaire Supabase + Resend n'est pas requis pour la V1.
+Les pages secondaires restent dans le code pour être réactivées lorsque leur contenu réel le justifiera. Une base métier et Resend ne sont pas requis pour la V1.
 
 ## État actuel
 
 - La landing V1 compile et le code local cible `elias-sylla/decouverte`.
-- Le bundle Vercel audité le 2026-08-10 cible encore `elias-sylla/30min`, désormais en 404 ; un déploiement est requis avant de déclarer le parcours public fonctionnel.
-- La capture de provenance est implémentée et testée, mais son branchement à l’embed Cal.com reste suivi dans `TASKS.md`.
-- L'événement Cal.com `Échange découverte` existe, mais les 4 questions de qualification, les 6 champs UTM cachés et les workflows sont absents.
-- Supabase est configuré côté client, sans tables métier, migrations ni Edge Functions dans le dépôt.
+- Le déploiement Vercel a été mis en pause le 2026-08-11 pendant la migration Cloudflare.
+- Le parcours custom, les quatre questions, le calendrier et le payload d’attribution sont implémentés sur la branche `codex/custom-cal-intake`.
+- Le Worker Cloudflare lit les créneaux et prépare la création directe dans Cal.com ; le déploiement et la réservation de validation restent à effectuer.
 - Le lien `mailto:` est un secours V1 accepté ; le formulaire séparé et Resend sont reportés.
 - Les projets doivent être validés avant de rendre les pages secondaires publiques.
 
@@ -109,10 +114,13 @@ Conventions :
 
 ## Déploiement
 
-Le projet se déploie comme une SPA Vite statique :
+Le projet se déploie comme une SPA Vite et un Worker Cloudflare :
 
 ```sh
 npm run build
+npm run deploy
 ```
 
-Le résultat est généré dans `dist/`. `vercel.json` redirige les routes vers `index.html` pour le routage client.
+Le résultat frontend est généré dans `dist/`. `wrangler.jsonc` publie ces assets, exécute le Worker pour `/api/*` et renvoie les autres routes vers `index.html` pour le routage client.
+
+Le token proposé par **Workers Builds** dans Cloudflare autorise le déploiement depuis GitHub ; il est distinct de `CAL_API_KEY` et ne doit pas être copié dans le code.

@@ -7,9 +7,7 @@ export const businessInfo = {
   heroCta: 'Demander un audit',
   email: 'contact@elias-automation.com',
   location: 'France',
-  // Lien de prise de RDV Cal.com — ouvre cal.com/<calLink> en popup.
-  // Pointe vers un événement précis (et non le profil) pour afficher directement
-  // le calendrier.
+  // Événement Cal.com fixé côté Worker pour la lecture et la création.
   booking: {
     calLink: 'elias-sylla/decouverte',
   },
@@ -19,6 +17,7 @@ export const businessInfo = {
     youtube: '',
   },
   seo: {
+    // URL de repli conservée jusqu’à la validation du domaine Cloudflare (T-007).
     siteUrl: 'https://porfolio-elias.vercel.app',
     ogImage: '/og-image.png',
     home: {

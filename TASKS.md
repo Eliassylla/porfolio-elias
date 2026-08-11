@@ -223,28 +223,84 @@ next: >
 
 ---
 
-## T-007 · Déploiement et vérification du parcours Cal.com
+## T-007 · Déploiement Cloudflare et vérification du parcours Cal.com
 
 ```yaml
-objectif: Réparer le CTA public et prouver en production le parcours de réservation complet.
+objectif: Publier le Portfolio et son API sur Cloudflare, puis prouver en production
+          le parcours de réservation complet.
 spec: specs/calcom/production-verification.md   # à écrire dans cette tâche
 acceptation:
-  - Le bundle Vercel cible `elias-sylla/decouverte` et ne contient plus l'ancien slug
-  - Les CTA desktop et mobile ouvrent l'événement Échange découverte
+  - Le Worker sert la SPA et `/api/booking` sur la même origine
+  - Les CTA desktop et mobile ouvrent le parcours custom sans iframe Cal.com
+  - Les créneaux affichés proviennent de Cal.com et l’événement reste fixé côté Worker
   - Une réservation de production porte les 4 réponses visibles et les 6 champs UTM
   - Replanification et annulation conservent un état cohérent dans Cal.com
   - URL, date et identifiant de réservation de test sont consignés dans la spec
 operateur: null
 statut: backlog
-depend_de: [T-004, T-005]
+depend_de: [T-004, T-005, T-008]
 risques:
   - Le déploiement ne suffit pas si les champs Cal.com ou le flow d'attribution sont incomplets
   - Utiliser une réservation de test identifiable et l'annuler après vérification
+  - Garder Vercel en pause comme retour arrière jusqu’à validation du domaine Cloudflare
 fichiers:
-  - src/data/business.ts
+  - wrangler.jsonc
+  - worker/index.ts
+  - src/components/booking/CalBookingDialog.tsx
   - specs/calcom/production-verification.md
 tests: npm test && npm run typecheck && npm run build
 handoff: null
 next: >
-  Déployer le commit validé, tester le parcours public, puis seulement déclarer le jalon OS terminé.
+  Après T-008, connecter GitHub à Workers Builds, tester l’URL workers.dev, puis le
+  domaine personnalisé avant de retirer définitivement le déploiement Vercel.
+```
+
+---
+
+## T-008 · Parcours de réservation custom via Cloudflare
+
+```yaml
+objectif: Montrer une réservation entièrement personnalisée dans le Portfolio,
+          sans afficher l'interface Cal.com au visiteur.
+spec: null   # prototype isolé sur codex/custom-cal-intake
+acceptation:
+  - Les 4 questions de qualification reprennent le langage visuel de Cal.com
+  - Le choix de la date et du créneau est une interface shadcn, sans embed Cal.com
+  - La confirmation envoie le payload Cal.com avec réponses et 6 champs UTM
+  - Les retours entre étapes conservent les réponses et le créneau sélectionné
+  - Le Worker fixe `elias-sylla/decouverte` et n’accepte aucun événement fourni par le navigateur
+  - La lecture et la création utilisent uniquement les endpoints publics Cal.com prévus
+  - `CAL_API_KEY` reste exclusivement dans les secrets du Worker
+  - La SPA et `/api/booking` sont prêtes à être servies sur la même origine Cloudflare
+operateur: codex
+statut: done
+depend_de: [T-004]
+risques:
+  - Une disponibilité peut disparaître entre l’affichage et la confirmation ; le Worker doit la revérifier
+  - Une réservation réelle ne doit être créée qu'avec une identité de test, puis annulée
+fichiers:
+  - TASKS.md
+  - src/components/booking/bookingIntake.ts
+  - src/components/booking/BookingIntakeForm.tsx
+  - src/components/booking/BookingIntakeForm.test.ts
+  - src/components/booking/CalBookingDialog.tsx
+  - src/components/booking/bookingApi.ts
+  - worker/index.ts
+  - worker/contract.ts
+  - worker/index.test.ts
+  - worker/contract.test.ts
+  - wrangler.jsonc
+tests: npm test && npm run typecheck && npm run build && npx wrangler deploy --dry-run
+handoff: >
+  Branche codex/custom-cal-intake. Le dialog custom sans iframe, les 4 questions,
+  le calendrier, les créneaux réels, les coordonnées et la création directe Cal.com
+  sont implémentés localement. Le Worker sert aussi les assets Vite, fixe l’événement
+  5777679 et revérifie le créneau avant création. Supabase, Composio et Vercel sont
+  retirés du runtime. Les artefacts locaux `.claude/skills/composio-cli/` et `docs/`
+  ont été audités, préservés et restent hors commit. 37 tests verts, typecheck,
+  lint sans erreur, build et dry-run Wrangler réussis. Lecture réelle validée sans
+  créer de rendez-vous ; revue finale sans constat critique ou important restant.
+next: >
+  Créer le commit atomique sans pousser, puis demander à Elias de créer la clé API
+  Cal.com, le token Workers Builds et lancer le premier déploiement workers.dev.
 ```

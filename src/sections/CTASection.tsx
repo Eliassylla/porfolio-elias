@@ -6,13 +6,13 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import { Button } from "@/components/ui/button";
 import { GsapTextReveal } from "@/components/ui/gsap-text-reveal";
-import { useCalEmbed } from "@/hooks/useCalEmbed";
+import { useBookingDialog } from "@/hooks/useBookingDialog";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function CTASection() {
   const sectionRef = useRef<HTMLElement>(null);
-  const cal = useCalEmbed();
+  const cal = useBookingDialog();
 
   useGSAP(
     () => {
