@@ -14,10 +14,10 @@ gsap.registerPlugin(ScrollTrigger);
 // v3) : Notes fermée et son icône, l'icône qui part en haut à gauche, la carte qui s'ouvre, les vagues d'entrée et
 // leurs rebonds, puis le morph vers la barre de chat. Mêmes SVG, mêmes images, mêmes courbes.
 // Note : section d'essai, sans titre visible (le libellé « Essai · ouverture de la vidéo ChatGPT » a été retiré).
-// Rythme : l'ouverture part quand le haut de la section arrive à 15 % de l'écran, la carte presque à sa place.
-// La section reste ensuite fixée ; la première moitié du scroll fixé garde Notes, la seconde passe en Chat.
-// Chaque passage joue à la vitesse de la vidéo, et remonter au-dessus de la section rejoue tout à l'envers jusqu'à
-// l'icône.
+// Rythme (essai « tout figé ») : l'écran se fige dès que la section arrive en haut, et tout se passe pendant qu'il
+// est figé. Le scroll avance de pose en pose : UI fermée (l'icône), Notes, puis Chat ; chaque passage joue à la
+// vitesse de la vidéo. En remontant, on repasse par Notes puis par l'UI fermée avant que l'écran se libère.
+// L'UI fermée reste affichée quand la section repart.
 
 const COMPACT = { x: 400, y: 400, width: 280, height: 280, rx: 55, ry: 58 };
 const NOTES = { x: 123, y: 151, width: 834, height: 760, rx: 52, ry: 52 };
@@ -237,6 +237,8 @@ export default function NotesMorphSection() {
       );
       controls.forEach((el, i) => entrance(el, CHAT_AT + i * 2 * F, "y", 24));
 
+      // UI fermée : l'icône posée dans la forme compacte, juste avant qu'elle parte en haut à gauche.
+      tl.addLabel("icone", 10 * F);
       tl.addLabel("notes", MORPH_AT);
       tl.addLabel("chat", CHAT_AT + 26 * F);
       tl.set({}, {}, CHAT_AT + 26 * F);
@@ -271,21 +273,14 @@ export default function NotesMorphSection() {
         current = tl.tweenTo(label, { ease: "none" });
       };
 
-      // Ouverture : quand la section est presque en place (à 70 %, elle partait pendant le texte précédent).
-      ScrollTrigger.create({
-        trigger: section,
-        start: "top 15%",
-        onEnter: () => goTo("notes"),
-        onLeaveBack: () => goTo(0),
-      });
-      // Section fixée : Notes sur la première moitié du scroll, Chat sur la seconde.
+      // Une seule zone figée pour toutes les poses : 0 à 15 % UI fermée, 15 à 55 % Notes, au-delà Chat.
       ScrollTrigger.create({
         trigger: section,
         start: "top top",
-        end: "+=120%",
+        end: "+=200%",
         pin: true,
-        onUpdate: (self) => goTo(self.progress > 0.45 ? "chat" : "notes"),
-        onLeaveBack: () => goTo("notes"),
+        onUpdate: (self) => goTo(self.progress < 0.15 ? "icone" : self.progress < 0.55 ? "notes" : "chat"),
+        onEnter: () => goTo("icone"),
       });
     },
     { scope: sectionRef },
