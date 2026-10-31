@@ -15,7 +15,7 @@ gsap.registerPlugin(ScrollTrigger);
 // pas ; en remontant, tout se rejoue à l'envers. « Je construis des systèmes… » ouvrira la section 02.
 
 const PHRASE = "Vos tâches répétitives vous coûtent des heures.";
-const FIN = 51 * F;
+const FIN = 51 * F; // fin de la carte, en images de la phrase
 
 // La carte du package (une par thème), cadrée sur elle-même, sans le fond du plan ; id préfixés par thème.
 const carte = (svg: string, prefixe: string) =>
@@ -166,54 +166,77 @@ export default function TextGlowSection() {
         return;
       }
 
-      const tl = gsap.timeline({ paused: true, defaults: { immediateRender: false } });
+      // Phrase et carte ont chacune leur déclencheur, au moment où elles arrivent en bas de l'écran (85 %), et se
+      // rejouent à l'envers quand on remonte au-dessus de ce point : sur un écran court, la carte n'est pas encore
+      // visible quand la phrase joue. Si les deux arrivent ensemble, la carte attend l'image 22 de la phrase
+      // (méthode sans temps mort).
+      const phrase = gsap.timeline({
+        paused: true,
+        onUpdate: () => renderPhrase(phrase.time()),
+        onComplete: () => renderPhrase(phrase.duration(), true),
+        onReverseComplete: () => renderPhrase(0),
+      });
+      phrase.set({}, {}, 36 * F);
+      renderPhrase(0);
+
       // Carte : chaque groupe monte et apparaît (ARRIVE), puis rebondit comme les entrées de la vidéo ChatGPT.
       // Les deux cartes (clair, sombre) jouent ensemble ; une seule est affichée.
+      const DEPART = 22 * F;
+      const cartes = gsap.timeline({ paused: true, defaults: { immediateRender: false } });
       const springs: { e: SVGGElement; start: number; amp: number }[] = [];
       CARTES.forEach(({ prefixe }) =>
         GROUPES.forEach(([id, image, distance, images]) => {
           const el = block.querySelector<SVGGElement>(`#${prefixe}${id}`);
           if (!el) return;
           const d = images * F;
+          const at = image * F - DEPART;
           const inner = document.createElementNS("http://www.w3.org/2000/svg", "g");
           while (el.firstChild) inner.appendChild(el.firstChild);
           el.appendChild(inner);
-          tl.fromTo(el, { y: distance, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: d, ease: ARRIVE }, image * F);
-          springs.push({ e: inner, start: image * F + d, amp: (-distance / d) * 0.36 * 0.06 });
+          cartes.fromTo(el, { y: distance, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: d, ease: ARRIVE }, at);
+          springs.push({ e: inner, start: at + d, amp: (-distance / d) * 0.36 * 0.06 });
           gsap.set(el, { y: distance, autoAlpha: 0 });
         }),
       );
-      tl.set({}, {}, FIN);
-
-      const render = (done = false) => {
-        const t = tl.time();
-        // Dernière clé de la phrase à l'image 35 : au-delà, elle reste posée pendant que la carte arrive.
-        renderPhrase(Math.min(t, 36 * F), done);
+      cartes.set({}, {}, FIN - DEPART);
+      const renderCartes = () => {
+        const t = cartes.time();
         springs.forEach((s) => {
           const u = t - s.start;
           const v = u > 0 && u < 0.8 ? (s.amp * Math.sin(1.8 * u * 2 * Math.PI)) / Math.exp(5 * u) : 0;
           s.e.setAttribute("transform", `translate(0 ${v})`);
         });
       };
-      tl.eventCallback("onUpdate", () => render());
-      tl.eventCallback("onComplete", () => render(true));
-      tl.eventCallback("onReverseComplete", () => render());
-      render();
+      cartes.eventCallback("onUpdate", renderCartes);
 
-      // Le bloc (phrase et carte) joue quand son milieu passe à 60 % de l'écran : la carte est alors à l'écran,
-      // sur ordinateur comme sur téléphone.
+      const carteEl = block.querySelector<HTMLElement>(".tg-carte");
+      let attente: gsap.core.Tween | null = null;
       ScrollTrigger.create({
-        trigger: block,
-        start: "center 60%",
+        trigger: line,
+        start: "top 85%",
         onEnter: () => {
           finalRgb = parseRgb(getComputedStyle(line).color);
-          tl.play();
+          phrase.play();
         },
         onLeaveBack: () => {
           finalRgb = parseRgb(getComputedStyle(line).color);
-          tl.reverse();
+          phrase.reverse();
         },
       });
+      if (carteEl) {
+        ScrollTrigger.create({
+          trigger: carteEl,
+          start: "top 85%",
+          onEnter: () => {
+            const reste = phrase.isActive() && !phrase.reversed() ? Math.max(0, DEPART - phrase.time()) : 0;
+            attente = gsap.delayedCall(reste, () => cartes.play());
+          },
+          onLeaveBack: () => {
+            attente?.kill();
+            cartes.reverse();
+          },
+        });
+      }
     },
     { scope: sectionRef },
   );
@@ -229,7 +252,7 @@ export default function TextGlowSection() {
       <div className="relative mx-auto max-w-6xl px-4 text-center lg:px-8">
         <div className="tg-block flex flex-col items-center gap-10 md:gap-14">
           <Line text={PHRASE} />
-          <div className="w-full max-w-[860px]" role="img" aria-label="Cette semaine : cinq tâches répétitives, 5 h perdues">
+          <div className="tg-carte w-full max-w-[860px]" role="img" aria-label="Cette semaine : cinq tâches répétitives, 5 h perdues">
             {CARTES.map(({ prefixe, html, className }) => (
               <div key={prefixe} className={className} aria-hidden="true" dangerouslySetInnerHTML={{ __html: html }} />
             ))}
