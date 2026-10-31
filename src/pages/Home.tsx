@@ -1,5 +1,7 @@
 import { SEOHead } from '@/components/seo/SEOHead';
 import HeroSection from '@/sections/HeroSection';
+import TextGlowSection from '@/sections/experiments/TextGlowSection';
+import NotesMorphSection from '@/sections/experiments/NotesMorphSection';
 import WhatIBuildSection from '@/sections/WhatIBuildSection';
 import MethodSection from '@/sections/MethodSection';
 import MarqueeSection from '@/sections/MarqueeSection';
@@ -16,7 +18,9 @@ export default function Home() {
       />
 
       <div className="min-h-screen">
-        <HeroSection />
+        <HeroSection horizontalPhrase={false} />
+        <TextGlowSection />
+        <NotesMorphSection />
         <WhatIBuildSection />
         <MethodSection />
         <MarqueeSection />

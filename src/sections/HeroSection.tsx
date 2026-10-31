@@ -84,7 +84,8 @@ function renderWord(word: string, key: string) {
   );
 }
 
-export default function HeroSection() {
+// `horizontalPhrase={false}` : essai sans la phrase horizontale (remplacée par TextGlowSection).
+export default function HeroSection({ horizontalPhrase = true }: { horizontalPhrase?: boolean }) {
   const containerRef = useRef<HTMLElement>(null);
   const cal = useBookingDialog();
 
@@ -161,6 +162,8 @@ export default function HeroSection() {
           .to(".scene-1-cta", { opacity: 1, y: 0, duration: 0.5 }, "-=0.3")
           .to(".scroll-indicator", { opacity: 1, y: 0, duration: 0.4 }, "+=0.1");
       }
+
+      if (!horizontalPhrase) return () => titleSplit?.revert();
 
       // === États initiaux phrase horizontale ===
       if (!track || wordEls.length === 0) return;
@@ -307,7 +310,7 @@ export default function HeroSection() {
         titleSplit?.revert();
       };
     },
-    { scope: containerRef },
+    { scope: containerRef, dependencies: [horizontalPhrase] },
   );
 
   return (
@@ -344,7 +347,7 @@ export default function HeroSection() {
         </div>
 
         {/* PHRASE HORIZONTALE — défile de droite à gauche au scroll */}
-        <div className="h-phrase-wrap pointer-events-none absolute inset-0 flex items-center overflow-hidden">
+        {horizontalPhrase && (<div className="h-phrase-wrap pointer-events-none absolute inset-0 flex items-center overflow-hidden">
           <div className="h-phrase-track flex items-center gap-x-4 whitespace-nowrap will-change-transform pl-[100vw] pr-24">
             {part1Words.map((word, i) => renderWord(word, `p1-${i}`))}
 
@@ -354,7 +357,7 @@ export default function HeroSection() {
 
             {part2Words.map((word, i) => renderWord(word, `p2-${i}`))}
           </div>
-        </div>
+        </div>)}
 
         {/* Scroll indicator (visible scène 1) */}
         <div className="scroll-indicator absolute bottom-8 left-1/2 z-10 -translate-x-1/2 flex flex-col items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted-foreground">

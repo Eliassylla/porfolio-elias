@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- MASTER — source de vérité. Ne jamais l'enregistrer depuis Illustrator : le panneau After Effects en ouvre une copie. Fabriqué par productions/chatgpt-video/Main/source/build_assets.py. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080"><title>Champ de saisie du chat avec la question (1:1)</title><g id="fond" data-ae-name="Shape - Fond"><rect width="1080" height="1080" fill="#000000"/></g><g id="champ" data-ae-name="Shape - Champ"><rect x="108" y="400" width="864" height="160" rx="22" fill="#1E1D1C"/></g><text id="question" data-ae-name="Text - Question" x="136" y="447" font-size="26" fill="#D6D5D2" font-family="Arial">Comment crée-t-on nos animations UI ?</text><g id="commandes" transform="matrix(1.35 0 0 1.35 108 -114.35)"><g id="add-button" transform="translate(21.1 461.95) scale(0.6662)" data-ae-name="Icon - Add">
+		<path fill="#D6D5D2" fill-opacity="0.65" d="M11.125,21v-8.125H3c-0.483,0-0.875-0.392-0.875-0.875S2.517,11.125,3,11.125h8.125V3    c0-0.483,0.392-0.875,0.875-0.875S12.875,2.517,12.875,3v8.125H21c0.483,0,0.875,0.392,0.875,0.875S21.483,12.875,21,12.875    h-8.125V21c0,0.483-0.392,0.875-0.875,0.875S11.125,21.483,11.125,21z" />
+	</g>
+<g id="search-control">
+		<g id="search-pill" data-ae-name="Shape - Search Pill">
+			<path id="search-control-pill" fill="#1E1D1C" stroke="#D6D5D2" stroke-width="1.11" stroke-opacity="0.14" d="M69.09,453.96     h98.99c8.837,0,16,7.163,16,16l0,0c0,8.837-7.163,16-16,16H69.09c-8.837,0-16-7.163-16-16l0,0     C53.09,461.123,60.253,453.96,69.09,453.96z" />
+		</g>
+		<g id="search-icon" data-ae-name="Icon - Search">
+			<circle fill="none" stroke="#D6D5D2" stroke-width="1.2" cx="70" cy="469" r="4.1" />
+			<line fill="none" stroke="#D6D5D2" stroke-width="1.2" stroke-linecap="round" x1="73" y1="472" x2="77" y2="476" />
+		</g>
+		
+			<text id="search-label" data-ae-name="Text - Search" transform="matrix(1 0 0 1 84.17 476)" fill="#D6D5D2" font-family="Arial" font-size="14px">Recherche</text>
+		<g id="search-chevron" data-ae-name="Shape - Selection Search">
+			
+				<polyline fill="none" stroke="#D6D5D2" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.65" points="     160,468 163.5,471.5 167,468    " />
+		</g>
+	</g>
+<g id="computer-control">
+		<g id="computer-pill" data-ae-name="Shape - Computer Pill">
+			<path id="computer-control-pill" fill="#D6D5D2" fill-opacity="0.035" d="M210.08,453.96h76.49c8.837,0,16,7.163,16,16l0,0     c0,8.837-7.163,16-16,16h-76.49c-8.837,0-16-7.163-16-16l0,0C194.08,461.123,201.243,453.96,210.08,453.96z" />
+		</g>
+		<g id="computer-icon" data-ae-name="Icon - Computer">
+			<path fill="none" stroke="#FFFFFF" stroke-width="1.1" d="M207.8,465h8.4c0.718,0,1.3,0.582,1.3,1.3v4.4     c0,0.718-0.582,1.3-1.3,1.3h-8.4c-0.718,0-1.3-0.582-1.3-1.3v-4.4C206.5,465.582,207.082,465,207.8,465z" />
+			<line fill="none" stroke="#FFFFFF" stroke-width="1.1" stroke-linecap="round" x1="205" y1="475" x2="220" y2="475" />
+		</g>
+		
+			<text id="computer-label" data-ae-name="Text - Computer" transform="matrix(1 0 0 1 225.16 476)" fill="#FFFFFF" font-family="Arial" font-size="14px">Computer</text>
+		<g id="computer-chevron" data-ae-name="Shape - Selection Computer">
+			
+				<polyline fill="none" stroke="#D6D5D2" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.65" points="     278,468 281.5,471.5 285,468    " />
+		</g>
+	</g>
+<g id="model-control">
+		<g id="model-label" data-ae-name="Text - Model">
+			<text id="model-control-texte" transform="matrix(1 0 0 1 476.28 476)" fill="#D6D5D2" font-family="Arial" font-size="14px">Modèle</text>
+		</g>
+		<g id="model-chevron" data-ae-name="Shape - Selection Model">
+			
+				<polyline fill="none" stroke="#D6D5D2" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.65" points="     532,467 536,471 540,467    " />
+		</g>
+	</g>
+<g id="microphone" data-ae-name="Icon - Mic">
+		<path fill="none" stroke="#D6D5D2" stroke-width="1.2" stroke-linecap="round" stroke-opacity="0.65" d="M570,463L570,463    c1.657,0,3,1.343,3,3v4c0,1.657-1.343,3-3,3l0,0c-1.657,0-3-1.343-3-3v-4C567,464.343,568.343,463,570,463z" />
+		<path fill="none" stroke="#D6D5D2" stroke-width="1.2" stroke-linecap="round" stroke-opacity="0.65" d="M564.5,470    c0,3.038,2.462,5.5,5.5,5.5s5.5-2.462,5.5-5.5 M570,475.5v3 M566.5,478.5h7" />
+	</g>
+<g id="voice-button" data-ae-name="Shape - Voice Button">
+		<circle fill="#D6D5D2" cx="610.9" cy="469.96" r="16" />
+	</g>
+<g id="voice-arrow" data-ae-name="Icon - Envoyer"><path d="M603 470h15m-6-6 6 6-6 6" fill="none" stroke="#171615" stroke-width="2" stroke-linecap="round"/></g></g></svg>

@@ -25,6 +25,7 @@ Objectif : permettre à un visiteur de comprendre ce qu’Elias fait, voir des p
 - **Simple et maintenable** — Elias est débutant. Éviter la sur-ingénierie.
 - **Contenu en français** — labels, messages d’erreur, emails et copy.
 - **GSAP : toujours consulter la doc** — avant de modifier une animation contenant `gsap`, `useGSAP`, `ScrollTrigger`, `SplitText`, `ScrollSmoother` ou un autre plugin GSAP, lire le ou les fichiers pertinents dans `.claude/skills/gsap-doc/references/` en suivant le mapping de `.claude/skills/gsap-doc/SKILL.md`.
+- **Animations venues du studio** — les mouvements de `src/sections/experiments/` et de `src/lib/motion-curves.ts` sont construits et validés dans `/Users/elias/AI Project/Video Animation /sites/portfolio/` (storyboard, versions, assets). Ne pas les retoucher ici : changer le mouvement là-bas, puis le reporter. `motion-curves.ts` et `sites/portfolio/Commun/courbes.js` restent identiques.
 
 ---
 
