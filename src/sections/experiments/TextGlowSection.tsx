@@ -3,18 +3,42 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import { F, bz } from "@/lib/motion-curves";
+import carteClair from "@/assets/taches/cette-semaine-clair.svg?raw";
+import carteSombre from "@/assets/taches/cette-semaine-sombre.svg?raw";
+import { ARRIVE, F, bz, prefixSvgIds } from "@/lib/motion-curves";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Essai : « Text animation - 1 » de la bibliothèque du studio
-// (Video Animation/bibliotheque/animations/Animations de texte/Text animation - 1), portée sur la page.
-// Chaque phrase joue l'animation à sa vitesse d'origine (2 s à 30 i/s) quand elle arrive à l'écran :
-// le scroll déclenche, il ne pilote pas. En remontant, elle se rejoue à l'envers, comme le morph de la note.
+// Section 01 · Tâches répétitives, v2 du studio (Video Animation/sites/portfolio/Sections/01-textes/versions/v2).
+// La phrase joue « Text animation - 1 » (bibliotheque/animations/Animations de texte), puis la carte « Cette semaine »
+// arrive en vagues pendant que les derniers mots se posent : 51 images à 30 i/s. Le scroll déclenche, il ne pilote
+// pas ; en remontant, tout se rejoue à l'envers. « Je construis des systèmes… » ouvrira la section 02.
 
-const LINES = [
-  "La plupart des indépendants et petites équipes perdent des heures sur des tâches répétitives.",
-  "Je construis des systèmes qui améliorent vos process métier.",
+const PHRASE = "Vos tâches répétitives vous coûtent des heures.";
+const FIN = 51 * F;
+
+// La carte du package (une par thème), cadrée sur elle-même, sans le fond du plan ; id préfixés par thème.
+const carte = (svg: string, prefixe: string) =>
+  prefixSvgIds(svg, prefixe)
+    .replace(/<svg[^>]*>/, '<svg xmlns="http://www.w3.org/2000/svg" viewBox="316 161 1288 758" class="block h-auto w-full">')
+    .replace(/<title>[\s\S]*?<\/title>/, "")
+    .replace(/<g id="[a-z]+-fond-plan"[\s\S]*?<\/g>/, "");
+const CARTES = [
+  { prefixe: "tc-", html: carte(carteClair, "tc-"), className: "dark:hidden" },
+  { prefixe: "ts-", html: carte(carteSombre, "ts-"), className: "hidden dark:block" },
+];
+const GROUPES: [string, number, number, number][] = [
+  // [groupe, image de départ, distance en unités de la carte, durée en images]
+  ["fond-carte", 22, 40, 8],
+  ["titre", 26, 24, 6],
+  ["date", 28, 24, 6],
+  ["compteur", 30, 24, 6],
+  ["ligne-relance-facture", 30, 24, 6],
+  ["ligne-tri-support", 33, 24, 6],
+  ["ligne-maj-crm", 36, 24, 6],
+  ["ligne-rapport-semaine", 39, 24, 6],
+  ["ligne-posts-reseaux", 42, 24, 6],
+  ["ajouter", 45, 24, 6],
 ];
 
 // Clés du rapport After Effects, en images, interpolation linéaire.
@@ -108,62 +132,87 @@ export default function TextGlowSection() {
         if (watcher.isActive) gsap.ticker.add(tick);
       }
 
-      gsap.utils.toArray<HTMLElement>(".tg-block", section).forEach((block) => {
-        const line = block.querySelector<HTMLElement>(".tg-line");
-        if (!line) return;
-        const layers = {
-          top: gsap.utils.toArray<HTMLElement>('.tg-word[data-layer="top"]', line),
-          glow: gsap.utils.toArray<HTMLElement>('.tg-word[data-layer="glow"]', line),
-        };
-        const n = layers.top.length;
-        let finalRgb = [255, 255, 255];
+      const block = section.querySelector<HTMLElement>(".tg-block");
+      const line = block?.querySelector<HTMLElement>(".tg-line");
+      if (!block || !line) return;
+      const layers = {
+        top: gsap.utils.toArray<HTMLElement>('.tg-word[data-layer="top"]', line),
+        glow: gsap.utils.toArray<HTMLElement>('.tg-word[data-layer="glow"]', line),
+      };
+      const n = layers.top.length;
+      let finalRgb = [255, 255, 255];
 
-        const render = (time: number, done = false) => {
-          const f = time / F;
-          (["top", "glow"] as const).forEach((id) => {
-            const k = KEYS[id];
-            const o1 = lin(f, k.offset1);
-            const s2 = lin(f, k.start2);
-            const o3 = "offset3" in k ? lin(f, k.offset3) : null;
-            layers[id].forEach((w, i) => {
-              const a1 = rampUp(i, n, o1); // position x +350 et opacité 0
-              const a2 = Math.min(square(i, n, s2), 1); // couleur bleue
-              const a3 = o3 === null ? 0 : 1 - rampUp(i, n, o3); // la copie lumineuse s'éteint mot par mot
-              w.style.transform = a1 ? `translateX(${TRAVEL_EM * a1}em)` : "";
-              w.style.opacity = String((1 - a1) * (1 - a3));
-              // À la fin, la couleur revient au thème : un changement clair/sombre après coup reste juste.
-              w.style.color = done ? "" : `rgb(${BLUE.map((b, j) => Math.round(finalRgb[j] + (255 * b - finalRgb[j]) * a2))})`;
-            });
+      const renderPhrase = (time: number, done = false) => {
+        const f = time / F;
+        (["top", "glow"] as const).forEach((id) => {
+          const k = KEYS[id];
+          const o1 = lin(f, k.offset1);
+          const s2 = lin(f, k.start2);
+          const o3 = "offset3" in k ? lin(f, k.offset3) : null;
+          layers[id].forEach((w, i) => {
+            const a1 = rampUp(i, n, o1); // position x +350 et opacité 0
+            const a2 = Math.min(square(i, n, s2), 1); // couleur bleue
+            const a3 = o3 === null ? 0 : 1 - rampUp(i, n, o3); // la copie lumineuse s'éteint mot par mot
+            w.style.transform = a1 ? `translateX(${TRAVEL_EM * a1}em)` : "";
+            w.style.opacity = String((1 - a1) * (1 - a3));
+            // À la fin, la couleur revient au thème : un changement clair/sombre après coup reste juste.
+            w.style.color = done ? "" : `rgb(${BLUE.map((b, j) => Math.round(finalRgb[j] + (255 * b - finalRgb[j]) * a2))})`;
           });
-        };
-
-        if (reduce) {
-          render(2, true);
-          return;
-        }
-
-        const tl = gsap.timeline({
-          paused: true,
-          onUpdate: () => render(tl.time()),
-          onComplete: () => render(tl.duration(), true),
-          onReverseComplete: () => render(0),
         });
-        // Dernière clé à l'image 35 : la composition dure 2 s, mais le reste est immobile et retarderait le retour.
-        tl.set({}, {}, 36 * F);
-        render(0);
+      };
 
-        ScrollTrigger.create({
-          trigger: block,
-          start: "top 78%",
-          onEnter: () => {
-            finalRgb = parseRgb(getComputedStyle(line).color);
-            tl.play();
-          },
-          onLeaveBack: () => {
-            finalRgb = parseRgb(getComputedStyle(line).color);
-            tl.reverse();
-          },
+      if (reduce) {
+        renderPhrase(2, true);
+        return;
+      }
+
+      const tl = gsap.timeline({ paused: true, defaults: { immediateRender: false } });
+      // Carte : chaque groupe monte et apparaît (ARRIVE), puis rebondit comme les entrées de la vidéo ChatGPT.
+      // Les deux cartes (clair, sombre) jouent ensemble ; une seule est affichée.
+      const springs: { e: SVGGElement; start: number; amp: number }[] = [];
+      CARTES.forEach(({ prefixe }) =>
+        GROUPES.forEach(([id, image, distance, images]) => {
+          const el = block.querySelector<SVGGElement>(`#${prefixe}${id}`);
+          if (!el) return;
+          const d = images * F;
+          const inner = document.createElementNS("http://www.w3.org/2000/svg", "g");
+          while (el.firstChild) inner.appendChild(el.firstChild);
+          el.appendChild(inner);
+          tl.fromTo(el, { y: distance, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: d, ease: ARRIVE }, image * F);
+          springs.push({ e: inner, start: image * F + d, amp: (-distance / d) * 0.36 * 0.06 });
+          gsap.set(el, { y: distance, autoAlpha: 0 });
+        }),
+      );
+      tl.set({}, {}, FIN);
+
+      const render = (done = false) => {
+        const t = tl.time();
+        // Dernière clé de la phrase à l'image 35 : au-delà, elle reste posée pendant que la carte arrive.
+        renderPhrase(Math.min(t, 36 * F), done);
+        springs.forEach((s) => {
+          const u = t - s.start;
+          const v = u > 0 && u < 0.8 ? (s.amp * Math.sin(1.8 * u * 2 * Math.PI)) / Math.exp(5 * u) : 0;
+          s.e.setAttribute("transform", `translate(0 ${v})`);
         });
+      };
+      tl.eventCallback("onUpdate", () => render());
+      tl.eventCallback("onComplete", () => render(true));
+      tl.eventCallback("onReverseComplete", () => render());
+      render();
+
+      // Le bloc (phrase et carte) joue quand son milieu passe à 60 % de l'écran : la carte est alors à l'écran,
+      // sur ordinateur comme sur téléphone.
+      ScrollTrigger.create({
+        trigger: block,
+        start: "center 60%",
+        onEnter: () => {
+          finalRgb = parseRgb(getComputedStyle(line).color);
+          tl.play();
+        },
+        onLeaveBack: () => {
+          finalRgb = parseRgb(getComputedStyle(line).color);
+          tl.reverse();
+        },
       });
     },
     { scope: sectionRef },
@@ -177,12 +226,14 @@ export default function TextGlowSection() {
         <div className="tg-blob absolute left-1/4 top-[-8%] aspect-square w-[85vw] min-w-[34rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(21,99,255,0.55)_0%,rgba(21,99,255,0.22)_38%,transparent_70%)]" />
       </div>
 
-      <div className="relative mx-auto flex max-w-6xl flex-col gap-16 px-6 text-center md:gap-24 lg:px-8">
-        <div className="tg-block">
-          <Line text={LINES[0]} />
-        </div>
-        <div className="tg-block">
-          <Line text={LINES[1]} />
+      <div className="relative mx-auto max-w-6xl px-4 text-center lg:px-8">
+        <div className="tg-block flex flex-col items-center gap-10 md:gap-14">
+          <Line text={PHRASE} />
+          <div className="w-full max-w-[860px]" role="img" aria-label="Cette semaine : cinq tâches répétitives, 5 h perdues">
+            {CARTES.map(({ prefixe, html, className }) => (
+              <div key={prefixe} className={className} aria-hidden="true" dangerouslySetInnerHTML={{ __html: html }} />
+            ))}
+          </div>
         </div>
       </div>
     </section>
