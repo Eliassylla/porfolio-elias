@@ -64,9 +64,12 @@ async function readLimitedBody(request: Request, maxBytes: number) {
 
 async function readCalJson(response: Response) {
   if (!response.ok) {
+    // Le message d'erreur de Cal.com dit quel champ il refuse ; tronqué pour ne pas recopier toute la demande.
+    const detail = (await response.text().catch(() => "")).slice(0, 600);
     console.error("Cal.com request failed", {
       status: response.status,
       statusText: response.statusText,
+      detail,
     });
     throw new Error(`CAL_${response.status}`);
   }
