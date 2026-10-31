@@ -83,19 +83,26 @@ export default function NotesMorphSection() {
 
       // Ouverture de la carte (scène 01) : la forme compacte s'ouvre en Notes, le contenu suit à l'échelle.
       tl.fromTo([card, clip], { attr: COMPACT }, { attr: NOTES, duration: 18 * F, ease: OPEN }, 0);
-      tl.fromTo(card, { opacity: 0 }, { opacity: 1, duration: 5 * F, ease: ARRIVE }, 0);
+      // Entrée : la carte et son contenu grandissent ensemble depuis le centre, 5 images (v2 du studio).
+      const surface = wrap([card, stage.querySelector("[clip-path]")!]);
+      const entree = { s: 0 };
+      tl.fromTo(entree, { s: 0 }, { s: 1, duration: 5 * F, ease: ARRIVE }, 0);
       // Échelle écrite directement dans l'attribut, comme dans la vidéo (origine en haut à gauche du cadre).
       const scale = { p: 0 };
       const applyScale = () => {
         const k = scale.p;
         const sx = 280 / 834 + (1 - 280 / 834) * k;
         const sy = 280 / 760 + (1 - 280 / 760) * k;
+        surface.setAttribute("transform", `translate(540 540) scale(${entree.s}) translate(-540 -540)`);
+        surface.setAttribute("opacity", String(entree.s));
         const x = (400 - (123 * 280) / 834) * (1 - k);
         const y = (400 - (151 * 280) / 760) * (1 - k);
         notesContent.setAttribute("transform", `translate(${x} ${y}) scale(${sx} ${sy})`);
       };
       applyScale();
-      tl.fromTo(scale, { p: 0 }, { p: 1, duration: 18 * F, ease: OPEN, onUpdate: applyScale }, 0);
+      tl.fromTo(scale, { p: 0 }, { p: 1, duration: 18 * F, ease: OPEN }, 0);
+      // Suit chaque rendu de la timeline, retour à l'image 0 compris.
+      tl.eventCallback("onUpdate", applyScale);
       const M = 27 * F;
       tl.addLabel("notes", M);
 
@@ -181,7 +188,7 @@ export default function NotesMorphSection() {
             <rect className="mc-clip-rect" {...COMPACT} />
           </clipPath>
         </defs>
-        <rect className="mc-card stroke-black/10 dark:stroke-white/10" strokeWidth={2} fill="#fffcf4" opacity={0} {...COMPACT} />
+        <rect className="mc-card stroke-black/10 dark:stroke-white/10" strokeWidth={2} fill="#fffcf4" {...COMPACT} />
         <g clipPath="url(#mc-clip)">
           <g id="mn-content" dangerouslySetInnerHTML={{ __html: notesMarkup }} />
           <g id="mp-content" dangerouslySetInnerHTML={{ __html: promptMarkup }} />
