@@ -6,7 +6,7 @@ import {
   parseCalAvailability,
   type AvailabilityRequest,
   type BookingRequest,
-} from "./contract";
+} from "./contract.js";
 import { z } from "zod";
 
 interface Env {
