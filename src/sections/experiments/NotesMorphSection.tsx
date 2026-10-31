@@ -13,8 +13,11 @@ gsap.registerPlugin(ScrollTrigger);
 // Essai : l'ouverture de la vidéo ChatGPT telle quelle (Video Animation/sites/portfolio/Sections/03-projets-reserver,
 // v3) : Notes fermée et son icône, l'icône qui part en haut à gauche, la carte qui s'ouvre, les vagues d'entrée et
 // leurs rebonds, puis le morph vers la barre de chat. Mêmes SVG, mêmes images, mêmes courbes.
-// La section reste fixée le temps d'un écran de scroll. Le scroll choisit la pose (Notes ou Chat), chaque passage
-// joue à la vitesse de la vidéo, et remonter rejoue tout à l'envers jusqu'à l'icône.
+// Note : section d'essai, sans titre visible (le libellé « Essai · ouverture de la vidéo ChatGPT » a été retiré).
+// Rythme : l'ouverture part quand le haut de la section arrive à 15 % de l'écran, la carte presque à sa place.
+// La section reste ensuite fixée ; la première moitié du scroll fixé garde Notes, la seconde passe en Chat.
+// Chaque passage joue à la vitesse de la vidéo, et remonter au-dessus de la section rejoue tout à l'envers jusqu'à
+// l'icône.
 
 const COMPACT = { x: 400, y: 400, width: 280, height: 280, rx: 55, ry: 58 };
 const NOTES = { x: 123, y: 151, width: 834, height: 760, rx: 52, ry: 52 };
@@ -268,19 +271,21 @@ export default function NotesMorphSection() {
         current = tl.tweenTo(label, { ease: "none" });
       };
 
+      // Ouverture : quand la section est presque en place (à 70 %, elle partait pendant le texte précédent).
+      ScrollTrigger.create({
+        trigger: section,
+        start: "top 15%",
+        onEnter: () => goTo("notes"),
+        onLeaveBack: () => goTo(0),
+      });
+      // Section fixée : Notes sur la première moitié du scroll, Chat sur la seconde.
       ScrollTrigger.create({
         trigger: section,
         start: "top top",
-        end: "+=100%",
+        end: "+=120%",
         pin: true,
-        onUpdate: (self) => goTo(self.progress > 0.4 ? "chat" : "notes"),
+        onUpdate: (self) => goTo(self.progress > 0.45 ? "chat" : "notes"),
         onLeaveBack: () => goTo("notes"),
-      });
-      ScrollTrigger.create({
-        trigger: section,
-        start: "top 70%",
-        onEnter: () => goTo("notes"),
-        onLeaveBack: () => goTo(0),
       });
     },
     { scope: sectionRef },
@@ -288,11 +293,12 @@ export default function NotesMorphSection() {
 
   return (
     <section ref={sectionRef} className="relative flex h-screen flex-col items-center justify-center overflow-hidden bg-background px-4">
-      <p className="mb-2 text-xs font-medium uppercase tracking-wider text-muted-foreground">Essai · ouverture de la vidéo ChatGPT</p>
       <svg
         ref={stageRef}
         viewBox="90 130 900 800"
-        className="h-auto w-full max-w-[44rem]"
+        className="h-auto w-[min(88%,34rem,68vh)]"
+        // Note ouverte un peu plus petite : 88 % de la largeur sur téléphone, 34 rem au plus, et jamais plus de 60 % de
+        // la hauteur de l'écran (68vh de large pour un cadre de 900 × 800).
         role="img"
         aria-label="L'icône de Notes s'ouvre en une note Codex et Claude Code, qui se transforme en barre de saisie de chat"
       >
