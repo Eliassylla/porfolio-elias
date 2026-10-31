@@ -304,3 +304,63 @@ next: >
   Créer le commit atomique sans pousser, puis demander à Elias de créer la clé API
   Cal.com, le token Workers Builds et lancer le premier déploiement workers.dev.
 ```
+
+---
+
+## T-009 · Réponses du formulaire conservées dans Cal.com
+
+```yaml
+objectif: Que chaque réservation garde les réponses du formulaire et la provenance,
+          pour pouvoir préparer le rendez-vous à partir d'elles.
+spec: null
+acceptation:
+  - Test du 2026-10-31 (aperçu Vercel) : réservation créée, mais aucune réponse visible dans Cal.com
+  - Les questions du rendez-vous « Échange de découverte » portent les identifiants envoyés
+    (company_context, operational_problem, current_tools, desired_outcome), ou les réponses partent en metadata
+  - Les 6 champs UTM sont retrouvables sur la réservation
+  - Une adresse e-mail refusée par Cal.com (« email_domain_cannot_receive_mail ») affiche un message
+    sur l'adresse, pas « service momentanément indisponible »
+operateur: null
+statut: backlog
+depend_de: [T-008]
+risques:
+  - Les questions changeront selon la qualification voulue (T-010) ; garder les identifiants stables
+  - api/booking.ts (fonction Vercel) est un test pour les aperçus ; Cloudflare reste l'hébergement prévu
+fichiers:
+  - worker/contract.ts
+  - worker/index.ts
+  - src/components/booking/bookingApi.ts
+  - api/booking.ts
+tests: npm test && npm run typecheck && npm run build
+handoff: null
+next: >
+  Vérifier dans Cal.com où apparaissent les réponses d'une réservation de test, puis
+  annuler cette réservation.
+```
+
+---
+
+## T-010 · Préparation du rendez-vous par un agent
+
+```yaml
+objectif: À chaque réservation, transmettre les réponses à un agent IA qui prépare
+          le premier rendez-vous et qualifie le prospect.
+spec: null   # à écrire : questions, template du résumé, critères de qualification
+acceptation:
+  - Une réservation déclenche un message dans un canal Slack
+  - Un résumé est créé dans Google Docs depuis un template (besoins, recherches utiles,
+    questions à poser, points d'entrée de la réunion)
+  - Le prospect est trié : qualité, budget, urgence
+  - Les questions du formulaire sont revues pour nourrir cette préparation
+operateur: null
+statut: backlog
+depend_de: [T-009]
+risques:
+  - Branchement prévu via Composio ; aucun envoi ni écriture tiers sans accord explicite
+  - Le Portfolio ne devient pas une base de leads (README) : les données restent chez Cal.com et dans les outils choisis
+fichiers: []
+tests: null
+handoff: null
+next: >
+  Plus tard : le travail actuel porte sur les sections animées de la page d'accueil.
+```
