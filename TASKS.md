@@ -1,5 +1,35 @@
 # Tasks — Portfolio
 
+## T-012 · Portrait stable pendant le scroll
+
+```yaml
+objectif: Empêcher la photo de profil de clignoter pendant le défilement.
+spec: null
+acceptation:
+  - Le bouton de profil garde son identité pendant les mises à jour de scroll
+  - L'ouverture de la présentation reste disponible sur téléphone et ordinateur
+  - Elias vérifie le défilement sur iPhone après un éventuel envoi en Preview
+operateur: codex
+statut: review
+depend_de: []
+risques:
+  - Vidéo fournie par Elias : portrait visible vers 1 s, cercle vide vers 2–4 s, initiales ES ensuite
+  - La disparition visuelle après correction reste à vérifier sur l'appareil réel
+fichiers:
+  - src/components/layout/Header.tsx
+  - TASKS.md
+tests: npm run typecheck && npm run build && npm run lint
+handoff: >
+  Le bouton de profil est défini hors du Header pour conserver l'image montée pendant
+  les mises à jour de scroll. Aucun mouvement ni style modifié. Typecheck et build
+  réussis ; lint sans erreur, 4 avertissements préexistants. La vidéo fournie établit
+  le défaut avant correction ; le résultat sur iPhone reste à vérifier par Elias.
+next: >
+  Vérifier et enregistrer la correction locale ; demander l'accord avant un nouvel envoi en Preview.
+```
+
+---
+
 ## T-011 · Preview Vercel de la version locale actuelle (issue #3)
 
 ```yaml
