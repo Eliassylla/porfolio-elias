@@ -180,7 +180,7 @@ export default function MethodSection() {
   return (
     <section
       ref={containerRef}
-      className="relative overflow-hidden bg-background px-6 py-20 md:py-24 lg:px-8 dark:bg-[#010102]"
+      className="relative overflow-hidden bg-background px-6 py-16 md:py-24 lg:px-8 dark:bg-[#010102]"
     >
       <div className="absolute inset-x-0 top-0 -z-10 h-64 bg-gradient-to-b from-muted/60 to-transparent dark:from-white/[0.03]" />
 

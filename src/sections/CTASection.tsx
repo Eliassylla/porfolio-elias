@@ -49,7 +49,7 @@ export default function CTASection() {
   return (
     <section
       ref={sectionRef}
-      className="bg-background px-6 py-20 md:py-24 lg:px-8"
+      className="bg-background px-6 py-16 md:py-24 lg:px-8"
     >
       <div className="mx-auto max-w-6xl">
         <div className="cta-panel relative overflow-hidden rounded-2xl border border-border bg-foreground p-8 text-center text-background shadow-2xl shadow-foreground/10 dark:border-white/10 dark:bg-[#0f1011] dark:text-white md:p-14">

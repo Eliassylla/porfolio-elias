@@ -1,5 +1,41 @@
 # Tasks — Portfolio
 
+## T-011 · Preview Vercel de la version locale actuelle (issue #3)
+
+```yaml
+objectif: Afficher les nouvelles sections et corrections locales dans la Preview Vercel existante.
+spec: null
+acceptation:
+  - Conserver le texte sans flou, la carte partiellement masquée et ses variantes téléphone
+  - Envoyer uniquement les changements du site sur essai/animations-hyperframes
+  - Ne pas fusionner main ; Elias vérifie le rendu et le formulaire dans la Preview
+operateur: codex
+statut: review
+depend_de: []
+risques:
+  - Les fichiers personnels non suivis et les fichiers générés restent hors commit
+  - Le test de réservation consigné au commit 33ef3bf concerne la Preview du 31 octobre
+  - Elias confirme le 5 novembre la réception de l'email Cal.com avec les informations saisies
+  - Ce test historique ne vaut pas validation du nouveau déploiement
+  - Vercel est l'hébergement conservé selon Elias ; les mentions de migration Cloudflare sont périmées
+fichiers:
+  - src/sections/
+  - src/assets/taches/
+  - src/index.css
+  - TASKS.md
+tests: npm test && npm run typecheck && npm run build && npm run lint
+handoff: >
+  Vérifications locales du 5 novembre 2026 : 37 tests verts, typecheck et build réussis,
+  lint sans erreur (4 avertissements dans les composants UI existants).
+  Les modifications du site sont conservées sans retoucher les mouvements.
+  Le contrôle visuel et le formulaire sur la nouvelle Preview seront vérifiés par Elias.
+next: >
+  Après l'envoi, identifier le commit et la Preview ; Elias effectue la vérification visuelle.
+  L'alignement complet de la documentation et la PR vers main restent dans l'issue #3.
+```
+
+---
+
 File d'attente du **développement de ce repo**. Le backlog business vit dans l'OS personnel : une tâche d'ici n'y apparaît au plus que comme jalon, jamais recopiée.
 
 ## Format

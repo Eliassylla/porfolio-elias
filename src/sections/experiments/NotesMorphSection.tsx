@@ -273,6 +273,14 @@ export default function NotesMorphSection() {
         current = tl.tweenTo(label, { ease: "none" });
       };
 
+      // L'icône entre dès que sa place (le centre de la section) arrive en bas de l'écran, sans attendre que la
+      // section soit figée. En remontant au-dessus, elle repart.
+      ScrollTrigger.create({
+        trigger: section,
+        start: "center 90%",
+        onEnter: () => goTo("icone"),
+        onLeaveBack: () => goTo(0),
+      });
       // Une seule zone figée pour toutes les poses : 0 à 15 % UI fermée, 15 à 55 % Notes, au-delà Chat.
       ScrollTrigger.create({
         trigger: section,
@@ -280,7 +288,6 @@ export default function NotesMorphSection() {
         end: "+=200%",
         pin: true,
         onUpdate: (self) => goTo(self.progress < 0.15 ? "icone" : self.progress < 0.55 ? "notes" : "chat"),
-        onEnter: () => goTo("icone"),
       });
     },
     { scope: sectionRef },

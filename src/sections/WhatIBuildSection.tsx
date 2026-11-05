@@ -131,7 +131,7 @@ export default function WhatIBuildSection() {
   return (
     <section
       ref={containerRef}
-      className="relative overflow-hidden bg-background px-6 py-12 md:py-10 lg:px-8 lg:py-[15px]"
+      className="relative overflow-hidden bg-background px-6 py-16 md:py-24 lg:px-8"
     >
       <div className="absolute inset-x-0 top-0 -z-10 h-64 bg-gradient-to-b from-muted/60 to-transparent dark:from-white/[0.03]" />
       <div className="mx-auto max-w-6xl">
