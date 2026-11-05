@@ -1,5 +1,38 @@
 # Tasks — Portfolio
 
+## T-013 · Résoudre les conflits de la PR #4
+
+```yaml
+objectif: Rendre la branche de Preview compatible avec main en conservant le site validé.
+spec: null
+acceptation:
+  - Intégrer main dans la branche de travail sans fusionner la PR
+  - Garder le formulaire custom et ses conteneurs défilants
+  - Garder npm et package-lock.json, sans rétablir bun.lock
+operateur: codex
+statut: review
+depend_de: [T-011, T-012]
+risques:
+  - Les ajouts de main concernent l'ancien embed Cal.com, déjà remplacé dans la Preview
+fichiers:
+  - src/components/booking/CalBookingDialog.tsx
+  - src/index.css
+  - bun.lock
+  - TASKS.md
+  - .lovable/plan/correction-d-affichage-du-dialog-cal-com-desktop-tablette-2026-08-10.md
+tests: npm test && npm run typecheck && npm run build && npm run lint
+handoff: >
+  Les trois conflits sont reproduits et résolus : le formulaire custom, les styles
+  et les sources de la Preview d36922f restent identiques. Le plan de l'ancien embed
+  ajouté par main est conservé et explicitement archivé. Aucun fichier non suivi ajouté.
+  Vérification : 37 tests verts, typecheck et build réussis, lint sans erreur
+  (4 avertissements préexistants). Main n'est pas modifiée ; envoi de la résolution en attente.
+next: >
+  Résoudre et vérifier localement, puis faire approuver l'envoi du commit de résolution.
+```
+
+---
+
 ## T-012 · Portrait stable pendant le scroll
 
 ```yaml
