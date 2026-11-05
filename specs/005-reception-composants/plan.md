@@ -2,7 +2,8 @@
 
 Issue #5 · Date : 2026-11-05 · Branche : `chantier-5-reception-composants`.
 Périmètre autorisé par Elias en session ; plan rédigé avant les modifications documentaires.
-Statut : en cours localement. Aucun fichier applicatif ne doit changer de comportement.
+Statut : préparé et vérifié localement, à relire par Elias ; aucun envoi externe.
+Aucun fichier applicatif ne change de comportement.
 
 ## Fichiers réservés dans ce chantier
 
@@ -43,3 +44,6 @@ Relevé de comparaison lié à fc306fe (Portfolio) et 70f3092 (Studio), liens et
 lecture à froid, absence de différence des sources applicatives, contrôles locaux et revue.
 Les scénarios d’interface de la matrice restent non exécutés dans ce chantier documentaire.
 Aucun test de rendu, de performance ou d’arrêt complet n’est remplacé par le contrôle statique.
+
+Résultats : [verification.md](verification.md), commit documentaire testé 6138a2c.
+Les écarts Studio restent dans le relevé local, sans écriture dans l'autre dépôt.

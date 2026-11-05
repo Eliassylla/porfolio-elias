@@ -1,6 +1,6 @@
 # Vérification documentaire de la réception
 
-Date : 2026-11-05 · Issue #5 · État : préparation locale, aucun envoi externe.
+Date : 2026-11-05 · Issue #5 · État : vérifié localement, prêt à relire ; aucun envoi externe.
 
 ## Références
 
@@ -9,8 +9,11 @@ Date : 2026-11-05 · Issue #5 · État : préparation locale, aucun envoi extern
   comparés sont identifiés par leurs empreintes. Des changements d'outillage existent
   dans l'autre session ; ce chantier n'y écrit pas.
 - [Comparaison statique](comparaison-sources.json) et [fiche Notes → Chat](../../docs/composants/notes-chat.md).
-- Le commit documentaire testé sera renseigné après son enregistrement local.
-  Aucun résultat des tests à venir n'est encore affirmé dans cette version.
+- Commit documentaire testé : `6138a2c555a8dd2a56f2a6244ecef51ece8b867e`, branche
+  `chantier-5-reception-composants`. Fichiers suivis propres pendant les contrôles.
+  Les documents/outils personnels et fichiers générés déjà non suivis sont restés hors commit.
+- Le complément qui consigne ces résultats ne modifie que ce rapport et le statut du plan.
+  Il ne constitue pas une nouvelle preuve de rendu d'interface.
 
 ## Ce qui a été vérifié par lecture et comparaison
 
@@ -24,9 +27,31 @@ Date : 2026-11-05 · Issue #5 · État : préparation locale, aucun envoi extern
 
 ## Contrôles du chantier
 
-À compléter avec le commit, les commandes réellement exécutées, leurs résultats et les limites :
-liens et chemins, validation des skills, archive exacte, absence de changement exécutable,
-tests existants, typage, compilation et lint. La lecture indépendante sera consignée après son retour.
+Contrôles exécutés sur 6138a2c, le 5 novembre 2026, environnement local macOS avec les
+dépendances déjà présentes, sans installation ni service tiers en écriture :
+
+| Contrôle | Résultat et limite |
+|---|---|
+| Liens et chemins locaux | 24 documents parcourus, 39 liens relatifs valides ; références externes non retestées par ce contrôle |
+| Archive TASKS | Identique octet pour octet au fichier de fc306fe ; lien AGENTS vers CLAUDE préservé |
+| Validation des skills | Les trois skills passent le validateur skill-creator disponible localement ; ce contrôle ne prouve pas leur comportement dans tous les cas |
+| Diff applicatif | `src/`, `worker/`, assets, dépendances, configuration d'hébergement et fixtures identiques à fc306fe |
+| Entrée Vercel | JavaScript transpilé sans commentaires identique à fc306fe ; seuls deux commentaires changent |
+| `npm test` | 37 tests réussis, 4 fichiers ; Cal.com simulé, aucune réservation distante créée |
+| `npm run typecheck` | Réussi ; couvre src et worker, pas explicitement api/booking.ts |
+| `npm run build` | Réussi ; avertissements existants sur eval de lottie-web et taille des bundles, aucune mesure de performance utilisateur |
+| `npm run lint` | 0 erreur, 4 avertissements existants dans badge, button, form et sonner |
+| Diff et relecture | Pas d'erreur de whitespace dans les changements ; relecture indépendante sans défaut important |
+
+La relecture a recoupé les fichiers source, les empreintes, les déclenchements et les liens.
+Une ambiguïté mineure sur l'auto-merge a été retirée avant le commit testé ; son interdiction
+est cohérente dans les consignes et la politique. Aucun test de texte artificiel ajouté.
+
+Pour reproduire : repartir de 6138a2c avec ses dépendances, exécuter les quatre commandes
+ci-dessus ; comparer les sources applicatives et l'archive à fc306fe. La comparaison Studio
+requiert les fichiers épinglés par le relevé, pas une future version portant le même nom.
+Les sondes de comparaison et de liens de cette session sont temporaires ; les résultats et
+empreintes utiles sont conservés ici. Ni CI, ni contrôle navigateur ni surveillance activés.
 
 ## Matrice d'interface à exécuter lors d'une réception
 
