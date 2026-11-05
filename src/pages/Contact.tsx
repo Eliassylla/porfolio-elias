@@ -5,10 +5,10 @@ import { businessInfo } from '@/data/business';
 import { ContactForm } from '@/components/forms/ContactForm';
 import { Button } from '@/components/ui/button';
 import { CalendarDays, Mail, MapPin } from 'lucide-react';
-import { useCalEmbed } from '@/hooks/useCalEmbed';
+import { useBookingDialog } from '@/hooks/useBookingDialog';
 
 export default function Contact() {
-  const cal = useCalEmbed();
+  const cal = useBookingDialog();
 
   return (
     <>

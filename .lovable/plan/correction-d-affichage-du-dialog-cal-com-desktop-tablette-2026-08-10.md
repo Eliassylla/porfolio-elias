@@ -1,5 +1,9 @@
 # Correction d’affichage du dialog Cal.com (desktop / tablette)
 
+> Archive du 10 août 2026, conservée lors de la résolution des conflits de la PR #4.
+> Ce plan concerne l'ancien embed Cal.com, remplacé par le formulaire personnalisé.
+> Ne pas le réappliquer au parcours actuel, déjà doté de conteneurs défilants.
+
 ## Objectif
 Faire en sorte que l’embed Cal.com s’affiche entièrement et proprement dans la modale de réservation sur ordinateur et tablette, sans être coupé en hauteur.
 

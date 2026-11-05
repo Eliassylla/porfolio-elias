@@ -1,5 +1,104 @@
 # Tasks — Portfolio
 
+## T-013 · Résoudre les conflits de la PR #4
+
+```yaml
+objectif: Rendre la branche de Preview compatible avec main en conservant le site validé.
+spec: null
+acceptation:
+  - Intégrer main dans la branche de travail sans fusionner la PR
+  - Garder le formulaire custom et ses conteneurs défilants
+  - Garder npm et package-lock.json, sans rétablir bun.lock
+operateur: codex
+statut: review
+depend_de: [T-011, T-012]
+risques:
+  - Les ajouts de main concernent l'ancien embed Cal.com, déjà remplacé dans la Preview
+fichiers:
+  - src/components/booking/CalBookingDialog.tsx
+  - src/index.css
+  - bun.lock
+  - TASKS.md
+  - .lovable/plan/correction-d-affichage-du-dialog-cal-com-desktop-tablette-2026-08-10.md
+tests: npm test && npm run typecheck && npm run build && npm run lint
+handoff: >
+  Les trois conflits sont reproduits et résolus : le formulaire custom, les styles
+  et les sources de la Preview d36922f restent identiques. Le plan de l'ancien embed
+  ajouté par main est conservé et explicitement archivé. Aucun fichier non suivi ajouté.
+  Vérification : 37 tests verts, typecheck et build réussis, lint sans erreur
+  (4 avertissements préexistants). Main n'est pas modifiée ; envoi de la résolution en attente.
+next: >
+  Résoudre et vérifier localement, puis faire approuver l'envoi du commit de résolution.
+```
+
+---
+
+## T-012 · Portrait stable pendant le scroll
+
+```yaml
+objectif: Empêcher la photo de profil de clignoter pendant le défilement.
+spec: null
+acceptation:
+  - Le bouton de profil garde son identité pendant les mises à jour de scroll
+  - L'ouverture de la présentation reste disponible sur téléphone et ordinateur
+  - Elias vérifie le défilement sur iPhone après un éventuel envoi en Preview
+operateur: codex
+statut: review
+depend_de: []
+risques:
+  - Vidéo fournie par Elias : portrait visible vers 1 s, cercle vide vers 2–4 s, initiales ES ensuite
+  - La disparition visuelle après correction reste à vérifier sur l'appareil réel
+fichiers:
+  - src/components/layout/Header.tsx
+  - TASKS.md
+tests: npm run typecheck && npm run build && npm run lint
+handoff: >
+  Le bouton de profil est défini hors du Header pour conserver l'image montée pendant
+  les mises à jour de scroll. Aucun mouvement ni style modifié. Typecheck et build
+  réussis ; lint sans erreur, 4 avertissements préexistants. La vidéo fournie établit
+  le défaut avant correction ; le résultat sur iPhone reste à vérifier par Elias.
+next: >
+  Vérifier et enregistrer la correction locale ; demander l'accord avant un nouvel envoi en Preview.
+```
+
+---
+
+## T-011 · Preview Vercel de la version locale actuelle (issue #3)
+
+```yaml
+objectif: Afficher les nouvelles sections et corrections locales dans la Preview Vercel existante.
+spec: null
+acceptation:
+  - Conserver le texte sans flou, la carte partiellement masquée et ses variantes téléphone
+  - Envoyer uniquement les changements du site sur essai/animations-hyperframes
+  - Ne pas fusionner main ; Elias vérifie le rendu et le formulaire dans la Preview
+operateur: codex
+statut: review
+depend_de: []
+risques:
+  - Les fichiers personnels non suivis et les fichiers générés restent hors commit
+  - Le test de réservation consigné au commit 33ef3bf concerne la Preview du 31 octobre
+  - Elias confirme le 5 novembre la réception de l'email Cal.com avec les informations saisies
+  - Ce test historique ne vaut pas validation du nouveau déploiement
+  - Vercel est l'hébergement conservé selon Elias ; les mentions de migration Cloudflare sont périmées
+fichiers:
+  - src/sections/
+  - src/assets/taches/
+  - src/index.css
+  - TASKS.md
+tests: npm test && npm run typecheck && npm run build && npm run lint
+handoff: >
+  Vérifications locales du 5 novembre 2026 : 37 tests verts, typecheck et build réussis,
+  lint sans erreur (4 avertissements dans les composants UI existants).
+  Les modifications du site sont conservées sans retoucher les mouvements.
+  Le contrôle visuel et le formulaire sur la nouvelle Preview seront vérifiés par Elias.
+next: >
+  Après l'envoi, identifier le commit et la Preview ; Elias effectue la vérification visuelle.
+  L'alignement complet de la documentation et la PR vers main restent dans l'issue #3.
+```
+
+---
+
 File d'attente du **développement de ce repo**. Le backlog business vit dans l'OS personnel : une tâche d'ici n'y apparaît au plus que comme jalon, jamais recopiée.
 
 ## Format
@@ -223,28 +322,144 @@ next: >
 
 ---
 
-## T-007 · Déploiement et vérification du parcours Cal.com
+## T-007 · Déploiement Cloudflare et vérification du parcours Cal.com
 
 ```yaml
-objectif: Réparer le CTA public et prouver en production le parcours de réservation complet.
+objectif: Publier le Portfolio et son API sur Cloudflare, puis prouver en production
+          le parcours de réservation complet.
 spec: specs/calcom/production-verification.md   # à écrire dans cette tâche
 acceptation:
-  - Le bundle Vercel cible `elias-sylla/decouverte` et ne contient plus l'ancien slug
-  - Les CTA desktop et mobile ouvrent l'événement Échange découverte
+  - Le Worker sert la SPA et `/api/booking` sur la même origine
+  - Les CTA desktop et mobile ouvrent le parcours custom sans iframe Cal.com
+  - Les créneaux affichés proviennent de Cal.com et l’événement reste fixé côté Worker
   - Une réservation de production porte les 4 réponses visibles et les 6 champs UTM
   - Replanification et annulation conservent un état cohérent dans Cal.com
   - URL, date et identifiant de réservation de test sont consignés dans la spec
 operateur: null
 statut: backlog
-depend_de: [T-004, T-005]
+depend_de: [T-004, T-005, T-008]
 risques:
   - Le déploiement ne suffit pas si les champs Cal.com ou le flow d'attribution sont incomplets
   - Utiliser une réservation de test identifiable et l'annuler après vérification
+  - Garder Vercel en pause comme retour arrière jusqu’à validation du domaine Cloudflare
 fichiers:
-  - src/data/business.ts
+  - wrangler.jsonc
+  - worker/index.ts
+  - src/components/booking/CalBookingDialog.tsx
   - specs/calcom/production-verification.md
 tests: npm test && npm run typecheck && npm run build
 handoff: null
 next: >
-  Déployer le commit validé, tester le parcours public, puis seulement déclarer le jalon OS terminé.
+  Après T-008, connecter GitHub à Workers Builds, tester l’URL workers.dev, puis le
+  domaine personnalisé avant de retirer définitivement le déploiement Vercel.
+```
+
+---
+
+## T-008 · Parcours de réservation custom via Cloudflare
+
+```yaml
+objectif: Montrer une réservation entièrement personnalisée dans le Portfolio,
+          sans afficher l'interface Cal.com au visiteur.
+spec: null   # prototype isolé sur codex/custom-cal-intake
+acceptation:
+  - Les 4 questions de qualification reprennent le langage visuel de Cal.com
+  - Le choix de la date et du créneau est une interface shadcn, sans embed Cal.com
+  - La confirmation envoie le payload Cal.com avec réponses et 6 champs UTM
+  - Les retours entre étapes conservent les réponses et le créneau sélectionné
+  - Le Worker fixe `elias-sylla/decouverte` et n’accepte aucun événement fourni par le navigateur
+  - La lecture et la création utilisent uniquement les endpoints publics Cal.com prévus
+  - `CAL_API_KEY` reste exclusivement dans les secrets du Worker
+  - La SPA et `/api/booking` sont prêtes à être servies sur la même origine Cloudflare
+operateur: codex
+statut: done
+depend_de: [T-004]
+risques:
+  - Une disponibilité peut disparaître entre l’affichage et la confirmation ; le Worker doit la revérifier
+  - Une réservation réelle ne doit être créée qu'avec une identité de test, puis annulée
+fichiers:
+  - TASKS.md
+  - src/components/booking/bookingIntake.ts
+  - src/components/booking/BookingIntakeForm.tsx
+  - src/components/booking/BookingIntakeForm.test.ts
+  - src/components/booking/CalBookingDialog.tsx
+  - src/components/booking/bookingApi.ts
+  - worker/index.ts
+  - worker/contract.ts
+  - worker/index.test.ts
+  - worker/contract.test.ts
+  - wrangler.jsonc
+tests: npm test && npm run typecheck && npm run build && npx wrangler deploy --dry-run
+handoff: >
+  Branche codex/custom-cal-intake. Le dialog custom sans iframe, les 4 questions,
+  le calendrier, les créneaux réels, les coordonnées et la création directe Cal.com
+  sont implémentés localement. Le Worker sert aussi les assets Vite, fixe l’événement
+  5777679 et revérifie le créneau avant création. Supabase, Composio et Vercel sont
+  retirés du runtime. Les artefacts locaux `.claude/skills/composio-cli/` et `docs/`
+  ont été audités, préservés et restent hors commit. 37 tests verts, typecheck,
+  lint sans erreur, build et dry-run Wrangler réussis. Lecture réelle validée sans
+  créer de rendez-vous ; revue finale sans constat critique ou important restant.
+next: >
+  Créer le commit atomique sans pousser, puis demander à Elias de créer la clé API
+  Cal.com, le token Workers Builds et lancer le premier déploiement workers.dev.
+```
+
+---
+
+## T-009 · Réponses du formulaire conservées dans Cal.com
+
+```yaml
+objectif: Que chaque réservation garde les réponses du formulaire et la provenance,
+          pour pouvoir préparer le rendez-vous à partir d'elles.
+spec: null
+acceptation:
+  - Test du 2026-10-31 (aperçu Vercel) : réservation créée, mais aucune réponse visible dans Cal.com
+  - Les questions du rendez-vous « Échange de découverte » portent les identifiants envoyés
+    (company_context, operational_problem, current_tools, desired_outcome), ou les réponses partent en metadata
+  - Les 6 champs UTM sont retrouvables sur la réservation
+  - Une adresse e-mail refusée par Cal.com (« email_domain_cannot_receive_mail ») affiche un message
+    sur l'adresse, pas « service momentanément indisponible »
+operateur: null
+statut: backlog
+depend_de: [T-008]
+risques:
+  - Les questions changeront selon la qualification voulue (T-010) ; garder les identifiants stables
+  - api/booking.ts (fonction Vercel) est un test pour les aperçus ; Cloudflare reste l'hébergement prévu
+fichiers:
+  - worker/contract.ts
+  - worker/index.ts
+  - src/components/booking/bookingApi.ts
+  - api/booking.ts
+tests: npm test && npm run typecheck && npm run build
+handoff: null
+next: >
+  Vérifier dans Cal.com où apparaissent les réponses d'une réservation de test, puis
+  annuler cette réservation.
+```
+
+---
+
+## T-010 · Préparation du rendez-vous par un agent
+
+```yaml
+objectif: À chaque réservation, transmettre les réponses à un agent IA qui prépare
+          le premier rendez-vous et qualifie le prospect.
+spec: null   # à écrire : questions, template du résumé, critères de qualification
+acceptation:
+  - Une réservation déclenche un message dans un canal Slack
+  - Un résumé est créé dans Google Docs depuis un template (besoins, recherches utiles,
+    questions à poser, points d'entrée de la réunion)
+  - Le prospect est trié : qualité, budget, urgence
+  - Les questions du formulaire sont revues pour nourrir cette préparation
+operateur: null
+statut: backlog
+depend_de: [T-009]
+risques:
+  - Branchement prévu via Composio ; aucun envoi ni écriture tiers sans accord explicite
+  - Le Portfolio ne devient pas une base de leads (README) : les données restent chez Cal.com et dans les outils choisis
+fichiers: []
+tests: null
+handoff: null
+next: >
+  Plus tard : le travail actuel porte sur les sections animées de la page d'accueil.
 ```

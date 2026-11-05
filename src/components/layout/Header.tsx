@@ -16,7 +16,7 @@ import {
   SheetHeader,
   SheetTitle,
 } from '@/components/ui/sheet';
-import { useCalEmbed } from '@/hooks/useCalEmbed';
+import { useBookingDialog } from '@/hooks/useBookingDialog';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { cn } from '@/lib/utils';
 
@@ -24,8 +24,29 @@ gsap.registerPlugin(SplitText);
 
 // V1 : landing unique. 'Services' est retiré (couvert par la section ci-dessous).
 // 'Mes projets' et 'Contact' sont masqués — à réactiver en V2 une fois les pages
-// alimentées (DB Supabase pour les projets, Edge Function + Resend pour le contact).
+// alimentées par du contenu réel et un besoin métier observé.
 const navLinks: { name: string; href: string }[] = [];
+
+// Garder le même composant pendant le scroll pour ne pas recharger l'avatar.
+function ProfileAvatarButton({ onOpen }: { onOpen: () => void }) {
+  return (
+    <button
+      type="button"
+      aria-label="Ouvrir la présentation d'Elias"
+      onClick={onOpen}
+      className="rounded-full ring-offset-background transition hover:opacity-85 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+    >
+      <Avatar className="size-9 border border-border shadow-sm">
+        <AvatarImage
+          src={heroPortrait}
+          alt="Portrait d'Elias"
+          className="object-cover object-[50%_15%]"
+        />
+        <AvatarFallback className="text-xs font-semibold">ES</AvatarFallback>
+      </Avatar>
+    </button>
+  );
+}
 
 export function Header() {
   const location = useLocation();
@@ -33,7 +54,7 @@ export function Header() {
   const logoRef = useRef<HTMLAnchorElement>(null);
   const [profileOpen, setProfileOpen] = useState(false);
   const isMobile = useIsMobile();
-  const cal = useCalEmbed();
+  const cal = useBookingDialog();
 
   useGSAP(() => {
     if (location.pathname !== '/') return;
@@ -49,24 +70,6 @@ export function Header() {
   }, { scope: logoRef, dependencies: [] });
 
   const isTransparent = location.pathname === '/' && !isScrolled;
-
-  const ProfileAvatarButton = () => (
-    <button
-      type="button"
-      aria-label="Ouvrir la présentation d'Elias"
-      onClick={() => setProfileOpen(true)}
-      className="rounded-full ring-offset-background transition hover:opacity-85 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-    >
-      <Avatar className="size-9 border border-border shadow-sm">
-        <AvatarImage
-          src={heroPortrait}
-          alt="Portrait d'Elias"
-          className="object-cover object-[50%_15%]"
-        />
-        <AvatarFallback className="text-xs font-semibold">ES</AvatarFallback>
-      </Avatar>
-    </button>
-  );
 
   return (
     <>
@@ -132,7 +135,7 @@ export function Header() {
               <Button {...cal} size="sm" variant="default">
                 Demander un audit
               </Button>
-              <ProfileAvatarButton />
+              <ProfileAvatarButton onOpen={() => setProfileOpen(true)} />
               <ThemeToggle />
             </div>
 
@@ -140,7 +143,7 @@ export function Header() {
               <Button {...cal} size="sm" variant="default">
                 Audit
               </Button>
-              <ProfileAvatarButton />
+              <ProfileAvatarButton onOpen={() => setProfileOpen(true)} />
               <ThemeToggle />
             </div>
           </div>

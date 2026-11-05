@@ -5,10 +5,10 @@ import { Button } from '@/components/ui/button';
 import { businessInfo } from '@/data/business';
 import { ArrowRight } from 'lucide-react';
 import { RollingTextList } from '@/components/ui/rolling-list';
-import { useCalEmbed } from '@/hooks/useCalEmbed';
+import { useBookingDialog } from '@/hooks/useBookingDialog';
 
 export default function Services() {
-  const cal = useCalEmbed();
+  const cal = useBookingDialog();
   const processItems = [
     { id: 1, title: 'Audit', category: 'Analyse', src: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&auto=format&fit=crop&q=60', alt: 'Audit' },
     { id: 2, title: 'Stratégie', category: 'Planification', src: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400&auto=format&fit=crop&q=60', alt: 'Stratégie' },

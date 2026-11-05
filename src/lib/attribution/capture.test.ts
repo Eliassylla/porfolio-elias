@@ -9,7 +9,7 @@ import {
   isAttribution,
   parseAttribution,
   resolveAttribution,
-  toCalConfig,
+  toCalBookingFields,
 } from "./capture";
 import {
   ATTRIBUTION_STORAGE_KEY,
@@ -97,7 +97,7 @@ describe("garde-fous du contrat", () => {
         ),
       );
 
-      for (const [field, value] of Object.entries(toCalConfig(actual))) {
+      for (const [field, value] of Object.entries(toCalBookingFields(actual))) {
         expect(value, `${name}.${field}`).toBeTruthy();
         expect(typeof value, `${name}.${field}`).toBe("string");
       }
@@ -116,7 +116,7 @@ describe("garde-fous du contrat", () => {
         ),
       );
 
-      for (const [field, value] of Object.entries(toCalConfig(actual))) {
+      for (const [field, value] of Object.entries(toCalBookingFields(actual))) {
         expect(value, `${name}.${field}`).toMatch(/^[a-z0-9._/-]+$/);
       }
     }

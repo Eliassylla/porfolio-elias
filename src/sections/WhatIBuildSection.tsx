@@ -14,7 +14,7 @@ import agentsDark from "@/video/agents-dark.json";
 import automationLight from "@/video/automation.json";
 import automationDark from "@/video/automation-dark.json";
 import { businessInfo } from "@/data/business";
-import { useCalEmbed } from "@/hooks/useCalEmbed";
+import { useBookingDialog } from "@/hooks/useBookingDialog";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -27,7 +27,7 @@ export default function WhatIBuildSection() {
   const cardRef = useRef<HTMLElement>(null);
   const hasMounted = useRef(false);
   const [activeServiceId, setActiveServiceId] = useState(serviceItems[0].id);
-  const cal = useCalEmbed();
+  const cal = useBookingDialog();
 
   // Thème (next-themes). Le cadran s'inverse : panneau sombre en light, clair en dark.
   // mounted évite le flash avant hydratation de next-themes.
@@ -131,7 +131,7 @@ export default function WhatIBuildSection() {
   return (
     <section
       ref={containerRef}
-      className="relative overflow-hidden bg-background px-6 py-12 md:py-10 lg:px-8 lg:py-[15px]"
+      className="relative overflow-hidden bg-background px-6 py-16 md:py-24 lg:px-8"
     >
       <div className="absolute inset-x-0 top-0 -z-10 h-64 bg-gradient-to-b from-muted/60 to-transparent dark:from-white/[0.03]" />
       <div className="mx-auto max-w-6xl">

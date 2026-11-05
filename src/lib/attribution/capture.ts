@@ -178,13 +178,14 @@ export function resolveAttribution(
 }
 
 /**
- * Projette une attribution vers les clés attendues par le `config` de l'embed
- * Cal.com, qui les transmet aux questions de réservation cachées.
+ * Projette une attribution vers les champs cachés attendus par Cal.com.
  *
  * Si ces questions n'existent pas encore côté Cal.com, les clés sont ignorées
  * sans erreur — le câblage est donc sûr à déployer avant la configuration.
  */
-export function toCalConfig(attribution: Attribution): Record<string, string> {
+export function toCalBookingFields(
+  attribution: Attribution,
+): Record<string, string> {
   return {
     utm_source: attribution.utm_source,
     utm_medium: attribution.utm_medium,

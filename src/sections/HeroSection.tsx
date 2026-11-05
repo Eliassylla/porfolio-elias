@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { ChevronDown, ClipboardCheck } from "lucide-react";
+import { ClipboardCheck } from "lucide-react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -7,7 +7,7 @@ import { SplitText } from "gsap/SplitText";
 
 import { Button } from "@/components/ui/button";
 import { EliasCard } from "@/components/ui/elias-card";
-import { useCalEmbed } from "@/hooks/useCalEmbed";
+import { useBookingDialog } from "@/hooks/useBookingDialog";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -84,9 +84,10 @@ function renderWord(word: string, key: string) {
   );
 }
 
-export default function HeroSection() {
+// `horizontalPhrase={false}` : essai sans la phrase horizontale (remplacée par TextGlowSection).
+export default function HeroSection({ horizontalPhrase = true }: { horizontalPhrase?: boolean }) {
   const containerRef = useRef<HTMLElement>(null);
-  const cal = useCalEmbed();
+  const cal = useBookingDialog();
 
   useGSAP(
     () => {
@@ -99,7 +100,6 @@ export default function HeroSection() {
       const track = section.querySelector<HTMLElement>(".h-phrase-track");
       const phraseWrap = section.querySelector<HTMLElement>(".h-phrase-wrap");
       const scene1 = section.querySelector<HTMLElement>(".scene-1");
-      const scrollIndicator = section.querySelector<HTMLElement>(".scroll-indicator");
       const wordEls = section.querySelectorAll<HTMLElement>(".h-word, .h-card-elias");
 
       // === Fallback "réduire les animations" (accessibilité) : hero empilé statique ===
@@ -139,7 +139,6 @@ export default function HeroSection() {
           .forEach((el) => {
             el.style.display = "none";
           });
-        if (scrollIndicator) scrollIndicator.style.display = "none";
         return;
       }
 
@@ -152,15 +151,15 @@ export default function HeroSection() {
         gsap.set(titleSplit.words, { opacity: 0, y: 40 });
         gsap.set(".scene-1-sub", { opacity: 0, y: 20 });
         gsap.set(".scene-1-cta", { opacity: 0, y: 20 });
-        gsap.set(".scroll-indicator", { opacity: 0, y: 20 });
 
         const introTl = gsap.timeline({ defaults: { ease: "power3.out" } });
         introTl
           .to(titleSplit.words, { opacity: 1, y: 0, stagger: 0.1, duration: 0.6 })
           .to(".scene-1-sub", { opacity: 1, y: 0, duration: 0.5 }, "-=0.2")
-          .to(".scene-1-cta", { opacity: 1, y: 0, duration: 0.5 }, "-=0.3")
-          .to(".scroll-indicator", { opacity: 1, y: 0, duration: 0.4 }, "+=0.1");
+          .to(".scene-1-cta", { opacity: 1, y: 0, duration: 0.5 }, "-=0.3");
       }
+
+      if (!horizontalPhrase) return () => titleSplit?.revert();
 
       // === États initiaux phrase horizontale ===
       if (!track || wordEls.length === 0) return;
@@ -271,11 +270,11 @@ export default function HeroSection() {
         });
       });
 
-      // === Fade-out scène 1 + indicator dès le premier scroll ===
+      // === Fade-out scène 1 dès le premier scroll ===
       // Plage courte et proportionnelle à la largeur d'écran : la scène 1 disparaît AVANT
       // que le premier mot entre, et en reverse elle ne réapparaît qu'une fois la phrase
       // totalement sortie (plus de chevauchement). autoAlpha = opacity + visibility.
-      gsap.to([scene1, scrollIndicator].filter(Boolean), {
+      gsap.to([scene1].filter(Boolean), {
         autoAlpha: 0,
         ease: "none",
         scrollTrigger: {
@@ -307,7 +306,7 @@ export default function HeroSection() {
         titleSplit?.revert();
       };
     },
-    { scope: containerRef },
+    { scope: containerRef, dependencies: [horizontalPhrase] },
   );
 
   return (
@@ -344,7 +343,7 @@ export default function HeroSection() {
         </div>
 
         {/* PHRASE HORIZONTALE — défile de droite à gauche au scroll */}
-        <div className="h-phrase-wrap pointer-events-none absolute inset-0 flex items-center overflow-hidden">
+        {horizontalPhrase && (<div className="h-phrase-wrap pointer-events-none absolute inset-0 flex items-center overflow-hidden">
           <div className="h-phrase-track flex items-center gap-x-4 whitespace-nowrap will-change-transform pl-[100vw] pr-24">
             {part1Words.map((word, i) => renderWord(word, `p1-${i}`))}
 
@@ -354,13 +353,7 @@ export default function HeroSection() {
 
             {part2Words.map((word, i) => renderWord(word, `p2-${i}`))}
           </div>
-        </div>
-
-        {/* Scroll indicator (visible scène 1) */}
-        <div className="scroll-indicator absolute bottom-8 left-1/2 z-10 -translate-x-1/2 flex flex-col items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted-foreground">
-          <span>Scroll</span>
-          <ChevronDown className="size-4 animate-bounce" />
-        </div>
+        </div>)}
 
       </div>
     </section>
