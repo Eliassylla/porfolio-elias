@@ -1,29 +1,21 @@
-# Specs — Portfolio
+# Contrats et dossiers de chantier
 
-Ce dossier est la **source de vérité du comportement**. Le code l'implémente, les tests le vérifient, `CLAUDE.md` y renvoie.
+Les comportements sont décrits ici, implémentés dans le code et vérifiés par les tests.
+Lire [la méthode](../docs/methode/developpement.md), puis uniquement le dossier du chantier
+courant et les contrats qu’il cite. `TASKS.md` n’est plus la file de travail active.
 
-## Règle de lecture
+## Organisation
 
-Ne pas charger tout ce dossier au démarrage d'une session. Lire uniquement la spec de la tâche en cours, désignée par le champ `spec:` de la tâche dans `TASKS.md`.
+- `NNN-sujet/intent.md`, `spec.md`, `plan.md` et `verification.md` pour un chantier complet.
+- `NNN-sujet/fiche.md` pour le circuit court ; recherche seulement si elle est utile.
+- `attribution/` et `fixtures/` restent les contrats historiques actifs et leurs cas exécutables.
+- [005-reception-composants](005-reception-composants/intent.md) : procédure générale, premier exemple et permissions.
 
-## Règle de modification
+Un dossier de chantier fusionné est figé ; une évolution ultérieure renvoie à l’ancien.
+Un contrat actif peut évoluer dans un chantier dédié et accepté. Ne pas changer une fixture
+ou affaiblir un test pour faire passer une implémentation. Une correction documentaire du
+point d’émission ne change pas les règles de normalisation ni les fixtures.
 
-Une spec est **fermée** pendant l'exécution d'une tâche. Un opérateur qui pense qu'une spec est fausse ouvre une tâche de révision — il ne code pas contre elle, et il ne la modifie pas en passant.
-
-Les fixtures de `fixtures/` sont la **définition exécutable** du comportement. Changer une fixture, c'est changer le contrat : ça se fait dans une tâche dédiée, jamais pour faire passer un test.
-
-## Contenu
-
-| Fichier | Rôle |
-|---|---|
-| `attribution/utm-contract.md` | Champs d'attribution, normalisation, valeurs par défaut, durée de vie |
-| `attribution/scenarios.md` | Scénarios Given/When/Then du contrat d'attribution |
-| `fixtures/landing.*.json` | Cas d'entrée/sortie attendus, consommés par `src/lib/attribution/capture.test.ts` |
-
-## Frontière des responsabilités
-
-Rappel, parce que c'est ce qui détermine où une spec a le droit d'exister :
-
-- **Cal.com** est la source de vérité des réservations, de leurs statuts, des réponses de qualification et des rappels.
-- **Le Portfolio** conserve le contexte d'acquisition et mesurera le parcours. Il ne détient aucune réservation.
-- **L'OS personnel** récupère les données Cal.com via Composio et les redistribue aux départements. Aucune spec de redistribution ne vit ici.
+Cal.com conserve les réservations ; le Portfolio affiche le parcours et capture la provenance.
+La mesure de parcours relève d’une spec distincte. L’orchestration post-réservation appartient
+à l’OS personnel : aucun flow opérationnel ni état de connexion n’est affirmé par ce dossier.
