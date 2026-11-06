@@ -1,0 +1,28 @@
+{
+  "date": "2026-11-06",
+  "sourceCommit": "2f347a9059b4658f4b68fde0cbb353ad4113f582",
+  "manifestFilesVerifiedAtSource": 14,
+  "importedManifestFilesVerified": [
+    "LISEZ-MOI.md",
+    "NOTICES.md",
+    "assets/taches-cette-semaine-sombre.svg",
+    "assets/taches-cette-semaine-telephone-sombre.svg",
+    "assets/taches-cette-semaine-telephone.svg",
+    "assets/taches-cette-semaine.svg",
+    "courbes.js",
+    "section.css",
+    "section.html",
+    "section.js"
+  ],
+  "notImported": [
+    "index.html",
+    "preview.js",
+    "vendor/ScrollTrigger.min.js",
+    "vendor/gsap.min.js"
+  ],
+  "additionalFiles": [
+    "manifest.json (copié à l’identique)",
+    "section.d.ts (déclaration locale)"
+  ],
+  "legacyMatchesBase": true
+}
