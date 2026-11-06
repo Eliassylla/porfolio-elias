@@ -67,13 +67,20 @@ peuvent contenir des décisions : conserver leur lien tant qu’elles ne sont pa
 Avant de toucher des fichiers, vérifier les travaux existants et les réservations du plan.
 Ne pas réinitialiser un arbre pour se débarrasser d’un conflit ou d’un fichier personnel.
 
-Statuts proposés comme Skyline : Idée, Cadrage, Prêt, En cours, À vérifier, Terminé, Abandonné.
-Le projet Portfolio et ses champs doivent être inspectés avant utilisation : aucun identifiant
+Le [projet Portfolio #5](https://github.com/users/Eliassylla/projects/5) est configuré avec les
+statuts Idée, Cadrage, Prêt, En cours, À vérifier, Terminé et Abandonné.
+Le projet et ses champs doivent être inspectés avant utilisation : aucun identifiant
 Skyline, automatisme de clôture ou protection de branche n’est transposable par supposition.
 `TASKS.md` reste un renvoi ; sa reprise est détaillée dans [le relevé](../suivi/reprise-tasks.md).
 
-Organisation demandée par Elias : Frontend, Backend, Socle et Automatisation. Le projet GitHub
-n’a pas été configuré par cette discussion. Un axe principal classe le résultat ; les étiquettes
+Une seule carte de suivi par chantier : celle du ticket. Sa PR reste liée au ticket,
+sans carte supplémentaire dans le projet pour le même travail. L’axe et le statut se suivent
+sur la carte du ticket. Retirer une carte de PR ne ferme ni la PR ni le ticket et ne supprime
+pas leur lien. Toute modification externe reste soumise aux permissions du projet.
+
+Axes configurés : Frontend, Backend, Socle et Automatisation. La
+[vue « Tout »](https://github.com/users/Eliassylla/projects/5/views/7) regroupe les tickets
+par axe ; les vues séparées par axe restent disponibles. Un axe principal classe le résultat ; les étiquettes
 peuvent préciser les parties touchées. Les tests et le déploiement sont dans le Socle ; une
 automatisation métier peut utiliser le backend. Le traitement propre à l’OS reste dans son projet.
 
