@@ -1,3 +1,80 @@
+# Réception pilote : texte et carte « Cette semaine »
+
+6 novembre 2026. État : intégration locale préparée, réception visuelle en attente d’Elias.
+
+## Livraison adoptée dans la branche
+
+- Site : Portfolio, [ticket #7](https://github.com/Eliassylla/porfolio-elias/issues/7).
+- Source : Video Animation, `portfolio-section01-web-v2`, `2.0.0-prototype`.
+- Livraison immuable : `2f347a9059b4658f4b68fde0cbb353ad4113f582`,
+  [PR source #4](https://github.com/Eliassylla/video-animation/pull/4).
+- Chemin source : `sites/portfolio/exports-web/01-textes/v2/`.
+- Import : `src/integrations/section01/v2/`, branche `chantier-007-texte-carte-v2`,
+  base Portfolio `241f45f`, arbre modifié non commité. Aucun déploiement effectué.
+
+Les 14 fichiers du manifeste ont été comparés au commit source et à leurs empreintes.
+Les dix fichiers du manifeste réellement copiés sont identiques ; le manifeste est conservé.
+La page d’aperçu, son script et les deux bibliothèques vendor ne sont pas importés.
+Leurs empreintes restent dans le manifeste original : leur absence ici est volontaire.
+[Relevé d’intégrité](../../specs/007-texte-carte-v2/integrite.json).
+
+## Contrat conservé
+
+Le Studio a créé et validé l’entrée. L’aperçu ordinateur v2 a été validé par Elias,
+le 6 novembre 2026, selon le ticket ; ses 61 contrôles Chrome/macOS et ses 32 poses
+comparées portent sur l’export isolé. La vraie page Portfolio n’est pas validée par ces preuves.
+
+Première entrée unique par montage ; aucune inversion ou réintroduction automatique.
+Phrase à 70 % de la fenêtre, carte au repère 64 % téléphone / 47 % ordinateur, attente
+jusqu’à l’image 22 de la phrase si nécessaire. Carte entière sous 640 px, recadrage
+ordinateur à partir de 640 px ; typographie et espacements aux seuils 768/1024 px.
+Largeur minimale essayée à la source : 320 px ; carte maximum 860 px, conteneur 1152 px.
+Le thème est explicite ; réduction des animations et HTML statique lisible sont gérés par l’export.
+
+Lire la [notice importée](../../src/integrations/section01/v2/LISEZ-MOI.md) pour les
+commandes et les limites, et les [notices](../../src/integrations/section01/v2/NOTICES.md)
+pour les droits. Polices système et alternatives SVG Inter/Helvetica/Arial sans fichier embarqué.
+Les droits des marques/icônes ne sont pas attestés : cette intégration locale ne lève pas
+cette inconnue et n’autorise aucune diffusion. Le Studio possède mouvement, assets et export.
+
+## Adaptations locales
+
+`TextGlowSection.tsx` conserve son emplacement dans Home et monte le HTML fiable via Vite.
+Il sélectionne la section enfant après insertion, fournit GSAP et ScrollTrigger **3.13.0**
+déjà installés et importe le CSS limité à `.va01`. Aucun second GSAP n’est chargé.
+Une déclaration `section.d.ts` décrit le contrat JS sans modifier son contenu ni prétendre
+vérifier les types internes du fournisseur.
+
+Le HTML reste constant entre rendus React. Le changement de thème appelle uniquement
+la commande de thème, sans démontage ni remise à zéro. Le nettoyage appelle `destroy()`
+avant retrait. L’export possède son contexte et son nettoyage local : aucun nettoyage
+global des animations du site n’est ajouté. Ces points ont été relus dans le code ;
+le comportement effectif en navigateur reste à tester.
+
+`TextGlowSectionLegacy.tsx` conserve une copie exacte de l’ancien composant de la base
+`241f45f`. Les quatre anciens SVG restent en place. Retour possible en repointant l’import
+de Home vers ce composant ; aucun basculement public ni option utilisateur n’est ajouté.
+
+## Vérification et réception
+
+[Preuves et parcours à tester](../../specs/007-texte-carte-v2/verification.md).
+Tests, typage et build réussis ; lint sans erreur avec quatre avertissements préexistants.
+Le build ajoute 7 435 octets bruts et 1 643 octets gzip au total des fichiers générés,
+avec le même environnement de mesure. Ce poids ne mesure ni le chargement réel, ni la
+fluidité, ni LCP/INP/CLS. Aucun gain de performance n’est déclaré.
+
+Accès navigateur désactivé dans Work ; Elias a indiqué qu’il ferait les essais visuels.
+Aucune capture ou validation de la vraie page par l’agent. Le ticket reste en intégration /
+vérification, sans confirmation de réception publiée. Aucun défaut intrinsèque reproduit,
+donc aucun ticket fournisseur de correction créé. Coordination existante :
+[Video Animation #1](https://github.com/Eliassylla/video-animation/issues/1).
+Une éventuelle correction reprend le même ticket Portfolio et exige une nouvelle version
+source ainsi que les permissions d’écriture correspondantes.
+
+---
+
+## Relevé historique conservé, avant réception v2
+
 # Repérage existant : texte et carte « Cette semaine »
 
 Relevé statique du 5 novembre 2026, complément au premier cas Notes → Chat.

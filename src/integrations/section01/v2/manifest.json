@@ -1,0 +1,129 @@
+{
+  "id": "portfolio-section01-web-v2",
+  "version": "2.0.0-prototype",
+  "status": "export-valide-par-elias-livraison-pilote",
+  "source": {
+    "repository": "https://github.com/Eliassylla/video-animation",
+    "commit": "70f3092849ff7221770f00fc9edba57ebdc168c2",
+    "scene": "sites/portfolio/Sections/01-textes/versions/v3",
+    "artisticValidation": "v3 retenue le 1er novembre 2026 selon LISEZ-MOI.md",
+    "files": {
+      "sites/portfolio/Sections/01-textes/versions/v3/section.js": "d38b1ff2f584049bb0e00f8781d9db9e17073ea00e90fd9731d9c9a80cf94208",
+      "sites/portfolio/Sections/01-textes/versions/v3/construire.py": "84e6c6280ed4881e624ad6eaef700bf5135385ce6e75ff446db6934a919db5a0",
+      "sites/portfolio/Sections/01-textes/versions/v3/parcours.js": "f0847a768cb67f5322e4d29b5d740ed44b6db25af71c08b6e206c0030faca614",
+      "sites/portfolio/Commun/courbes.js": "970f16abc5259e8762f2b2de5905eadd3cf8ecc41dc762459ede5db4375169cf",
+      "sites/portfolio/Sections/01-textes/Assets/taches-cette-semaine/taches-cette-semaine.svg": "f76211df8f8348be7246c6ae53d672d3ed5502d9d1da6eb02ff1cdb5ff0bb7fd",
+      "sites/portfolio/Sections/01-textes/Assets/taches-cette-semaine-sombre/taches-cette-semaine-sombre.svg": "eae1e4d85addf55019877e57fede647e6c6ada342ce725d1aa3d33dae357e5d1",
+      "sites/portfolio/Sections/01-textes/Assets/taches-cette-semaine-telephone/taches-cette-semaine-telephone.svg": "500f5d5c5f235c8361825e2e13d52b74e6ca5d6aaafb57c2f072934d98697c15",
+      "sites/portfolio/Sections/01-textes/Assets/taches-cette-semaine-telephone-sombre/taches-cette-semaine-telephone-sombre.svg": "fd4a6090fd5f688c420a0e6c5ddd603f922701b7fc7e7bb3c9dafd8accefc859"
+    }
+  },
+  "comparison": {
+    "repository": "https://github.com/Eliassylla/porfolio-elias",
+    "commit": "fc306fe6d633ece2d756e6d32d07418919295de2",
+    "files": {
+      "src/sections/experiments/TextGlowSection.tsx": "40f3ff41a991baeec9ddad9f3ab6de1de9fe560a2ee9c167f9582e3dab3b195a",
+      "src/lib/motion-curves.ts": "348146e6d63ff000658ed0ea7c50f94f9bd4bbadfdb0174938c7b024e9476ca9",
+      "docs/methode/reception-composants.md": "8827196d661ec402734b7ab3a99b9cfc6df656353d6f5980cf271343c33798e2"
+    },
+    "workingTree": "documentation en cours de modification dans une autre session ; aucune modification de ce dépôt par cet export",
+    "historicalImportCommit": null
+  },
+  "dependencies": {
+    "gsap": "3.13.0",
+    "ScrollTrigger": "3.13.0",
+    "browser": "ES modules, matchMedia, CSS mask-image ; tests à consigner",
+    "hyperframesForPlayback": false
+  },
+  "layout": {
+    "minimumViewportWidth": 320,
+    "phoneBelow": 640,
+    "typographyBreakpoints": [
+      768,
+      1024
+    ],
+    "referenceDesktop": [
+      1440,
+      900
+    ],
+    "referencePhone": [
+      390,
+      844
+    ]
+  },
+  "motion": {
+    "fps": 30,
+    "phraseSeconds": 1.2,
+    "desktopSequenceSeconds": 1.7,
+    "phoneSequenceSeconds": 1.5,
+    "scroll": "Entrée unique par instance : mêmes seuils, vitesse et mouvements ; contenu visible à la remontée et à la nouvelle descente, aucun reverse."
+  },
+  "licenses": {
+    "gsap": "https://gsap.com/standard-license/",
+    "textFont": "police système, non distribuée",
+    "svgFonts": "'Inter 24pt', Inter, Helvetica, Arial, sans-serif ; aucun fichier distribué, fallback selon la machine",
+    "assets": "cartes issues du studio ; droits des marques/icônes incorporées non attestés par cet audit"
+  },
+  "files": {
+    "LISEZ-MOI.md": "95b1a10b30855335a21ed71616ea57e19718a2b100c464af24fa4f2fecbde680",
+    "NOTICES.md": "ca9ce8dbfe19227ad26cf6c662a0e77f0a462ea2e5a8e1c2de2784149be2fd83",
+    "assets/taches-cette-semaine-sombre.svg": "eae1e4d85addf55019877e57fede647e6c6ada342ce725d1aa3d33dae357e5d1",
+    "assets/taches-cette-semaine-telephone-sombre.svg": "fd4a6090fd5f688c420a0e6c5ddd603f922701b7fc7e7bb3c9dafd8accefc859",
+    "assets/taches-cette-semaine-telephone.svg": "500f5d5c5f235c8361825e2e13d52b74e6ca5d6aaafb57c2f072934d98697c15",
+    "assets/taches-cette-semaine.svg": "f76211df8f8348be7246c6ae53d672d3ed5502d9d1da6eb02ff1cdb5ff0bb7fd",
+    "courbes.js": "7f3b8cfa4f8371de63381401e75298750cdc49a7c31020a48df80e90d5d2364c",
+    "index.html": "1521dd93a199627dbcdcdad978d2ac2653fedd87c6bce1cc60d48fcb1fd8307e",
+    "preview.js": "5800734802a31840124dea5147d4d57512b95ab1b6c8f243139bf6fa352a28db",
+    "section.css": "3373d6d30848cedb1adc669de8f4b9605a6a7f0144a9bb34b0ed7f24854e12ff",
+    "section.html": "b03dea428d520afe921859acb3bac19c966533363d50990212c4159fc1475703",
+    "section.js": "0138a4521c6cd89ec9dbae2f7d7aae20c1fceec4a178128108c91f11d48840f8",
+    "vendor/ScrollTrigger.min.js": "308219390e5e3b84cda0c481e70caa9820883ae10bda44e6e9a149a81aac4b3f",
+    "vendor/gsap.min.js": "96c01b81f44a3290e2b4532f55e2c9534b2adc43273a19f3756b2cb41f0fd0b6"
+  },
+  "verification": {
+    "report": "../verification-v2/resultats.json",
+    "checksPassed": 61,
+    "entryComparison": "32 poses DOM/SVG identiques à v1 après normalisation des préfixes",
+    "testedRuntimeHashes": {
+      "assets/taches-cette-semaine-sombre.svg": "eae1e4d85addf55019877e57fede647e6c6ada342ce725d1aa3d33dae357e5d1",
+      "assets/taches-cette-semaine-telephone-sombre.svg": "fd4a6090fd5f688c420a0e6c5ddd603f922701b7fc7e7bb3c9dafd8accefc859",
+      "assets/taches-cette-semaine-telephone.svg": "500f5d5c5f235c8361825e2e13d52b74e6ca5d6aaafb57c2f072934d98697c15",
+      "assets/taches-cette-semaine.svg": "f76211df8f8348be7246c6ae53d672d3ed5502d9d1da6eb02ff1cdb5ff0bb7fd",
+      "courbes.js": "7f3b8cfa4f8371de63381401e75298750cdc49a7c31020a48df80e90d5d2364c",
+      "index.html": "1521dd93a199627dbcdcdad978d2ac2653fedd87c6bce1cc60d48fcb1fd8307e",
+      "preview.js": "5800734802a31840124dea5147d4d57512b95ab1b6c8f243139bf6fa352a28db",
+      "section.css": "3373d6d30848cedb1adc669de8f4b9605a6a7f0144a9bb34b0ed7f24854e12ff",
+      "section.html": "b03dea428d520afe921859acb3bac19c966533363d50990212c4159fc1475703",
+      "section.js": "0138a4521c6cd89ec9dbae2f7d7aae20c1fceec4a178128108c91f11d48840f8",
+      "vendor/ScrollTrigger.min.js": "308219390e5e3b84cda0c481e70caa9820883ae10bda44e6e9a149a81aac4b3f",
+      "vendor/gsap.min.js": "96c01b81f44a3290e2b4532f55e2c9534b2adc43273a19f3756b2cb41f0fd0b6"
+    },
+    "artisticExportValidation": "Elias, 6 novembre 2026 : aperçu ordinateur v2 sans reverse validé (« C’est parfait »). Intégration dans Portfolio non validée.",
+    "actualPortfolioIntegration": "non effectuée"
+  },
+  "previous": {
+    "id": "portfolio-section01-web-v1",
+    "path": "../v1",
+    "manifestSha256": "ca3bfa165acc8d61885d35a47ad4a8a85999f5922b2bb504a7c4e9ec451801a2"
+  },
+  "changes": [
+    "Retrait du reverse automatique, de la commande reverse et du bouton Retour.",
+    "Révélations déjà effectuées conservées après changement de préférence de mouvement.",
+    "Entrée, assets, courbes, dimensions et thèmes inchangés."
+  ],
+  "createdAt": "2026-11-06",
+  "decision": "Elias demande cette entrée unique pour la section 01 uniquement. Notes → Chat et les autres sections sont réservées pour une future refonte.",
+  "research": {
+    "path": "../../../../../chaine/recherches/2026-11-05-animations-scroll-relecture.md",
+    "sha256": "0e615b82526288f45312211da117232ec659263e1e8c52f6f49b360a6ab7d2e4",
+    "preserved": true
+  },
+  "delivery": {
+    "id": "portfolio-section01-web-v2",
+    "branch": "livraison/section01-web-v2",
+    "reference": "Utiliser le SHA du commit de livraison indiqué dans la PR du studio. source.commit désigne les sources historiques v3.",
+    "scope": "Intégration pilote de cette seule section ; pas de publication du site.",
+    "destination": "Eliassylla/porfolio-elias",
+    "runtimeFileChangesSinceTests": false
+  }
+}

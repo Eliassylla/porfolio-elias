@@ -1,0 +1,67 @@
+{
+  "commit": "241f45f21074f2efe4f45e3447f7aba1cd4af9a3",
+  "tree": "fichiers suivis propres ; fichiers personnels non suivis conservés",
+  "environment": "build Vite local, 2026-11-06, avant intégration",
+  "files": [
+    {
+      "file": ".DS_Store",
+      "bytes": 6148,
+      "gzipBytes": 269
+    },
+    {
+      "file": "assets/Home-GXbipLdB.js",
+      "bytes": 1245658,
+      "gzipBytes": 211002
+    },
+    {
+      "file": "assets/NotFound-CmDhU6BZ.js",
+      "bytes": 1842,
+      "gzipBytes": 799
+    },
+    {
+      "file": "assets/SEOHead-C0TGDcHL.js",
+      "bytes": 1333,
+      "gzipBytes": 740
+    },
+    {
+      "file": "assets/hero-portrait-real-BJ6wnW3H.jpg",
+      "bytes": 261920,
+      "gzipBytes": 250885
+    },
+    {
+      "file": "assets/index-BoGEzf9n.js",
+      "bytes": 710915,
+      "gzipBytes": 236133
+    },
+    {
+      "file": "assets/index-SAwRDVgH.css",
+      "bytes": 85990,
+      "gzipBytes": 14193
+    },
+    {
+      "file": "favicon.ico",
+      "bytes": 7645,
+      "gzipBytes": 7668
+    },
+    {
+      "file": "images/.DS_Store",
+      "bytes": 6148,
+      "gzipBytes": 188
+    },
+    {
+      "file": "index.html",
+      "bytes": 3648,
+      "gzipBytes": 1221
+    },
+    {
+      "file": "og-image.png",
+      "bytes": 160413,
+      "gzipBytes": 154337
+    },
+    {
+      "file": "robots.txt",
+      "bytes": 160,
+      "gzipBytes": 91
+    }
+  ]
+}
