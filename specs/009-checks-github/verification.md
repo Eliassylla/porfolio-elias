@@ -106,3 +106,41 @@ réservation restent inchangés.
 
 La référence de triage affirmait encore que la CI était inactive : consigne périmée
 corrigée localement dans `.agents/skills/triage/references/verifications.md`.
+
+## Échec distant contrôlé observé après accord du premier envoi
+
+Le 6 novembre 2026, Elias autorise par « Oui » le seul envoi du commit
+`78d80951c727c8a2f70af82529da4e88797d2223` sur `chantier-009-verification`.
+Push effectué, puis [run 42289758000](https://github.com/Eliassylla/porfolio-elias/actions/runs/42289758000)
+terminé en failure : **Typage en échec**, **Tests, Lint et Compilation réussis**.
+Le journal du job Typage confirme TS2322 sur la sonde, sortie 2. Les installations
+du workflow existant ont réussi ; aucune modification de la CI ni installation locale.
+[Preuve datée](preuves/echec-distant-20261106.json) et [extrait du journal](preuves/echec-distant-typage-extrait.txt).
+
+Main relue et inchangée : `03beb50839d1e2d9c2dcffaeab3149f240f05be6`.
+Aucune PR créée, aucun message ou changement du ticket. La correction distante
+reste à vérifier : le commit local `d2fbd02629eed7d524aa15ebb19a907cec052057`
+retire seulement la sonde et attend un nouvel accord d'envoi sur la même branche.
+L'accord consommé pour le premier envoi ne couvre pas cette correction.
+
+## Correction distante vérifiée, contrôles restants terminés
+
+Le 6 novembre 2026, nouvel accord d'Elias (« Oui ») pour envoyer uniquement
+`d2fbd02629eed7d524aa15ebb19a907cec052057` sur la même branche.
+[Run correctif 42290341257](https://github.com/Eliassylla/porfolio-elias/actions/runs/42290341257) :
+completed/success, **Tests, Typage, Lint et Compilation tous réussis**.
+[Preuve datée](preuves/correction-distante-20261106.json).
+
+La sonde a disparu ; le code de ce commit est identique à celui de main, ce que confirme
+`git diff 03beb50839d1e2d9c2dcffaeab3149f240f05be6 d2fbd02629eed7d524aa15ebb19a907cec052057 --exit-code`.
+Main GitHub est restée sur `03beb50839d1e2d9c2dcffaeab3149f240f05be6`.
+Aucune fusion, PR, modification des protections, du ticket ou de Vercel réalisée.
+Les vérifications manquantes de #9 sont terminées. Leur publication documentaire
+et la mise à jour ou clôture du ticket restent soumises aux accords propres.
+L'import Vercel reste reporté et ne constitue pas un critère initial de réception du ticket.
+
+L'arbre final de cette reprise ne contient que des modifications documentaires par
+rapport à main : méthode, skill chantier et modèle court, consigne de triage périmée,
+documentation des checks, plan et preuves. Les anciens documents historiques restent
+conservés. Contrôles documentaires : liens locaux, validation des skills concernés,
+`git diff --check`. Aucun écran modifié, aucune installation locale refaite.

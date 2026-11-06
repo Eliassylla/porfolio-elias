@@ -1,0 +1,10 @@
+Source : job GitHub 128139781012, run 42289758000, commit 78d80951c727c8a2f70af82529da4e88797d2223.
+Extrait ciblé du journal consulté le 6 novembre 2026.
+2026-11-06T20:36:20.0337372Z Image: ubuntu-24.04
+2026-11-06T20:36:25.7610909Z node: v22.16.0
+2026-11-06T20:36:30.7151774Z ##[group]Run npm install --global npm@11.7.0 --ignore-scripts --no-audit --no-fund
+2026-11-06T20:36:30.7152187Z [36;1mnpm install --global npm@11.7.0 --ignore-scripts --no-audit --no-fund[0m
+2026-11-06T20:36:36.6269420Z ##[group]Run npm run typecheck
+2026-11-06T20:36:36.6269607Z [36;1mnpm run typecheck[0m
+2026-11-06T20:36:40.8335374Z ##[error]src/verification-checks-009.ts(2,14): error TS2322: Type 'number' is not assignable to type 'string'.
+2026-11-06T20:36:40.8808068Z ##[error]Process completed with exit code 2.

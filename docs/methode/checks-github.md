@@ -29,7 +29,10 @@ La branche doit être à jour et les discussions résolues ; une PR est obligato
 Ces protections sont configurées dans GitHub, séparément du YAML.
 Le dernier [run main vérifié](https://github.com/Eliassylla/porfolio-elias/actions/runs/42277662992)
 est réussi sur `03beb50839d1e2d9c2dcffaeab3149f240f05be6`.
-L’essai distant d’échec volontaire puis correction reste à terminer pour #9.
+L’essai distant d’échec volontaire puis correction est terminé :
+[échec du typage](https://github.com/Eliassylla/porfolio-elias/actions/runs/42289758000),
+puis [quatre checks réussis après correction](https://github.com/Eliassylla/porfolio-elias/actions/runs/42290341257).
+Les commits et limites sont conservés dans le chantier #9.
 Toute modification des protections attend un accord propre.
 
 L’import Vercel a été reporté par Elias ; il ne conditionne pas la clôture des critères

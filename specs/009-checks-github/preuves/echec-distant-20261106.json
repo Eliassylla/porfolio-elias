@@ -1,0 +1,54 @@
+{
+  "observed_at": "2026-11-06T20:37:42.658875+00:00",
+  "authorization": "Elias : Oui, au premier envoi 78d8095 uniquement.",
+  "operation": "push du commit 78d80951c727c8a2f70af82529da4e88797d2223 vers chantier-009-verification",
+  "run": {
+    "id": 42289758000,
+    "html_url": "https://github.com/Eliassylla/porfolio-elias/actions/runs/42289758000",
+    "head_sha": "78d80951c727c8a2f70af82529da4e88797d2223",
+    "event": "push",
+    "head_branch": "chantier-009-verification",
+    "status": "completed",
+    "conclusion": "failure",
+    "created_at": "2026-11-06T20:36:16Z",
+    "updated_at": "2026-11-06T20:36:47Z"
+  },
+  "jobs": [
+    {
+      "id": 128139780882,
+      "name": "Tests",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/Eliassylla/porfolio-elias/actions/runs/42289758000/job/128139780882"
+    },
+    {
+      "id": 128139781012,
+      "name": "Typage",
+      "status": "completed",
+      "conclusion": "failure",
+      "html_url": "https://github.com/Eliassylla/porfolio-elias/actions/runs/42289758000/job/128139781012"
+    },
+    {
+      "id": 128139781084,
+      "name": "Lint",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/Eliassylla/porfolio-elias/actions/runs/42289758000/job/128139781084"
+    },
+    {
+      "id": 128139781349,
+      "name": "Compilation",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/Eliassylla/porfolio-elias/actions/runs/42289758000/job/128139781349"
+    }
+  ],
+  "error": "src/verification-checks-009.ts(2,14): error TS2322: Type number is not assignable to type string. Exit code 2.",
+  "environment": "ubuntu-24.04, Node 22.16.0, npm 11.7.0 sélectionné par le workflow existant",
+  "main_verified": "03beb50839d1e2d9c2dcffaeab3149f240f05be6",
+  "limits": [
+    "Correction distante non envoyée, attend un nouvel accord.",
+    "Aucune PR créée, aucun message ni changement du ticket.",
+    "Aucun réglage Vercel modifié ; Preview éventuelle non vérifiée."
+  ]
+}
