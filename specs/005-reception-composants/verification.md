@@ -78,3 +78,24 @@ n'est jamais qualifiée d'appareil réel. Les contrôles de réservation distant
 Pas de push, nouvelle PR, commentaire GitHub, fusion, déploiement, création de rendez-vous,
 correction Studio, nouveau mouvement ou choix sur la relecture au scroll.
 La CI, les moyens de capture et le projet GitHub restent à configurer dans un travail distinct.
+
+## Complément du 6 novembre 2026 : suivi des corrections entre dépôts
+
+Base : f6bb7f8342e6db1966d0cac4ce84cc5a39c79d52, PR #6 encore ouverte.
+Elias accepte la règle exposée en session Studio et demande son ajout à la procédure de réception.
+Le complément est documentaire : procédure, modèle, plan et ce rapport seulement.
+
+Relecture des parcours :
+- Défaut d'intégration : un seul suivi destinataire, correction dans le site.
+- Défaut du composant : deux travaux distincts liés ; le site attend la livraison, puis reprend
+  le même ticket et fournit un accusé de réception avec version, commit, scénario et preuves.
+- Correction insuffisante : même paire de tickets, pas de nouveau ticket à chaque tentative.
+- Plusieurs sites affectés par la même cause : correction fournisseur partagée, réceptions distinctes.
+- Adoption abandonnée/reportée : décision explicite, pas de clôture fictive ni attente indéfinie.
+- Première livraison : ticket d'intégration sans inventer de ticket d'incident.
+
+Les liens relatifs des documents modifiés et l'absence de différences de sources applicatives
+sont contrôlés avant commit. Aucun test applicatif ou navigateur répété pour ce texte seul ;
+les anciens contrôles d'animation et de build ne sont pas présentés comme de nouveaux essais.
+Ce complément ne crée aucun ticket, statut, commentaire automatique ou surveillance.
+Il distingue les preuves d'une correction fournie de celles de son adoption dans le site.

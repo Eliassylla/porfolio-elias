@@ -47,3 +47,18 @@ Aucun test de rendu, de performance ou d’arrêt complet n’est remplacé par 
 
 Résultats : [verification.md](verification.md), commit documentaire testé 6138a2c.
 Les écarts Studio restent dans le relevé local, sans écriture dans l'autre dépôt.
+
+## Complément accepté le 6 novembre 2026 : tickets liés et réception
+
+Elias demande d'ajouter à la procédure portée par la PR #6 la règle convenue en session Studio :
+un ticket destinataire pour le problème dans la page, un ticket fournisseur seulement si le
+composant est à corriger, réutilisation du ticket destinataire à chaque livraison du même défaut,
+et confirmation avec preuves avant clôture. La branche actuelle est chantier-methode-triage,
+qui regroupe le travail documentaire #5 et le routage.
+
+Fichiers de ce complément : docs/methode/reception-composants.md,
+docs/modeles/composant-externe.md et ce dossier de chantier.
+Vérifier liens et cohérence des scénarios de correction, réception, reprise, abandon et
+plusieurs sites ; conserver les sources applicatives et travaux non suivis.
+Le complément demandé vise la PR #6 existante, sans fusion, nouveau ticket, installation
+d'automatisme ou modification du composant. Une mise à jour de sa branche peut relancer la Preview existante.

@@ -104,3 +104,76 @@ budgets respectés ou un nettoyage correct sur la seule lecture du code.
 Une mise à jour indique la version précédente, les changements incompatibles et les adaptations
 à reprendre. Tester avant adoption et conserver le retour possible à la version précédente.
 Les droits d’écriture restent ceux de chaque projet : préparer un relevé ne permet pas de le publier.
+
+## 5. Suivre une correction entre deux projets sans doublons
+
+Un ticket suit un résultat à livrer. Le destinataire possède le ticket du problème dans sa
+page ; le fournisseur possède, si nécessaire, le ticket de correction du composant.
+Ces deux travaux sont liés, mais ne sont pas deux copies du même suivi. Une livraison
+corrective ne crée pas un nouveau ticket destinataire si le problème y est déjà suivi.
+
+```mermaid
+flowchart TD
+  A[Ticket du site : problème constaté] --> B{Origine du défaut ?}
+  B -->|Intégration| C[Le site corrige sur sa branche]
+  B -->|Composant ou export| D[Ticket fournisseur lié : reproduction et correction]
+  D --> E[Fournisseur : nouvelle version et preuves]
+  E --> F[Le ticket du site existant reprend]
+  F --> G[Le site intègre sur sa branche et teste]
+  G --> H{Scénario initial résolu ?}
+  H -->|Non| D
+  H -->|Oui| I[Confirmation du site dans le ticket fournisseur]
+  I --> J[Clôture autorisée des deux travaux]
+```
+
+### Identifier et réutiliser les tickets
+
+Avant une création, rechercher le même composant, symptôme et version dans les tickets
+ouverts des deux dépôts. Réutiliser le ticket actif pertinent et ajouter des liens réciproques.
+Un problème distinct ou une nouvelle demande justifie un nouveau ticket ; une tentative de
+correction du même problème reste dans le suivi existant. Si un défaut clos réapparaît,
+consigner ce qui diffère et décider explicitement de rouvrir ou de créer un incident lié.
+
+Le signalement comporte : site demandeur et dépôt, section/composant, version et commit
+utilisés, résultat attendu/observé, étapes de reproduction, appareil/navigateur et preuves,
+URL du ticket destinataire et URL du ticket fournisseur dès qu'il existe.
+Une même cause affectant plusieurs sites peut partager un ticket fournisseur, avec une
+réception distincte suivie par chaque site ; ne pas multiplier les corrections identiques.
+
+### Livraison, confirmation et clôture
+
+| Responsable | Travail et état de suivi | Preuve attendue |
+|---|---|---|
+| Site destinataire | Problème suivi, en attente du fournisseur si nécessaire | Reproduction et lien vers le ticket fournisseur |
+| Fournisseur | Correction, puis « livré, à confirmer » | Version/commit immuable, changements, essais et lien de récupération dans les tickets liés |
+| Site destinataire | L'attente est levée ; intégration sur sa propre branche | Version reçue/importée, commit destinataire, scénario initial rejoué, résultats et limites |
+| Site destinataire | Confirmation de réception | Résultat explicite et lien vers les preuves dans le ticket fournisseur ; lien retour dans son ticket |
+| Chaque projet | Clôture après réception et validation requises | Critères satisfaits, confirmation liée, autorisation de clôture correspondante |
+
+Ces expressions décrivent le suivi ; elles ne prétendent pas que des champs ou automatismes
+GitHub Projects existent. L'attente du site est levée à la livraison : l'attente de confirmation
+du fournisseur ne doit pas créer une dépendance circulaire qui empêcherait l'intégration.
+
+La publication de la correction ne prouve pas que le problème est résolu dans le site.
+Le ticket fournisseur reste ouvert jusqu'à la confirmation attendue ; éviter une fermeture
+automatique à la fusion de sa seule correction. Le ticket du site reste ouvert jusqu'au
+résultat convenu et à la validation requise. Distinguer « testé en Preview » et « vérifié en
+production » selon les critères du ticket ; ne pas promettre la production sur la base d'un essai local.
+Si le site n'adopte plus la version, documenter l'abandon ou le report au lieu d'attendre
+indéfiniment ou de déclarer le défaut résolu sans preuve.
+
+### Mise en pratique et permissions
+
+À chaque reprise, lire les deux tickets et le dernier accusé de réception ; personne ne
+surveille automatiquement les commentaires en arrière-plan. La confirmation peut utiliser :
+« Site : … ; composant : … ; version reçue : … ; commit du site : … ; environnement : … ;
+scénario rejoué : … ; résultat : résolu / non résolu ; preuves : … ; limites : … ».
+
+Le fournisseur crée ou complète le ticket de livraison du destinataire ; c'est le destinataire
+qui prépare sa branche, son intégration et ses tests. Lors d'une première livraison sans
+problème préalable, un ticket d'intégration du site suffit ; n'inventer aucun incident.
+Une nouvelle version n'est jamais adoptée automatiquement par tous les sites.
+
+Cette règle n'accorde aucun droit d'écriture externe supplémentaire : ouverture, commentaire,
+changement de statut, clôture, push et publication suivent les accords du projet concerné.
+Aucune synchronisation, notification ou fermeture automatique n'est installée par cette documentation.
