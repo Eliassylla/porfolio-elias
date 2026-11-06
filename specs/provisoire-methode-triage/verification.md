@@ -49,3 +49,12 @@ La licence, le relevé de provenance et les références adaptées sont conserv�
 
 L’envoi des branches, la PR, la fusion, la configuration du projet GitHub, la CI et le
 nettoyage des branches restent des étapes ultérieures soumises à leurs accords propres.
+
+## Décision de livraison ultérieure
+
+Le 6 novembre 2026, Elias demande explicitement une seule PR pour les documents de réception
+et les skills adaptés. La fiche est mise à jour pour ce regroupement ; les preuves ci-dessus
+restent rattachées aux commits contrôlés. L’envoi et la création de cette PR sont autorisés,
+sans fusion, configuration de projet GitHub ou nettoyage de branches. Le premier essai
+d’envoi, antérieur à cet accord précis, avait été refusé par le contrôle automatique et
+n’avait publié aucune branche.

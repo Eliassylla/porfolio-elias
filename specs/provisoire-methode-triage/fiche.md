@@ -36,6 +36,9 @@ Pas de répétition des tests applicatifs sur un changement de consignes seul.
 
 ## Livraison
 
-Commit local seulement. La branche dépend des documents #5 encore locaux ; ne pas créer une
-PR qui prétendrait ne contenir que triage avant intégration de cette base ou découpage explicite.
-Envoi, PR, organisation GitHub, fusion, déploiement et nettoyage de branches restent à autoriser.
+Décision d’Elias du 6 novembre 2026 : regrouper les documents de réception et les skills
+dans une seule PR vers main, depuis `chantier-methode-triage`. La PR doit présenter l’ensemble
+des changements, sans prétendre que son diff contient seulement triage.
+L’envoi et l’ouverture de cette PR unique sont explicitement demandés dans cette session.
+Cet accord n’autorise pas sa fusion, la configuration du projet GitHub ni le nettoyage des branches.
+L’envoi peut déclencher la Preview Vercel existante ; aucune publication de main n’est exécutée ici.
