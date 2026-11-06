@@ -13,6 +13,7 @@ import { SmoothScroll } from "@/components/SmoothScroll";
 import { CalBookingDialog } from "@/components/booking/CalBookingDialog";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
 import { captureAttributionFromWindow } from "@/lib/attribution/session";
+import { Analytics } from "@vercel/analytics/react";
 
 const Home = lazy(() => import("./pages/Home"));
 const NotFound = lazy(() => import("./pages/NotFound"));
@@ -48,6 +49,7 @@ const App = () => {
               </Layout>
             </SmoothScroll>
           </BrowserRouter>
+          <Analytics />
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>
