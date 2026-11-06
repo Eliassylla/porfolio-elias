@@ -23,7 +23,10 @@ permettre de réserver un échange. Cibles : solopreneurs, indépendants, petite
 
 Lire [la méthode](docs/methode/developpement.md), puis le dossier du chantier dans `specs/`.
 Le skill [chantier](.agents/skills/chantier/SKILL.md) applique le circuit complet ou la fiche courte.
-GitHub suit les chantiers ; `TASKS.md` est un renvoi vers l’archive, plus une file à maintenir.
+GitHub suit les chantiers ; `TASKS.md` est un renvoi vers l’archive et n’est plus une file à maintenir.
+Pour choisir les consignes utiles, lire [le routage des skills](docs/methode/choisir-un-skill.md).
+En cas de bug signalé ou d’échec inattendu, appliquer [triage](.agents/skills/triage/SKILL.md)
+avant correction ; le diagnostic ne donne aucun droit d’écriture externe.
 
 Lire séparément [les permissions](docs/methode/autonomie.md). Dans un périmètre accepté,
 préparer les documents, modifier localement, vérifier et corriger sans redemander chaque étape.

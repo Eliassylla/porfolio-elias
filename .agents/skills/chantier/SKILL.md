@@ -23,8 +23,10 @@ Aucun identifiant de projet, règle métier, stack ou automatisme Skyline n’es
   au commit testé ; un résultat non disponible est une limite, pas un succès.
 - Préparer une seule PR du dépôt avec résultat utilisateur, preuves et limites. Push,
   création de PR, message, fusion et déploiement attendent chacun l’accord correspondant.
-- Pour un incident, vérifier les faits actuels avant la cause supposée, puis rejouer le chemin
-  qui échouait. Consigner les enseignements utiles dans le chantier.
+- Sur un bug signalé ou un échec inattendu, ouvrir [triage](../triage/SKILL.md) avant correction.
+  Il établit les faits et propose ; reprendre ensuite la correction locale déjà autorisée dans
+  le chantier, puis rejouer le chemin initial et consigner les preuves. Ne pas le déclencher
+  sur une modification sans anomalie ni sur un avertissement déjà compris.
 - Pour une fin de session, utiliser `../passation/SKILL.md` si une reprise doit être préparée.
 
 Ne pas réécrire un dossier de chantier fusionné ni affaiblir un test pour obtenir du vert.

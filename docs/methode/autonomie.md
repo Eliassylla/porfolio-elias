@@ -62,6 +62,8 @@ Sources lues le 5 novembre 2026 :
 - [Google SRE](https://cloud.google.com/blog/products/devops-sre/how-google-sre-is-using-agentic-ai-to-improve-operations) :
   autonomie contrôlée, permissions, évaluations et conservation des automatismes classiques utiles.
 
-Ces principes inspirent cette politique. Aucun kit, agent d’astreinte, service de surveillance
-ou droit de production n’est installé ou accordé ici. Une éventuelle autonomie de push,
+Ces principes inspirent cette politique. Depuis le 6 novembre 2026, seul le skill `triage`
+et ses références sont adaptés localement depuis Oncall Kit ; voir [le routage](choisir-un-skill.md).
+La demande d’Elias autorise cette adaptation de consignes et leur vérification. Aucun agent
+d’astreinte, service de surveillance ou droit de production n’est installé ou accordé ici. Une éventuelle autonomie de push,
 fusion ou déploiement par catégorie exige une décision ultérieure explicite.

@@ -10,6 +10,7 @@ courant et les contrats qu’il cite. `TASKS.md` n’est plus la file de travail
 - `NNN-sujet/fiche.md` pour le circuit court ; recherche seulement si elle est utile.
 - `attribution/` et `fixtures/` restent les contrats historiques actifs et leurs cas exécutables.
 - [005-reception-composants](005-reception-composants/intent.md) : procédure générale, premier exemple et permissions.
+- [Méthode et triage, préparation provisoire](provisoire-methode-triage/fiche.md) : suite locale demandée le 6 novembre, sans issue créée.
 
 Un dossier de chantier fusionné est figé ; une évolution ultérieure renvoie à l’ancien.
 Un contrat actif peut évoluer dans un chantier dédié et accepté. Ne pas changer une fixture

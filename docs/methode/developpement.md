@@ -72,6 +72,11 @@ Le projet Portfolio et ses champs doivent être inspectés avant utilisation : a
 Skyline, automatisme de clôture ou protection de branche n’est transposable par supposition.
 `TASKS.md` reste un renvoi ; sa reprise est détaillée dans [le relevé](../suivi/reprise-tasks.md).
 
+Organisation demandée par Elias : Frontend, Backend, Socle et Automatisation. Le projet GitHub
+n’a pas été configuré par cette discussion. Un axe principal classe le résultat ; les étiquettes
+peuvent préciser les parties touchées. Les tests et le déploiement sont dans le Socle ; une
+automatisation métier peut utiliser le backend. Le traitement propre à l’OS reste dans son projet.
+
 ## Vérifier et livrer
 
 - Documentation seule : relire les décisions, vérifier les liens, les chemins et l’absence de
@@ -90,6 +95,10 @@ valident pas le nouveau code. La PR présente le résultat pour un lecteur sans 
 Ne clôturer l’issue qu’en fonction de ses critères et de l’autorisation reçue.
 
 ## Maintenance
+
+Ouvrir [triage](../../.agents/skills/triage/SKILL.md) pour un bug signalé, un contrôle inattendu
+en échec ou un problème de livraison. [Le routage](choisir-un-skill.md) distingue ce diagnostic
+d’un chantier normal, d’une vérification visuelle et d’une passation de session.
 
 Reproduire le problème, dater ce qui est observé, consulter les incidents similaires et formuler
 une hypothèse avec ses preuves. Corriger dans le bon projet, rejouer le parcours qui échouait,

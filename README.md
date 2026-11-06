@@ -57,6 +57,7 @@ le chemin local Wrangler historique, pas le chargement automatique des variables
 | Consignes des agents | `AGENTS.md`, lien conservé vers `CLAUDE.md` |
 | Développement et circuit court | [Méthode](docs/methode/developpement.md) |
 | Opérations autorisées et accords restants | [Autonomie](docs/methode/autonomie.md) |
+| Quel skill utiliser selon la situation | [Routage](docs/methode/choisir-un-skill.md) |
 | Réception de tout composant externe | [Procédure](docs/methode/reception-composants.md) |
 | Exemple documenté | [Notes → Chat](docs/composants/notes-chat.md) |
 | Intention, spec, plan et preuves | `specs/NNN-sujet/` |

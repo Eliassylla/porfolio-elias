@@ -27,5 +27,7 @@ conservée délibérément, avec sa référence exacte et sans données privées
 réel, notification ou envoi externe sans accord. Si le moyen de capture est indisponible,
 consigner la limite et transmettre les cas à vérifier, sans inventer un verdict.
 
+Si une anomalie est observée, ouvrir [triage](../triage/SKILL.md) pour établir la cause avant
+correction, puis refaire les vérifications du rendu concerné.
 Un défaut de mouvement/asset/export revient à la source ; un défaut d’intégration au Portfolio.
 Ne pas « corriger » la relecture au scroll à l’occasion de cette vérification.
