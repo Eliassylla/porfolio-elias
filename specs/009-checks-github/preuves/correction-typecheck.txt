@@ -1,0 +1,4 @@
+
+> portfolio-elias@0.0.0 typecheck
+> tsc -p tsconfig.app.json --noEmit && tsc -p worker/tsconfig.json --noEmit
+

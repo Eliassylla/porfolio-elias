@@ -12,8 +12,8 @@ Ne lire cette référence que pour un contrôle en échec, absent ou incohérent
 2. Déterminer la portée : un test, tous les tests, le typage, la compilation ou l’outil lui-même.
    Comparer avec la dernière exécution connue, à code et environnement identifiés.
 3. Pour un contrôle absent, lire les scripts et la configuration réellement présents. La CI
-   complète n’est pas active dans la base documentaire du Portfolio ; un statut Vercel réussi
-   ne signifie pas que les tests ont tourné. Lire le nombre de tests exécutés et les filtres :
+   du Portfolio est active depuis #9 ; vérifier ses derniers runs au lieu de déduire
+   leur résultat du statut Vercel. Lire le nombre de tests exécutés et les filtres :
    une baisse inexpliquée mérite enquête, sans imposer un ancien nombre à un nouveau code.
 4. Différencier défaut d’application, environnement et défaut du contrôle : dépendance absente,
    version Node, réseau, fichier temporaire, processus concurrent, permissions. Ne pas installer,

@@ -1,6 +1,6 @@
 ---
 name: chantier
-description: Conduire un chantier Portfolio avec intention, spec, plan, preuves et PR, ou une fiche courte pour une modification isolée. Reprendre ou terminer un travail accepté. Ne pas utiliser pour une simple question ou lecture.
+description: Conduire un chantier Portfolio avec intention, spec, plan, preuves et PR, ou un spec.md court pour une modification isolée. Reprendre ou terminer un travail accepté. Ne pas utiliser pour une simple question ou lecture.
 ---
 
 # Chantier Portfolio
@@ -12,7 +12,8 @@ Aucun identifiant de projet, règle métier, stack ou automatisme Skyline n’es
 
 - Identifier le chantier déjà ouvert et le périmètre accepté ; ne pas multiplier les tickets.
 - Pour le circuit complet, garder `intent.md`, `spec.md`, `plan.md` et les preuves dans
-  `specs/NNN-sujet/`. Modèles dans `assets/`. Pour le circuit court, une `fiche.md` suffit.
+  `specs/NNN-sujet/`. Modèles dans `assets/`. Pour le circuit court, un `spec.md` court suffit : pourquoi, résultat attendu et vérification.
+  Utiliser `assets/spec-court.md`. Les anciennes `fiche.md` restent des archives ; ne pas les renommer.
 - Rédiger et exécuter les étapes locales autorisées sans redemander la même décision.
   Proposer les choix importants puis attendre ; signaler un écart au périmètre avant d’agir dessus.
 - Lire uniquement les contrats utiles. Le plan nomme les fichiers réservés, les risques et

@@ -1,0 +1,156 @@
+{
+  "observed_at": "2026-11-06T20:29:40.682104+00:00",
+  "base_sha": "03beb50839d1e2d9c2dcffaeab3149f240f05be6",
+  "initial_tree": "clean",
+  "main_run": {
+    "id": 42277662992,
+    "html_url": "https://github.com/Eliassylla/porfolio-elias/actions/runs/42277662992",
+    "event": "push",
+    "head_sha": "03beb50839d1e2d9c2dcffaeab3149f240f05be6",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-11-06T19:13:03Z"
+  },
+  "jobs": [
+    {
+      "id": 128098108764,
+      "name": "Compilation",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/Eliassylla/porfolio-elias/actions/runs/42277662992/job/128098108764",
+      "runner_name": "GitHub Actions 1000000179",
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 128098109062,
+      "name": "Lint",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/Eliassylla/porfolio-elias/actions/runs/42277662992/job/128098109062",
+      "runner_name": "GitHub Actions 1000000178",
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 128098109322,
+      "name": "Tests",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/Eliassylla/porfolio-elias/actions/runs/42277662992/job/128098109322",
+      "runner_name": "GitHub Actions 1000000180",
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 128098109535,
+      "name": "Typage",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/Eliassylla/porfolio-elias/actions/runs/42277662992/job/128098109535",
+      "runner_name": "GitHub Actions 1000000181",
+      "runner_group_name": "GitHub Actions"
+    }
+  ],
+  "pr_runs": [
+    {
+      "id": 42269982110,
+      "html_url": "https://github.com/Eliassylla/porfolio-elias/actions/runs/42269982110",
+      "event": "pull_request",
+      "head_sha": "36e3bb02d5d3dd97e59cdba295af9256961abf77",
+      "head_branch": "chantier-009-checks",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 42277452015,
+      "html_url": "https://github.com/Eliassylla/porfolio-elias/actions/runs/42277452015",
+      "event": "pull_request",
+      "head_sha": "9f2e94a0edb11a99648769573c79b1d758e4f257",
+      "head_branch": "vercel/install-vercel-web-analytics-y2uggu",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "ruleset": {
+    "id": 26716961,
+    "name": "Protection main",
+    "target": "branch",
+    "source_type": "Repository",
+    "source": "Eliassylla/porfolio-elias",
+    "enforcement": "active",
+    "conditions": {
+      "ref_name": {
+        "exclude": [],
+        "include": [
+          "~DEFAULT_BRANCH"
+        ]
+      }
+    },
+    "rules": [
+      {
+        "type": "non_fast_forward"
+      },
+      {
+        "type": "deletion"
+      },
+      {
+        "type": "pull_request",
+        "parameters": {
+          "required_approving_review_count": 0,
+          "dismiss_stale_reviews_on_push": false,
+          "required_reviewers": [],
+          "require_code_owner_review": false,
+          "require_last_push_approval": false,
+          "required_review_thread_resolution": true,
+          "require_extra_approval_for_unattributed_changes": true,
+          "allowed_merge_methods": [
+            "merge",
+            "squash",
+            "rebase"
+          ]
+        }
+      },
+      {
+        "type": "required_status_checks",
+        "parameters": {
+          "strict_required_status_checks_policy": true,
+          "do_not_enforce_on_create": false,
+          "required_status_checks": [
+            {
+              "context": "Tests",
+              "integration_id": 15368
+            },
+            {
+              "context": "Typage",
+              "integration_id": 15368
+            },
+            {
+              "context": "Lint",
+              "integration_id": 15368
+            },
+            {
+              "context": "Compilation",
+              "integration_id": 15368
+            }
+          ]
+        }
+      }
+    ],
+    "node_id": "RRS_lACqUmVwb3NpdG9yec5GGeZMzgGXqyE",
+    "created_at": "2026-11-06T18:39:27.023+00:00",
+    "updated_at": "2026-11-06T18:39:27.181+00:00",
+    "bypass_actors": [],
+    "current_user_can_bypass": "never",
+    "_links": {
+      "self": {
+        "href": "https://api.github.com/repos/Eliassylla/porfolio-elias/rulesets/26716961"
+      },
+      "html": {
+        "href": "https://github.com/Eliassylla/porfolio-elias/rules/26716961"
+      }
+    }
+  },
+  "limits": [
+    "Import Vercel reporté par Elias.",
+    "Échec et correction distants encore non exécutés.",
+    "Aucune nouvelle écriture externe."
+  ]
+}

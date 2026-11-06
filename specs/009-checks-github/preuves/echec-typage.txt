@@ -1,0 +1,5 @@
+
+> portfolio-elias@0.0.0 typecheck
+> tsc -p tsconfig.app.json --noEmit && tsc -p worker/tsconfig.json --noEmit
+
+src/verification-checks-009.ts(2,14): error TS2322: Type 'number' is not assignable to type 'string'.

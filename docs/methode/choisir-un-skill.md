@@ -5,7 +5,7 @@ les agents ; ce document n’installe aucun hook ni processus en arrière-plan.
 
 | Situation | Consigne à lire | Résultat attendu |
 |---|---|---|
-| Nouveau chantier accepté ou reprise | [chantier](../../.agents/skills/chantier/SKILL.md) | Fiche courte ou intention/spec/plan, réalisation et preuves proportionnées |
+| Nouveau chantier accepté ou reprise | [chantier](../../.agents/skills/chantier/SKILL.md) | `spec.md` court ou intention/spec/plan, réalisation et preuves proportionnées |
 | Bug signalé, contrôle inattendu en échec, livraison bloquée | [triage](../../.agents/skills/triage/SKILL.md) | Reproduction, diagnostic fondé sur les faits et proposition de correction |
 | Écran modifié ou rendu à comparer | [juge-visuel](../../.agents/skills/juge-visuel/SKILL.md) | Observations sur la matrice complète, limites et commit testé |
 | Composant externe reçu ou mis à jour | [procédure générale](reception-composants.md), puis chantier et juge visuel selon le besoin | Provenance, contrat, adaptations et vérifications dans la page réelle |
