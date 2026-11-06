@@ -29,10 +29,23 @@ L’évaluateur n’a appliqué aucun scénario, créé aucune passation ni effe
 
 ## Contrôles locaux
 
-Le commit exact et les résultats de validation des fichiers seront consignés après
-l’enregistrement local de cette adaptation. Les 37 tests historiques de l’application ne
-sont pas présentés comme de nouveaux tests de ces skills. Aucun test d’interface nécessaire
-à un changement d’écran n’a été exécuté, car ce chantier ne change aucun écran.
+Commit contrôlé : `22e35add666084269558909e6c743dde18f4a78b`, fichiers suivis propres.
+Les résultats sont consignés dans un complément documentaire qui ne modifie pas les skills.
+
+- Les quatre skills triage, chantier, juge-visuel et passation passent le validateur
+  skill-creator disponible localement. Il vérifie leur structure, pas toutes les décisions possibles.
+- 20 documents du routage et de la méthode parcourus, 49 liens relatifs valides, aucune ancre manquante.
+- Licence conservée à l’identique : Git blob `d645695673349e3947e8e5ae42332d0ac3164cd7`,
+  conforme au fichier source épinglé. Aucun fichier NOTICE n’existe à la racine amont inspectée.
+- Sources applicatives, API, assets, configuration, dépendances et fixtures identiques à 0cff7c9.
+- Diff sans erreur de whitespace ; relecture indépendante sans défaut important.
+- Aucun test applicatif répété pour ces seules consignes. Les 37 tests historiques ne sont
+  pas présentés comme de nouveaux tests des skills. Aucun écran modifié, aucun test navigateur
+  ni incident distant exercé. Les scénarios de routage restent une évaluation de consignes.
+
+Les références Oncall ont été lues au commit c03282cd5381a5a2e12e32bfb3c8957d52ce01f1 ;
+les exemples fictifs, seuils et intégrations de son équipe ne sont pas importés comme des faits.
+La licence, le relevé de provenance et les références adaptées sont conservés avec le skill.
 
 L’envoi des branches, la PR, la fusion, la configuration du projet GitHub, la CI et le
 nettoyage des branches restent des étapes ultérieures soumises à leurs accords propres.
