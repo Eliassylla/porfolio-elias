@@ -1,0 +1,45 @@
+{
+  "date": "2026-11-06",
+  "purpose": "Réception finale du pilote Portfolio #7, distincte de l’exercice de bug terminé",
+  "portfolioIssue": "https://github.com/Eliassylla/porfolio-elias/issues/7",
+  "studioIssue": "https://github.com/Eliassylla/video-animation/issues/1",
+  "version": "portfolio-section01-web-v2 / 2.0.0-prototype",
+  "studioExportCommit": "2f347a9059b4658f4b68fde0cbb353ad4113f582",
+  "previewCommit": "dc37918d6e72e2aba918841f7c1af97e1357d5f8",
+  "previewUrl": "https://porfolio-elias-qsoiwgij5-eliassyllas-projects.vercel.app",
+  "deploymentId": 7599216530,
+  "environment": "Preview",
+  "mergedCommit": "4f23eeec9cd5e7f0794bdb48fbee7140a68e68dc",
+  "githubComparison": {
+    "base": "dc37918d6e72e2aba918841f7c1af97e1357d5f8",
+    "head": "main",
+    "status": "ahead",
+    "files": [],
+    "headCommitAtCheck": "4f23eeec9cd5e7f0794bdb48fbee7140a68e68dc"
+  },
+  "exercisePreview": {
+    "commit": "28fab0ea44abe14ef4c10387cd262b8b965ddae9",
+    "url": "https://porfolio-elias-kecrqh0yb-eliassyllas-projects.vercel.app",
+    "deploymentId": 7601295051,
+    "version": "2.0.0-exercice.theme.2",
+    "purpose": "preuve d’exercice uniquement, pas version à fusionner"
+  },
+  "browserAccess": "Accès obtenu via lien temporaire créé par le plugin Vercel après accord explicite ; valeur du lien non conservée",
+  "newDeployment": false,
+  "vercelDeploymentId": "dpl_5DKsKoPJPWu3Yx59Z4DJ6htVmooL",
+  "vercelState": "READY",
+  "testedCssDimensions": [
+    [
+      433,
+      938
+    ],
+    [
+      853,
+      1138
+    ],
+    [
+      1600,
+      1000
+    ]
+  ]
+}

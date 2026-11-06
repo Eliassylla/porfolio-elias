@@ -1,0 +1,32 @@
+{
+  "environment": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+  "node": "v22.16.0",
+  "npm": "11.7.0",
+  "tree": "modifié, avant commit ; aucun test navigateur",
+  "results": [
+    {
+      "command": "npm test",
+      "startedAt": "2026-11-06T12:19:27.448080+00:00",
+      "exitCode": 0,
+      "output": "test.txt"
+    },
+    {
+      "command": "npm run typecheck",
+      "startedAt": "2026-11-06T12:19:28.487856+00:00",
+      "exitCode": 0,
+      "output": "run-typecheck.txt"
+    },
+    {
+      "command": "npm run build",
+      "startedAt": "2026-11-06T12:19:32.092901+00:00",
+      "exitCode": 0,
+      "output": "run-build.txt"
+    },
+    {
+      "command": "npm run lint",
+      "startedAt": "2026-11-06T12:19:35.668873+00:00",
+      "exitCode": 0,
+      "output": "run-lint.txt"
+    }
+  ]
+}

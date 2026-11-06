@@ -1,0 +1,18 @@
+{
+  "exercise": true,
+  "version": "2.0.0-exercice.theme.2",
+  "studioCommit": "2c8bfb64f36a3a0ab37f19a97a70fbbdcb7689f7",
+  "files": {
+    "courbes.js": "7f3b8cfa4f8371de63381401e75298750cdc49a7c31020a48df80e90d5d2364c",
+    "section.js": "0138a4521c6cd89ec9dbae2f7d7aae20c1fceec4a178128108c91f11d48840f8",
+    "NOTICES.md": "ca9ce8dbfe19227ad26cf6c662a0e77f0a462ea2e5a8e1c2de2784149be2fd83",
+    "section.css": "3373d6d30848cedb1adc669de8f4b9605a6a7f0144a9bb34b0ed7f24854e12ff",
+    "LISEZ-MOI.md": "e1da5fac59bf41fff43bf6f68961ab2511773ab6f0ab69e8e3323e3c8156b007",
+    "manifest.json": "c6cb70343352348fafe8c496c0307fed1de0bc1a0dabe76cc60318c2dab26427",
+    "section.html": "b03dea428d520afe921859acb3bac19c966533363d50990212c4159fc1475703",
+    "assets/taches-cette-semaine-telephone.svg": "500f5d5c5f235c8361825e2e13d52b74e6ca5d6aaafb57c2f072934d98697c15",
+    "assets/taches-cette-semaine.svg": "f76211df8f8348be7246c6ae53d672d3ed5502d9d1da6eb02ff1cdb5ff0bb7fd",
+    "assets/taches-cette-semaine-telephone-sombre.svg": "fd4a6090fd5f688c420a0e6c5ddd603f922701b7fc7e7bb3c9dafd8accefc859",
+    "assets/taches-cette-semaine-sombre.svg": "eae1e4d85addf55019877e57fede647e6c6ada342ce725d1aa3d33dae357e5d1"
+  }
+}
