@@ -57,8 +57,10 @@ Ne pas changer ici la relecture au scroll ou les sections futures sans chantier 
   Une compilation ou un déploiement réussi ne prouve ni le rendu ni la création d’une réservation.
 - Avant de corriger un bug, le reproduire dans le parcours utilisateur et consigner ce constat.
   Ne pas affaiblir tests, fixtures, lint ou typage pour obtenir un résultat vert.
-- La CI GitHub complète n’est pas configurée dans l’état de référence fc306fe. Sa mise en place
-  est une suite à cadrer ; les consignes ne la rendent pas active.
+- Les quatre checks GitHub sont définis dans `.github/workflows/quality.yml` ; lire
+  [leur fonctionnement](docs/methode/checks-github.md). Les runs et protections réellement
+  vérifiés sont consignés dans `specs/009-checks-github/verification.md` ; leur configuration
+  dans GitHub et Vercel ne se déduit pas de la présence du workflow.
 
 ## Invariants à préserver
 

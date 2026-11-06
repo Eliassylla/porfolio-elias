@@ -1,0 +1,106 @@
+
+> portfolio-elias@0.0.0 test
+> vitest run
+
+
+ RUN  v3.2.7 /private/tmp/portfolio-009-ci
+
+ ✓ src/components/booking/BookingIntakeForm.test.ts (4 tests) 5ms
+ ✓ src/lib/attribution/capture.test.ts (21 tests) 10ms
+ ✓ worker/contract.test.ts (6 tests) 42ms
+stderr | worker/index.test.ts > Worker de réservation > refuse de confirmer une réponse Cal.com incomplète
+Booking API error ZodError: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "data",
+      "uid"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "data",
+      "start"
+    ],
+    "message": "Required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "data",
+      "status"
+    ],
+    "message": "Required"
+  }
+]
+    at Object.get error [as error] (file:///private/tmp/portfolio-009-ci/node_modules/zod/v3/types.js:39:31)
+    at ZodObject.parse (file:///private/tmp/portfolio-009-ci/node_modules/zod/v3/types.js:114:22)
+    at createBooking (/private/tmp/portfolio-009-ci/worker/index.ts:111:44)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at handleBookingApi (/private/tmp/portfolio-009-ci/worker/index.ts:178:14)
+    at /private/tmp/portfolio-009-ci/worker/index.test.ts:144:22
+    at file:///private/tmp/portfolio-009-ci/node_modules/@vitest/runner/dist/chunk-hooks.js:752:20 {
+  issues: [
+    {
+      code: 'invalid_type',
+      expected: 'string',
+      received: 'undefined',
+      path: [Array],
+      message: 'Required'
+    },
+    {
+      code: 'invalid_type',
+      expected: 'string',
+      received: 'undefined',
+      path: [Array],
+      message: 'Required'
+    },
+    {
+      code: 'invalid_type',
+      expected: 'string',
+      received: 'undefined',
+      path: [Array],
+      message: 'Required'
+    }
+  ],
+  addIssue: [Function (anonymous)],
+  addIssues: [Function (anonymous)],
+  errors: [
+    {
+      code: 'invalid_type',
+      expected: 'string',
+      received: 'undefined',
+      path: [Array],
+      message: 'Required'
+    },
+    {
+      code: 'invalid_type',
+      expected: 'string',
+      received: 'undefined',
+      path: [Array],
+      message: 'Required'
+    },
+    {
+      code: 'invalid_type',
+      expected: 'string',
+      received: 'undefined',
+      path: [Array],
+      message: 'Required'
+    }
+  ]
+}
+
+ ✓ worker/index.test.ts (6 tests) 51ms
+
+ Test Files  4 passed (4)
+      Tests  37 passed (37)
+   Start at  17:54:44
+   Duration  342ms (transform 140ms, setup 0ms, collect 224ms, tests 107ms, environment 0ms, prepare 259ms)
