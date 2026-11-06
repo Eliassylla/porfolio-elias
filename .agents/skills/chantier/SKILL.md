@@ -24,6 +24,10 @@ Aucun identifiant de projet, règle métier, stack ou automatisme Skyline n’es
   au commit testé ; un résultat non disponible est une limite, pas un succès.
 - Préparer une seule PR du dépôt avec résultat utilisateur, preuves et limites. Push,
   création de PR, message, fusion et déploiement attendent chacun l’accord correspondant.
+  Si tous les critères du ticket sont satisfaits, préparer `Closes #numéro` et annoncer
+  la clôture automatique avant l’accord de création puis celui de fusion. Pour une PR
+  partielle, garder une simple référence. Après fusion, vérifier la clôture effective ;
+  suivre [les permissions](../../../docs/methode/autonomie.md) pour les accords et effets annoncés.
 - Sur un bug signalé ou un échec inattendu, ouvrir [triage](../triage/SKILL.md) avant correction.
   Il établit les faits et propose ; reprendre ensuite la correction locale déjà autorisée dans
   le chantier, puis rejouer le chemin initial et consigner les preuves. Ne pas le déclencher
