@@ -1,0 +1,146 @@
+{
+  "date": "2026-11-06",
+  "source": "GitHub fetch du commit publié, aucun fichier issu du checkout Studio courant",
+  "exportCommit": "2c8bfb64f36a3a0ab37f19a97a70fbbdcb7689f7",
+  "proofCommit": "7cf665dd1a1845908e86a63c35051552530e8e83",
+  "studioComment": "https://github.com/Eliassylla/video-animation/issues/1#issuecomment-6685490019",
+  "portfolioDeliveryComment": "https://github.com/Eliassylla/porfolio-elias/issues/7#issuecomment-6685492734",
+  "manifestFiles": [
+    {
+      "file": "LISEZ-MOI.md",
+      "sha256": "e1da5fac59bf41fff43bf6f68961ab2511773ab6f0ab69e8e3323e3c8156b007",
+      "verified": true
+    },
+    {
+      "file": "NOTICES.md",
+      "sha256": "ca9ce8dbfe19227ad26cf6c662a0e77f0a462ea2e5a8e1c2de2784149be2fd83",
+      "verified": true
+    },
+    {
+      "file": "assets/taches-cette-semaine-sombre.svg",
+      "sha256": "eae1e4d85addf55019877e57fede647e6c6ada342ce725d1aa3d33dae357e5d1",
+      "verified": true
+    },
+    {
+      "file": "assets/taches-cette-semaine-telephone-sombre.svg",
+      "sha256": "fd4a6090fd5f688c420a0e6c5ddd603f922701b7fc7e7bb3c9dafd8accefc859",
+      "verified": true
+    },
+    {
+      "file": "assets/taches-cette-semaine-telephone.svg",
+      "sha256": "500f5d5c5f235c8361825e2e13d52b74e6ca5d6aaafb57c2f072934d98697c15",
+      "verified": true
+    },
+    {
+      "file": "assets/taches-cette-semaine.svg",
+      "sha256": "f76211df8f8348be7246c6ae53d672d3ed5502d9d1da6eb02ff1cdb5ff0bb7fd",
+      "verified": true
+    },
+    {
+      "file": "courbes.js",
+      "sha256": "7f3b8cfa4f8371de63381401e75298750cdc49a7c31020a48df80e90d5d2364c",
+      "verified": true
+    },
+    {
+      "file": "index.html",
+      "sha256": "1521dd93a199627dbcdcdad978d2ac2653fedd87c6bce1cc60d48fcb1fd8307e",
+      "verified": true
+    },
+    {
+      "file": "preview.js",
+      "sha256": "5800734802a31840124dea5147d4d57512b95ab1b6c8f243139bf6fa352a28db",
+      "verified": true
+    },
+    {
+      "file": "section.css",
+      "sha256": "3373d6d30848cedb1adc669de8f4b9605a6a7f0144a9bb34b0ed7f24854e12ff",
+      "verified": true
+    },
+    {
+      "file": "section.html",
+      "sha256": "b03dea428d520afe921859acb3bac19c966533363d50990212c4159fc1475703",
+      "verified": true
+    },
+    {
+      "file": "section.js",
+      "sha256": "0138a4521c6cd89ec9dbae2f7d7aae20c1fceec4a178128108c91f11d48840f8",
+      "verified": true
+    },
+    {
+      "file": "vendor/ScrollTrigger.min.js",
+      "sha256": "308219390e5e3b84cda0c481e70caa9820883ae10bda44e6e9a149a81aac4b3f",
+      "verified": true
+    },
+    {
+      "file": "vendor/gsap.min.js",
+      "sha256": "96c01b81f44a3290e2b4532f55e2c9534b2adc43273a19f3756b2cb41f0fd0b6",
+      "verified": true
+    }
+  ],
+  "receivedFiles": [
+    {
+      "file": "LISEZ-MOI.md",
+      "sha256": "e1da5fac59bf41fff43bf6f68961ab2511773ab6f0ab69e8e3323e3c8156b007",
+      "sameAsPublishedSource": true
+    },
+    {
+      "file": "NOTICES.md",
+      "sha256": "ca9ce8dbfe19227ad26cf6c662a0e77f0a462ea2e5a8e1c2de2784149be2fd83",
+      "sameAsPublishedSource": true
+    },
+    {
+      "file": "assets/taches-cette-semaine-sombre.svg",
+      "sha256": "eae1e4d85addf55019877e57fede647e6c6ada342ce725d1aa3d33dae357e5d1",
+      "sameAsPublishedSource": true
+    },
+    {
+      "file": "assets/taches-cette-semaine-telephone-sombre.svg",
+      "sha256": "fd4a6090fd5f688c420a0e6c5ddd603f922701b7fc7e7bb3c9dafd8accefc859",
+      "sameAsPublishedSource": true
+    },
+    {
+      "file": "assets/taches-cette-semaine-telephone.svg",
+      "sha256": "500f5d5c5f235c8361825e2e13d52b74e6ca5d6aaafb57c2f072934d98697c15",
+      "sameAsPublishedSource": true
+    },
+    {
+      "file": "assets/taches-cette-semaine.svg",
+      "sha256": "f76211df8f8348be7246c6ae53d672d3ed5502d9d1da6eb02ff1cdb5ff0bb7fd",
+      "sameAsPublishedSource": true
+    },
+    {
+      "file": "courbes.js",
+      "sha256": "7f3b8cfa4f8371de63381401e75298750cdc49a7c31020a48df80e90d5d2364c",
+      "sameAsPublishedSource": true
+    },
+    {
+      "file": "manifest.json",
+      "sha256": "c6cb70343352348fafe8c496c0307fed1de0bc1a0dabe76cc60318c2dab26427",
+      "sameAsPublishedSource": true
+    },
+    {
+      "file": "section.css",
+      "sha256": "3373d6d30848cedb1adc669de8f4b9605a6a7f0144a9bb34b0ed7f24854e12ff",
+      "sameAsPublishedSource": true
+    },
+    {
+      "file": "section.html",
+      "sha256": "b03dea428d520afe921859acb3bac19c966533363d50990212c4159fc1475703",
+      "sameAsPublishedSource": true
+    },
+    {
+      "file": "section.js",
+      "sha256": "0138a4521c6cd89ec9dbae2f7d7aae20c1fceec4a178128108c91f11d48840f8",
+      "sameAsPublishedSource": true
+    }
+  ],
+  "omitted": [
+    "index.html",
+    "preview.js",
+    "vendor/gsap.min.js",
+    "vendor/ScrollTrigger.min.js"
+  ],
+  "dependencies": "GSAP et ScrollTrigger 3.13.0 du Portfolio, sans vendor source",
+  "typescriptDeclaration": "contrat local inchangé",
+  "browserResult": "à vérifier dans la vraie page Portfolio"
+}

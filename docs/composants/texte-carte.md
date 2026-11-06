@@ -1,3 +1,22 @@
+# Réception pilote : état courant
+
+6 novembre 2026. L'intégration v2 a été fusionnée via la PR #8 et validée visuellement
+en Preview. Le circuit de défaut contrôlé entre Portfolio #7 et Studio #1 est terminé,
+avec réception positive publiée dans les deux tickets. Le [bilan de réception](../../specs/007-bilan-reception/fiche.md)
+conserve versions, commits, preuves et périmètre de clôture accepté par Elias.
+
+La version du site reste `portfolio-section01-web-v2 / 2.0.0-prototype`, source
+`2f347a9059b4658f4b68fde0cbb353ad4113f582`. L'exercice theme.1/theme.2 reste séparé ;
+il n'est pas fusionné pour conclure le pilote. Cette mise à jour est documentaire.
+Les mesures approfondies reportées ne sont pas déclarées vérifiées. Les futures sections
+et leur réception complète feront l'objet de leurs propres chantiers.
+
+Les relevés ci-dessous décrivent l'état historique de préparation et de provenance ;
+les mentions d'attente ou d'absence de validation y sont conservées pour l'historique
+et sont remplacées, pour l'état courant, par le bilan lié ci-dessus.
+
+---
+
 # Réception pilote : texte et carte « Cette semaine »
 
 6 novembre 2026. État : intégration locale préparée, réception visuelle en attente d’Elias.
