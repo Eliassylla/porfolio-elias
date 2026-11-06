@@ -24,7 +24,7 @@ Production, le signaler avant de l’exécuter. Pas de publication automatique d
 ## Choisir la taille du chantier
 
 - **Circuit court** : texte, espacement ou correction isolée, sans changement du contrat,
-  du mouvement validé, d’une dépendance ou du traitement de données. Une `fiche.md` suffit :
+  du mouvement validé, d’une dépendance ou du traitement de données. Un `spec.md` court suffit :
   pourquoi, résultat attendu, vérification. Une correction évidente d’une ligne peut se
   traiter directement selon la demande, sans créer artificiellement un chantier.
 - **Circuit complet** : nouvelle fonctionnalité, intégration externe avec adaptations,
@@ -38,6 +38,9 @@ Elias pour une décision nouvelle, un écart au périmètre ou une action exigea
 pas pour la simple exécution du plan accepté. Les modèles sont dans
 [le skill chantier](../../.agents/skills/chantier/SKILL.md).
 
+Décision d’Elias du 6 novembre 2026 : les petites tâches utilisent aussi `spec.md`,
+avec un contenu court. Les anciennes `fiche.md` restent conservées avec leurs liens historiques.
+
 ## Où va quoi
 
 | Information | Emplacement |
@@ -45,7 +48,7 @@ pas pour la simple exécution du plan accepté. Les modèles sont dans
 | Pourquoi et résultat attendu | `specs/NNN-sujet/intent.md` |
 | Comportements, scénarios et décisions | `specs/NNN-sujet/spec.md` |
 | Fichiers réservés, ordre, risques et preuves attendues | `specs/NNN-sujet/plan.md` |
-| Petite modification | `specs/NNN-sujet/fiche.md` |
+| Petite modification | `specs/NNN-sujet/spec.md` court |
 | Recherche réellement effectuée | `research.md` du chantier, sources datées |
 | Résultats, commit testé et limites | `verification.md` du chantier |
 | Origine et adaptations d’un composant | fiche dans `docs/composants/` |

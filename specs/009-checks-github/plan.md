@@ -19,3 +19,20 @@ sont repris. Aucun accès ou identifiant Skyline copié.
 
 La PR de bilan #7 sera préparée séparément depuis main avec les preuves durables,
 sans importer les exports défectueux ni les changements d'adaptateur de l'exercice.
+
+## Reprise autorisée du 6 novembre 2026
+
+L'implémentation #11 est fusionnée. Le plan ci-dessus reste l'historique ; aucun
+nouveau workflow ni installation à prévoir. Elias demande de terminer les contrôles
+manquants sur `chantier-009-verification`, depuis main `03beb50839d1e2d9c2dcffaeab3149f240f05be6`.
+Périmètre : complément des preuves et de la documentation active ; sonde de typage
+locale non importée, puis retrait complet. Dépendances déjà installées conservées.
+L'alignement demandé des consignes utilise désormais un `spec.md` court pour les
+petites tâches : méthode, routage, CLAUDE.md (cible du lien AGENTS.md), skill chantier
+et modèle court. Les anciennes fiches et leurs liens restent conservés.
+
+Les deux commits d'essai sont préparés localement avant toute demande d'envoi.
+Chaque push, éventuelle PR et mise à jour du ticket attend son accord propre.
+Un push peut déclencher une Preview Vercel selon l'intégration Git ; aucun push sur
+main ni fusion n'est prévu pour cette sonde. La reprise de #9 autorise ce complément
+du dossier existant, sans réécrire les décisions et preuves historiques fusionnées.

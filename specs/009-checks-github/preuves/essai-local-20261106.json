@@ -1,0 +1,104 @@
+{
+  "date": "2026-11-06T20:31:07.413657+00:00",
+  "environment": {
+    "node": "22.16.0",
+    "npm": "11.7.0",
+    "platform": "macOS local",
+    "dependencies": "node_modules existant, aucune installation"
+  },
+  "tree": "Documents de méthode et preuves modifiés en plus des commits cités. Code applicatif inchangé hors sonde temporaire.",
+  "checks": [
+    {
+      "phase": "echec",
+      "commit": "78d80951c727c8a2f70af82529da4e88797d2223",
+      "command": "npm run typecheck",
+      "exit_code": 2,
+      "log": "echec-typage.txt",
+      "sha256": "8ef494340c42fd22458fe86004ae4ad9e7b0f1aff79e038f540b765efc40ca5c",
+      "execution": "concurrente aux autres commandes, même checkout"
+    },
+    {
+      "phase": "echec",
+      "commit": "78d80951c727c8a2f70af82529da4e88797d2223",
+      "command": "npm test",
+      "exit_code": 0,
+      "log": "echec-test.txt",
+      "sha256": "f9630af28619446b857965a44921b736340732eeac88cfe083129b46b50c6ceb",
+      "execution": "concurrente aux autres commandes, même checkout"
+    },
+    {
+      "phase": "echec",
+      "commit": "78d80951c727c8a2f70af82529da4e88797d2223",
+      "command": "npm run lint",
+      "exit_code": 0,
+      "log": "echec-lint.txt",
+      "sha256": "b055cf473f4929f9ae7f0208f82174b94f0fbe1469b946c37f53ae780108ab90",
+      "execution": "concurrente aux autres commandes, même checkout"
+    },
+    {
+      "phase": "echec",
+      "commit": "78d80951c727c8a2f70af82529da4e88797d2223",
+      "command": "npm run build",
+      "exit_code": 0,
+      "log": "echec-build.txt",
+      "sha256": "b2d160e2a2179e667305089af2b1f24b560136f0af01e410a646488eca61c48d",
+      "execution": "concurrente aux autres commandes, même checkout"
+    },
+    {
+      "phase": "correction",
+      "commit": "d2fbd02629eed7d524aa15ebb19a907cec052057",
+      "command": "npm test",
+      "exit_code": 0,
+      "log": "correction-test.txt",
+      "sha256": "38c4d6abd3283c0a609838168b4428d7a5d77b98a7a851d1e681581092bbc959",
+      "execution": "concurrente aux autres commandes, même checkout"
+    },
+    {
+      "phase": "correction",
+      "commit": "d2fbd02629eed7d524aa15ebb19a907cec052057",
+      "command": "npm run typecheck",
+      "exit_code": 0,
+      "log": "correction-typecheck.txt",
+      "sha256": "a674e84b7861a0489311562abaaa3c7d1008b343cf68110ff10e8ba600af30d5",
+      "execution": "concurrente aux autres commandes, même checkout"
+    },
+    {
+      "phase": "correction",
+      "commit": "d2fbd02629eed7d524aa15ebb19a907cec052057",
+      "command": "npm run lint",
+      "exit_code": 2,
+      "log": "correction-lint.txt",
+      "sha256": "c60a2fc94f14440fdec42560e0bfdc27973a27a37bac3c19ac03619dc1fd994d",
+      "execution": "concurrente aux autres commandes, même checkout"
+    },
+    {
+      "phase": "correction",
+      "commit": "d2fbd02629eed7d524aa15ebb19a907cec052057",
+      "command": "npm run build",
+      "exit_code": 0,
+      "log": "correction-build.txt",
+      "sha256": "237bdb62cb6dc88dd609cf5ba15ebb2a71c898222a35829ed07a873b553a75b3",
+      "execution": "concurrente aux autres commandes, même checkout"
+    },
+    {
+      "phase": "correction",
+      "commit": "d2fbd02629eed7d524aa15ebb19a907cec052057",
+      "command": "npm run lint",
+      "exit_code": 0,
+      "log": "correction-lint-seul.txt",
+      "sha256": "b055cf473f4929f9ae7f0208f82174b94f0fbe1469b946c37f53ae780108ab90",
+      "execution": "séquentielle, après fin du build"
+    }
+  ],
+  "diagnostic": {
+    "symptom": "Le lint de correction concurrent au build échoue ENOENT sur vite.config.ts.timestamp-1793996923466-2575eeb037c5f.mjs.",
+    "cause": "Concurrence sur un fichier temporaire produit et supprimé par Vite ; lint seul ensuite réussi.",
+    "action": "Rejouer lint après fin du build, sans modifier code ni configuration.",
+    "ci_limit": "Les jobs GitHub utilisent des checkouts séparés ; la concurrence locale dans le même dossier ne reproduit pas cet isolement."
+  },
+  "results": {
+    "echec": "Seul le typage échoue volontairement, les trois autres commandes réussissent.",
+    "correction": "37 tests réussis, typage réussi, lint seul réussi avec quatre avertissements connus, build réussi.",
+    "remote": "À vérifier après accords de push propres."
+  }
+}

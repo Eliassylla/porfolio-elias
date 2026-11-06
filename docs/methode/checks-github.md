@@ -23,9 +23,20 @@ ne sont pas supprimés pour obtenir un résultat vert.
 
 ## Avant fusion et avant production
 
-Après un premier run complet, les noms réellement affichés seront sélectionnés dans
-les protections de main pour rendre les quatre checks obligatoires avant fusion.
-Ces protections ne sont pas activées par le YAML. Leur modification attend son accord.
+Au relevé du 6 novembre 2026, les quatre checks sont actifs et obligatoires avant fusion
+sur main : [règle 26716961](https://github.com/Eliassylla/porfolio-elias/rules/26716961).
+La branche doit être à jour et les discussions résolues ; une PR est obligatoire.
+Ces protections sont configurées dans GitHub, séparément du YAML.
+Le dernier [run main vérifié](https://github.com/Eliassylla/porfolio-elias/actions/runs/42277662992)
+est réussi sur `03beb50839d1e2d9c2dcffaeab3149f240f05be6`.
+L’essai distant d’échec volontaire puis correction est terminé :
+[échec du typage](https://github.com/Eliassylla/porfolio-elias/actions/runs/42289758000),
+puis [quatre checks réussis après correction](https://github.com/Eliassylla/porfolio-elias/actions/runs/42290341257).
+Les commits et limites sont conservés dans le chantier #9.
+Toute modification des protections attend un accord propre.
+
+L’import Vercel a été reporté par Elias ; il ne conditionne pas la clôture des critères
+initiaux de #9. Aucun import réussi n’est attesté. Pour une reprise autorisée :
 
 Dans Vercel : Settings → Build and Deployment → Deployment Checks → Add checks → GitHub.
 Vérifier que le dépôt est relié par Vercel for GitHub et que l’attribution automatique

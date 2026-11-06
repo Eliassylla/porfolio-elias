@@ -1,0 +1,53 @@
+{
+  "observed_at": "2026-11-06T20:42:05.258943+00:00",
+  "authorization": "Elias : Oui, à l’envoi correctif d2fbd02 sur la même branche.",
+  "operation": "push du commit d2fbd02629eed7d524aa15ebb19a907cec052057 vers chantier-009-verification",
+  "run": {
+    "id": 42290341257,
+    "html_url": "https://github.com/Eliassylla/porfolio-elias/actions/runs/42290341257",
+    "head_sha": "d2fbd02629eed7d524aa15ebb19a907cec052057",
+    "event": "push",
+    "head_branch": "chantier-009-verification",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-11-06T20:40:32Z",
+    "updated_at": "2026-11-06T20:41:05Z"
+  },
+  "jobs": [
+    {
+      "id": 128141806641,
+      "name": "Compilation",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/Eliassylla/porfolio-elias/actions/runs/42290341257/job/128141806641"
+    },
+    {
+      "id": 128141807054,
+      "name": "Lint",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/Eliassylla/porfolio-elias/actions/runs/42290341257/job/128141807054"
+    },
+    {
+      "id": 128141807086,
+      "name": "Typage",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/Eliassylla/porfolio-elias/actions/runs/42290341257/job/128141807086"
+    },
+    {
+      "id": 128141807163,
+      "name": "Tests",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/Eliassylla/porfolio-elias/actions/runs/42290341257/job/128141807163"
+    }
+  ],
+  "environment": "ubuntu-24.04, Node 22.16.0, npm 11.7.0 sélectionné par le workflow existant",
+  "main_verified": "03beb50839d1e2d9c2dcffaeab3149f240f05be6",
+  "limits": [
+    "Aucune PR créée, aucun message ni changement du ticket.",
+    "Documents et preuves supplémentaires conservés localement, pas encore envoyés.",
+    "Import Vercel toujours reporté ; aucune preuve visuelle ni réservation réelle."
+  ]
+}

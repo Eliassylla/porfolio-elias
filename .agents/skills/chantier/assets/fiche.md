@@ -1,3 +1,5 @@
+<!-- Modèle historique conservé. Pour les nouvelles petites tâches, utiliser spec-court.md et nommer le document spec.md. -->
+
 # Fiche : [petite modification]
 
 Auteur : Elias · Date : à compléter · Issue si existante · Périmètre accepté ou à accepter.
