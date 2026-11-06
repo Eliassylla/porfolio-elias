@@ -80,11 +80,18 @@ Si `sessionStorage` est indisponible (navigation privée, quota dépassé, stock
 
 ## Point d'émission
 
-Le `config` du composant `<Cal>` (`src/components/booking/CalBookingDialog.tsx`).
+Le parcours personnalisé de `CalBookingDialog.tsx` construit la demande avec
+`buildBookingRequest` dans `bookingIntake.ts`, puis `bookingApi.ts` la transmet à
+`/api/booking`. L'entrée Vercel `api/booking.ts` réutilise la validation et la
+projection Cal.com de `worker/`. Aucun composant `<Cal>` ni iframe n'est monté.
 
-Contrainte à connaître : **ce `config` n'est lu qu'au montage de l'embed**, et l'embed ne se monte qu'à l'ouverture du dialog. La capture doit donc avoir lieu à l'atterrissage, bien avant le clic — d'où R1 et le stockage de session.
+La capture reste effectuée à l'atterrissage dans `App.tsx`, avant l'ouverture du
+parcours ; R1 et le stockage de session restent inchangés. Le serveur transmet
+les champs selon son contrat Cal.com. Leur présence effective dans une réservation
+distante se vérifie sur cette réservation ; elle ne se déduit pas d'un appel sans erreur.
 
-Si les questions cachées ne sont pas encore créées côté Cal.com, les clés du `config` sont ignorées sans erreur. Le câblage est donc sûr à déployer avant la configuration Cal.com.
+Correction documentaire du 5 novembre 2026 : cette section remplace l'ancienne
+description du transport par l'embed. Aucune règle de normalisation ni fixture modifiée.
 
 ## Ce que ce contrat ne couvre pas
 

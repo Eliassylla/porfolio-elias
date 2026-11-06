@@ -1,0 +1,87 @@
+{
+  "date": "2026-11-05",
+  "portfolio_commit": "fc306fe6d633ece2d756e6d32d07418919295de2",
+  "studio_commit": "70f3092849ff7221770f00fc9edba57ebdc168c2",
+  "assets": [
+    {
+      "portfolio": "src/assets/morph/notes-fermee.svg",
+      "studio": "sites/portfolio/Sections/03-projets-reserver/Assets/notes-creation-ia-fermee/notes-creation-ia-fermee.svg",
+      "sha256_portfolio": "8831204e289fd6bfc3f148f606cbbc651dea5faafd0740682162b029d5828987",
+      "sha256_studio": "8831204e289fd6bfc3f148f606cbbc651dea5faafd0740682162b029d5828987",
+      "identiques": true
+    },
+    {
+      "portfolio": "src/assets/morph/notes-ouverte.svg",
+      "studio": "sites/portfolio/Sections/03-projets-reserver/Assets/notes-creation-ia-ouverte/notes-creation-ia-ouverte.svg",
+      "sha256_portfolio": "2e6f8c879ecef45bb844eb6de30a5c216b0ce77fcfdc9c084f15d4493ae8463e",
+      "sha256_studio": "2e6f8c879ecef45bb844eb6de30a5c216b0ce77fcfdc9c084f15d4493ae8463e",
+      "identiques": true
+    },
+    {
+      "portfolio": "src/assets/morph/chat-barre-saisie.svg",
+      "studio": "sites/portfolio/Sections/03-projets-reserver/Assets/chat-barre-saisie-1x1/chat-barre-saisie-1x1.svg",
+      "sha256_portfolio": "f238b8c2f06abb1db27418ec52551c8b90ca2abf74083242525bcb96444d600a",
+      "sha256_studio": "f238b8c2f06abb1db27418ec52551c8b90ca2abf74083242525bcb96444d600a",
+      "identiques": true
+    },
+    {
+      "portfolio": "src/assets/taches/cette-semaine-clair.svg",
+      "studio": "sites/portfolio/Sections/01-textes/Assets/taches-cette-semaine/taches-cette-semaine.svg",
+      "sha256_portfolio": "f76211df8f8348be7246c6ae53d672d3ed5502d9d1da6eb02ff1cdb5ff0bb7fd",
+      "sha256_studio": "f76211df8f8348be7246c6ae53d672d3ed5502d9d1da6eb02ff1cdb5ff0bb7fd",
+      "identiques": true
+    },
+    {
+      "portfolio": "src/assets/taches/cette-semaine-sombre.svg",
+      "studio": "sites/portfolio/Sections/01-textes/Assets/taches-cette-semaine-sombre/taches-cette-semaine-sombre.svg",
+      "sha256_portfolio": "eae1e4d85addf55019877e57fede647e6c6ada342ce725d1aa3d33dae357e5d1",
+      "sha256_studio": "eae1e4d85addf55019877e57fede647e6c6ada342ce725d1aa3d33dae357e5d1",
+      "identiques": true
+    },
+    {
+      "portfolio": "src/assets/taches/cette-semaine-telephone-clair.svg",
+      "studio": "sites/portfolio/Sections/01-textes/Assets/taches-cette-semaine-telephone/taches-cette-semaine-telephone.svg",
+      "sha256_portfolio": "500f5d5c5f235c8361825e2e13d52b74e6ca5d6aaafb57c2f072934d98697c15",
+      "sha256_studio": "500f5d5c5f235c8361825e2e13d52b74e6ca5d6aaafb57c2f072934d98697c15",
+      "identiques": true
+    },
+    {
+      "portfolio": "src/assets/taches/cette-semaine-telephone-sombre.svg",
+      "studio": "sites/portfolio/Sections/01-textes/Assets/taches-cette-semaine-telephone-sombre/taches-cette-semaine-telephone-sombre.svg",
+      "sha256_portfolio": "fd4a6090fd5f688c420a0e6c5ddd603f922701b7fc7e7bb3c9dafd8accefc859",
+      "sha256_studio": "fd4a6090fd5f688c420a0e6c5ddd603f922701b7fc7e7bb3c9dafd8accefc859",
+      "identiques": true
+    }
+  ],
+  "fichiers_portfolio": {
+    "src/sections/experiments/NotesMorphSection.tsx": "66ad8687e2f1f767ed4c8bff620e8bdba167dcd564c362ccb01e6d63163deb07",
+    "src/sections/experiments/TextGlowSection.tsx": "40f3ff41a991baeec9ddad9f3ab6de1de9fe560a2ee9c167f9582e3dab3b195a",
+    "src/lib/motion-curves.ts": "348146e6d63ff000658ed0ea7c50f94f9bd4bbadfdb0174938c7b024e9476ca9"
+  },
+  "fichiers_studio": {
+    "sites/portfolio/Sections/03-projets-reserver/versions/v3/morph.js": "d7f64aeb6f1ee46d86f4e367e65e99ee726d36d4cc0afc0df14999a8f300f45c",
+    "sites/portfolio/Sections/01-textes/versions/v2/section.js": "73b0fe74d339a738b60da9a54744d8eaf10855010fbf8afd50a3c0ad359c782c",
+    "sites/portfolio/Sections/01-textes/versions/v3/section.js": "d38b1ff2f584049bb0e00f8781d9db9e17073ea00e90fd9731d9c9a80cf94208",
+    "sites/portfolio/Commun/courbes.js": "970f16abc5259e8762f2b2de5905eadd3cf8ecc41dc762459ede5db4375169cf"
+  },
+  "limite": "Comparaison statique des fichiers présents, sans validation visuelle ni preuve du commit historique d’import.",
+  "section01_v2_v3_code_hors_commentaires_identique": true,
+  "gsap": {
+    "studio_vendored_header": "3.14.2",
+    "portfolio_installe": "3.13.0",
+    "limite": "Versions lues dans les fichiers locaux, pas preuve du runtime d’un ancien déploiement."
+  },
+  "limite_studio": "Des fichiers outils/hyperframes et .gitignore sont modifiés par une autre session ; aucun fichier de scène comparé ne fait partie de ces changements au moment du relevé. Aucun changement effectué dans le studio par ce chantier.",
+  "courbes": {
+    "echantillons_par_courbe": 1001,
+    "courbes": [
+      "ARRIVE",
+      "OPEN",
+      "MID",
+      "OUT"
+    ],
+    "difference_max": 0,
+    "F_identique": true,
+    "limite": "Comparaison numérique des courbes communes sur une grille finie, pas identité des fichiers ni validation du rendu."
+  }
+}

@@ -1,126 +1,80 @@
-# Portfolio Antigravity — Elias
+# Portfolio d’Elias
 
-Portfolio B2B d’Elias, consultant en automatisations agentiques pour solopreneurs, indépendants, petites équipes et PME francophones.
+Site B2B en français pour les solopreneurs, indépendants, petites équipes et PME.
+Stack conservée : React, TypeScript, Vite, Tailwind CSS, shadcn/ui, motion et GSAP.
 
-L’objectif est simple : permettre à un visiteur de comprendre l’offre, voir des preuves réelles et réserver un appel en moins de 2 minutes.
+## Fonctionnement
 
-## Stack
+Le site et son entrée serveur `/api/booking` sont hébergés sur Vercel. Le parcours de
+réservation est personnalisé ; Cal.com conserve les rendez-vous et envoie ses notifications.
+Le point d’entrée `api/booking.ts` réutilise `worker/index.ts` et `worker/contract.ts`.
+Ces fichiers restent nécessaires ; la configuration Cloudflare est conservée historiquement.
+Aucune base métier propre au Portfolio ni intégration Resend n’est requise aujourd’hui.
 
-- React 18
-- TypeScript
-- Vite
-- Tailwind CSS 4
-- shadcn/ui
-- motion ^12.40
-- GSAP
-- Cloudflare Worker pour servir la SPA et l’API de réservation
-- Resend reporté jusqu'à l'apparition d'un vrai besoin d'email propre au Portfolio
-- Cal.com pour les réservations
+La PR #4 a été fusionnée dans `main` le 5 novembre 2026 au commit
+`fc306fe6d633ece2d756e6d32d07418919295de2`. Les dernières sections et la correction du portrait
+s’y trouvent. Le succès de déploiement observé n’est pas une preuve de tous les parcours.
 
-Le site est une SPA statique déployée avec son API dans un Cloudflare Worker. Le Portfolio affiche un parcours de réservation custom ; le Worker lit les créneaux et crée la réservation via l’API publique Cal.com. Cal.com reste propriétaire des réservations et le Portfolio ne devient ni une base de leads ni un CRM. La mesure du parcours (`page_view`, `cta_click`) relève d’un contrat distinct.
+## Développement local
 
-## Démarrage local
-
-Prérequis : Node.js et npm.
+Après installation des dépendances du dépôt :
 
 ```sh
-npm install
 npm run dev
 ```
 
-Pour tester la SPA et le Worker ensemble :
-
-```bash
-npm run dev:worker
-```
-
-Le serveur Vite démarre sur `http://localhost:8080/`.
-
-Commandes utiles :
+Vite sert le frontend sur `http://localhost:8080/`. Ce serveur seul ne prouve pas que
+l’API Vercel fonctionne. La réservation doit être vérifiée dans l’environnement serveur concerné.
+Une réservation réelle et les notifications associées demandent un accord distinct.
 
 ```sh
-npm run build      # build de production
-npm run build:dev  # build en mode développement
-npm run test       # tests Vitest
-npm run typecheck  # vérification TypeScript
-npm run lint       # lint ESLint
-npm run preview    # prévisualisation du build
-```
-
-## Variables d’environnement
-
-Le Worker exige un seul secret, `CAL_API_KEY`, pour appeler les endpoints officiels Cal.com. Créez la clé dans **Cal.com → Settings → Developer → API keys**, puis enregistrez-la dans **Cloudflare → Worker → Settings → Variables and Secrets** comme secret chiffré. Elle ne doit jamais porter le préfixe `VITE_`, être placée dans le frontend ou être commitée.
-
-Pour le développement local, utilisez un fichier `.dev.vars` ignoré par Git :
-
-```text
-CAL_API_KEY=cal_votre_cle
-```
-
-## Structure importante
-
-```text
-src/
-├── data/business.ts       # source de vérité du contenu métier
-├── sections/              # sections de la landing
-├── pages/                 # pages React conservées pour les évolutions
-├── components/            # composants réutilisables
-├── hooks/                 # hooks React
-├── lib/attribution/       # capture de provenance testée
-
-worker/                    # API Cloudflare et contrat Cal.com
-wrangler.jsonc             # configuration assets + Worker
-
-specs/                     # contrats de comportement et fixtures
-TASKS.md                   # file d’attente du développement
-```
-
-Pour modifier le contenu public, commencer par `src/data/business.ts`. Pour une tâche de développement, lire son entrée dans `TASKS.md`, puis uniquement la spec qu’elle référence dans `specs/`.
-
-## Frontière des responsabilités
-
-- **Cal.com** est l'entrée structurée et la source de vérité des réservations, statuts, réponses de qualification et rappels.
-- **Le Portfolio** affiche le parcours custom, capture la provenance et appelle Cal.com via son Worker ; il ne stocke pas les réservations.
-- **L’OS personnel** devra récupérer les données Cal.com via Composio, puis exécuter les flows validés avec Trigger.dev. La connexion est expirée et aucun flow n'existe encore.
-
-## Routes publiques
-
-- `/` : landing V1 avec Hero, WhatIBuild, Méthode, Marquee et CTA.
-- `/services`, `/portfolio`, `/portfolio/:id` et `/contact` redirigent temporairement vers l’accueil.
-
-Les pages secondaires restent dans le code pour être réactivées lorsque leur contenu réel le justifiera. Une base métier et Resend ne sont pas requis pour la V1.
-
-## État actuel
-
-- La landing V1 compile et le code local cible `elias-sylla/decouverte`.
-- Le déploiement Vercel a été mis en pause le 2026-08-11 pendant la migration Cloudflare.
-- Le parcours custom, les quatre questions, le calendrier et le payload d’attribution sont implémentés sur la branche `codex/custom-cal-intake`.
-- Le Worker Cloudflare lit les créneaux et prépare la création directe dans Cal.com ; le déploiement et la réservation de validation restent à effectuer.
-- Le lien `mailto:` est un secours V1 accepté ; le formulaire séparé et Resend sont reportés.
-- Les projets doivent être validés avant de rendre les pages secondaires publiques.
-
-## Développement
-
-`TASKS.md` est la file d’attente de référence. Chaque tâche précise ses dépendances, les fichiers réservés, les critères d’acceptation et la commande de test. Les comportements versionnés et leurs fixtures vivent dans `specs/`.
-
-Conventions :
-
-- garder le contenu visible en français ;
-- ne pas changer la stack sans décision explicite ;
-- préférer des solutions simples et maintenables ;
-- conserver tests, typecheck et build valides ;
-- ne jamais coder de secret en dur ;
-- utiliser les tokens de `src/index.css` pour les couleurs et thèmes.
-
-## Déploiement
-
-Le projet se déploie comme une SPA Vite et un Worker Cloudflare :
-
-```sh
+npm test
+npm run typecheck
 npm run build
-npm run deploy
+npm run lint
+npm run preview
 ```
 
-Le résultat frontend est généré dans `dist/`. `wrangler.jsonc` publie ces assets, exécute le Worker pour `/api/*` et renvoie les autres routes vers `index.html` pour le routage client.
+`npm run typecheck` couvre le frontend et la logique `worker/` ; il ne vérifie pas explicitement
+`api/booking.ts`. Les tests actuels de l’API simulent Cal.com. Aucun contrôle ne doit être annoncé
+comme une réservation distante effectivement testée.
 
-Le token proposé par **Workers Builds** dans Cloudflare autorise le déploiement depuis GitHub ; il est distinct de `CAL_API_KEY` et ne doit pas être copié dans le code.
+`npm run dev:worker` et `npm run deploy` utilisent encore Wrangler. Ce sont des commandes
+historiques Cloudflare : **ne pas lancer `npm run deploy` pour publier sur Vercel**.
+Ce chantier ne change pas ces commandes et n’entreprend aucune migration d’hébergement.
+
+## Secrets
+
+`CAL_API_KEY` doit être présent côté serveur dans Vercel pour l’environnement testé
+(Preview et Production sont distincts). Ne pas exposer sa valeur ni utiliser de préfixe `VITE_`.
+Les fichiers `.env`, `.dev.vars` et les secrets ne se commitent pas. `.dev.vars` concerne
+le chemin local Wrangler historique, pas le chargement automatique des variables par Vite.
+
+## Où lire quoi
+
+| Besoin | Emplacement |
+|---|---|
+| Consignes des agents | `AGENTS.md`, lien conservé vers `CLAUDE.md` |
+| Développement et circuit court | [Méthode](docs/methode/developpement.md) |
+| Opérations autorisées et accords restants | [Autonomie](docs/methode/autonomie.md) |
+| Quel skill utiliser selon la situation | [Routage](docs/methode/choisir-un-skill.md) |
+| Réception de tout composant externe | [Procédure](docs/methode/reception-composants.md) |
+| Exemple documenté | [Notes → Chat](docs/composants/notes-chat.md) |
+| Intention, spec, plan et preuves | `specs/NNN-sujet/` |
+| Contenu métier public | `src/data/business.ts` |
+| Anciennes tâches à relire | [Reprise de l’archive](docs/suivi/reprise-tasks.md) |
+
+Les routes secondaires `/services`, `/portfolio`, `/portfolio/:id` et `/contact` redirigent
+actuellement vers l’accueil. Les futures pages et les changements de positionnement se décident
+séparément. Les sections sources du Studio ne décident pas du contenu public du Portfolio.
+
+## Livraison et maintenance
+
+Une branche de chantier porte les changements vérifiés. L’envoi, la PR, la fusion et le
+déploiement nécessitent chacun l’autorisation correspondante. Avant une fusion, identifier
+ce qu’elle déclenche dans la configuration d’hébergement ; la Preview et la Production sont distinctes.
+Après publication autorisée, vérifier l’URL et le commit effectivement servis.
+
+Les contrôles CI et les protections de branche ne sont pas créés par ces documents.
+Consigner un incident avec sa reproduction, ses preuves, le responsable de la correction
+et le contrôle qui confirme le rétablissement. Ne pas annoncer de surveillance permanente inexistante.

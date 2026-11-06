@@ -49,3 +49,6 @@ skills-lock.json
 vite.config.ts.timestamp-*.mjs
 .agents/skills/requesting-code-review/
 .claude/skills/requesting-code-review
+
+# Reprises temporaires entre sessions, sans secrets et hors historique
+.passations/
