@@ -144,3 +144,11 @@ rapport à main : méthode, skill chantier et modèle court, consigne de triage 
 documentation des checks, plan et preuves. Les anciens documents historiques restent
 conservés. Contrôles documentaires : liens locaux, validation des skills concernés,
 `git diff --check`. Aucun écran modifié, aucune installation locale refaite.
+
+### Relecture avant publication documentaire
+
+Le diff complet depuis main contient uniquement des documents et preuves. Les liens
+locaux sont valides. Le contrôle des espaces sur les fichiers Markdown et JSON passe.
+Le même contrôle sur les journaux bruts signale cinq lignes vides finales issues
+des commandes ; elles sont conservées pour préserver les journaux et leurs empreintes.
+Ce constat ne concerne ni le code ni les checks GitHub.
