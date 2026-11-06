@@ -104,6 +104,14 @@ Un arbre modifié se décrit comme tel ; après changement du code, les preuves 
 valident pas le nouveau code. La PR présente le résultat pour un lecteur sans la conversation.
 Ne clôturer l’issue qu’en fonction de ses critères et de l’autorisation reçue.
 
+Décision d’Elias du 6 novembre 2026 : lorsqu’une PR satisfait tous les critères d’un
+ticket, préparer `Closes #numéro` dans sa description et annoncer avant l’accord de
+création qu’elle fermera ce ticket à sa fusion dans main. Rappeler cet effet avant
+l’accord de fusion ; la création de la PR n’autorise pas sa fusion. Une PR partielle
+conserve une simple référence au ticket. Après fusion, vérifier la fermeture réelle.
+Le réglage GitHub de clôture automatique a été confirmé actif par Elias.
+[Référence GitHub](https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/linking-a-pull-request-to-an-issue).
+
 ## Maintenance
 
 Ouvrir [triage](../../.agents/skills/triage/SKILL.md) pour un bug signalé, un contrôle inattendu

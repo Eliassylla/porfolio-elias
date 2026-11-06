@@ -36,6 +36,12 @@ redemander pendant sa préparation. Elle n’autorise pas un second envoi. Si le
 Les confirmations techniques imposées par le sandbox restent applicables.
 L’auto-merge reste interdit par les consignes du dépôt ; cette liste ne l’autorise pas.
 
+Pour une PR terminant un ticket, annoncer la clôture automatique et le numéro concerné
+avant l’accord de création, puis avant l’accord de fusion. Un accord de fusion qui
+inclut explicitement cette clôture couvre cet effet ; il n’est pas nécessaire de
+redemander ensuite une fermeture manuelle du même ticket. Une fusion autorisée sans
+clôture annoncée ne donne pas ce droit. Les autres écritures gardent leurs accords propres.
+
 ## Autonomie proportionnée
 
 ```mermaid
