@@ -38,3 +38,16 @@ Les contrôles locaux ne sont pas annoncés comme des checks GitHub réussis.
 Aucun ajout de test navigateur, déploiement par Actions, secret, outil ou dépendance au site.
 Aucun rendu changé : pas de nouvelle matrice visuelle nécessaire pour ce workflow/documentation.
 Le typage ne couvre pas explicitement api/ ; ce périmètre reste inchangé et documenté.
+
+## Résultats et relecture
+
+Les quatre commandes ont réussi : 37 tests, typage et build ; lint sans erreur et quatre
+avertissements connus. Ces preuves portent sur le code de `4bc2b1852687e22bf9ad555c773ffee63d124bbb`
+et la même configuration de workflow ; les retouches suivantes sont documentaires seulement.
+Les protections classiques de main répondent « Branch not protected » au contrôle API ;
+aucun réglage n'a été changé. Vérifier aussi les éventuels rulesets avant une modification.
+
+Relecture indépendante en lecture seule suivant requesting-code-review sur 4bc2b18 :
+aucun problème critique ou important. Prérequis Vercel et réservation des noms clarifiés
+dans la documentation ; référence du commit local ajouté ici. Verdict : prêt pour
+proposition en PR, pas une validation des runs distants ou une autorisation de fusion.
