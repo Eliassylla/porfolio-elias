@@ -1,0 +1,1517 @@
+{
+  "previewCommit": "dc37918d6e72e2aba918841f7c1af97e1357d5f8",
+  "url": "https://porfolio-elias-qsoiwgij5-eliassyllas-projects.vercel.app/",
+  "date": "2026-11-06T15:30:42.932Z",
+  "records": [
+    {
+      "scenario": "telephone changement preference en session puis sombre vers clair",
+      "reduced": true,
+      "result": {
+        "cards": [
+          {
+            "groups": [
+              "1",
+              "1"
+            ],
+            "palette": "light",
+            "size": "phone"
+          }
+        ],
+        "overflow": false,
+        "sectionTop": 240.55328369140625,
+        "sections": 1,
+        "theme": "light",
+        "viewport": [
+          433,
+          938
+        ],
+        "words": [
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "telephone rechargement avec reduction active",
+      "reduced": true,
+      "result": {
+        "cards": [
+          {
+            "groups": [
+              "1",
+              "1"
+            ],
+            "palette": "light",
+            "size": "phone"
+          }
+        ],
+        "overflow": false,
+        "sectionTop": 166.54515075683594,
+        "sections": 1,
+        "theme": "light",
+        "viewport": [
+          433,
+          938
+        ],
+        "words": [
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "telephone sombre reduction active",
+      "reduced": true,
+      "result": {
+        "cards": [
+          {
+            "groups": [
+              "1",
+              "1"
+            ],
+            "palette": "dark",
+            "size": "phone"
+          }
+        ],
+        "overflow": false,
+        "sectionTop": 167.1007080078125,
+        "sections": 1,
+        "theme": "dark",
+        "viewport": [
+          433,
+          938
+        ],
+        "words": [
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "telephone mouvement normal apres entree",
+      "reduced": false,
+      "result": {
+        "cards": [
+          {
+            "groups": [
+              "1",
+              "1"
+            ],
+            "palette": "dark",
+            "size": "phone"
+          }
+        ],
+        "overflow": false,
+        "sectionTop": -175.00001525878906,
+        "sections": 1,
+        "theme": "dark",
+        "viewport": [
+          433,
+          938
+        ],
+        "words": [
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "telephone descente remontee nouvelle descente sans rechargement",
+      "reduced": false,
+      "result": {
+        "cards": [
+          {
+            "groups": [
+              "1",
+              "1"
+            ],
+            "palette": "dark",
+            "size": "phone"
+          }
+        ],
+        "overflow": false,
+        "sectionTop": -175.00001525878906,
+        "sections": 1,
+        "theme": "dark",
+        "viewport": [
+          433,
+          938
+        ],
+        "words": [
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "telephone clair normal",
+      "reduced": false,
+      "result": {
+        "cards": [
+          {
+            "groups": [
+              "1",
+              "1"
+            ],
+            "palette": "light",
+            "size": "phone"
+          }
+        ],
+        "overflow": false,
+        "sectionTop": -175.00001525878906,
+        "sections": 1,
+        "theme": "light",
+        "viewport": [
+          433,
+          938
+        ],
+        "words": [
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "fermeture reservation sans soumission",
+      "result": {
+        "cards": [
+          {
+            "groups": [
+              "1",
+              "1"
+            ],
+            "palette": "light",
+            "size": "phone"
+          }
+        ],
+        "overflow": false,
+        "sectionTop": 740.5556030273438,
+        "sections": 1,
+        "theme": "light",
+        "viewport": [
+          433,
+          937
+        ],
+        "words": [
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "telephone",
+      "reduced": false,
+      "light": {
+        "cards": [
+          {
+            "groups": [
+              "1",
+              "1"
+            ],
+            "palette": "light",
+            "size": "phone"
+          }
+        ],
+        "overflow": false,
+        "sectionTop": -226.11111450195312,
+        "sections": 1,
+        "theme": "light",
+        "viewport": [
+          433,
+          938
+        ],
+        "words": [
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          }
+        ]
+      },
+      "dark": {
+        "cards": [
+          {
+            "groups": [
+              "1",
+              "1"
+            ],
+            "palette": "dark",
+            "size": "phone"
+          }
+        ],
+        "overflow": false,
+        "sectionTop": -226.11111450195312,
+        "sections": 1,
+        "theme": "dark",
+        "viewport": [
+          433,
+          938
+        ],
+        "words": [
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          }
+        ]
+      },
+      "returnScroll": {
+        "cards": [
+          {
+            "groups": [
+              "1",
+              "1"
+            ],
+            "palette": "dark",
+            "size": "phone"
+          }
+        ],
+        "overflow": false,
+        "sectionTop": -226.11111450195312,
+        "sections": 1,
+        "theme": "dark",
+        "viewport": [
+          433,
+          938
+        ],
+        "words": [
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          }
+        ]
+      },
+      "frameSample": {
+        "above33ms": 0,
+        "elapsed": 2008.500000047684,
+        "frames": 121,
+        "maxMs": 18.699999999999815,
+        "meanMs": 16.59917355411309,
+        "reduce": false
+      }
+    },
+    {
+      "scenario": "telephone",
+      "reduced": true,
+      "light": {
+        "cards": [
+          {
+            "groups": [
+              "1",
+              "1"
+            ],
+            "palette": "light",
+            "size": "phone"
+          }
+        ],
+        "overflow": false,
+        "sectionTop": 330.9895935058594,
+        "sections": 1,
+        "theme": "light",
+        "viewport": [
+          433,
+          938
+        ],
+        "words": [
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          }
+        ]
+      },
+      "dark": {
+        "cards": [
+          {
+            "groups": [
+              "1",
+              "1"
+            ],
+            "palette": "dark",
+            "size": "phone"
+          }
+        ],
+        "overflow": false,
+        "sectionTop": 330.9895935058594,
+        "sections": 1,
+        "theme": "dark",
+        "viewport": [
+          433,
+          938
+        ],
+        "words": [
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          }
+        ]
+      },
+      "returnScroll": {
+        "cards": [
+          {
+            "groups": [
+              "1",
+              "1"
+            ],
+            "palette": "dark",
+            "size": "phone"
+          }
+        ],
+        "overflow": false,
+        "sectionTop": 330.9895935058594,
+        "sections": 1,
+        "theme": "dark",
+        "viewport": [
+          433,
+          938
+        ],
+        "words": [
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          }
+        ]
+      },
+      "frameSample": {
+        "above33ms": 0,
+        "elapsed": 2010.000000095367,
+        "frames": 121,
+        "maxMs": 18.59999999999991,
+        "meanMs": 16.611570248722042,
+        "reduce": true
+      }
+    },
+    {
+      "scenario": "tablette",
+      "reduced": false,
+      "light": {
+        "cards": [
+          {
+            "groups": [
+              "1",
+              "1"
+            ],
+            "palette": "light",
+            "size": "desktop"
+          }
+        ],
+        "overflow": false,
+        "sectionTop": -302.7777099609375,
+        "sections": 1,
+        "theme": "light",
+        "viewport": [
+          853,
+          1138
+        ],
+        "words": [
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          }
+        ]
+      },
+      "dark": {
+        "cards": [
+          {
+            "groups": [
+              "1",
+              "1"
+            ],
+            "palette": "dark",
+            "size": "desktop"
+          }
+        ],
+        "overflow": false,
+        "sectionTop": -302.7777099609375,
+        "sections": 1,
+        "theme": "dark",
+        "viewport": [
+          853,
+          1138
+        ],
+        "words": [
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          }
+        ]
+      },
+      "returnScroll": {
+        "cards": [
+          {
+            "groups": [
+              "1",
+              "1"
+            ],
+            "palette": "dark",
+            "size": "desktop"
+          }
+        ],
+        "overflow": false,
+        "sectionTop": -1152.8197021484375,
+        "sections": 1,
+        "theme": "dark",
+        "viewport": [
+          853,
+          1138
+        ],
+        "words": [
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          }
+        ]
+      },
+      "frameSample": {
+        "above33ms": 0,
+        "elapsed": 2014.9,
+        "frames": 121,
+        "maxMs": 18.59999999999991,
+        "meanMs": 16.652066115702482,
+        "reduce": false
+      }
+    },
+    {
+      "scenario": "tablette",
+      "reduced": true,
+      "light": {
+        "cards": [
+          {
+            "groups": [
+              "1",
+              "1"
+            ],
+            "palette": "light",
+            "size": "desktop"
+          }
+        ],
+        "overflow": false,
+        "sectionTop": -60.017364501953125,
+        "sections": 1,
+        "theme": "light",
+        "viewport": [
+          853,
+          1138
+        ],
+        "words": [
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          }
+        ]
+      },
+      "dark": {
+        "cards": [
+          {
+            "groups": [
+              "1",
+              "1"
+            ],
+            "palette": "dark",
+            "size": "desktop"
+          }
+        ],
+        "overflow": false,
+        "sectionTop": -60.017364501953125,
+        "sections": 1,
+        "theme": "dark",
+        "viewport": [
+          853,
+          1138
+        ],
+        "words": [
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          }
+        ]
+      },
+      "returnScroll": {
+        "cards": [
+          {
+            "groups": [
+              "1",
+              "1"
+            ],
+            "palette": "dark",
+            "size": "desktop"
+          }
+        ],
+        "overflow": false,
+        "sectionTop": -60.017364501953125,
+        "sections": 1,
+        "theme": "dark",
+        "viewport": [
+          853,
+          1138
+        ],
+        "words": [
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          }
+        ]
+      },
+      "frameSample": {
+        "above33ms": 1,
+        "elapsed": 2001.7000000238415,
+        "frames": 120,
+        "maxMs": 33.40000000000009,
+        "meanMs": 16.680833333532014,
+        "reduce": true
+      }
+    },
+    {
+      "scenario": "ordinateur",
+      "reduced": false,
+      "light": {
+        "cards": [
+          {
+            "groups": [
+              "1",
+              "1"
+            ],
+            "palette": "light",
+            "size": "desktop"
+          }
+        ],
+        "overflow": false,
+        "sectionTop": -243.33334350585935,
+        "sections": 1,
+        "theme": "light",
+        "viewport": [
+          1600,
+          1000
+        ],
+        "words": [
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          }
+        ]
+      },
+      "dark": {
+        "cards": [
+          {
+            "groups": [
+              "1",
+              "1"
+            ],
+            "palette": "dark",
+            "size": "desktop"
+          }
+        ],
+        "overflow": false,
+        "sectionTop": -243.33334350585935,
+        "sections": 1,
+        "theme": "dark",
+        "viewport": [
+          1600,
+          1000
+        ],
+        "words": [
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          }
+        ]
+      },
+      "returnScroll": {
+        "cards": [
+          {
+            "groups": [
+              "1",
+              "1"
+            ],
+            "palette": "dark",
+            "size": "desktop"
+          }
+        ],
+        "overflow": false,
+        "sectionTop": -1048.595703125,
+        "sections": 1,
+        "theme": "dark",
+        "viewport": [
+          1600,
+          1000
+        ],
+        "words": [
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          }
+        ]
+      },
+      "frameSample": {
+        "above33ms": 0,
+        "elapsed": 2006.399999952316,
+        "frames": 121,
+        "maxMs": 18.700000000000273,
+        "meanMs": 16.5818181814241,
+        "reduce": false
+      }
+    },
+    {
+      "scenario": "ordinateur",
+      "reduced": true,
+      "light": {
+        "cards": [
+          {
+            "groups": [
+              "1",
+              "1"
+            ],
+            "palette": "light",
+            "size": "desktop"
+          }
+        ],
+        "overflow": false,
+        "sectionTop": -74.77430725097656,
+        "sections": 1,
+        "theme": "light",
+        "viewport": [
+          1600,
+          1000
+        ],
+        "words": [
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          }
+        ]
+      },
+      "dark": {
+        "cards": [
+          {
+            "groups": [
+              "1",
+              "1"
+            ],
+            "palette": "dark",
+            "size": "desktop"
+          }
+        ],
+        "overflow": false,
+        "sectionTop": -74.77430725097656,
+        "sections": 1,
+        "theme": "dark",
+        "viewport": [
+          1600,
+          1000
+        ],
+        "words": [
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          }
+        ]
+      },
+      "returnScroll": {
+        "cards": [
+          {
+            "groups": [
+              "1",
+              "1"
+            ],
+            "palette": "dark",
+            "size": "desktop"
+          }
+        ],
+        "overflow": false,
+        "sectionTop": -74.77430725097656,
+        "sections": 1,
+        "theme": "dark",
+        "viewport": [
+          1600,
+          1000
+        ],
+        "words": [
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          }
+        ]
+      },
+      "frameSample": {
+        "above33ms": 0,
+        "elapsed": 2015.8000000476836,
+        "frames": 121,
+        "maxMs": 18.699999999999815,
+        "meanMs": 16.659504132625486,
+        "reduce": true
+      }
+    },
+    {
+      "scenario": "ordinateur navigation SPA accueil 404 retour",
+      "sectionCountOn404": 0,
+      "returned": {
+        "cards": [
+          {
+            "groups": [
+              "1",
+              "1"
+            ],
+            "palette": "light",
+            "size": "desktop"
+          }
+        ],
+        "overflow": false,
+        "sectionTop": 520.78125,
+        "sections": 1,
+        "theme": "light",
+        "viewport": [
+          1600,
+          1000
+        ],
+        "words": [
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "telephone navigation SPA retour mouvement normal",
+      "sectionCountOn404": 0,
+      "returned": {
+        "cards": [
+          {
+            "groups": [
+              "1",
+              "0.8709"
+            ],
+            "palette": "light",
+            "size": "phone"
+          }
+        ],
+        "overflow": false,
+        "sectionTop": -72.22222900390625,
+        "sections": 1,
+        "theme": "light",
+        "viewport": [
+          433,
+          938
+        ],
+        "words": [
+          {
+            "opacity": "0.869229",
+            "transform": "matrix(1, 0, 0, 1, 17.7173, 0)"
+          },
+          {
+            "opacity": "0.75939",
+            "transform": "matrix(1, 0, 0, 1, 32.5987, 0)"
+          },
+          {
+            "opacity": "0.616239",
+            "transform": "matrix(1, 0, 0, 1, 51.9934, 0)"
+          },
+          {
+            "opacity": "0.433121",
+            "transform": "matrix(1, 0, 0, 1, 76.803, 0)"
+          },
+          {
+            "opacity": "0.177968",
+            "transform": "matrix(1, 0, 0, 1, 111.372, 0)"
+          },
+          {
+            "opacity": "0",
+            "transform": "matrix(1, 0, 0, 1, 135.484, 0)"
+          },
+          {
+            "opacity": "0",
+            "transform": "matrix(1, 0, 0, 1, 135.484, 0)"
+          }
+        ]
+      }
+    },
+    {
+      "scenario": "telephone apres fin entree au retour navigation",
+      "result": {
+        "cards": [
+          {
+            "groups": [
+              "1",
+              "1"
+            ],
+            "palette": "light",
+            "size": "phone"
+          }
+        ],
+        "overflow": false,
+        "sectionTop": -72.22222900390625,
+        "sections": 1,
+        "theme": "light",
+        "viewport": [
+          433,
+          938
+        ],
+        "words": [
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          },
+          {
+            "opacity": "1",
+            "transform": "none"
+          }
+        ]
+      }
+    }
+  ]
+}

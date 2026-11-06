@@ -1,0 +1,17 @@
+{
+  "date": "2026-11-06",
+  "project": "prj_uc4ujKKO5uwGo6kC9WlUBzsH9eVh",
+  "speedInsights": {
+    "codeIntegration": "aucune occurrence dans package.json, package-lock.json, src/, api/, worker/ ou vercel.json",
+    "deployedPage": "aucun script Speed Insights observé dans document.scripts",
+    "dashboardToggle": "non établi ; absence d’intégration ne prouve pas l’état du bouton dashboard"
+  },
+  "observabilityPlus": {
+    "api": "GET /v1/observability/manage/configuration/projects",
+    "status": 404,
+    "message": "Observability Plus is not enabled",
+    "scope": "team_nUOw89KsfRD2P569VRyWgNAU"
+  },
+  "observabilityStandard": "non établi : les deux requêtes métriques tentées par le plugin ont été rejetées (400 bad_request), ce qui ne prouve ni absence de métriques ni désactivation",
+  "changes": "aucun SDK ajouté, aucune option activée ou désactivée"
+}

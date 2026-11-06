@@ -1,0 +1,20 @@
+{
+  "exercise": true,
+  "studioCommit": "60c3eda3b956374cd89d479ec5c9fec66938cd1d",
+  "version": "2.0.0-exercice.theme.1",
+  "portfolioBase": "dc37918d6e72e2aba918841f7c1af97e1357d5f8",
+  "files": {
+    "LISEZ-MOI.md": "babb5fd2bc06ab8a04cde14ea9e3255c191a0f4e7de91cc4da041328e4a6a06c",
+    "NOTICES.md": "ca9ce8dbfe19227ad26cf6c662a0e77f0a462ea2e5a8e1c2de2784149be2fd83",
+    "assets/taches-cette-semaine-sombre.svg": "eae1e4d85addf55019877e57fede647e6c6ada342ce725d1aa3d33dae357e5d1",
+    "assets/taches-cette-semaine-telephone-sombre.svg": "fd4a6090fd5f688c420a0e6c5ddd603f922701b7fc7e7bb3c9dafd8accefc859",
+    "assets/taches-cette-semaine-telephone.svg": "500f5d5c5f235c8361825e2e13d52b74e6ca5d6aaafb57c2f072934d98697c15",
+    "assets/taches-cette-semaine.svg": "f76211df8f8348be7246c6ae53d672d3ed5502d9d1da6eb02ff1cdb5ff0bb7fd",
+    "courbes.js": "7f3b8cfa4f8371de63381401e75298750cdc49a7c31020a48df80e90d5d2364c",
+    "manifest.json": "ef33550e4091f7ff442288ada8f61e388e496a8b380e63839013c48cbc19fa35",
+    "section.css": "6f6da3f741dc6e1b53fde805a192308eee2160a6288e36189f7dd08d711733b6",
+    "section.html": "b03dea428d520afe921859acb3bac19c966533363d50990212c4159fc1475703",
+    "section.js": "0138a4521c6cd89ec9dbae2f7d7aae20c1fceec4a178128108c91f11d48840f8"
+  },
+  "typescriptDeclaration": "copie locale du contrat v2, non fournie par Studio"
+}
